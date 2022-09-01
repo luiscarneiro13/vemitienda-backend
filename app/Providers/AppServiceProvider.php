@@ -19,14 +19,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (config('app.env') === 'production') {
-            Event::listen(MigrationsStarted::class, function () {
-                DB::statement('SET SESSION sql_require_primary_key=0');
-            });
-            Event::listen(MigrationsEnded::class, function () {
-                DB::statement('SET SESSION sql_require_primary_key=1');
-            });
-        }
+        // if (config('app.env') === 'production') {
+        //     Event::listen(MigrationsStarted::class, function () {
+        //         DB::statement('SET SESSION sql_require_primary_key=0');
+        //     });
+        //     Event::listen(MigrationsEnded::class, function () {
+        //         DB::statement('SET SESSION sql_require_primary_key=1');
+        //     });
+        // }
     }
 
     /**
