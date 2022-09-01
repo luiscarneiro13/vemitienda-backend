@@ -19,10 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (env('REDIRECT_HTTPS')) {
-            $this->app['request']->server->set('HTTPS', true);
-        }
-
         if (config('app.env') === 'production') {
             Event::listen(MigrationsStarted::class, function () {
                 DB::statement('SET SESSION sql_require_primary_key=0');
@@ -38,12 +34,8 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(UrlGenerator $url)
+    public function boot()
     {
-        if (env('REDIRECT_HTTPS')) {
-            $url->formatScheme('https://');
-        }
-
         Schema::defaultStringLength(125);
 
         if (config('app.env') === 'production') {
