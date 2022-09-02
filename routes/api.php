@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('login', 'API\V1\UserController@login');
-    Route::get('planes', 'API\V1\PlanesController@index');
 
     Route::group(['middleware' => 'auth:api'], function () {
-        // Route::get('planes', 'API\V1\PlanesController@index');
+        Route::post('logout', 'API\V1\UserController@logout');
+        Route::get('planes', 'API\V1\PlanesController@index');
         Route::get('categorias', 'API\V1\CategoriasController@index');
         Route::get('productos', 'API\V1\ProductosController@index');
         Route::get('usuarios', 'API\V1\UserController@index');

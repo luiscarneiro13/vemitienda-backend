@@ -8,12 +8,14 @@ use App\Repositories\UsersRepository;
 use App\User;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\HasApiTokens;
 
 class UserController extends Controller
 {
 
-    use ApiResponser;
+    use ApiResponser, HasApiTokens;
 
     public function index()
     {
@@ -28,7 +30,7 @@ class UserController extends Controller
                 if ($user->email_verified_at) {
                     if (Hash::check(request()->password, $user->password)) {
                         $user->token = $user->createToken(env('APP_KEY'))->accessToken;
-                        $data=$user;
+                        $data = $user;
                         return $this->successResponse(['data' => $data]);
                     } else {
                         // return $this->globals->response('forbidden', 'Datos incorrectos');
@@ -42,5 +44,12 @@ class UserController extends Controller
         } catch (\Throwable $error) {
             return $error;
         }
+    }
+
+    public function logout()
+    {
+        $user = Auth::user()->token();
+        $user->revoke();
+        return $this->successResponse();
     }
 }
