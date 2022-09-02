@@ -23,6 +23,8 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('categorias', 'API\V1\CategoriasController@index');
         Route::get('productos', 'API\V1\ProductosController@index');
         Route::get('usuarios', 'API\V1\UserController@index');
+        Route::get('user-information', 'API\V1\UserController@userInformation');
+        Route::post('company-user', 'API\V1\CompaniesController@storeCompanyUser');
     });
 });
 

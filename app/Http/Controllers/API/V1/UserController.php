@@ -22,6 +22,11 @@ class UserController extends Controller
         return $this->successResponse(['data' => UsersRepository::getUsers()]);
     }
 
+    public function userInformation()
+    {
+        return $this->successResponse(['data' => UsersRepository::getUserInformation()]);
+    }
+
     public function login()
     {
         try {

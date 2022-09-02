@@ -14,4 +14,9 @@ class Company extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function logo()
+    {
+        return $this->morphOne(\App\Models\Image::class, 'imageable');
+    }
+
 }

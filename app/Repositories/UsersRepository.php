@@ -3,20 +3,40 @@
 namespace App\Repositories;
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UsersRepository
 {
-    static function getUsers($limit = 10)
+
+    const RELATIONS = [
+        'company',
+        'plan_users',
+        'products.category'
+    ];
+
+    static function getUsers($limit = 10, $relations = [])
     {
         $filtrar = request()->get('query');
 
-        return User::query()
+        $datos = User::query()
             ->when($filtrar, function ($q) use ($filtrar) {
                 $q->where('name', 'like', '%' . $filtrar . '%');
                 $q->orWhere('email', 'like', '%' . $filtrar . '%');
                 return $q;
             })->paginate($limit);
+
+        if ($relations) {
+            $datos = $datos->with($relations);
+        }
+
+        return $datos;
+    }
+
+    static function getUserInformation()
+    {
+        $user = Auth::user();
+        return User::with(self::RELATIONS)->where('id', $user->id)->first();
     }
 
     static function storeUser($web = false)
