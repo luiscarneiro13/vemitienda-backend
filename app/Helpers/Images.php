@@ -15,4 +15,10 @@ class Images
     {
         Storage::disk($disk)->delete($user->Imagen->url);
     }
+
+    public function convertUrlToBase64($url)
+    {
+        $img = file_get_contents($url);
+        return base64_encode($img);
+    }
 }

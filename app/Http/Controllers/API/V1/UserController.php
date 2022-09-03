@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\LoginRequest;
+use App\Http\Resources\API\V1\UserInformationResource;
 use App\Repositories\UsersRepository;
 use App\User;
 use Illuminate\Http\Request;
@@ -24,7 +25,8 @@ class UserController extends Controller
 
     public function userInformation()
     {
-        return $this->successResponse(['data' => UsersRepository::getUserInformation()]);
+        $data = UsersRepository::getUserInformation();
+        return $this->successResponse(['data' => $data]);
     }
 
     public function login()
