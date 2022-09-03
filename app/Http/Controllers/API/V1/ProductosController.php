@@ -19,6 +19,7 @@ class ProductosController extends Controller
 
     public function storeProductUser(Request $request)
     {
+        
         $user = Auth::user();
         try {
 
