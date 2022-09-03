@@ -16,4 +16,31 @@ class ProductosController extends Controller
     {
         return $this->successResponse(['data' => ProductosRepository::getProductsUser()]);
     }
+
+    public function storeProductUser(Request $request)
+    {
+        $user = Auth::user();
+        try {
+
+            $data = [
+                "user_id" => $user->id,
+                "category_id" => request()->category_id,
+                "name" => request()->name,
+                "description" => request()->description || '',
+                "price" => request()->price || '',
+                "compartir" => request()->compartir || '',
+            ];
+
+            $product = Product::create($data);
+            $product->save();
+            $urlImagen1 = $this->image->uploadImage('imagen1', 'products', 'do');
+            $product->image()->create(['url' => $urlImagen1]);
+            $urlImagen2 = $this->image->uploadImage('imagen2', 'products', 'do');
+            $product->image()->create(['url' => $urlImagen2]);
+        } catch (\Throwable $th) {
+            return $this->errorResponse(['message' => 'Ocurrió un error al tratar de crear el producto']);
+        }
+
+        return $this->successResponse(['message' => 'Producto creado con éxito', 'data' => $product]);
+    }
 }
