@@ -43,12 +43,14 @@ class ProductosController extends Controller
 
             if (request()->imagen1) {
                 $urlImagen1 = $this->image->uploadImage('imagen1', 'products', 'do');
-                $product->images()->create(['url' => env('DO_URL_BASE') . '/' . $urlImagen1]);
+                $urlImages1Base64 = $this->image->convertUrlToBase64('imagen1');
+                $product->images()->create(['base64' => $urlImages1Base64, 'url' => env('DO_URL_BASE') . '/' . $urlImagen1]);
             }
 
             if (request()->imagen2) {
                 $urlImagen2 = $this->image->uploadImage('imagen2', 'products', 'do');
-                $product->images()->create(['url' => env('DO_URL_BASE') . '/' . $urlImagen2]);
+                $urlImages2Base64 = $this->image->convertUrlToBase64('imagen2');
+                $product->images()->create(['base64' => $urlImages2Base64, 'url' => env('DO_URL_BASE') . '/' . $urlImagen2]);
             }
         } catch (\Throwable $th) {
             info($th);
