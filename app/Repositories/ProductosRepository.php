@@ -18,3 +18,4 @@ class ProductosRepository
         return Product::with('category')->where('user_id', $user->id)->paginate($limit);
     }
 }
+
