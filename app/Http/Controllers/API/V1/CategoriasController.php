@@ -13,6 +13,6 @@ class CategoriasController extends Controller
 
     public function index()
     {
-        return $this->successResponse(['data' => CategoriesRepository::getCategories()]);
+        return $this->successResponse(['data' => CategoriesRepository::getCategories(-1)]);
     }
 }
