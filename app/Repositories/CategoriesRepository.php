@@ -11,13 +11,19 @@ class CategoriesRepository
     {
         $user = Auth::user();
         $filtrar = request()->get('query');
-        
-        return Category::query()
+
+        $datos = Category::query()
             ->where('user_id', $user->id)
             ->when($filtrar, function ($q) use ($filtrar) {
                 $q->where('name', 'like', '%' . $filtrar . '%');
                 return $q;
-            })->paginate($limit);
+            });
+            
+        if ($limit == -1) {
+            return $datos->get();
+        } else {
+            return $datos->paginate($limit);
+        }
     }
 
     static function storeCategory($web = false)
