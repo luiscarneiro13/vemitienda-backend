@@ -15,7 +15,7 @@ class ProductosRepository
     static function getProductsUser($limit = 10)
     {
         $user = Auth::user();
-        return Product::with('category')->where('user_id', $user->id)->paginate($limit);
+        return Product::with('category','image')->where('user_id', $user->id)->paginate($limit);
     }
 }
 

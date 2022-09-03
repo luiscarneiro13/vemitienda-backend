@@ -9,12 +9,6 @@ use Illuminate\Support\Facades\Hash;
 class UsersRepository
 {
 
-    const RELATIONS = [
-        'company',
-        'plan_users',
-        'products.category'
-    ];
-
     static function getUsers($limit = 10, $relations = [])
     {
         $filtrar = request()->get('query');
@@ -36,7 +30,13 @@ class UsersRepository
     static function getUserInformation()
     {
         $user = Auth::user();
-        return User::with(self::RELATIONS)->where('id', $user->id)->first();
+        return User::with([
+            'company', 'plan_users', 'products.images', 'products.category',
+            'products' => function ($q) {
+                $q->orderBy('name', 'asc');
+            }
+        ])
+            ->where('id', $user->id)->first();
     }
 
     static function storeUser($web = false)

@@ -3,14 +3,17 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesRepository
 {
     static function getCategories($limit = 10)
     {
+        $user = Auth::user();
         $filtrar = request()->get('query');
-
+        
         return Category::query()
+            ->where('user_id', $user->id)
             ->when($filtrar, function ($q) use ($filtrar) {
                 $q->where('name', 'like', '%' . $filtrar . '%');
                 return $q;
