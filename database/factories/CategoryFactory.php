@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Category::class, function (Faker $faker) {
     return [
-        'name' => $faker->lastName
+        'user_id'=>1,
+        'name' => $faker->lastName,
     ];
 });

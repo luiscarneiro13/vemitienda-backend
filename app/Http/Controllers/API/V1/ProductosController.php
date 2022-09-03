@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Repositories\ProductosRepository;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductosController extends Controller
 {
