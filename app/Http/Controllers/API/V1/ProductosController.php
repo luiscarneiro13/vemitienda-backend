@@ -21,7 +21,7 @@ class ProductosController extends Controller
 
     public function index()
     {
-        return $this->successResponse(['data' => ProductosRepository::getProductsUser(1000)]);
+        return $this->successResponse(['data' => ProductosRepository::getProductsUser(-1)]);
     }
 
     public function storeProductUser(Request $request)
