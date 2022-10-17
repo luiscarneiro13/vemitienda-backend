@@ -12,12 +12,10 @@ class ProductsController extends Controller
     use ApiResponser;
 
     public $image;
-    public $user;
 
     public function __construct()
     {
         $this->image = new Images();
-        $this->user = Auth->user();
     }
 
     public function index()
@@ -27,11 +25,12 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth->user();
 
         try {
 
             $data = [
-                "user_id" => $this->user->id,
+                "user_id" => $user->id,
                 "category_id" => request()->category_id,
                 "name" => request()->name,
                 "description" => request()->description || '',
