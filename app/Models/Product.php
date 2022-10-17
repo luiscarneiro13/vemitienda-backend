@@ -9,7 +9,7 @@ use App\Helpers\Images;
 class Product extends Model
 {
     protected $table = 'products';
-    protected $fillable = ['name', 'price', 'description', 'category_id', 'user_id', 'compartir'];
+    protected $fillable = ['name', 'price', 'description', 'category_id', 'user_id', 'share'];
 
     public function user()
     {

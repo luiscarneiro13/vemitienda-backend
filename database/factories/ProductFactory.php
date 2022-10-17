@@ -14,6 +14,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'description' => $faker->text(1000),
         'category_id' => factory(Category::class),
         'user_id' => factory(User::class),
-        'compartir' => $faker->randomElement([0, 1])
+        'share' => $faker->randomElement([0, 1])
     ];
 });
