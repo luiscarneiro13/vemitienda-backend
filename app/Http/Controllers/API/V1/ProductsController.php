@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Helpers\Images;
 use App\Http\Controllers\Controller;
+use App\Repositories\ProductosRepository;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
@@ -20,12 +21,12 @@ class ProductsController extends Controller
 
     public function index()
     {
-        //
+        return $this->successResponse(['data' => ProductosRepository::getProductsUser(-1)]);
     }
 
     public function store(Request $request)
     {
-        $user = Auth->user();
+        $user = Auth::user();
 
         try {
 

@@ -10,7 +10,7 @@ class CategoriesRepository
 
     static function getCategories($limit = 10)
     {
-        $user = Auth->user();
+        $user = Auth::user();
 
         $filtrar = request()->get('query');
 
