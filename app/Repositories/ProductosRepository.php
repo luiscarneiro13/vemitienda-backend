@@ -16,7 +16,7 @@ class ProductosRepository
     {
         $user = Auth::user();
 
-        $datos = Product::with('category', 'image')->where('user_id', $user->id);
+        $datos = Product::with('category', 'images')->where('user_id', $user->id);
 
         if ($limit == -1) {
             return $datos->get();
