@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $datos['usuarios_registrados'] = User::count();
-        return view('home', $datos);
+        return Product::with('images')->where('id', $id)->first();
     }
 }

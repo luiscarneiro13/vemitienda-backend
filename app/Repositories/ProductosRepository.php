@@ -25,4 +25,16 @@ class ProductosRepository
         }
         return $datos;
     }
+
+    static function getProductsUserId($id)
+    {
+        return Product::with('category', 'images')->where('id', $id)->first();
+    }
+
+    static function getProduct($id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+        return $product;
+    }
 }

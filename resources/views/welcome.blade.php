@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="{{ route('login') }}">
+<form method="POST" action="">
     @csrf
     <div class="row">
         <x-text name="email" columns="12" label="Email" placeholder="Ingrese su email aquí..." />
@@ -21,12 +21,12 @@
 </form>
 <div class="row mt-5">
     <div class="col-6 text-center">
-        <a href="{{ route('password.request') }}" class="btn-sm btn-default text-primary">
+        <a href="#" class="btn-sm btn-default text-primary">
             Recuperar Cuenta
         </a>
     </div>
     <div class="col-6 text-center">
-        <a href="{{ url('register') }}" class="btn-sm btn-default text-primary">
+        <a href="#" class="btn-sm btn-default text-primary">
             Registro
         </a>
     </div>
