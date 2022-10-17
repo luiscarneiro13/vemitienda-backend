@@ -35,7 +35,7 @@ class ProductosController extends Controller
                 "name" => request()->name,
                 "description" => request()->description || '',
                 "price" => request()->price || '',
-                "compartir" => request()->compartir || '',
+                "share" => request()->share || '',
             ];
 
             $product = Product::create($data);
