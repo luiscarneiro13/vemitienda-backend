@@ -20,16 +20,13 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('logout', 'API\V1\UserController@logout');
         Route::get('planes', 'API\V1\PlanesController@index');
-        Route::get('categorias', 'API\V1\CategoriasController@index');
         Route::get('productos', 'API\V1\ProductosController@index');
         Route::post('productos/store-user', 'API\V1\ProductosController@storeProductUser');
         Route::get('usuarios', 'API\V1\UserController@index');
         Route::get('user-information', 'API\V1\UserController@userInformation');
         Route::post('company-user', 'API\V1\CompaniesController@storeCompanyUser');
+
+        Route::apiResource('categories', 'API\V1\CategoriesController');
+        Route::apiResource('products', 'API\V1\ProductsController');
     });
 });
-
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

@@ -7,18 +7,25 @@ use Illuminate\Support\Facades\Auth;
 
 class CategoriesRepository
 {
+
+    public $user;
+
+    public function __construct()
+    {
+        $this->user = Auth->user();
+    }
+
     static function getCategories($limit = 10)
     {
-        $user = Auth::user();
         $filtrar = request()->get('query');
 
         $datos = Category::query()
-            ->where('user_id', $user->id)
+            ->where('user_id', $this->user->id)
             ->when($filtrar, function ($q) use ($filtrar) {
                 $q->where('name', 'like', '%' . $filtrar . '%');
                 return $q;
             });
-            
+
         if ($limit == -1) {
             return $datos->get();
         } else {
@@ -29,7 +36,8 @@ class CategoriesRepository
     static function storeCategory($web = false)
     {
         $insert = [
-            'name' => request()->name
+            'name' => request()->name,
+            'user_id' => $this->user->id
         ];
 
         return Category::updateOrCreate($insert);
@@ -43,7 +51,8 @@ class CategoriesRepository
     static function updateCategory($id)
     {
         $model = Category::find($id);
-        $model->name        = request()->name;
+        $model->name = request()->name;
+        $model->user_id = $this->user->id;
 
         return $model->save();
     }
