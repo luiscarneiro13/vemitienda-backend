@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 
 class CompaniesRepository
 {
@@ -25,6 +26,11 @@ class CompaniesRepository
         ];
 
         return Company::updateOrCreate($insert);
+    }
+
+    static function showCompanyUser()
+    {
+        return Company::where('user_id', Auth::user()->id)->first();
     }
 
     static function editCompany($id)

@@ -24,9 +24,9 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('productos/store-user', 'API\V1\ProductosController@storeProductUser');
         Route::get('usuarios', 'API\V1\UserController@index');
         Route::get('user-information', 'API\V1\UserController@userInformation');
-        Route::post('company-user', 'API\V1\CompaniesController@storeCompanyUser');
 
         Route::apiResource('categories', 'API\V1\CategoriesController');
         Route::apiResource('products', 'API\V1\ProductsController');
+        Route::apiResource('company-user', 'API\V1\CompaniesController');
     });
 });
