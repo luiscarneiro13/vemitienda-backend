@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->double('price', 8, 2)->default(0);
-            $table->boolean('compartir')->default(0);
+            $table->boolean('share')->default(0);
             $table->timestamps();
         });
     }

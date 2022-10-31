@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1'], function () {
+
     Route::post('login', 'API\V1\UserController@login');
 
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::post('logout', 'API\V1\UserController@logout');
-        Route::get('planes', 'API\V1\PlanesController@index');
         Route::get('productos', 'API\V1\ProductosController@index');
+        Route::get('planes', 'API\V1\PlanesController@index');
         Route::post('productos/store-user', 'API\V1\ProductosController@storeProductUser');
         Route::get('usuarios', 'API\V1\UserController@index');
         Route::get('user-information', 'API\V1\UserController@userInformation');
@@ -28,5 +28,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::apiResource('categories', 'API\V1\CategoriesController');
         Route::apiResource('products', 'API\V1\ProductsController');
         Route::apiResource('company-user', 'API\V1\CompaniesController');
+
+        Route::post('logout', 'API\V1\UserController@logout');
     });
 });

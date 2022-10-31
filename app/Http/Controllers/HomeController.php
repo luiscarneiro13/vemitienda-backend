@@ -25,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Product::with('images')->where('id', $id)->first();
+        return Product::with('images')->first();
     }
 }
