@@ -18,5 +18,4 @@ class Company extends Model
     {
         return $this->morphOne(\App\Models\Image::class, 'imageable');
     }
-
 }

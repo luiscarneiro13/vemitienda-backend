@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Plan extends Model
+class PaymentMethod extends Model
 {
-    protected $table = 'plans';
+    protected $table = 'payment_methods';
     protected $fillable = ['name'];
 }
