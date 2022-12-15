@@ -11,6 +11,22 @@ class CategoriesController extends Controller
 {
     use ApiResponser;
 
+
+    /**
+     * @OA\Get(
+     *     path="/categories",
+     *     summary="Mostrar Categorías para Usuario de la App",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Mostrar todos los usuarios."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+
     public function index()
     {
         return $this->successResponse(['data' => CategoriesRepository::getCategories(-1)]);

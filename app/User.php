@@ -38,17 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function products()
-    {
-        return $this->hasMany('App\Models\Product');
-    }
-
-    public function plan_users()
-    {
-        return $this->hasMany('App\Models\PlanUser');
-    }
-
-    public function company()
+    public function companies()
     {
         return $this->hasMany('App\Models\Company');
     }
@@ -56,5 +46,20 @@ class User extends Authenticatable
     public function categories()
     {
         return $this->hasMany('App\Models\Category');
+    }
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\Product');
+    }
+
+    public function plans()
+    {
+        return $this->belongsToMany('App\Models\Plan', 'plan_users')->withPivot('activo');
+    }
+
+    public function planUser()
+    {
+        return $this->hasMany('App\Models\PlanUser');
     }
 }

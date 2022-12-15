@@ -8,4 +8,9 @@ class PlanUser extends Model
 {
     protected $table = 'plan_users';
     protected $fillable = ['plan_id', 'user_id', 'active'];
+
+    public function payments()
+    {
+        return $this->hasMany('App\Models\Payment');
+    }
 }

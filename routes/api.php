@@ -30,5 +30,6 @@ Route::group(['prefix' => 'v1'], function () {
         Route::apiResource('company-user', 'API\V1\CompaniesController');
 
         Route::post('logout', 'API\V1\UserController@logout');
+        Route::get('prueba', 'API\V1\UserController@prueba');
     });
 });

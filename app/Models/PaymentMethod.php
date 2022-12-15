@@ -8,4 +8,9 @@ class PaymentMethod extends Model
 {
     protected $table = 'payment_methods';
     protected $fillable = ['name'];
+
+    public function paymentDetails()
+    {
+        return $this->hasMany('App\Models\PaymentDetail');
+    }
 }

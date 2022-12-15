@@ -8,4 +8,9 @@ class Service extends Model
 {
     protected $table = 'services';
     protected $fillable = ['name'];
+
+    public function plans()
+    {
+        return $this->belongsToMany('App\Models\Plan');
+    }
 }
