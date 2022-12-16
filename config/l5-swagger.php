@@ -7,14 +7,14 @@ return [
         | Edit to set the api's title
         |--------------------------------------------------------------------------
         */
-        // \App\Http\Middleware\EncryptCookies::class,
-        // \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-        // \Illuminate\Session\Middleware\StartSession::class,
-        // \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        // \App\Http\Middleware\VerifyCsrfToken::class,
-        // \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        // \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
-        // 'auth',
+        \App\Http\Middleware\EncryptCookies::class,
+        \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \App\Http\Middleware\VerifyCsrfToken::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+        'auth',
         'title' => 'L5 Swagger UI',
     ],
 
@@ -158,7 +158,7 @@ return [
         // Open API 3.0 support
         'passport' => [ // Unique name of security
             'type' => 'apiKey', // The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".
-            'description' => 'Laravel passport oauth2 security.',
+            'description' => 'Para autenticación con Passport. Agregar: Bearer token',
             'in' => 'header',
             'scheme' => 'https',
             'flows' => [
@@ -170,6 +170,12 @@ return [
                 ],
             ],
         ],
+        // 'bearer_token' => [ // Unique name of security
+        //     'type' => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
+        //     'description' => 'Ingresa el Token con la palabra Bearer, así: Bearer <token>',
+        //     'name' => 'Authorization', // The name of the header or query parameter to be used.
+        //     'in' => 'header', // The location of the API key. Valid values are "query" or "header".
+        // ],
 
     ],
 

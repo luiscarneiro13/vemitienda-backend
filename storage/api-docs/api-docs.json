@@ -2,6 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API Ve mi Tienda",
+        "description": "Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize",
         "version": "1.0"
     },
     "servers": [
@@ -12,33 +13,24 @@
     "paths": {
         "/categories": {
             "get": {
+                "tags": [
+                    "Categories"
+                ],
                 "summary": "Mostrar Categorías para Usuario de la App",
                 "operationId": "487cb1da6c7cac44da0d8bf04b16ba85",
                 "responses": {
                     "200": {
-                        "description": "Mostrar todos los usuarios."
+                        "description": "Exitoso"
                     },
                     "default": {
                         "description": "Ha ocurrido un error."
                     }
-                }
-            }
-        },
-        "/planes": {
-            "get": {
-                "tags": [
-                    "Planes"
-                ],
-                "summary": "Mostrar Categorías para Usuario de la App",
-                "operationId": "4697d1e346e3f7486397ab69b1d4a21a",
-                "responses": {
-                    "200": {
-                        "description": "Mostrar todos los usuarios."
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
+                },
+                "security": [
+                    {
+                        "passport": []
                     }
-                }
+                ]
             }
         },
         "/login": {
@@ -46,45 +38,88 @@
                 "tags": [
                     "Auth"
                 ],
-                "summary": "Inicio de Sesión",
-                "operationId": "50d319fcc1830d52127a096273ac245b",
-                "parameters": [
-                    {
-                        "name": "email",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "password",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
+                "summary": "User Login",
+                "description": "Login User Here",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "email"
+                                    },
+                                    "password": {
+                                        "type": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
                         }
                     }
-                ],
+                },
                 "responses": {
-                    "200": {
-                        "description": "Success",
+                    "201": {
+                        "description": "Login Successfully",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {}
+                            }
                         }
                     },
-                    "default": {
-                        "description": "Ha ocurrido un error."
+                    "200": {
+                        "description": "Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         }
     },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth de la aplicación"
+        },
+        {
+            "name": "Categories",
+            "description": "Endpoints de Categorías"
+        }
+    ],
     "components": {
         "securitySchemes": {
             "passport": {
                 "type": "apiKey",
-                "description": "Laravel passport oauth2 security.",
+                "description": "Para autenticación con Passport. Agregar: Bearer token",
                 "in": "header",
                 "scheme": "https",
                 "flows": {

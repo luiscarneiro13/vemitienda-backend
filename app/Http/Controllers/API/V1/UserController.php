@@ -13,12 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 
-/**
- * @OA\Info(title="API Ve mi Tienda", version="1.0")
- *
- * @OA\Server(url="http://localhost:8000/api/v1")
- */
-
 class UserController extends Controller
 {
 
@@ -39,42 +33,48 @@ class UserController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/login",
-     *   tags={"Auth"},
-     *     summary="Inicio de Sesión",
-     *   @OA\Parameter(
-     *      name="email",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *   @OA\Parameter(
-     *      name="password",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *          type="string"
-     *      )
-     *   ),
-     *   @OA\Response(
-     *      response=200,
-     *      description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
+     * path="/login",
+     * operationId="authLogin",
+     * tags={"Auth"},
+     * summary="User Login",
+     * security={{"bearerAuth":{}}},
+     * description="Login User Here",
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(),
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"email", "password"},
+     *               @OA\Property(property="email", type="email"),
+     *               @OA\Property(property="password", type="password")
+     *            ),
+     *        ),
+     *    ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Login Successfully",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Login Successfully",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
      * )
      */
+
     public function login()
     {
         info(request()->all());
-        $username='';
+        $username = '';
 
         if (request()->email) {
             $username = request()->email;

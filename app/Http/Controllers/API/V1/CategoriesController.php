@@ -14,11 +14,13 @@ class CategoriesController extends Controller
 
     /**
      * @OA\Get(
+     *     tags={"Categories"},
      *     path="/categories",
+     *     security={{"passport":{}}},
      *     summary="Mostrar Categorías para Usuario de la App",
      *     @OA\Response(
      *         response=200,
-     *         description="Mostrar todos los usuarios."
+     *         description="Exitoso"
      *     ),
      *     @OA\Response(
      *         response="default",
