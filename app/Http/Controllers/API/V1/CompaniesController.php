@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Helpers\Images;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\CompanyRequest;
 use App\Models\Company;
 use App\Repositories\CompaniesRepository;
 use Illuminate\Http\Request;
@@ -20,19 +21,80 @@ class CompaniesController extends Controller
         $this->image = new Images();
     }
 
+
+    /**
+     * @OA\Get(
+     *     tags={"Company"},
+     *     path="/company-user",
+     *     security={{"bearer_token":{}}},
+     *     summary="Mostrar los datos de la Empresa del Usuario de la App",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function index()
     {
         return $this->successResponse(['data' => CompaniesRepository::showCompanyUser()]);
     }
 
-    public function store(Request $request)
+    /**
+     * @OA\Post(
+     *     tags={"Company"},
+     *     path="/company-user",
+     *     security={{"bearer_token":{}}},
+     *     summary="Crear Empresa de un Usuario App",
+     *     @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *         @OA\Schema(
+     *           @OA\Property(
+     *             property="name",
+     *             description="Nombre de la Empresa",
+     *             type="string",
+     *           ),
+     *           @OA\Property(
+     *             property="slogan",
+     *             description="Slogan de la Empresa",
+     *             type="string",
+     *           ),
+     *           @OA\Property(
+     *             property="email",
+     *             description="Email de la Empresa",
+     *             type="string",
+     *           ),
+     *           @OA\Property(
+     *             property="phone",
+     *             description="Teléfono de la Empresa",
+     *             type="string",
+     *           ),
+     *         ),
+     *       ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+    public function store(CompanyRequest $request)
     {
         $user = Auth::user();
 
         try {
 
             $datos = array_merge(['user_id' => $user->id], request()->all());
-            $company = Company::updateOrCreate($datos);
+            $company = CompaniesRepository::storeCompany($datos);
 
             if (request()->logo) {
                 $urlLogo = $this->image->uploadImage('logo', 'logos', 'do');
@@ -42,7 +104,7 @@ class CompaniesController extends Controller
             return $this->errorResponse(['message' => $th]);
         }
 
-        return $this->successResponse(['message' => 'Empresa creada con éxito']);
+        return $this->successResponse(['message' => 'Datos guardados']);
     }
 
     public function show($id)

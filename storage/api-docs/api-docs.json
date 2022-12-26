@@ -28,7 +28,214 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Crear nueva categoría de un Usuario App",
+                "operationId": "63ddd258f5f535800f6d82fb9fb6d5a0",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {}
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Ver categoría de un Usuario App por Id",
+                "operationId": "8ea23abffbb1efe0621f8e1b9ab028a4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Actualizar categoría de un Usuario App",
+                "operationId": "0684137f88c06f27bba84b1ba89717ec",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de la Categoría",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Borrar categoría de un Usuario App",
+                "operationId": "6a7b4e6ffe2251f8f26ac76ea1fc4b4a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/company-user": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Mostrar los datos de la Empresa del Usuario de la App",
+                "operationId": "c81c57a22b280dd0807ec5923b9d3c7f",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Crear Empresa de un Usuario App",
+                "operationId": "73c33f62482b88b25b1a8cc11ce55c27",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de la Empresa",
+                                        "type": "string"
+                                    },
+                                    "slogan": {
+                                        "description": "Slogan de la Empresa",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email de la Empresa",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Teléfono de la Empresa",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
                     }
                 ]
             }
@@ -117,19 +324,11 @@
     ],
     "components": {
         "securitySchemes": {
-            "passport": {
+            "bearer_token": {
                 "type": "apiKey",
-                "description": "Para autenticación con Passport. Agregar: Bearer token",
-                "in": "header",
-                "scheme": "https",
-                "flows": {
-                    "password": {
-                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
-                        "tokenUrl": "http://localhost:8000/oauth/token",
-                        "refreshUrl": "http://localhost:8000/token/refresh",
-                        "scopes": []
-                    }
-                }
+                "description": "Ingresa el Token con la palabra Bearer, así: Bearer <token>",
+                "name": "Authorization",
+                "in": "header"
             }
         }
     }

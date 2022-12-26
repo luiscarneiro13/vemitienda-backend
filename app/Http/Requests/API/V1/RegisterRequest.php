@@ -4,6 +4,7 @@ namespace App\Http\Requests\API\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class RegisterRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +26,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                 => 'required|max:120',
+            'name'                  => 'required|max:120',
             'email'                 => 'required|email|max:120|unique:users,email',
             'password'              => 'required|min:6',
             'password_confirmation' => 'required_with:password|same:password|min:6',
@@ -35,17 +36,17 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'                   => 'El campo nombre es obligatorio',
-            'name.max'                        => 'El campo nombre no debe contener mas de 120 caracteres',
-            'email.required'                  => 'El campo correo es obligatorio',
-            'email.email'                     => 'El email ingresado no es valido',
-            'email.max'                       => 'El campo correo no debe contener mas de 120 caracteres',
-            'email.unique'                    => 'El correo ingresado ya posee una cuenta activa,debe ingresar un correo diferente',
-            'password.required'               => 'El campo contraseña es obligatorio',
-            'password.min'                    => 'El campo contraseña debe contener al menos 6 caracteres',
-            'password_confirmation.required'  => 'El campo confirmar contraseña es obligatorio',
-            'password_confirmation.same'      => 'Los campos contraseña y confirmar contraseña no coinciden',
-            'password_confirmation.min'       => 'El campo confirmar contraseña debe contener al menos 6 caracteres',
+            'name.required'                  => 'El campo nombre es obligatorio',
+            'name.max'                       => 'El campo nombre no debe contener mas de 120 caracteres',
+            'email.required'                 => 'El campo correo es obligatorio',
+            'email.email'                    => 'El email ingresado no es valido',
+            'email.max'                      => 'El campo correo no debe contener mas de 120 caracteres',
+            'email.unique'                   => 'El correo ingresado ya posee una cuenta activa,debe ingresar un correo diferente',
+            'password.required'              => 'El campo contraseña es obligatorio',
+            'password.min'                   => 'El campo contraseña debe contener al menos 6 caracteres',
+            'password_confirmation.required' => 'El campo confirmar contraseña es obligatorio',
+            'password_confirmation.same'     => 'Los campos contraseña y confirmar contraseña no coinciden',
+            'password_confirmation.min'      => 'El campo confirmar contraseña debe contener al menos 6 caracteres',
         ];
     }
 

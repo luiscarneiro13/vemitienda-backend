@@ -19,18 +19,15 @@ class CompaniesRepository
             })->paginate($limit);
     }
 
-    static function storeCompany($web = false)
+    static function storeCompany($insert)
     {
-        $insert = [
-            'name' => request()->name
-        ];
-
         return Company::updateOrCreate($insert);
     }
 
     static function showCompanyUser()
     {
-        return Company::where('user_id', Auth::user()->id)->first();
+        $user = Auth::user();
+        return Company::where('user_id', $user->id)->first();
     }
 
     static function editCompany($id)

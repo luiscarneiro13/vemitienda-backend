@@ -18,7 +18,7 @@ trait ApiResponser
         $status    = $params['status'] ?? 200;
         $message = $params['message'] ?? null;
         $success = isset($params['success']) ? $params['success'] : true;
-        $data    = $params['data'] ?? [];
+        $data    = $params['data'] ?? null;
 
         $responseAttributes = [
             'status'    => $status,
@@ -27,7 +27,7 @@ trait ApiResponser
         ];
 
         if (is_array($data)) {
-            $datos['data']=$data;
+            $datos['data'] = $data;
             $response = array_merge($responseAttributes, $datos);
         } else {
             $responseAttributes['data'] = $data;
@@ -41,6 +41,14 @@ trait ApiResponser
     {
         $params['success'] = false;
         return $this->successResponse($params);
+    }
+
+    public function errorValidation($params = [])
+    {
+        $params['status'] = 400;
+        $params['errors'] = $params;
+        return $params;
+
     }
 
     public function unauthorizedResponse()

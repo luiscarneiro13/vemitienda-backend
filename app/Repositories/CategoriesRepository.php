@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Auth;
 class CategoriesRepository
 {
 
+    private $user;
+
     static function getCategories($limit = 10)
     {
-        $user = Auth::user();
-
         $filtrar = request()->get('query');
+        $user = Auth::user();
 
         $datos = Category::query()
             ->where('user_id', $user->id)
@@ -28,8 +29,19 @@ class CategoriesRepository
         }
     }
 
+    static function showCategory($id)
+    {
+        $user = Auth::user();
+
+        return Category::query()
+            ->where('user_id', $user->id)
+            ->where('id', $id)->first();
+    }
+
     static function storeCategory($web = false)
     {
+        $user = Auth::user();
+
         $insert = [
             'name' => request()->name,
             'user_id' => $user->id
@@ -45,11 +57,13 @@ class CategoriesRepository
 
     static function updateCategory($id)
     {
+        $user = Auth::user();
+
         $model = Category::find($id);
         $model->name = request()->name;
         $model->user_id = $user->id;
-
-        return $model->save();
+        $model->save();
+        return $model;
     }
 
     static function deleteCategory($id)
