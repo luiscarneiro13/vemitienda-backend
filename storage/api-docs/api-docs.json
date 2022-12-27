@@ -198,30 +198,105 @@
                 "summary": "Crear Empresa de un Usuario App",
                 "operationId": "73c33f62482b88b25b1a8cc11ce55c27",
                 "requestBody": {
+                    "description": "Datos de la Empresa",
                     "required": true,
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
+                                "required": [
+                                    "email",
+                                    "name",
+                                    "slogan",
+                                    "phone"
+                                ],
                                 "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "sistelconet@gmail.com"
+                                    },
                                     "name": {
-                                        "description": "Nombre de la Empresa",
-                                        "type": "string"
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "Sistelconet"
                                     },
                                     "slogan": {
-                                        "description": "Slogan de la Empresa",
-                                        "type": "string"
-                                    },
-                                    "email": {
-                                        "description": "Email de la Empresa",
-                                        "type": "string"
+                                        "type": "string",
+                                        "format": "slogan",
+                                        "example": "Tu Solución en Sistemas"
                                     },
                                     "phone": {
-                                        "description": "Teléfono de la Empresa",
-                                        "type": "string"
+                                        "type": "string",
+                                        "format": "phone",
+                                        "example": "+584248807465"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/company-user/{id}": {
+            "put": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Crear Empresa de un Usuario App",
+                "operationId": "4b72845e766dbea6e7c3356cbc5bf45e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Datos de la Empresa",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "name",
+                                    "slogan",
+                                    "phone"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "sistelconet@gmail.com"
                                     },
-                                    "logo": {
-                                        "description": "Logotipo de la Empresa",
-                                        "type": "string"
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "Sistelconet"
+                                    },
+                                    "slogan": {
+                                        "type": "string",
+                                        "format": "slogan",
+                                        "example": "Tu Solución en Sistemas"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "phone",
+                                        "example": "+584248807465"
                                     }
                                 },
                                 "type": "object"
@@ -253,8 +328,10 @@
                 "description": "Login User Here",
                 "operationId": "authLogin",
                 "requestBody": {
+                    "description": "Datos de la Empresa",
+                    "required": true,
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
                                 "required": [
                                     "email",
@@ -262,17 +339,18 @@
                                 ],
                                 "properties": {
                                     "email": {
-                                        "type": "email"
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "administrador@gmail.com"
                                     },
                                     "password": {
-                                        "type": "password"
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "123456"
                                     }
                                 },
                                 "type": "object"
                             }
-                        },
-                        "application/json": {
-                            "schema": {}
                         }
                     }
                 },

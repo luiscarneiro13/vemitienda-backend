@@ -16,12 +16,6 @@ class CompaniesController extends Controller
 
     use ApiResponser;
 
-    public function __construct()
-    {
-        $this->image = new Images();
-    }
-
-
     /**
      * @OA\Get(
      *     tags={"Company"},
@@ -50,37 +44,15 @@ class CompaniesController extends Controller
      *     security={{"bearer_token":{}}},
      *     summary="Crear Empresa de un Usuario App",
      *     @OA\RequestBody(
-     *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
-     *         @OA\Schema(
-     *           @OA\Property(
-     *             property="name",
-     *             description="Nombre de la Empresa",
-     *             type="string",
-     *           ),
-     *           @OA\Property(
-     *             property="slogan",
-     *             description="Slogan de la Empresa",
-     *             type="string",
-     *           ),
-     *           @OA\Property(
-     *             property="email",
-     *             description="Email de la Empresa",
-     *             type="string",
-     *           ),
-     *           @OA\Property(
-     *             property="phone",
-     *             description="Teléfono de la Empresa",
-     *             type="string",
-     *           ),
-     *           @OA\Property(
-     *             property="logo",
-     *             description="Logotipo de la Empresa",
-     *             type="string",
-     *           ),
-     *         ),
-     *       ),
+     *        required=true,
+     *        description="Datos de la Empresa",
+     *        @OA\JsonContent(
+     *           required={"email","name","slogan","phone"},
+     *           @OA\Property(property="email", type="string", format="email", example="sistelconet@gmail.com"),
+     *           @OA\Property(property="name", type="string", format="name", example="Sistelconet"),
+     *           @OA\Property(property="slogan", type="string", format="slogan", example="Tu Solución en Sistemas"),
+     *           @OA\Property(property="phone", type="string", format="phone", example="+584248807465"),
+     *        ),
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -94,21 +66,14 @@ class CompaniesController extends Controller
      */
     public function store(CompanyRequest $request)
     {
+        $user = Auth::user();
         try {
-            $user = Auth::user();
-
             $datos = array_merge(['user_id' => $user->id], request()->all());
             $company = CompaniesRepository::storeCompany($datos);
-
-            if (request()->logo) {
-                $urlLogo = $this->image->uploadImage('logo', 'logos', 'do');
-                $company->logo()->create(['url' => $urlLogo]);
-            }
+            return $this->successResponse(['message' => 'Datos guardados', 'data' => $datos]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
         }
-
-        return $this->successResponse(['message' => 'Datos guardados', 'data' => $datos]);
     }
 
     public function show($id)
@@ -116,21 +81,46 @@ class CompaniesController extends Controller
         return $this->successResponse(['data' => CompaniesRepository::getCategories(-1)]);
     }
 
-    public function update(CompanyRequest $request, $id)
-    {
-        return "LUISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS";
-        try {
-            $company = CompaniesRepository::updateCompany($id);
 
-            if (request()->logo) {
-                $urlLogo = $this->image->uploadImage('logo', 'logos', 'do');
-                $company->logo()->create(['url' => $urlLogo]);
-            }
+    /**
+     * @OA\Put(
+     *     tags={"Company"},
+     *     path="/company-user/{id}",
+     *     security={{"bearer_token":{}}},
+     *     summary="Crear Empresa de un Usuario App",
+     *     @OA\Parameter(
+     *        name="id",
+     *        in="path",
+     *        required=true
+     *     ),
+     *     @OA\RequestBody(
+     *        required=true,
+     *        description="Datos de la Empresa",
+     *        @OA\JsonContent(
+     *           required={"email","name","slogan","phone"},
+     *           @OA\Property(property="email", type="string", format="email", example="sistelconet@gmail.com"),
+     *           @OA\Property(property="name", type="string", format="name", example="Sistelconet"),
+     *           @OA\Property(property="slogan", type="string", format="slogan", example="Tu Solución en Sistemas"),
+     *           @OA\Property(property="phone", type="string", format="phone", example="+584248807465")
+     *        )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+    public function update(Request $request, $id)
+    {
+        try {
+            return $this->successResponse(['message' => 'Datos guardados', 'data' =>  CompaniesRepository::updateCompany($id)]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
         }
-
-        return $this->successResponse(['message' => 'Datos guardados', 'data' => $company]);
     }
 
     public function destroy($id)

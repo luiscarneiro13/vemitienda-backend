@@ -12,9 +12,9 @@ class Images
         return $image;
     }
 
-    public function deleteImage($user, $disk, $folder)
+    public function deleteImage($url, $disk)
     {
-        Storage::disk($disk)->delete($user->Imagen->url);
+        Storage::disk($disk)->delete($url);
     }
 
     public function convertUrlToBase64($input)

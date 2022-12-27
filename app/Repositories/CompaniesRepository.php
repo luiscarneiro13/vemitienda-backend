@@ -44,7 +44,8 @@ class CompaniesRepository
         $model->slogan = request()->slogan;
         $model->email = request()->email;
         $model->phone = request()->phone;
-        return $model->save();
+        $model->save();
+        return $model;
     }
 
     static function deleteCompany($id)
