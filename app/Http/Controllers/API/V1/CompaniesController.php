@@ -78,7 +78,7 @@ class CompaniesController extends Controller
 
     public function show($id)
     {
-        return $this->successResponse(['data' => CompaniesRepository::getCategories(-1)]);
+        //
     }
 
 
