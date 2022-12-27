@@ -218,6 +218,10 @@
                                     "phone": {
                                         "description": "Teléfono de la Empresa",
                                         "type": "string"
+                                    },
+                                    "logo": {
+                                        "description": "Logotipo de la Empresa",
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"

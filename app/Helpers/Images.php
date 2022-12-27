@@ -8,6 +8,9 @@ class Images
 {
     public function uploadImage($input, $folder, $disk)
     {
+        info('Input: '.$input);
+        info('Folder: '.$folder);
+        info('Disk: ' . $disk);
         return request()->file($input)->storePublicly($folder, $disk);
     }
 

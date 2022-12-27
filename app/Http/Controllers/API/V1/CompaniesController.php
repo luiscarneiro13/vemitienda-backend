@@ -74,6 +74,11 @@ class CompaniesController extends Controller
      *             description="Teléfono de la Empresa",
      *             type="string",
      *           ),
+     *           @OA\Property(
+     *             property="logo",
+     *             description="Logotipo de la Empresa",
+     *             type="string",
+     *           ),
      *         ),
      *       ),
      *     ),
@@ -89,9 +94,8 @@ class CompaniesController extends Controller
      */
     public function store(CompanyRequest $request)
     {
-        $user = Auth::user();
-
         try {
+            $user = Auth::user();
 
             $datos = array_merge(['user_id' => $user->id], request()->all());
             $company = CompaniesRepository::storeCompany($datos);
@@ -100,11 +104,11 @@ class CompaniesController extends Controller
                 $urlLogo = $this->image->uploadImage('logo', 'logos', 'do');
                 $company->logo()->create(['url' => $urlLogo]);
             }
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
             return $this->errorResponse(['message' => $th]);
         }
 
-        return $this->successResponse(['message' => 'Datos guardados']);
+        return $this->successResponse(['message' => 'Datos guardados', 'data' => $datos]);
     }
 
     public function show($id)

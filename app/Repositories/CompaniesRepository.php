@@ -21,7 +21,7 @@ class CompaniesRepository
 
     static function storeCompany($insert)
     {
-        return Company::updateOrCreate($insert);
+        return Company::create($insert);
     }
 
     static function showCompanyUser()
