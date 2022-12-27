@@ -8,10 +8,8 @@ class Images
 {
     public function uploadImage($input, $folder, $disk)
     {
-        info('Input: '.$input);
-        info('Folder: '.$folder);
-        info('Disk: ' . $disk);
-        return request()->file($input)->storePublicly($folder, $disk);
+        $image = request()->file($input)->storePublicly($folder, $disk);
+        return $image;
     }
 
     public function deleteImage($user, $disk, $folder)

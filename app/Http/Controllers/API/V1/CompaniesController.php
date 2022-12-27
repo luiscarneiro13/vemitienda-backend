@@ -104,7 +104,7 @@ class CompaniesController extends Controller
                 $urlLogo = $this->image->uploadImage('logo', 'logos', 'do');
                 $company->logo()->create(['url' => $urlLogo]);
             }
-        } catch (\Exception $th) {
+        } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
         }
 
@@ -116,10 +116,23 @@ class CompaniesController extends Controller
         return $this->successResponse(['data' => CompaniesRepository::getCategories(-1)]);
     }
 
-    public function update(Request $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
-        //
+        return "LUISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS";
+        try {
+            $company = CompaniesRepository::updateCompany($id);
+
+            if (request()->logo) {
+                $urlLogo = $this->image->uploadImage('logo', 'logos', 'do');
+                $company->logo()->create(['url' => $urlLogo]);
+            }
+        } catch (\Throwable $th) {
+            return $this->errorResponse(['message' => $th]);
+        }
+
+        return $this->successResponse(['message' => 'Datos guardados', 'data' => $company]);
     }
+
     public function destroy($id)
     {
         //

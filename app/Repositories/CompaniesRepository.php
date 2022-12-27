@@ -37,7 +37,9 @@ class CompaniesRepository
 
     static function updateCompany($id)
     {
+        $user = Auth::user();
         $model = Company::find($id);
+        $model->user_id = $user->id;
         $model->name = request()->name;
         $model->slogan = request()->slogan;
         $model->email = request()->email;

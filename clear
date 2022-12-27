@@ -1,0 +1,22 @@
+Configuration cache cleared!
+Configuration cached successfully!
+Route cache cleared!
+
+   LogicException 
+
+  Unable to prepare route [/] for serialization. Uses Closure.
+
+  at vendor/laravel/framework/src/Illuminate/Routing/Route.php:1150
+    1146|      */
+    1147|     public function prepareForSerialization()
+    1148|     {
+    1149|         if ($this->action['uses'] instanceof Closure) {
+  > 1150|             throw new LogicException("Unable to prepare route [{$this->uri}] for serialization. Uses Closure.");
+    1151|         }
+    1152| 
+    1153|         $this->compileRoute();
+    1154|
+
+      [2m+25 vendor frames [22m
+  26  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
