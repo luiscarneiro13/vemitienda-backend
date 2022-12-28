@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
-class ProductosRepository
+class ProductsRepository
 {
     static function getProducts($limit = 10)
     {
@@ -36,5 +36,30 @@ class ProductosRepository
         $product = Product::find($id);
         $product->delete();
         return $product;
+    }
+
+    static function storeProduct($insert)
+    {
+        return Product::create($insert);
+    }
+
+    static function deleteProduct($id)
+    {
+        $model = Product::find($id);
+        return $model->delete();
+    }
+
+    static function updateProduct($id)
+    {
+        $user = Auth::user();
+        $model = Product::find($id);
+        $model->user_id = $user->id;
+        $model->name = request()->name;
+        $model->category_id = request()->category_id;
+        $model->description = request()->description;
+        $model->price = request()->price ? request()->price : 0;
+        $model->share = request()->share ? request()->share : 0;
+        $model->save();
+        return $model;
     }
 }

@@ -256,7 +256,7 @@
                 "tags": [
                     "Company"
                 ],
-                "summary": "Crear Empresa de un Usuario App",
+                "summary": "Actualizar datos de Empresa de un Usuario App",
                 "operationId": "4b72845e766dbea6e7c3356cbc5bf45e",
                 "parameters": [
                     {
@@ -304,6 +304,220 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/products-user": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Mostrar los productos del Usuario de la App",
+                "operationId": "d239b30ada0789f70403de548ff35391",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Crear Producto de un Usuario App",
+                "operationId": "31107d028b12319ba5a1fdb409022172",
+                "requestBody": {
+                    "description": "Datos del Producto",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_id",
+                                    "name",
+                                    "description",
+                                    "price",
+                                    "share"
+                                ],
+                                "properties": {
+                                    "category_id": {
+                                        "type": "string",
+                                        "format": "category_id",
+                                        "example": "4"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "Product X"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "description",
+                                        "example": "Descripción del producto de prueba"
+                                    },
+                                    "price": {
+                                        "type": "string",
+                                        "format": "price",
+                                        "example": "100"
+                                    },
+                                    "share": {
+                                        "type": "string",
+                                        "format": "share",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/products-user/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Ver producto de un Usuario App por Id",
+                "operationId": "044b4c485d1ef88fdf41ce1c21858a4f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Actualizar producto de un Usuario App",
+                "operationId": "b48fb1542e2268bb33cc0a422cf55813",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Datos del producto",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_id",
+                                    "name",
+                                    "description",
+                                    "price",
+                                    "share"
+                                ],
+                                "properties": {
+                                    "category_id": {
+                                        "type": "string",
+                                        "format": "category_id",
+                                        "example": "4"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "Product X"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "description",
+                                        "example": "Descripción del producto de prueba"
+                                    },
+                                    "price": {
+                                        "type": "string",
+                                        "format": "price",
+                                        "example": "100"
+                                    },
+                                    "share": {
+                                        "type": "string",
+                                        "format": "share",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/products/{id}": {
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Borrar producto de un Usuario App",
+                "operationId": "23797433772c37cf0742953102ab0112",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Exitoso"

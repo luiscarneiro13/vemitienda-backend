@@ -87,7 +87,7 @@ class CompaniesController extends Controller
      *     tags={"Company"},
      *     path="/company-user/{id}",
      *     security={{"bearer_token":{}}},
-     *     summary="Crear Empresa de un Usuario App",
+     *     summary="Actualizar datos de Empresa de un Usuario App",
      *     @OA\Parameter(
      *        name="id",
      *        in="path",

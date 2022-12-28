@@ -19,14 +19,14 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('login', 'API\V1\UserController@login');
 
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('productos', 'API\V1\ProductosController@index');
+        // Route::get('productos', 'API\V1\ProductosController@index');
         Route::get('planes', 'API\V1\PlanesController@index');
         Route::post('productos/store-user', 'API\V1\ProductosController@storeProductUser');
         Route::get('usuarios', 'API\V1\UserController@index');
         Route::get('user-information', 'API\V1\UserController@userInformation');
 
         Route::apiResource('categories', 'API\V1\CategoriesController');
-        Route::apiResource('products', 'API\V1\ProductsController');
+        Route::apiResource('products-user', 'API\V1\ProductsController');
         Route::Resource('company-user', 'API\V1\CompaniesController')->except(['create', 'edit', 'update']);
         Route::put('company-user/{id}', 'API\V1\CompaniesController@update');
 
