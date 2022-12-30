@@ -1,13 +1,21 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Category;
-use Faker\Generator as Faker;
+use App\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Category::class, function (Faker $faker) {
-    return [
-        'user_id'=>1,
-        'name' => $faker->lastName,
-    ];
-});
+class CategoryFactory extends Factory
+{
+
+    protected $model = Category::class;
+
+    public function definition()
+    {
+        return [
+            'user_id' => User::inRandomOrder()->first()->id,
+            'name' => $this->faker->lastName,
+        ];
+    }
+}

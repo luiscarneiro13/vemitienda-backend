@@ -1,14 +1,21 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Plan;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Plan::class, function (Faker $faker) {
-    return [
-        'name' => $faker->randomElement(['Basico', 'Intermedio', 'Avanzado', 'Plus']),
-        'price' => $faker->randomNumber(2),
-        'quantity' => $faker->randomNumber(1)
-    ];
-});
+class PlanFactory extends Factory
+{
+
+    protected $model = Plan::class;
+
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->randomElement(['Basico', 'Intermedio', 'Avanzado', 'Plus']),
+            'price' => $this->faker->randomNumber(2),
+            'quantity' => $this->faker->randomNumber(1)
+        ];
+    }
+}

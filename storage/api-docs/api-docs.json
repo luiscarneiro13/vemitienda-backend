@@ -661,15 +661,5 @@
             "name": "Categories",
             "description": "Endpoints de Categorías"
         }
-    ],
-    "components": {
-        "securitySchemes": {
-            "bearer_token": {
-                "type": "apiKey",
-                "description": "Ingresa el Token con la palabra Bearer, así: Bearer <token>",
-                "name": "Authorization",
-                "in": "header"
-            }
-        }
-    }
+    ]
 }

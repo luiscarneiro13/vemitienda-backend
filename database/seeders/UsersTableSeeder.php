@@ -1,8 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -20,10 +23,10 @@ class UsersTableSeeder extends Seeder
                 'email' => 'administrador@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456'),
-                'remember_token' => Str::random(10),
+                'remember_token' => Str::random(100)
             ]);
         }
 
-        factory(User::class, 5)->create();
+        User::factory()->count(100)->create();
     }
 }

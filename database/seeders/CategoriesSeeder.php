@@ -1,9 +1,11 @@
 <?php
 
-use App\Models\Plan;
+namespace Database\Seeders;
+
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
-class PlansSeeder extends Seeder
+class CategoriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +14,6 @@ class PlansSeeder extends Seeder
      */
     public function run()
     {
-        factory(Plan::class, 3)->create();
+        Category::factory()->count(3)->create();
     }
 }

@@ -18,6 +18,29 @@ class UserController extends Controller
 
     use ApiResponser, HasApiTokens;
 
+    /**
+     * @OA\Info(
+     *   title="API Ve mi Tienda",
+     *   version="1.0",
+     *   description="Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize"
+     *   )
+     * @OA\Server(
+     *  url="http://localhost:8000/api/v1"
+     * )
+     * @OAS\SecurityScheme(
+     *      securityScheme="bearerAuth",
+     *      type="http",
+     *      scheme="bearer"
+     * )
+     * @OA\Tag(
+     *   name="Auth",
+     *   description="Auth de la aplicación"
+     * ),
+     * @OA\Tag(
+     *   name="Categories",
+     *   description="Endpoints de Categorías"
+     * )
+     */
 
     public function index()
     {

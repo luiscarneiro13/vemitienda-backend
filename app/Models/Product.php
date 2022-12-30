@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\Images;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
+    use HasFactory;
+
     protected $table = 'products';
     protected $fillable = ['user_id', 'category_id', 'name', 'description', 'price', 'share'];
 

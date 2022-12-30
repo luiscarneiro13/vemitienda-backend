@@ -30,7 +30,7 @@ class ImagesController extends Controller
             try {
                 $this->image->deleteImage(@$company->logo->url, "do");
                 $company->Logo()->delete();
-            } catch (\Throwable $th)
+            } catch (\Throwable $th){}
 
             try {
                 $urlLogo = $this->image->uploadImage('logo', 'logos', 'do');
@@ -50,7 +50,7 @@ class ImagesController extends Controller
             try {
                 $this->image->deleteImage(@$product->image->url, "do");
                 $product->image()->delete();
-            } catch (\Throwable $th)
+            } catch (\Throwable $th){}
 
             try {
                 $urlProduct = $this->image->uploadImage('image', 'products', 'do');
