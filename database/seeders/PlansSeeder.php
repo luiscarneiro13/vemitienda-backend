@@ -14,6 +14,9 @@ class PlansSeeder extends Seeder
      */
     public function run()
     {
-        Plan::factory()->count(3)->create();
+        $plans = Plan::all();
+        if (!$plans) {
+            Plan::factory()->count(3)->create();
+        }
     }
 }
