@@ -25,7 +25,7 @@ class UserController extends Controller
      *   description="Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize"
      *   )
      * @OA\Server(
-     *  url="http://vemitiendabackend.test/api/v1"
+     *  url="https://vemitiendabackend.test/api/v1"
      * )
      * @OAS\SecurityScheme(
      *      securityScheme="bearerAuth",
