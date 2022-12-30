@@ -103,11 +103,54 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     tags={"Auth"},
+     *     path="/logout",
+     *     security={{"bearer_token":{}}},
+     *     summary="Desloguear usuario",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function logout()
     {
         $user = Auth::user()->token();
         $user->revoke();
         return $this->successResponse();
+    }
+
+    /**
+     * @OA\Post(
+     *     tags={"Auth"},
+     *     path="/cancel-account",
+     *     security={{"bearer_token":{}}},
+     *     summary="Dar de baja al usuario",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+    public function cancelAccount()
+    {
+        $user = Auth::user();
+        try {
+            $user->delete();
+            return $this->successResponse(['message' => 'Datos guardados', 'data' => $user]);
+        } catch (\Throwable $th) {
+            return $this->errorResponse(['message' => $th]);
+        }
     }
 
     public function prueba()

@@ -29,8 +29,10 @@ Route::group(['prefix' => 'v1'], function () {
         Route::apiResource('products-user', 'API\V1\ProductsController');
         Route::Resource('company-user', 'API\V1\CompaniesController')->except(['create', 'edit', 'update']);
         Route::put('company-user/{id}', 'API\V1\CompaniesController@update');
-
         Route::post('logout', 'API\V1\UserController@logout');
+        Route::post('cancel-account', 'API\V1\UserController@cancelAccount');
+        Route::post('image', 'API\V1\ImagesController@logoStore');
+
         Route::get('prueba', 'API\V1\UserController@prueba');
     });
 });

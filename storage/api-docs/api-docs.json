@@ -606,6 +606,50 @@
                     }
                 ]
             }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Desloguear usuario",
+                "operationId": "7c822f4eec9424890f34674874012768",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/cancel-account": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Dar de baja al usuario",
+                "operationId": "73acaae339ec1746a5c1c6214654850e",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
         }
     },
     "tags": [

@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         //         DB::statement('SET SESSION sql_require_primary_key=1');
         //     });
         // }
-        $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
+        // $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
     }
 
     /**
