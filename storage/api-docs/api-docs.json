@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://vemitiendabackend.test/api/v1"
+            "url": "https://vemitiendabackend.tests/api/v1"
         }
     ],
     "paths": {
@@ -518,6 +518,25 @@
                         "required": true
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/user-information": {
+            "get": {
+                "summary": "Mostrar Información del Usuario de la App",
+                "operationId": "7ba535b69ac822f82129f3610b6ac46d",
                 "responses": {
                     "200": {
                         "description": "Exitoso"

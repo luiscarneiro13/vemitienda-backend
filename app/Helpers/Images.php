@@ -6,19 +6,18 @@ use Illuminate\Support\Facades\Storage;
 
 class Images
 {
-    public function uploadImage($input, $folder, $disk)
+    static function uploadImage($folder)
     {
-        $image = request()->file($input)->storePublicly($folder, $disk);
-        return $image;
+        return request()->file('image')->storePublicly($folder, 'do');
     }
 
-    public function deleteImage($url, $disk)
+    static function deleteImage($url)
     {
-        Storage::disk($disk)->delete($url);
+        Storage::disk('do')->delete($url);
     }
 
-    public function convertUrlToBase64($input)
+    static function convertUrlToBase64()
     {
-        return base64_encode(file_get_contents(request()->file($input)));
+        return base64_encode(file_get_contents(request()->file('image')));
     }
 }

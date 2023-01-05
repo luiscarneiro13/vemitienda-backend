@@ -25,7 +25,7 @@ class UserController extends Controller
      *   description="Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize"
      *   )
      * @OA\Server(
-     *  url="https://vemitiendabackend.test/api/v1"
+     *  url="https://vemitiendabackend.tests/api/v1"
      * )
      * @OAS\SecurityScheme(
      *      securityScheme="bearerAuth",
@@ -47,6 +47,22 @@ class UserController extends Controller
         return $this->successResponse(['data' => UsersRepository::getUsers()]);
     }
 
+
+    /**
+     * @OA\Get(
+     *     path="/user-information",
+     *     security={{"bearer_token":{}}},
+     *     summary="Mostrar Información del Usuario de la App",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function userInformation()
     {
         $data = UsersRepository::getUserInformation();

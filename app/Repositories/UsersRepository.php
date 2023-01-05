@@ -31,7 +31,7 @@ class UsersRepository
     {
         $user = Auth::user();
         return User::with([
-            'company', 'plan_users', 'products.images', 'products.category',
+            'companies', 'planUser', 'products.images', 'products.category',
             'products' => function ($q) {
                 $q->orderBy('name', 'asc');
             }
