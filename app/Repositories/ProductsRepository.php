@@ -16,7 +16,7 @@ class ProductsRepository
     {
         $user = Auth::user();
 
-        $datos = Product::with('category', 'images')->where('user_id', $user->id);
+        $datos = Product::with('category', 'image')->where('user_id', $user->id);
 
         if ($limit == -1) {
             return $datos->get();
@@ -28,7 +28,7 @@ class ProductsRepository
 
     static function getProductsUserId($id)
     {
-        return Product::with('category', 'images')->where('id', $id)->first();
+        return Product::with('category', 'image')->where('id', $id)->first();
     }
 
     static function getProduct($id)

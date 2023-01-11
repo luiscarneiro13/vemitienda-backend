@@ -319,6 +319,181 @@
                 ]
             }
         },
+        "/storeLogo": {
+            "post": {
+                "tags": [
+                    "Logo"
+                ],
+                "summary": "Crear logo de Empresa",
+                "operationId": "c02940ca283f321e907a52e30ae26449",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "folder": {
+                                        "description": "Folder de la imagen",
+                                        "type": "string",
+                                        "format": "text",
+                                        "default": "logo"
+                                    },
+                                    "image": {
+                                        "description": "subir imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/storeImageProduct/{product_id}": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Crear logo de Empresa",
+                "operationId": "1f737b584cbb8b35c95148e16bf036f3",
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "folder": {
+                                        "description": "Folder de la imagen",
+                                        "type": "string",
+                                        "format": "text",
+                                        "default": "images"
+                                    },
+                                    "image": {
+                                        "description": "subir imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/updateImageProduct/{image_id}": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Crear logo de Empresa",
+                "operationId": "04fb494e58bcd71c53de96983d1682b5",
+                "parameters": [
+                    {
+                        "name": "image_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "folder": {
+                                        "description": "Folder de la imagen",
+                                        "type": "string",
+                                        "format": "text",
+                                        "default": "images"
+                                    },
+                                    "image": {
+                                        "description": "subir imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/deleteImageProduct/{id}": {
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Borrar imagen de un Producto",
+                "operationId": "345a1aae5292d1f0747e710d61e37cd8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/products-user": {
             "get": {
                 "tags": [

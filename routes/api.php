@@ -32,8 +32,10 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('logout', 'API\V1\UserController@logout');
         Route::post('cancel-account', 'API\V1\UserController@cancelAccount');
 
-        Route::post('logo', 'API\V1\ImagesController@logo');
-        Route::post('image', 'API\V1\ImagesController@logoStore');
+        Route::post('storeLogo', 'API\V1\ImagesController@storeLogo');
+        Route::post('storeImageProduct/{product_id}', 'API\V1\ImagesController@storeImageProduct');
+        Route::post('updateImageProduct/{image_id}', 'API\V1\ImagesController@updateImageProduct');
+        Route::delete('deleteImageProduct/{image_id}', 'API\V1\ImagesController@deleteImageProduct');
 
         Route::get('prueba', 'API\V1\UserController@prueba');
     });
