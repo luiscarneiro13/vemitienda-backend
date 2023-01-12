@@ -32,7 +32,7 @@ class CompanyRequest extends FormRequest
         return [
             'name' => [
                 'required', 'min:3', 'max:120',
-                Rule::unique('companies')->where('user_id', $user->id)->ignore($this->company)
+                // Rule::unique('companies')->where('user_id', $user->id)->ignore($this->company)
             ],
             'slogan' => 'required|min:3|max:120',
             'email'  => 'required|email|max:120',

@@ -196,7 +196,7 @@ class UserController extends Controller
     {
         try {
             $data = User::with(
-                'companies',
+                'company',
                 'products.category',
                 'plans.services',
                 'planUser.payments.paymentDetails.paymentMethod'

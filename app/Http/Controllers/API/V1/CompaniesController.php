@@ -67,10 +67,15 @@ class CompaniesController extends Controller
     public function store(CompanyRequest $request)
     {
         $user = Auth::user();
+        $company = Company::where('user_id', $user->id)->first();
         try {
             $datos = array_merge(['user_id' => $user->id], request()->all());
-            $company = CompaniesRepository::storeCompany($datos);
-            return $this->successResponse(['message' => 'Datos guardados', 'data' => $datos]);
+            if ($company) {
+                $company = CompaniesRepository::updateCompany($company->id);
+            } else {
+                $company = CompaniesRepository::storeCompany($datos);
+            }
+            return $this->successResponse(['message' => 'Empresa guardada', 'data' => $company]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
         }
@@ -79,48 +84,6 @@ class CompaniesController extends Controller
     public function show($id)
     {
         //
-    }
-
-
-    /**
-     * @OA\Put(
-     *     tags={"Company"},
-     *     path="/company-user/{id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Actualizar datos de Empresa de un Usuario App",
-     *     @OA\Parameter(
-     *        name="id",
-     *        in="path",
-     *        required=true
-     *     ),
-     *     @OA\RequestBody(
-     *        required=true,
-     *        description="Datos de la Empresa",
-     *        @OA\JsonContent(
-     *           required={"email","name","slogan","phone"},
-     *           @OA\Property(property="email", type="string", format="email", example="sistelconet@gmail.com"),
-     *           @OA\Property(property="name", type="string", format="name", example="Sistelconet"),
-     *           @OA\Property(property="slogan", type="string", format="slogan", example="Tu Solución en Sistemas"),
-     *           @OA\Property(property="phone", type="string", format="phone", example="+584248807465")
-     *        )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
-    public function update(Request $request, $id)
-    {
-        try {
-            return $this->successResponse(['message' => 'Datos guardados', 'data' =>  CompaniesRepository::updateCompany($id)]);
-        } catch (\Throwable $th) {
-            return $this->errorResponse(['message' => $th]);
-        }
     }
 
     public function destroy($id)

@@ -39,9 +39,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function companies()
+    public function company()
     {
-        return $this->hasMany('App\Models\Company');
+        return $this->hasOne('App\Models\Company');
     }
 
     public function categories()
