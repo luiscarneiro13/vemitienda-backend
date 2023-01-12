@@ -40,3 +40,4 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('prueba', 'API\V1\UserController@prueba');
     });
 });
+
