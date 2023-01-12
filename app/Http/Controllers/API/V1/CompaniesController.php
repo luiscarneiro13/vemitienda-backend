@@ -42,7 +42,7 @@ class CompaniesController extends Controller
      *     tags={"Company"},
      *     path="/company-user",
      *     security={{"bearer_token":{}}},
-     *     summary="Crear Empresa de un Usuario App",
+     *     summary="Si la Empresa no existe, la crea y si la empresa existe entonces la actualiza",
      *     @OA\RequestBody(
      *        required=true,
      *        description="Datos de la Empresa",

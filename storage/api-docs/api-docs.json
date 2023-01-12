@@ -195,7 +195,7 @@
                 "tags": [
                     "Company"
                 ],
-                "summary": "Crear Empresa de un Usuario App",
+                "summary": "Si la Empresa no existe, la crea y si la empresa existe entonces la actualiza",
                 "operationId": "73c33f62482b88b25b1a8cc11ce55c27",
                 "requestBody": {
                     "description": "Datos de la Empresa",
