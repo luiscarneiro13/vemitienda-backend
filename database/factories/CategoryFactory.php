@@ -14,8 +14,12 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => 1,
             'name' => $this->faker->lastName,
         ];
+        // return [
+        //     'user_id' => User::inRandomOrder()->first()->id,
+        //     'name' => $this->faker->lastName,
+        // ];
     }
 }

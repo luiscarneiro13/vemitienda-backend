@@ -16,7 +16,7 @@ class ProductsSeeder extends Seeder
     {
         $products = Product::all();
         if (!$products) {
-            Product::factory()->count(10)->create();
+            $product = Product::factory()->count(10)->make();
         }
     }
 }

@@ -14,9 +14,7 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        $categories = Category::all();
-        if (!$categories) {
-            Category::factory()->count(3)->create();
-        }
+
+        $category = Category::factory()->count(3)->make();
     }
 }
