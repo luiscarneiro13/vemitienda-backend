@@ -40,7 +40,8 @@ class ProductsRepository
 
     static function storeProduct($insert)
     {
-        return Product::create($insert);
+        $created = Product::create($insert);
+        return Product::with('category','image')->where('id', $created->id)->first();
     }
 
     static function deleteProduct($id)
@@ -52,7 +53,7 @@ class ProductsRepository
     static function updateProduct($id)
     {
         $user = Auth::user();
-        $model = Product::find($id);
+        $model = Product::with('category', 'image')->find($id);
         $model->user_id = $user->id;
         $model->name = request()->name;
         $model->category_id = request()->category_id;
