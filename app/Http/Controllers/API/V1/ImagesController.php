@@ -132,6 +132,7 @@ class ImagesController extends Controller
             $product = Product::find($product_id);
             $urlImage = Images::uploadImage(request()->folder);
             $product->image()->create(['url' => $urlImage]);
+            $product->save();
             return $this->successResponse(['data' => $product]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
