@@ -16,7 +16,7 @@ trait ApiResponser
     public function successResponse($params = [])
     {
         $status    = $params['status'] ?? 200;
-        $message = $params['message'] ?? null;
+        $message = $params['message'] ?? 'Operación exitosa';
         $success = isset($params['success']) ? $params['success'] : true;
         $data    = $params['data'] ?? null;
 

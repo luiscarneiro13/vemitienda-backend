@@ -78,8 +78,8 @@ class ProductsController extends Controller
 
         try {
             $datos = array_merge(['user_id' => $user->id], request()->all());
-            $company = ProductsRepository::storeProduct($datos);
-            return $this->successResponse(['message' => 'Datos guardados', 'data' => $datos]);
+            $products = ProductsRepository::storeProduct($datos);
+            return $this->successResponse(['data' => $products]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
         }
@@ -148,10 +148,7 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            return $this->successResponse([
-                'message' => 'Datos guardados',
-                'data' =>  ProductsRepository::updateProduct($id)
-            ]);
+            return $this->successResponse(['data' =>  ProductsRepository::updateProduct($id)]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
         }
