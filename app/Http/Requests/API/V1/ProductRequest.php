@@ -68,6 +68,6 @@ class ProductRequest extends FormRequest
         $validator->errors()->add('message', 'Datos erróneos');
         $data['errors'] = $validator->errors();
         $data['status'] = 400;
-        throw new HttpResponseException(response()->json($data, 400));
+        throw new HttpResponseException(response()->json($data, 200));
     }
 }
