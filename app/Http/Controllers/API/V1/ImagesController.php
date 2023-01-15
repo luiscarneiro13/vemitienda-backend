@@ -129,11 +129,10 @@ class ImagesController extends Controller
     public function storeImageProduct($product_id)
     {
         try {
-            $product = Product::find($product_id);
+            $product = Product::with('image')->find($product_id);
             $urlImage = Images::uploadImage(request()->folder);
-            $product->image()->create(['url' => $urlImage]);
-            $product->save();
-            return $this->successResponse(['data' => $product]);
+            $image = $product->image()->create(['url' => $urlImage]);
+            return $this->successResponse(['data' => $image]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
         }
@@ -182,24 +181,35 @@ class ImagesController extends Controller
      */
     public function updateImageProduct($image_id)
     {
-        try {
-            $image = Image::find($image_id);
-            $product_id = $image->imageable_id;
-            $this->deleteImageProduct($image_id);
-            return $this->storeImageProduct($product_id);
-        } catch (\Throwable $th) {
-            return $this->errorResponse(['message' => $th]);
+        $image = Image::find($image_id);
+        if ($image) {
+
+            try {
+                $this->deleteImageProduct($image_id);
+            } catch (\Throwable $th) {
+            }
+
+            try {
+                $urlImage = Images::uploadImage(request()->folder);
+                $product = Product::find($image->imageable_id);
+                $image = $product->image()->create(['url' => $urlImage]);
+                return $this->successResponse(['data' => $image]);
+            } catch (\Throwable $th) {
+                return $this->errorResponse(['message' => $th]);
+            }
+        } else {
+            return $this->errorResponse();
         }
     }
 
     /**
      * @OA\Delete(
      *     tags={"Products"},
-     *     path="/deleteImageProduct/{id}",
+     *     path="/deleteImageProduct/{image_id}",
      *     security={{"bearer_token":{}}},
      *     summary="Borrar imagen de un Producto",
      *      @OA\Parameter(
-     *          name="id",
+     *          name="image_id",
      *          in="path",
      *          required=true
      *      ),

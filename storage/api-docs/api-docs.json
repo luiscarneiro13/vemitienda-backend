@@ -397,16 +397,16 @@
                 ]
             }
         },
-        "/deleteImageProduct/{id}": {
+        "/deleteImageProduct/{image_id}": {
             "delete": {
                 "tags": [
                     "Products"
                 ],
                 "summary": "Borrar imagen de un Producto",
-                "operationId": "345a1aae5292d1f0747e710d61e37cd8",
+                "operationId": "17123540ceeab893b1d032e9348ff017",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "image_id",
                         "in": "path",
                         "required": true
                     }
