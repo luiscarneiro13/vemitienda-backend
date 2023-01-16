@@ -17,11 +17,11 @@ class Images
         info(3);
         /*Thumbnail */
         $file = request()->file('image');
-        // info(4);
+        info(4);
         $imageName = 'thumbnails/' . Str::random(40) . '.png';
-        // info(5);
+        info(5);
         $img = Image::make($file);
-        // info(6);
+        info(6);
 
         $img->resize(100, 100, function ($constraint) {
             $constraint->aspectRatio();
