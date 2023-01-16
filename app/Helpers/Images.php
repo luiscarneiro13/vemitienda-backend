@@ -16,25 +16,24 @@ class Images
 
         info(3);
         /*Thumbnail */
-        $file = request()->file('image');
-        info(4);
-        $imageName = 'thumbnails/' . Str::random(40) . '.png';
-        info(5);
-        $img = Image::make($file);
-        info(6);
+        // $file = request()->file('image');
+        // info(4);
+        // $imageName = 'thumbnails/' . Str::random(40) . '.png';
+        // info(5);
+        // $img = Image::make($file);
+        // info(6);
 
-        $img->resize(100, 100, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        info(7);
+        // $img->resize(100, 100, function ($constraint) {
+        //     $constraint->aspectRatio();
+        // });
+        // info(7);
 
-        //detach method is the key! Hours to find it... :/
-        $resource = $img->stream()->detach();
-        info(8);
+        // $resource = $img->stream()->detach();
+        // info(8);
 
-        Storage::disk('do')->put($imageName, $resource, 'public');
-        info(9);
-        $data['thumbnail'] = $imageName;
+        // Storage::disk('do')->put($imageName, $resource, 'public');
+        // info(9);
+        $data['thumbnail'] = 'nada';
         return $data;
     }
 
