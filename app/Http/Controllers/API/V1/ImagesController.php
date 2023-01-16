@@ -181,11 +181,13 @@ class ImagesController extends Controller
      */
     public function updateImageProduct($image_id)
     {
+
         $image = Image::find($image_id);
+
         if ($image) {
 
             try {
-                $this->deleteImageProduct($image_id);
+                $this->deleteImageProduct($image);
             } catch (\Throwable $th) {
             }
 
@@ -224,10 +226,8 @@ class ImagesController extends Controller
      *     )
      * )
      */
-    public function deleteImageProduct($image_id)
+    public function deleteImageProduct($image)
     {
-        $image = Image::find($image_id);
-
         try {
             $this->image->deleteImage(@$image->url, "do");
             $image->delete();
