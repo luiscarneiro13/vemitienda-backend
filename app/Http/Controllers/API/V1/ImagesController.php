@@ -131,7 +131,8 @@ class ImagesController extends Controller
         try {
             $product = Product::with('image')->find($product_id);
             $urlImage = Images::uploadImage(request()->folder);
-            $image = $product->image()->create(['url' => $urlImage]);
+            $thumbnail = Images::uploadThumbnail(request()->folder);
+            $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
             return $this->successResponse(['data' => $image]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
@@ -191,9 +192,10 @@ class ImagesController extends Controller
 
             try {
                 $urlImage = Images::uploadImage(request()->folder);
+                $thumbnail = Images::uploadThumbnail(request()->folder);
                 $product = Product::find($image->imageable_id);
                 $product->image()->delete();
-                $image = $product->image()->create(['url' => $urlImage]);
+                $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
                 return $this->successResponse(['data' => $image]);
             } catch (\Throwable $th) {
                 return $this->errorResponse(['message' => $th]);

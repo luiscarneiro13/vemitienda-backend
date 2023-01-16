@@ -9,7 +9,7 @@ class Image extends Model
     use HasFactory;
 
     protected $table = 'images';
-    protected $fillable = ['url', 'base64'];
+    protected $fillable = ['url', 'thumbnail'];
 
     public function imageable()
     {
