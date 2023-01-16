@@ -184,10 +184,10 @@ class ImagesController extends Controller
         $image = Image::find($image_id);
         if ($image) {
 
-            // try {
-            //     $this->deleteImageProduct($image_id);
-            // } catch (\Throwable $th) {
-            // }
+            try {
+                $this->deleteImageProduct($image_id);
+            } catch (\Throwable $th) {
+            }
 
             try {
                 $urlImage = Images::uploadImage(request()->folder);
