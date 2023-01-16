@@ -2,9 +2,9 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Image;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Images
 {
