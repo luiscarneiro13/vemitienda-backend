@@ -184,14 +184,15 @@ class ImagesController extends Controller
         $image = Image::find($image_id);
         if ($image) {
 
-            try {
-                $this->deleteImageProduct($image_id);
-            } catch (\Throwable $th) {
-            }
+            // try {
+            //     $this->deleteImageProduct($image_id);
+            // } catch (\Throwable $th) {
+            // }
 
             try {
                 $urlImage = Images::uploadImage(request()->folder);
                 $product = Product::find($image->imageable_id);
+                $product->image->delete();
                 $image = $product->image()->create(['url' => $urlImage]);
                 return $this->successResponse(['data' => $image]);
             } catch (\Throwable $th) {
