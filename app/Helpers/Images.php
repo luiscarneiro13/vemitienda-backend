@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Exception;
 use Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -12,28 +13,32 @@ class Images
     {
         info(1);
         $data['url'] = request()->file('image')->storePublicly($folder, 'do');
-        info(2);
+        try {
+            info(2);
 
-        info(3);
-        /*Thumbnail */
-        $file = request()->file('image');
-        info(4);
-        $imageName = 'thumbnails/' . Str::random(40) . '.png';
-        info(5);
-        $img = Image::make($file);
-        info(6);
+            info(3);
+            /*Thumbnail */
+            info(4);
+            $imageName = 'thumbnails/' . Str::random(40) . '.png';
+            info(5);
+            $img = Image::make(request()->file('image'));
+            info(6);
 
-        $img->resize(100, 100, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        info(7);
+            $img->resize(100, 100, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            info(7);
 
-        $resource = $img->stream()->detach();
-        info(8);
+            $resource = $img->stream()->detach();
+            info(8);
 
-        Storage::disk('do')->put($imageName, $resource, 'public');
-        info(9);
-        $data['thumbnail'] = $imageName;
+            Storage::disk('do')->put($imageName, $resource, 'public');
+            info(9);
+            $data['thumbnail'] = $imageName;
+        } catch (Exception $th) {
+            info($th);
+            $data['thumbnail'] = "NEI";
+        }
         return $data;
     }
 
