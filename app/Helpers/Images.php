@@ -11,32 +11,25 @@ class Images
 {
     static function uploadImage($folder)
     {
-        info(1);
         $data['url'] = request()->file('image')->storePublicly($folder, 'do');
-        try {
-            info(2);
 
-            info(3);
+        try {
+
             /*Thumbnail */
-            info(4);
+
             $imageName = 'thumbnails/' . Str::random(40) . '.png';
-            info(5);
             $img = Image::make(request()->file('image'));
-            info(6);
 
             $img->resize(100, 100, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            info(7);
 
             $resource = $img->stream()->detach();
-            info(8);
 
             Storage::disk('do')->put($imageName, $resource, 'public');
-            info(9);
             $data['thumbnail'] = $imageName;
+
         } catch (Exception $th) {
-            info($th);
             $data['thumbnail'] = "NEI";
         }
         return $data;
