@@ -9,7 +9,7 @@ class Company extends Model
     use HasFactory;
 
     protected $table = 'companies';
-    protected $fillable = ['user_id', 'name', 'slogan', 'email', 'phone'];
+    protected $fillable = ['user_id', 'name', 'slogan', 'email', 'phone', 'template_catalog_id', 'background_color_catalog'];
 
     public function user()
     {
@@ -19,5 +19,10 @@ class Company extends Model
     public function logo()
     {
         return $this->morphOne(\App\Models\Image::class, 'imageable');
+    }
+
+    public function template()
+    {
+        return $this->belongsTo(\App\Models\TemplateCatalog::class);
     }
 }
