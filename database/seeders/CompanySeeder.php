@@ -18,18 +18,28 @@ class CompanySeeder extends Seeder
     {
         $user = User::where('email', 'administrador@gmail.com')->first();
         $company = Company::first();
-        info($company);
+
         if (!$company) {
 
-            $templateCatalog = TemplateCatalog::create([
-                'name' => '2 Columnas',
+            $templateCatalog1 = TemplateCatalog::create([
+                'name' => '1 Columna',
             ]);
-            $templateCatalog->save();
+            $templateCatalog1->save();
 
             $templateCatalog2 = TemplateCatalog::create([
-                'name' => '3 Columnas',
+                'name' => '2 Columnas',
             ]);
             $templateCatalog2->save();
+
+            $templateCatalog3 = TemplateCatalog::create([
+                'name' => '3 Columnas',
+            ]);
+            $templateCatalog3->save();
+
+            $templateCatalog4 = TemplateCatalog::create([
+                'name' => '4 Columnas',
+            ]);
+            $templateCatalog4->save();
 
             $comp = Company::create([
                 'user_id' => $user->id,
@@ -37,7 +47,7 @@ class CompanySeeder extends Seeder
                 'slogan' => 'Tu solución en sistemas',
                 'email' => 'sistelconet@gmail.com',
                 'phone' => '+584248807465',
-                'template_catalog_id' => $templateCatalog->id,
+                'template_catalog_id' => $templateCatalog3->id,
                 'background_color_catalog' => '#FFFFFF',
             ]);
             $comp->save();
