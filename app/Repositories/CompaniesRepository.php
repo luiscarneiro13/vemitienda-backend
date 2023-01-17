@@ -44,6 +44,8 @@ class CompaniesRepository
         $model->slogan = request()->slogan;
         $model->email = request()->email;
         $model->phone = request()->phone;
+        $model->template_catalog_id = request()->template_catalog_id;
+        $model->background_color_catalog = request()->background_color_catalog;
         $model->save();
         return $model;
     }
