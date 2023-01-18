@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Image;
 use App\Models\Product;
 use App\Traits\ApiResponser;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -207,7 +208,7 @@ class ImagesController extends Controller
 
             try {
                 $this->deleteImageProduct($image);
-            } catch (\Throwable $th) {
+            } catch (Exception $th) {
             }
 
             try {
@@ -219,7 +220,7 @@ class ImagesController extends Controller
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
 
                 return $this->successResponse(['data' => $image]);
-            } catch (\Throwable $th) {
+            } catch (Exception $th) {
                 return $this->errorResponse(['message' => $th]);
             }
         } else {
