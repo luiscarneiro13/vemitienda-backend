@@ -273,6 +273,11 @@
                                         "description": "subir imagen",
                                         "type": "string",
                                         "format": "binary"
+                                    },
+                                    "thumbnail": {
+                                        "description": "Miniatura",
+                                        "type": "string",
+                                        "format": "binary"
                                     }
                                 },
                                 "type": "object"
@@ -324,6 +329,11 @@
                                         "description": "subir imagen",
                                         "type": "string",
                                         "format": "binary"
+                                    },
+                                    "thumbnail": {
+                                        "description": "Miniatura",
+                                        "type": "string",
+                                        "format": "binary"
                                     }
                                 },
                                 "type": "object"
@@ -373,6 +383,11 @@
                                     },
                                     "image": {
                                         "description": "subir imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "thumbnail": {
+                                        "description": "Miniatura",
                                         "type": "string",
                                         "format": "binary"
                                     }
@@ -646,7 +661,7 @@
                     "Company"
                 ],
                 "summary": "Mostrar plantillas para el catálogo de productos que exporta la App",
-                "operationId": "9de660cea8371e8a5e8b3be2520e2bb3",
+                "operationId": "172b641a4f1ca650a58e61716eff304d",
                 "responses": {
                     "200": {
                         "description": "Exitoso"

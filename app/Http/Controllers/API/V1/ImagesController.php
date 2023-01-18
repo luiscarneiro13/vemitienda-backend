@@ -51,6 +51,12 @@ class ImagesController extends Controller
      *                     type="string",
      *                     format="binary",
      *                 ),
+     *                 @OA\Property(
+     *                     description="Miniatura",
+     *                     property="thumbnail",
+     *                     type="string",
+     *                     format="binary",
+     *                 ),
      *             )
      *         )
      *     ),
@@ -69,14 +75,14 @@ class ImagesController extends Controller
         $user = Auth::user();
         $company = Company::where('user_id', $user->id)->first();
         $urlLogo = Images::uploadImage(request()->folder);
-
+        $thumbnail = Images::uploadThumbnail('thumbnails');
         try {
             $company->logo()->delete();
         } catch (\Throwable $th) {
         }
 
         try {
-            $company->logo()->create(['url' => $urlLogo['url']]);
+            $company->logo()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
             return $this->successResponse(['data' => $company]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
@@ -112,6 +118,12 @@ class ImagesController extends Controller
      *                     type="string",
      *                     format="binary",
      *                 ),
+     *                 @OA\Property(
+     *                     description="Miniatura",
+     *                     property="thumbnail",
+     *                     type="string",
+     *                     format="binary",
+     *                 ),
      *             )
      *         )
      *     ),
@@ -131,7 +143,8 @@ class ImagesController extends Controller
         try {
             $product = Product::with('image')->find($product_id);
             $urlImage = Images::uploadImage(request()->folder);
-            $image = $product->image()->create(['url' => $urlImage['url'], 'thumbnail' => $urlImage['thumbnail']]);
+            $thumbnail = Images::uploadThumbnail('thumbnails');
+            $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
             return $this->successResponse(['data' => $image]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
@@ -163,6 +176,12 @@ class ImagesController extends Controller
      *                 @OA\Property(
      *                     description="subir imagen",
      *                     property="image",
+     *                     type="string",
+     *                     format="binary",
+     *                 ),
+     *                 @OA\Property(
+     *                     description="Miniatura",
+     *                     property="thumbnail",
      *                     type="string",
      *                     format="binary",
      *                 ),
