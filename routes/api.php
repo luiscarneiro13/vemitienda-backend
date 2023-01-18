@@ -37,6 +37,8 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('updateImageProduct/{image_id}', 'API\V1\ImagesController@updateImageProduct');
         Route::delete('deleteImageProduct/{image_id}', 'API\V1\ImagesController@deleteImageProduct');
 
+        Route::get('templates', 'API\V1\TemplateCatalogController@index');
+
         Route::get('prueba', 'API\V1\UserController@prueba');
     });
 });

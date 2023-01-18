@@ -640,6 +640,28 @@
                 ]
             }
         },
+        "/templates": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Mostrar plantillas para el catálogo de productos que exporta la App",
+                "operationId": "9de660cea8371e8a5e8b3be2520e2bb3",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/user-information": {
             "get": {
                 "summary": "Mostrar Información del Usuario de la App",
