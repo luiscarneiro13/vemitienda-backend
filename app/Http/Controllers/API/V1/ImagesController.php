@@ -76,7 +76,7 @@ class ImagesController extends Controller
         }
 
         try {
-            $company->logo()->create(['url' => $urlLogo['thumbnail']]);
+            $company->logo()->create(['url' => $urlLogo['url']]);
             return $this->successResponse(['data' => $company]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
