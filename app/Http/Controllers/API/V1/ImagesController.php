@@ -209,6 +209,7 @@ class ImagesController extends Controller
             try {
                 $this->deleteImageProduct($image);
             } catch (Exception $th) {
+                return $this->errorResponse(['message' => $th]);
             }
 
             try {
