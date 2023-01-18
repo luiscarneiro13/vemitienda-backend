@@ -253,7 +253,10 @@ class ImagesController extends Controller
     {
         try {
             $this->image->deleteImage(@$image->url, "do");
+            $this->image->deleteImage(@$image->thumbnails, "do");
+
             $image->delete();
+
             return $this->successResponse(['data' => $image]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
