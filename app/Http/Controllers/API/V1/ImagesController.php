@@ -212,9 +212,12 @@ class ImagesController extends Controller
 
             try {
                 $urlImage = Images::uploadImage(request()->folder);
+                $thumbnail = Images::uploadThumbnail('thumbnails');
                 $product = Product::find($image->imageable_id);
                 $product->image()->delete();
-                $image = $product->image()->create(['url' => $urlImage['url'], 'thumbnail' => $urlImage['thumbnail']]);
+
+                $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
+
                 return $this->successResponse(['data' => $image]);
             } catch (\Throwable $th) {
                 return $this->errorResponse(['message' => $th]);
