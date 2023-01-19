@@ -141,6 +141,7 @@ class ImagesController extends Controller
 
     public function storeImageProduct($product_id)
     {
+        info(request()->all());
         $product = Product::with('image')->find($product_id);
         if($product){
             try {
