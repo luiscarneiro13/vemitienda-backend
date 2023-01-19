@@ -20,15 +20,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/login', 'HomeController@index')->name('login');
-
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-
-Route::group(['middleware' => 'auth:web'], function () {
-    Route::group(['prefix' => 'admin'], function () {
-        Route::resource('users', 'WEB\ADMIN\UsersController');
-        Route::resource('plans', 'WEB\ADMIN\PlansController');
-        Route::resource('categories', 'WEB\ADMIN\CategoriesController');
-        Route::resource('companies', 'WEB\ADMIN\CompaniesController');
-    });
-});
