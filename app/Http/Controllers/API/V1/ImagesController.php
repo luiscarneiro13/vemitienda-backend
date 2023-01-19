@@ -73,14 +73,17 @@ class ImagesController extends Controller
      */
     public function storeLogo()
     {
-        info(1);
         $user = Auth::user();
-        info(2);
         $company = Company::where('user_id', $user->id)->first();
-        info(3);
+
 
         if ($company) {
-            info(4);
+
+            try {
+                $this->deleteImageProduct($company->logo);
+            } catch (Exception $th) {
+            }
+
             try {
                 info(5);
                 $urlImage = Images::uploadImage('images');
@@ -156,12 +159,6 @@ class ImagesController extends Controller
     {
         $product = Product::with('image')->find($product_id);
         if ($product) {
-
-            try {
-                $this->deleteImageProduct($product->image);
-            } catch (Exception $th) {
-            }
-
             try {
                 $urlImage = Images::uploadImage('images');
                 $thumbnail = Images::uploadThumbnail('thumbnails');
