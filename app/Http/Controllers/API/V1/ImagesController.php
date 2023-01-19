@@ -141,13 +141,20 @@ class ImagesController extends Controller
 
     public function storeImageProduct($product_id)
     {
+        info(1);
         try {
+        info(2);
             $product = Product::with('image')->find($product_id);
+        info(3);
             $urlImage = Images::uploadImage(request()->folder);
+        info(4);
             $thumbnail = Images::uploadThumbnail('thumbnails');
+        info(5);
             $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
+        info(6);
             return $this->successResponse(['data' => $image]);
-        } catch (\Throwable $th) {
+        } catch (Exception $th) {
+        info(7);
             return $this->errorResponse(['message' => $th]);
         }
     }
@@ -203,6 +210,7 @@ class ImagesController extends Controller
     {
         info(1);
         $image = Image::find($image_id);
+        info($image);
         info(2);
 
         if ($image) {
@@ -218,7 +226,7 @@ class ImagesController extends Controller
 
             try {
                 info(7);
-                $urlImage = Images::uploadImage(request()->folder);
+                $urlImage = Images::uploadImage('images');
                 info(8);
                 $thumbnail = Images::uploadThumbnail('thumbnails');
                 info(9);
