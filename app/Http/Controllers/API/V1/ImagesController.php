@@ -150,6 +150,7 @@ class ImagesController extends Controller
         info(4);
             $thumbnail = Images::uploadThumbnail('thumbnails');
         info(5);
+            sleep(2);
             $image = $product->image()->create(['url' => $urlImage]);
             // $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
         info(6);
@@ -235,7 +236,7 @@ class ImagesController extends Controller
                 info(10);
                 $product->image()->delete();
                 info(11);
-
+                sleep(2);
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
                 info(12);
 
