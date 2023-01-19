@@ -141,23 +141,20 @@ class ImagesController extends Controller
 
     public function storeImageProduct($product_id)
     {
-        info(1);
-        try {
-        info(2);
-            $product = Product::with('image')->find($product_id);
-        info(3);
-            $urlImage = Images::uploadImage('images');
-        info(4);
-            $thumbnail = Images::uploadThumbnail('thumbnails');
-        info(5);
-            sleep(2);
-            $image = $product->image()->create(['url' => $urlImage]);
-            // $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
-        info(6);
-            return $this->successResponse(['data' => $image]);
-        } catch (Exception $th) {
-        info(7);
-            return $this->errorResponse(['message' => $th]);
+        $product = Product::with('image')->find($product_id);
+        if($product){
+            try {
+                $urlImage = Images::uploadImage('images');
+                $thumbnail = Images::uploadThumbnail('thumbnails');
+                sleep(2);
+                $image = $product->image()->create(['url' => $urlImage]);
+                // $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
+                return $this->successResponse(['data' => $image]);
+            } catch (Exception $th) {
+                return $this->errorResponse(['message' => $th]);
+            }
+        }else{
+            return $this->errorResponse(['message' => 'No existe el producto']);
         }
     }
 
@@ -210,42 +207,28 @@ class ImagesController extends Controller
      */
     public function updateImageProduct($image_id)
     {
-        info(1);
         $image = Image::find($image_id);
-        info($image);
-        info(2);
 
         if ($image) {
-            info(3);
 
             try {
-                info(4);
                 $this->deleteImageProduct($image);
-            } catch (Exception $th) {
-                info(5);
-            }
-            info(6);
+            } catch (Exception $th) {}
 
             try {
-                info(7);
                 $urlImage = Images::uploadImage('images');
-                info(8);
                 $thumbnail = Images::uploadThumbnail('thumbnails');
-                info(9);
                 $product = Product::find($image->imageable_id);
-                info(10);
                 $product->image()->delete();
-                info(11);
                 sleep(2);
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
-                info(12);
 
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
                 return $this->errorResponse(['message' => $th]);
             }
         } else {
-            return $this->errorResponse();
+            return $this->errorResponse(['message' => 'La imagen no existe']);
         }
     }
 
