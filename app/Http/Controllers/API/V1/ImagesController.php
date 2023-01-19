@@ -73,20 +73,32 @@ class ImagesController extends Controller
      */
     public function storeLogo()
     {
+        info(1);
         $user = Auth::user();
+        info(2);
         $company = Company::where('user_id', $user->id)->first();
+        info(3);
 
         if ($company) {
+            info(4);
             try {
+                info(5);
                 $urlImage = Images::uploadImage('images');
+                info(6);
                 $thumbnail = Images::uploadThumbnail('thumbnails');
+                info(7);
                 sleep(3);
+                info(8);
                 $image = $company->logo()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
+                info(9);
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
+                info(10);
                 return $this->errorResponse(['message' => $th]);
             }
+            info(11);
         } else {
+            info(12);
             return $this->errorResponse(['message' => 'No existe la tienda']);
         }
     }
