@@ -146,11 +146,12 @@ class ImagesController extends Controller
         info(2);
             $product = Product::with('image')->find($product_id);
         info(3);
-            $urlImage = Images::uploadImage(request()->folder);
+            $urlImage = Images::uploadImage('images');
         info(4);
             $thumbnail = Images::uploadThumbnail('thumbnails');
         info(5);
-            $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
+            $image = $product->image()->create(['url' => $urlImage]);
+            // $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
         info(6);
             return $this->successResponse(['data' => $image]);
         } catch (Exception $th) {
