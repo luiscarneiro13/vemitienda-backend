@@ -201,22 +201,34 @@ class ImagesController extends Controller
      */
     public function updateImageProduct($image_id)
     {
-
+        info(1);
         $image = Image::find($image_id);
+        info(2);
 
         if ($image) {
+            info(3);
 
             try {
+                info(4);
                 $this->deleteImageProduct($image);
-            } catch (Exception $th) {}
+            } catch (Exception $th) {
+                info(5);
+            }
+            info(6);
 
             try {
+                info(7);
                 $urlImage = Images::uploadImage(request()->folder);
+                info(8);
                 $thumbnail = Images::uploadThumbnail('thumbnails');
+                info(9);
                 $product = Product::find($image->imageable_id);
+                info(10);
                 $product->image()->delete();
+                info(11);
 
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
+                info(12);
 
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
