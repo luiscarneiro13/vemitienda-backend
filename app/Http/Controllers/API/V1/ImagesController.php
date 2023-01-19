@@ -75,18 +75,19 @@ class ImagesController extends Controller
     {
         $user = Auth::user();
         $company = Company::where('user_id', $user->id)->first();
-        $urlLogo = Images::uploadImage(request()->folder);
-        $thumbnail = Images::uploadThumbnail('thumbnails');
-        try {
-            $company->logo()->delete();
-        } catch (\Throwable $th) {
-        }
 
-        try {
-            $company->logo()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
-            return $this->successResponse(['data' => $company]);
-        } catch (\Throwable $th) {
-            return $this->errorResponse(['message' => $th]);
+        if ($company) {
+            try {
+                $urlImage = Images::uploadImage('images');
+                $thumbnail = Images::uploadThumbnail('thumbnails');
+                sleep(3);
+                $image = $company->logo()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
+                return $this->successResponse(['data' => $image]);
+            } catch (Exception $th) {
+                return $this->errorResponse(['message' => $th]);
+            }
+        } else {
+            return $this->errorResponse(['message' => 'No existe la tienda']);
         }
     }
 
@@ -141,9 +142,8 @@ class ImagesController extends Controller
 
     public function storeImageProduct($product_id)
     {
-        info(request()->all());
         $product = Product::with('image')->find($product_id);
-        if($product){
+        if ($product) {
             try {
                 $urlImage = Images::uploadImage('images');
                 $thumbnail = Images::uploadThumbnail('thumbnails');
@@ -153,7 +153,7 @@ class ImagesController extends Controller
             } catch (Exception $th) {
                 return $this->errorResponse(['message' => $th]);
             }
-        }else{
+        } else {
             return $this->errorResponse(['message' => 'No existe el producto']);
         }
     }
@@ -213,7 +213,8 @@ class ImagesController extends Controller
 
             try {
                 $this->deleteImageProduct($image);
-            } catch (Exception $th) {}
+            } catch (Exception $th) {
+            }
 
             try {
                 $urlImage = Images::uploadImage('images');
