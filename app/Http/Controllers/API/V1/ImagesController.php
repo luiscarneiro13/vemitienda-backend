@@ -142,17 +142,17 @@ class ImagesController extends Controller
     public function storeImageProduct($product_id)
     {
         $product = Product::with('image')->find($product_id);
-        if($product){
+        if ($product) {
             try {
-                $urlImage = Images::uploadImage('images');
-                $thumbnail = Images::uploadThumbnail('thumbnails');
+                $urlImage = request()->file('image')->storePublicly('images', 'do');
+                $thumbnail = request()->file('thumbnail')->storePublicly('thumbnails', 'do');
                 sleep(3);
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
                 return $this->errorResponse(['message' => $th]);
             }
-        }else{
+        } else {
             return $this->errorResponse(['message' => 'No existe el producto']);
         }
     }
@@ -212,11 +212,12 @@ class ImagesController extends Controller
 
             try {
                 $this->deleteImageProduct($image);
-            } catch (Exception $th) {}
+            } catch (Exception $th) {
+            }
 
             try {
-                $urlImage = Images::uploadImage('images');
-                $thumbnail = Images::uploadThumbnail('thumbnails');
+                $urlImage = request()->file('image')->storePublicly('images', 'do');
+                $thumbnail = request()->file('thumbnail')->storePublicly('thumbnails', 'do');
                 sleep(3);
                 $product = Product::find($image->imageable_id);
                 $product->image()->delete();
