@@ -156,6 +156,12 @@ class ImagesController extends Controller
     {
         $product = Product::with('image')->find($product_id);
         if ($product) {
+
+            try {
+                $this->deleteImageProduct($product->image);
+            } catch (Exception $th) {
+            }
+
             try {
                 $urlImage = Images::uploadImage('images');
                 $thumbnail = Images::uploadThumbnail('thumbnails');
