@@ -86,8 +86,32 @@ class CompaniesController extends Controller
         //
     }
 
-    public function destroy($id)
+    /**
+     * @OA\Delete(
+     *     tags={"Company"},
+     *     path="/company/{id}",
+     *     security={{"bearer_token":{}}},
+     *     summary="Borrar categoría de un Usuario App",
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+    public function destroy()
     {
-        //
+        $user = Auth::user();
+        $company = Company::where('user_id', $user->id)->first();
+        $company->delete();
+        return "LIsto";
     }
 }
