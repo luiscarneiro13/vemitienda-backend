@@ -158,7 +158,7 @@ class ImagesController extends Controller
     public function storeImageProduct($product_id)
     {
         $product = Product::with('image')->find($product_id);
-        if ($product) {
+        if ($product && request()->image && request()->thumbnail) {
             try {
                 $urlImage = Images::uploadImage('images');
                 $thumbnail = Images::uploadThumbnail('thumbnails');
@@ -169,7 +169,7 @@ class ImagesController extends Controller
                 return $this->errorResponse(['message' => $th]);
             }
         } else {
-            return $this->errorResponse(['message' => 'No existe el producto']);
+            return $this->errorResponse(['message' => 'No existe el producto o no se envió imagen']);
         }
     }
 
@@ -224,8 +224,7 @@ class ImagesController extends Controller
     {
         $image = Image::find($image_id);
 
-        if ($image) {
-
+        if ($image && request()->image && request()->thumbnail) {
             try {
                 $this->deleteImageProduct($image);
             } catch (Exception $th) {
@@ -244,7 +243,7 @@ class ImagesController extends Controller
                 return $this->errorResponse(['message' => $th]);
             }
         } else {
-            return $this->errorResponse(['message' => 'La imagen no existe']);
+            return $this->errorResponse(['message' => 'La imagen no existe o no se envió una']);
         }
     }
 
