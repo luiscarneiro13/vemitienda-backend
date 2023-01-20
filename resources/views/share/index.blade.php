@@ -36,6 +36,7 @@
 
     <div class="row">
         @forelse ($catalog as $item)
+        {{ env('DO_URL_BASE').'/'.$item->image[0]->url }}
         <div class="col-md-4 p-1">
             <div class="text-center">
 
