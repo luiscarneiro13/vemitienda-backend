@@ -85,8 +85,7 @@ class ImagesController extends Controller
             }
 
             try {
-                // $urlImage = Images::uploadImage('images');
-                $urlImage = '';
+                $urlImage = Images::uploadImage('images');
                 $thumbnail = Images::uploadThumbnail('thumbnails');
                 sleep(3);
                 $image = $company->logo()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);

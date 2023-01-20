@@ -29,8 +29,4 @@ class Company extends Model
         return $this->morphOne(\App\Models\Image::class, 'imageable');
     }
 
-    public function template()
-    {
-        return $this->belongsTo(\App\Models\TemplateCatalog::class);
-    }
 }
