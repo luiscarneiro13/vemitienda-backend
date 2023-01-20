@@ -26,7 +26,7 @@
 
     <x-menu logo="{{ env('DO_URL_BASE').'/'.$company->logo->thumbnail }}" :categories="@$categories" />
 
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-4 text-center">
             <image class="img-fluid" src="{{ env('DO_URL_BASE').'/'.$company->logo->url }}" />
         </div>
