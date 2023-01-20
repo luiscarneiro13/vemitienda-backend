@@ -20,7 +20,7 @@
 <body class="container" style="background-color: ${company.background_color_catalog}">
     <div class="row">
         <div class="col-4 text-center">
-            <image class="img-fluid" src="${DIGITALOCEAN + company?.logo?.url}" />
+            <image class="img-fluid" src="{{ env('DO_URL_BASE').'/'.$company->logo->url }}" />
         </div>
         <div class="col-8">
             <div class="text-center" style="font-size: 52px; font-weight: bolder; margin-top: 65px">
