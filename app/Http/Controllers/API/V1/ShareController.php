@@ -24,7 +24,7 @@ class ShareController extends Controller
     {
         $id_usuario = Crypt::decrypt($id_encriptado);
         $data['catalog'] = Product::where('user_id', $id_usuario)->where('share', 1)->get();
-        $data['company'] = Company::where('user_id', $id_usuario)->first();
+        $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
         return view('share.index', $data);
     }
 }

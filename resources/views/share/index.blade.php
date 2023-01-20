@@ -19,7 +19,6 @@
 
 <body class="container" style="background-color:{{  $company->background_color_catalog }}}">
     <div class="row">
-        {{ env('DO_URL_BASE').'/'.$company->logo->url }}
         <div class="col-4 text-center">
             <image class="img-fluid" src="{{ env('DO_URL_BASE').'/'.$company->logo->url }}" />
         </div>
