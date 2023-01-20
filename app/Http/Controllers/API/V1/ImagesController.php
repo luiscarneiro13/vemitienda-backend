@@ -85,23 +85,15 @@ class ImagesController extends Controller
             }
 
             try {
-                info(5);
-                $urlImage = Images::uploadImage('images');
-                info(6);
+                // $urlImage = Images::uploadImage('images');
+                $urlImage = '';
                 $thumbnail = Images::uploadThumbnail('thumbnails');
-                info(7);
                 sleep(3);
-                info(8);
                 $image = $company->logo()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
-                info(9);
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
-                info(10);
                 return $this->errorResponse(['message' => $th]);
             }
-            info(11);
-        } else {
-            info(12);
             return $this->errorResponse(['message' => 'No existe la tienda']);
         }
     }
@@ -160,7 +152,8 @@ class ImagesController extends Controller
         $product = Product::with('image')->find($product_id);
         if ($product && request()->image && request()->thumbnail) {
             try {
-                $urlImage = Images::uploadImage('images');
+                // $urlImage = Images::uploadImage('images');
+                $urlImage = '';
                 $thumbnail = Images::uploadThumbnail('thumbnails');
                 sleep(3);
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
@@ -231,7 +224,8 @@ class ImagesController extends Controller
             }
 
             try {
-                $urlImage = Images::uploadImage('images');
+                // $urlImage = Images::uploadImage('images');
+                $urlImage = '';
                 $thumbnail = Images::uploadThumbnail('thumbnails');
                 sleep(3);
                 $product = Product::find($image->imageable_id);

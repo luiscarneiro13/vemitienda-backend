@@ -21,3 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+Route::get('init/{id_usuario}', 'API\V1\ShareController@init');
+Route::get('share/{id_encriptado}', 'API\V1\ShareController@share');

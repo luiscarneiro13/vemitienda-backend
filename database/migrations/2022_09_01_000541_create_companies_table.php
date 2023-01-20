@@ -20,7 +20,6 @@ class CreateCompaniesTable extends Migration
             $table->string('slogan')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->foreignId('template_catalog_id')->constrained('template_catalogs')->onDelete('cascade');
             $table->string('background_color_catalog')->nullable();
             $table->timestamps();
         });

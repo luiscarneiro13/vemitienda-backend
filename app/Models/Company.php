@@ -16,7 +16,6 @@ class Company extends Model
         'slogan',
         'email',
         'phone',
-        'template_catalog_id',
         'background_color_catalog'
     ];
 
