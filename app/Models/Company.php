@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Crypt;
 
 class Company extends Model
 {
@@ -19,6 +20,17 @@ class Company extends Model
         'background_color_catalog'
     ];
 
+    protected $appends = [
+        'url_tienda'
+    ];
+
+    public function getUrlTiendaAttribute()
+    {
+        $id_usuario = Crypt::encrypt($this->attributes['user_id']);
+        $url = url('share') . '/' . $id_usuario;
+        return $this->attributes['url_tienda'] = $url;
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -28,5 +40,4 @@ class Company extends Model
     {
         return $this->morphOne(\App\Models\Image::class, 'imageable');
     }
-
 }

@@ -1,4 +1,4 @@
-<div class="row fixed-top bg-light">
+<div class="row fixed-top bg-light mb-5">
     <div class="col-md-4"></div>
     <div class="col-2">
         <div class="text-center p-2">
