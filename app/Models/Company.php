@@ -27,7 +27,7 @@ class Company extends Model
     public function getUrlTiendaAttribute()
     {
         $id_usuario = Crypt::encrypt($this->attributes['user_id']);
-        $url = url('share') . '/' . $id_usuario;
+        $url = 'https://vemitienda.online/share/' . $id_usuario;
         return $this->attributes['url_tienda'] = $url;
     }
 
