@@ -240,7 +240,7 @@ class UserController extends Controller
         /* 1.- Se desecripta el id */
         $user_id = Crypt::decrypt($encriptado);
         /* 2.- Si el usuario no había verificado antes, lo verifico. Sino no hago más nada */
-        $user = User::find($id);
+        $user = User::find($user_id);
         if ($user) {
             if (!$user->email_verified_at) {
                 /* 2.1.- Verificar email del usuario*/
