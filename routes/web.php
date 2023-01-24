@@ -24,3 +24,6 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('init/{id_usuario}', 'API\V1\ShareController@init');
 Route::get('share/{id_encriptado}', 'API\V1\ShareController@share');
+Route::get('confirmationuser', 'API\V1\UserController@confirmationuser');
+Route::get('confirmated_user', 'API\V1\UserController@confirmatedUser');
+Route::get('prueba', 'API\V1\UserController@confirmatedUser');

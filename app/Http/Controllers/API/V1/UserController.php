@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\API\V1\LoginRequest;
-use App\Http\Resources\API\V1\UserInformationResource;
-use App\Repositories\UsersRepository;
 use App\User;
+use Exception;
+use App\Helpers\SendMail;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Passport\HasApiTokens;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
+use App\Repositories\UsersRepository;
+use App\Http\Requests\API\V1\LoginRequest;
+use App\Http\Requests\API\V1\RegisterRequest;
+use App\Http\Resources\API\V1\UserInformationResource;
+use App\Jobs\SendEmailJob;
+use App\Models\Payment;
+use App\Models\Plan;
+use App\Models\PlanUser;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -192,18 +201,80 @@ class UserController extends Controller
         }
     }
 
-    public function prueba()
+    public function register(RegisterRequest $request)
     {
+
         try {
-            $data = User::with(
-                'company',
-                'products.category',
-                'plans.services',
-                'planUser.payments.paymentDetails.paymentMethod'
-            )->first();
-            return $this->successResponse(['data' => $data]);
-        } catch (\Throwable $th) {
+            $user = User::create([
+                'name'     => request()->name,
+                'email'    => request()->email,
+                'password' => Hash::make(request()->password)
+            ]);
+            $user->save();
+            $this->emailWellcome($user);
+
+            return $this->successResponse([
+                'data' => $user,
+                'message' => 'Registro exitoso, le enviamos un email para que confirme su cuenta'
+            ]);
+        } catch (Exception $th) {
             return $this->errorResponse(['error' => $th]);
         }
+    }
+
+    public function emailWellcome($user)
+    {
+        /* 1.- Se encripta el id del usuario y se pasa a la ruta web confirmationUser/asdkljasldkjlkjeouweoiru*/
+        $user_id = Crypt::encrypt($user->id);
+        /* 2.- Se envía correo */
+        $parametros['name'] = $user->name;
+        $parametros['destinatario'] = $user->email;
+        $parametros['url'] = url('confirmationuser/' . $user_id);
+        $parametros['type'] = 'ActivarCuenta';
+
+        dispatch(new SendEmailJob($parametros));
+    }
+
+    public function confirmationuser($encriptado)
+    {
+        /* 1.- Se desecripta el id */
+        $user_id = Crypt::decrypt($encriptado);
+        /* 2.- Si el usuario no había verificado antes, lo verifico. Sino no hago más nada */
+        $user = User::find($id);
+        if ($user) {
+            if (!$user->email_verified_at) {
+                /* 2.1.- Verificar email del usuario*/
+                $user->email_verified_at = now();
+                $user->save();
+                /* 2.1.- Asignarle el plan premium */
+                $plan = Plan::where('name', 'Plan Premium')->first();
+
+                $planUser = PlanUser::create([
+                    'plan_id' => $plan->id,
+                    'user_id' => $user->id,
+                    'activo' => 1
+                ]);
+                $planUser->save();
+                /* 2.2.- Asignarle un pago como pagado por 30 días */
+                $ahora = Carbon::now();
+
+                $payment = Payment::create([
+                    'plan_user_id' => $planUser->id,
+                    'start_date' => $ahora,
+                    'end_date' => $ahora->addDays(30),
+                    'paid_out' => 1
+                ]);
+                return redirect('/confirmated_user')->with('message', 'Cuenta activada con éxito');
+            } else {
+                return redirect('/confirmated_user')->with('message', 'Cuenta activada previamente');
+            }
+        } else {
+            return redirect('/confirmated_user')->with('message', 'Ocurrió un problema inesperado');
+        }
+    }
+
+    public function confirmatedUser()
+    {
+        return view('Mensajes');
     }
 }

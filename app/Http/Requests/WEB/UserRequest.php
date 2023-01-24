@@ -25,10 +25,7 @@ class UserRequest extends FormRequest
 
     public function rules()
     {
-
-        $datos = [
-            'name' => 'required|max:120',
-        ];
+        $datos = ['name' => 'required|max:120'];
 
         if ($this->_method == 'put') {
             $datos['email'] = 'required|' . Rule::unique('users')->ignore($this->user);

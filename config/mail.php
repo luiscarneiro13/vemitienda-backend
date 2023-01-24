@@ -42,7 +42,6 @@ return [
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
         ],
-
         'ses' => [
             'transport' => 'ses',
         ],
