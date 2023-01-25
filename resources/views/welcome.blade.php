@@ -59,7 +59,7 @@
 
         <!-- Image Logo -->
         <a class="text-center" href="index.html">
-            <img height="60px" src="{{ asset('plantillas/evolo/images/logo.png') }}" alt="">
+            <img id="logo" height="60px" src="img/logo2blanco.png" alt="">
         </a>
 
         <!-- Mobile Menu Toggle Button -->
@@ -97,7 +97,7 @@
     <header id="header" class="header">
         <div class="header-content">
             <div class="container">
-                <div class="row" style="margin-top:-200px">
+                <div class="row" style="margin-top:-70px">
                     <div class="col-lg-6">
                         <div class="text-container">
                             <div class="text-center">
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="mt-5 pt-5 text-center">
+                        <div class="mt-5 pt-5 text-right">
                             <img class="img-fluid" src="{{ asset('plantillas/evolo/images/mobile.png') }}"
                                 alt="alternative" />
                         </div>
@@ -533,6 +533,20 @@
     <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="{{ asset('plantillas/evolo/js/scripts.js')}}"></script>
     <!-- Custom scripts -->
+
+    <script>
+        $(function() {
+    // esta parte es la que controla cuando se mueve el scroll y ejecuta una función
+            $(document).scroll(function() {
+                // aca se pregunta si el scroll se movio de pa bajo.
+            if ($(this).scrollTop() > 1) {
+                // esta parte cambia el atributo "src" de la etiqueta "img"
+                $('#logo').attr('src', "img/logo2.png")
+            }
+            if ($(this).scrollTop() < 1) {
+                $('#logo').attr('src', "img/logo2blanco.png" ); } });
+            });
+    </script>
 </body>
 
 </html>
