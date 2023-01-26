@@ -19,6 +19,7 @@ class CreatePaymentDetailsTable extends Migration
             $table->foreignId('payment_method_id')->constrained('payment_methods')->onDelete('cascade');
             $table->string('reference_number')->nullable();
             $table->boolean('verified')->default(0);
+            $table->decimal('price')->default(0);
             $table->timestamps();
         });
     }
