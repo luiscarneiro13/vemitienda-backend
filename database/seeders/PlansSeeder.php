@@ -14,9 +14,13 @@ class PlansSeeder extends Seeder
      */
     public function run()
     {
-        $plans = Plan::all();
-        if (!$plans) {
-            Plan::factory()->count(3)->create();
+        $plan = Plan::all();
+        if (@count($plan) == 0) {
+            $plan = Plan::create(['name' => 'Free', 'quantity' => 0]);
+            $plan->save();
+
+            $plan = Plan::create(['name' => 'Premium', 'quantity' => 100]);
+            $plan->save();
         }
     }
 }

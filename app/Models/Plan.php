@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Plan extends Model
 {
     use HasFactory;
 
     protected $table = 'plans';
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'quantity'];
 
-    public function services()
+    public function planUser()
     {
-        return $this->belongsToMany('App\Models\Service', 'plan_services');
+        return $this->belongsToMany('App\Models\PlanUser', 'plan_id');
     }
 
     public function users()
