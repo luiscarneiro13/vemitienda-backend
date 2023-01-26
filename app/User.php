@@ -61,6 +61,11 @@ class User extends Authenticatable
 
     public function planUser()
     {
+        return $this->hasOne('App\Models\PlanUser');
+    }
+
+    public function payments()
+    {
         return $this->hasMany('App\Models\PlanUser');
     }
 }

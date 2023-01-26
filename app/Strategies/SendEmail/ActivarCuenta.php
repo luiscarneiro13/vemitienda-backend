@@ -12,7 +12,6 @@ class ActivarCuenta implements SendEmailInterface
     public function sendEmail($data)
     {
         try {
-            info($data);
             Mail::to($data['destinatario'])->send(new MailActivarCuenta($data));
         } catch (Exception $th) {
             return null;

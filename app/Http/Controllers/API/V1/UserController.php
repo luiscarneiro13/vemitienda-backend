@@ -277,4 +277,17 @@ class UserController extends Controller
     {
         return view('Mensajes');
     }
+
+    public function prueba()
+    {
+        /* 1.- Se encripta el id del usuario y se pasa a la ruta web confirmationUser/asdkljasldkjlkjeouweoiru*/
+        $user_id = Crypt::encrypt(1);
+        /* 2.- Se envía correo */
+        $parametros['name'] = 'Luis Carneiro';
+        $parametros['destinatario'] = 'carneiroluis2@gmail.com';
+        $parametros['url'] = url('confirmationuser/' . $user_id);
+        $parametros['type'] = 'ActivarCuenta';
+
+        dispatch(new SendEmailJob($parametros));
+    }
 }
