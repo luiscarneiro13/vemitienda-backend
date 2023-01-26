@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             CompanySeeder::class,
             PlansSeeder::class,
+            PaymentMethodsSeeder::class,
         ]);
-        
+
     }
 }
