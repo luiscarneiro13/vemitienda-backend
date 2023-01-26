@@ -14,7 +14,7 @@ class AlterPaymentsTable extends Migration
     public function up()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->integer('quantity');
+            $table->integer('quantity_months');
         });
     }
 
