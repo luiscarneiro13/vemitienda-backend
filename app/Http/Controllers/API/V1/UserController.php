@@ -247,7 +247,7 @@ class UserController extends Controller
                 $user->email_verified_at = now();
                 $user->save();
                 /* 2.1.- Asignarle el plan premium */
-                $plan = Plan::where('name', 'Plan Premium')->first();
+                $plan = Plan::where('name', 'Premium')->first();
 
                 $planUser = PlanUser::create([
                     'plan_id' => $plan->id,
