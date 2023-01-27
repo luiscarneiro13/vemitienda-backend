@@ -293,7 +293,15 @@ class UserController extends Controller
     public function reset1($user_id)
     {
         $user_id = Crypt::encrypt($user_id);
-        return redirect('reset2/' . $user_id);
+        /* 2.- Se envía correo */
+        $parametros['name'] = $user->name;
+        $parametros['destinatario'] = $user->email;
+        $parametros['url'] = url('reset2/' . $user_id);
+        $parametros['type'] = 'RecuperarCuenta';
+
+        dispatch(new SendEmailJob($parametros));
+
+        return $this->successResponse(['message' => 'Enviamos un email con las instrucciones para recuperar su contraseña']);
     }
 
     public function reset2($user_id)

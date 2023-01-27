@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Strategies\SendEmail\ActivarCuenta;
+use App\Strategies\SendEmail\RecuperarCuenta;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,7 +17,7 @@ class SendEmailJob implements ShouldQueue
 
     public const STRATEGY = [
         'ActivarCuenta'   => ActivarCuenta::class,
-        // 'RecuperarCuenta' => RecuperarCuenta::class
+        'RecuperarCuenta' => RecuperarCuenta::class
     ];
 
     public $parametros;
