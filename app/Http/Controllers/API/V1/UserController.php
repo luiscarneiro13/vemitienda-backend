@@ -275,7 +275,7 @@ class UserController extends Controller
         }
     }
 
-    public function messaje()
+    public function message()
     {
         return view('Mensajes');
     }
