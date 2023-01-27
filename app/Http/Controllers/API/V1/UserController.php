@@ -261,7 +261,7 @@ class UserController extends Controller
                 $ahora = Carbon::now();
 
                 $payment = Payment::create([
-                    'plan_user_id' => $planUser->id,
+                    'user_id' => $user_id,
                     'start_date' => $ahora,
                     'end_date' => $ahora->addDays(30),
                     'paid_out' => 1
@@ -280,7 +280,17 @@ class UserController extends Controller
         return view('Mensajes');
     }
 
-    public function reset1()
+    public function searchEmail()
+    {
+        $user = User::where('email', request()->email)->first();
+        if ($user) {
+            return $this->successResponse(['data' => $user]);
+        } else {
+            return $this->errorResponse(['error' => 'Datos inválidos']);
+        }
+    }
+
+    public function reset1($user_id)
     {
         $user = User::where('email', request()->email)->first();
         $user_id = Crypt::encrypt($user->id);
