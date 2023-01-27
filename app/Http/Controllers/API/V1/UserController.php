@@ -300,7 +300,7 @@ class UserController extends Controller
     {
         $user = Crypt::decrypt($user_id);
         $data['user_id'] = $user;
-        return view('ResetPassword', $data);
+        return view('auth.ResetPassword', $data);
     }
 
     public function reset3(ResetRequest $request)
