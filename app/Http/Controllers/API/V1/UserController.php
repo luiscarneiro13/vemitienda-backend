@@ -290,9 +290,10 @@ class UserController extends Controller
         }
     }
 
-    public function reset1($user_id)
+    public function reset1()
     {
-        $user_id = Crypt::encrypt($user_id);
+        $user_id = Crypt::encrypt(request()->user_id);
+        $user = User::find(request()->user_id);
         /* 2.- Se envía correo */
         $parametros['name'] = $user->name;
         $parametros['destinatario'] = $user->email;
