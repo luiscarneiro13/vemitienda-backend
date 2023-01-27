@@ -1,7 +1,7 @@
 @extends('layouts.adminlte.acceso')
 
 @section('content')
-<form method="POST" action="{{ route('reset') }}">
+<form method="POST" action="{{ route('reset3') }}">
     @csrf
     <div class="row">
         <x-text type="hidden" name="user_id" value="{{ $user_id }}" />
