@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Company;
+use App\Models\PlanUser;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,9 +25,11 @@ class ShareController extends Controller
     public function share($id_encriptado)
     {
         $id_usuario = Crypt::decrypt($id_encriptado);
-        // $data['catalog'] = Product::where('user_id', $id_usuario)->where('share', 1)->get();
+        $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
-        $data['categories'] = Category::with('products')->where('user_id', $id_usuario)->get();
+        if ($planUser->id == 2) {
+            $data['categories'] = Category::with('products')->where('user_id', $id_usuario)->get();
+        }
         return view('share.index', $data);
     }
 }

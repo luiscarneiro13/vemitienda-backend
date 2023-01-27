@@ -64,7 +64,7 @@
     </div>
     @empty
     <div class="text-center">
-        No hay categorías para mostrar
+        Por ahora no se puede mostrar el Catálogo
     </div>
     @endforelse
 </body>
