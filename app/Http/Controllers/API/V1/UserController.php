@@ -309,10 +309,10 @@ class UserController extends Controller
         if ($user) {
             $user->password = Hash::make(request()->password);
             $user->save();
-            return redirect('/message')->with('message', '¡Contraseña cambiada con éxito!');
+            return redirect()->route('message')->with('message', '¡Contraseña cambiada con éxito!');
         } else {
             //datos inválidos
-            return redirect('/message')->with('message', '¡Datos inválidos!');
+            return redirect()->route('message')->with('message', '¡Datos inválidos!');
         }
     }
 }

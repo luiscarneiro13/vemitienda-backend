@@ -25,7 +25,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('init/{id_usuario}', 'API\V1\ShareController@init');
 Route::get('share/{id_encriptado}', 'API\V1\ShareController@share');
 Route::get('confirmationuser/{id_encriptado}', 'API\V1\UserController@confirmationuser');
-Route::get('message', 'API\V1\UserController@message');
+Route::get('message', 'API\V1\UserController@message')->name('message');
 
 Route::get('reset2/{user_id}', 'API\V1\UserController@reset2')->name('reset2');
 Route::post('reset3', 'API\V1\UserController@reset3')->name('reset3');
