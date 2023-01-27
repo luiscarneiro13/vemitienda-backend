@@ -292,8 +292,7 @@ class UserController extends Controller
 
     public function reset1($user_id)
     {
-        $user = User::where('email', request()->email)->first();
-        $user_id = Crypt::encrypt($user->id);
+        $user_id = Crypt::encrypt($user_id);
         return redirect('reset2/' . $user_id);
     }
 
