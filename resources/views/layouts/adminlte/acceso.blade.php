@@ -19,10 +19,11 @@
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <span class="h1"><b>Ve mi Tienda</b></span>
-            </div>
+
             <div class="card-body">
+                <div class="text-center">
+                    <img width="150px" height="150px" src="{{ asset('img/logo.png') }}" alt="" srcset="">
+                </div>
                 <x-alerts />
                 @yield('content')
             </div>

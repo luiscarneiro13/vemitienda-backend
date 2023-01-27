@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Crypt;
 use App\Repositories\UsersRepository;
 use App\Http\Requests\API\V1\LoginRequest;
 use App\Http\Requests\API\V1\RegisterRequest;
+use App\Http\Requests\API\V1\ResetPasswordRequest;
+use App\Http\Requests\API\V1\ResetRequest;
 use App\Http\Resources\API\V1\UserInformationResource;
 use App\Jobs\SendEmailJob;
 use App\Models\Payment;
@@ -264,30 +266,44 @@ class UserController extends Controller
                     'end_date' => $ahora->addDays(30),
                     'paid_out' => 1
                 ]);
-                return redirect('/confirmated_user')->with('message', 'Cuenta activada con éxito');
+                return redirect('/messaje')->with('message', 'Cuenta activada con éxito');
             } else {
-                return redirect('/confirmated_user')->with('message', 'Cuenta activada previamente');
+                return redirect('/messaje')->with('message', 'Cuenta activada previamente');
             }
         } else {
-            return redirect('/confirmated_user')->with('message', 'Ocurrió un problema inesperado');
+            return redirect('/messaje')->with('message', 'Ocurrió un problema inesperado');
         }
     }
 
-    public function confirmatedUser()
+    public function messaje()
     {
         return view('Mensajes');
     }
 
-    public function prueba()
+    public function reset1()
     {
-        /* 1.- Se encripta el id del usuario y se pasa a la ruta web confirmationUser/asdkljasldkjlkjeouweoiru*/
-        $user_id = Crypt::encrypt(1);
-        /* 2.- Se envía correo */
-        $parametros['name'] = 'Luis Carneiro';
-        $parametros['destinatario'] = 'carneiroluis2@gmail.com';
-        $parametros['url'] = url('confirmationuser/' . $user_id);
-        $parametros['type'] = 'ActivarCuenta';
+        $user = User::where('email', request()->email)->first();
+        $user_id = Crypt::encrypt($user->id);
+        return redirect('reset2/' . $user_id);
+    }
 
-        dispatch(new SendEmailJob($parametros));
+    public function reset2($user_id)
+    {
+        $user = Crypt::decrypt($user_id);
+        $data['user_id'] = $user;
+        return view('ResetPassword', $data);
+    }
+
+    public function reset3(ResetRequest $request)
+    {
+        $user = User::find(request()->user_id);
+        if ($user) {
+            $user->password = Hash::make(request()->password);
+            $user->save();
+            return redirect('/messaje')->with('message', '¡Contraseña cambiada con éxito!');
+        } else {
+            //datos inválidos
+            return redirect('/messaje')->with('message', '¡Datos inválidos!');
+        }
     }
 }

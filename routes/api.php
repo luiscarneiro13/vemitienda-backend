@@ -18,6 +18,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('login', 'API\V1\UserController@login');
     Route::post('register', 'API\V1\UserController@register');
+    Route::post('reset1', 'API\V1\UserController@reset1')->name('reset1');
 
     Route::group(['middleware' => 'auth:api'], function () {
         // Route::get('productos', 'API\V1\ProductosController@index');

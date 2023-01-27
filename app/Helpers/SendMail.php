@@ -9,7 +9,6 @@ class SendMail
 {
     const STRATEGY = [
         'activarcuenta' => ActivarCuenta::class,
-        // 'recuperarcuenta' => RecuperarCuenta::class,
     ];
 
     public function send($state, $data)
