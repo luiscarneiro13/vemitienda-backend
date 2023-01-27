@@ -74,7 +74,7 @@
 
 <body>
     <div class="text-center">
-        Por ahora no se puede mostrar el Catálogo
+        <h1>Falta información de la Tienda</h1>
     </div>
 </body>
 
