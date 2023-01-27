@@ -27,7 +27,7 @@ class ShareController extends Controller
         $id_usuario = Crypt::decrypt($id_encriptado);
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
-        if ($planUser->id == 2) {
+        if ($planUser && $planUser->id == 2) {
             $data['categories'] = Category::with('products')->where('user_id', $id_usuario)->get();
         }
         return view('share.index', $data);
