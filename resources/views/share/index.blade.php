@@ -22,6 +22,8 @@
     </style>
 </head>
 
+@if($company)
+
 <body class="container" style="background-color:{{  $company->background_color_catalog }}}">
 
     <x-menu logo="{{ env('DO_URL_BASE').'/'.$company->logo->thumbnail }}" :categories="@$categories" />
@@ -68,5 +70,14 @@
     </div>
     @endforelse
 </body>
+@else
+
+<body>
+    <div class="text-center">
+        Por ahora no se puede mostrar el Catálogo
+    </div>
+</body>
+
+@endif
 
 </html>

@@ -29,6 +29,8 @@ class ShareController extends Controller
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
         if ($planUser && $planUser->id == 2) {
             $data['categories'] = Category::with('products')->where('user_id', $id_usuario)->get();
+        } else {
+            $data['categories'] = [];
         }
         return view('share.index', $data);
     }
