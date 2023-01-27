@@ -119,20 +119,10 @@ class UserController extends Controller
      * )
      */
 
-    public function login()
+    public function login(LoginRequest $request)
     {
-        $username = '';
-
-        if (request()->email) {
-            $username = request()->email;
-        }
-
-        if (request()->username) {
-            $username = request()->email;
-        }
-
         try {
-            $user = User::where('email', $username)->first();
+            $user = User::where('email', request()->email)->first();
             if (is_object($user)) {
                 if ($user->email_verified_at) {
                     if (Hash::check(request()->password, $user->password)) {
@@ -140,13 +130,22 @@ class UserController extends Controller
                         $data = $user;
                         return $this->successResponse(['data' => $data]);
                     } else {
-                        // return $this->globals->response('forbidden', 'Datos incorrectos');
+                        return $this->errorValidation([
+                            "email" => ["Datos incorrectos"],
+                            "message" => ["Datos erróneos"]
+                        ]);
                     }
                 } else {
-                    // return $this->globals->response('forbidden', 'Debe activar su cuenta mediante el link de activación enviado a su correo');
+                    return $this->errorValidation([
+                        "email" => ["Debe verificar su cuenta"],
+                        "message" => ["Datos erróneos"]
+                    ]);
                 }
             } else {
-                // return $this->globals->response('not-found', 'El usuario no existe, por favor debe registrarse');
+                return $this->errorValidation([
+                    "email" => ["El usuario no existe, por favor debe registrarse"],
+                    "message" => ["Datos erróneos"]
+                ]);
             }
         } catch (\Throwable $error) {
             return $error;

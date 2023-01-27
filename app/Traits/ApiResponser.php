@@ -45,9 +45,9 @@ trait ApiResponser
 
     public function errorValidation($params = [])
     {
-        $params['status'] = 400;
-        $params['errors'] = $params;
-        return $params;
+        $resp['errors'] = $params;
+        $resp['status'] = 400;
+        return $resp;
 
     }
 
