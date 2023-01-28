@@ -263,7 +263,8 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'start_date' => $ahora,
                     'end_date' => $ahora->addDays(30),
-                    'paid_out' => 1
+                    'paid_out' => 1,
+                    'quantity_months' => 1
                 ]);
                 return redirect('/message')->with('message', 'Cuenta activada con éxito');
             } else {
