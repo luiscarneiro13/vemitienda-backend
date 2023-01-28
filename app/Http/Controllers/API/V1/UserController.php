@@ -260,7 +260,7 @@ class UserController extends Controller
                 $ahora = Carbon::now();
 
                 $payment = Payment::create([
-                    'user_id' => $user_id,
+                    'user_id' => $user->id,
                     'start_date' => $ahora,
                     'end_date' => $ahora->addDays(30),
                     'paid_out' => 1
