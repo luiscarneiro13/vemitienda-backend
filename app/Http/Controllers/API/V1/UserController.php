@@ -243,7 +243,7 @@ class UserController extends Controller
         /* 2.- Si el usuario no había verificado antes, lo verifico. Sino no hago más nada */
         $user = User::find($user_id);
         if ($user) {
-            if (!$user->email_verified_at) {
+            if (is_null($user->email_verified_at)) {
                 /* 2.1.- Verificar email del usuario*/
                 $user->email_verified_at = now();
                 $user->save();
