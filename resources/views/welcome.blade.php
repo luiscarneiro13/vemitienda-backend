@@ -180,7 +180,7 @@
             <div class="row mt-5">
                 <div class="col-lg-6">
                     <div class="text-container">
-                        <h2>¿Porqué usar Ve mi Tienda?</h2>
+                        <h2 class="text-center">¿Porqué usar Ve mi Tienda?</h2>
                         <p>
                             1.- Creamos un catálogo online para ti, automáticamente en menos
                             de 1 minuto.
@@ -225,7 +225,8 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title">MENSUAL</div>
@@ -247,12 +248,12 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#request">Lo quiero</a>
+                                <a class="btn-solid-reg page-scroll" href="#contacto">Lo quiero</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title">ANUAL</div>
@@ -274,11 +275,12 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#request">Lo quiero</a>
+                                <a class="btn-solid-reg page-scroll" href="#contacto">Lo quiero</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-2"></div>
             </div>
         </div>
     </div>
@@ -288,7 +290,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="text-container">
-                        <h2>Contáctanos mediante el formulario</h2>
+                        <h2 class="text-center">Contáctanos mediante el formulario</h2>
                         <p>
                             O escríbenos un correo a:
                             <strong>info@vemitienda.online</strong> para ofrecerte la
@@ -300,18 +302,23 @@
                     <div class="form-container">
                         <form id="requestForm" data-toggle="validator" data-focus="false">
                             <div class="form-group">
-                                <input type="text" class="form-control-input" id="rname" name="rname" required />
+                                <input type="text" class="form-control-input" id="rname" name="name" required />
                                 <label class="label-control" for="rname">Nombre y Apellido</label>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control-input" id="remail" name="remail" required />
+                                <input type="email" class="form-control-input" id="remail" name="email" required />
                                 <label class="label-control" for="remail">Email</label>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control-input" id="rphone" name="rphone" required />
+                                <input type="text" class="form-control-input" id="rphone" name="phone" required />
                                 <label class="label-control" for="rphone">Teléfono</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control-input" id="rmessage" name="message"></textarea>
+                                <label class="label-control" for="rmessage">Mensaje</label>
                                 <div class="help-block with-errors"></div>
                             </div>
 
