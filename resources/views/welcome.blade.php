@@ -197,7 +197,7 @@
                             4.- Acceso súper rápido para compartir el catálogo, es solo
                             pulsar un botón y se hace la magia.
                         </p>
-                        <p>5.- El catálogo es tuyo y estará siempre en línea.</p>
+                        <p>5.- El catálogo es una página web de tus productos.</p>
                     </div>
                     <!-- end of text-container -->
                 </div>
@@ -225,10 +225,37 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-title">PREMIUM</div>
+                            <div class="card-title">MENSUAL</div>
+                            <div class="card-subtitle"></div>
+                            <hr class="cell-divide-hr" />
+                            <div class="price">
+                                <span class="currency">$</span><span class="value">1</span>
+                                <div class="frequency">Mensualmente</div>
+                            </div>
+                            <hr class="cell-divide-hr" />
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Hasta 100 productos</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Compartir ilimitado</div>
+                                </li>
+                            </ul>
+                            <div class="button-wrapper">
+                                <a class="btn-solid-reg page-scroll" href="#request">Lo quiero</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">ANUAL</div>
                             <div class="card-subtitle"></div>
                             <hr class="cell-divide-hr" />
                             <div class="price">
