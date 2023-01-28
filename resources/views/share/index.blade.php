@@ -37,7 +37,7 @@
 
     <div class="row mt-5">
         <div class="col-md-4 text-center">
-            <image class="img-fluid p-4"  src="{{ env('DO_URL_BASE').'/'.$company->logo->url }}" />
+            <image class="img-fluid p-5"  src="{{ env('DO_URL_BASE').'/'.$company->logo->url }}" />
         </div>
         <div class="col-md-8">
             <div class="text-center" style="font-size: 52px; font-weight: bolder; margin-top: 65px">
