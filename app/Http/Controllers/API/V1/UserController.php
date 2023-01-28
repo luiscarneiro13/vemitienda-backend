@@ -257,12 +257,11 @@ class UserController extends Controller
                 ]);
                 $planUser->save();
                 /* 2.2.- Asignarle un pago como pagado por 30 días */
-                $ahora = Carbon::now();
 
                 $payment = Payment::create([
                     'user_id' => $user->id,
-                    'start_date' => $ahora,
-                    'end_date' => $ahora->addDays(30),
+                    'start_date' => Carbon::parse(now())->format('Y-m-d H:i:s'),
+                    'end_date' => Carbon::parse(now())->addDays(30)->format('Y-m-d H:i:s'),
                     'paid_out' => 1,
                     'quantity_months' => 1
                 ]);
