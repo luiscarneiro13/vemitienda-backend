@@ -266,6 +266,8 @@ class UserController extends Controller
                     'paid_out' => 1,
                     'quantity_months' => 1
                 ]);
+                $payment->save();
+
                 return redirect('/message')->with('message', 'Cuenta activada con éxito');
             } else {
                 return redirect('/message')->with('message', 'Cuenta activada previamente');
