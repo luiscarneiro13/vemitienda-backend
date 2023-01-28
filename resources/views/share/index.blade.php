@@ -10,7 +10,7 @@
     <meta property="og:title" content="{{ $company->name }}" />
     <meta name="description" content="{{ $company->slogan }}" />
     <meta property="og:description" content="{{ $company->slogan }}" />
-    <meta property="og:image" content="{{ $company->logo->thumbnail }}" />
+    <meta property="og:image" content="{{ env('DO_URL_BASE').'/'.$company->logo->thumbnail }}" />
     <meta property="og:type" content="article" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
