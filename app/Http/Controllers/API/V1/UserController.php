@@ -265,12 +265,12 @@ class UserController extends Controller
                     'end_date' => $ahora->addDays(30),
                     'paid_out' => 1
                 ]);
-                return redirect('/messaje')->with('message', 'Cuenta activada con éxito');
+                return redirect('/message')->with('message', 'Cuenta activada con éxito');
             } else {
-                return redirect('/messaje')->with('message', 'Cuenta activada previamente');
+                return redirect('/message')->with('message', 'Cuenta activada previamente');
             }
         } else {
-            return redirect('/messaje')->with('message', 'Ocurrió un problema inesperado');
+            return redirect('/message')->with('message', 'Ocurrió un problema inesperado');
         }
     }
 
