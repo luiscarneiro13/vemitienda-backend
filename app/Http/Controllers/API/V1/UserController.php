@@ -260,10 +260,10 @@ class UserController extends Controller
 
                 $payment = Payment::create([
                     'user_id' => $user->id,
+                    'quantity_months' => 1,
                     'start_date' => Carbon::parse(now())->format('Y-m-d H:i:s'),
                     'end_date' => Carbon::parse(now())->addDays(30)->format('Y-m-d H:i:s'),
-                    'paid_out' => 1,
-                    'quantity_months' => 1
+                    'paid_out' => 1
                 ]);
                 $payment->save();
 
