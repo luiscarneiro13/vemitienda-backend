@@ -35,7 +35,6 @@ class ProductRequest extends FormRequest
                 Rule::unique('products')->where('user_id', $user->id)->where('category_id', $this->category_id)->where('name', $this->name)->ignore($this->product)
             ],
             'category_id' => 'required|integer|exists:categories,id',
-            'description' => 'required|min:3|max:4000',
             'price'       => 'numeric|min:0|max:1000000000000',
             'share'       => 'integer|min:0|max:1'
         ];
@@ -51,9 +50,6 @@ class ProductRequest extends FormRequest
             'category_id.required' => 'La categoría es obligatoria',
             'category_id.integer'  => 'Debe seleccionar una categoría',
             'category_id.exists'   => 'La categoría no existe',
-            'description.required' => 'La descripción es obligatoria',
-            'description.min'      => 'La descripción debe contener al menos 3 caracteres',
-            'description.max'      => 'La descripción no debe contener mas de 4000 caracteres',
             'price.numeric'        => 'El precio debe ser un número decimal',
             'price.min'            => 'El precio mínimo es 0',
             'price.max'            => 'El precio máximo es 1.000.000.000.000',
