@@ -20,6 +20,14 @@ class ProductRequest extends FormRequest
         return true;
     }
 
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'price' => floatval(str_replace(',', '.', str_replace('.', '', $this->price)))
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -35,7 +43,7 @@ class ProductRequest extends FormRequest
                 Rule::unique('products')->where('user_id', $user->id)->where('category_id', $this->category_id)->where('name', $this->name)->ignore($this->product)
             ],
             'category_id' => 'required|integer|exists:categories,id',
-            'price'       => 'numeric|min:0|max:1000000000000',
+            'price'       => 'between:0,999999999999999999.99',
             'share'       => 'integer|min:0|max:1'
         ];
     }
@@ -50,9 +58,7 @@ class ProductRequest extends FormRequest
             'category_id.required' => 'La categoría es obligatoria',
             'category_id.integer'  => 'Debe seleccionar una categoría',
             'category_id.exists'   => 'La categoría no existe',
-            'price.numeric'        => 'El precio debe ser un número decimal',
-            'price.min'            => 'El precio mínimo es 0',
-            'price.max'            => 'El precio máximo es 1.000.000.000.000',
+            'price.min'            => 'El precio mínimo es 0 y máximo 999999999999999999',
             'share.integer'        => 'El campo compartir debe ser un número entero',
             'share.min'            => 'El campo compartir mínimo es 0',
             'share.max'            => 'El campo compartir máximo es 1',
