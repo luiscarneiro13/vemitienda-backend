@@ -23,9 +23,9 @@ class ProductRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'price' => floatval(str_replace(',', '', $this->price))
-        ]);
+        // $this->merge([
+        //     'price' => floatval(str_replace(',', '', $this->price))
+        // ]);
     }
 
     /**
