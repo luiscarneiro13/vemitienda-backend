@@ -28,7 +28,9 @@ class ShareController extends Controller
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
         if ($planUser && $planUser->plan_id == 2) {
-            $data['categories'] = Category::with('products')->where('user_id', $id_usuario)->get();
+            $data['categories'] = Category::with(['products' => function ($q) {
+                $q->where('share', 1);
+            }])->where('user_id', $id_usuario)->get();
         } else {
             $data['categories'] = [];
         }
