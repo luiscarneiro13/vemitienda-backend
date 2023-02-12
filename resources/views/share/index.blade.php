@@ -37,7 +37,7 @@
         }
     </style>
     <script type="text/javascript">
-        $('ul.pagination').hide();
+        // $('ul.pagination').hide();
         $(function() {
             $('.scrolling-pagination').jscroll({
                 autoTrigger: true,
@@ -46,7 +46,8 @@
                 contentSelector: 'div.scrolling-pagination',
                 callback: function() {
                     $('ul.pagination').remove();
-                }
+                },
+                loadingHtml:'<center><small>Cargando...</small></center>'
             });
         });
     </script>
@@ -55,8 +56,8 @@
 @if($company)
 
 <body style="background-color:{{  $company->background_color_catalog }}}">
-    <x-menu logo="{{ $company->logo? env('DO_URL_BASE').'/'.$company->logo->thumbnail:'' }}"
-        :categories="@$categories" idEncriptado='{{ $id_encriptado }}' />
+    <x-menu logo="{{ $company->logo? env('DO_URL_BASE').'/'.$company->logo->thumbnail:'' }}" :categories="@$categories"
+        idEncriptado='{{ $id_encriptado }}' />
 
 
     <div class="row mt-5">
@@ -73,23 +74,21 @@
         </div>
     </div>
 
-    <div class="scrolling-pagination">
-        <div class="container">
-            @foreach ($products as $product)
-            <div class="col-md-4 p-1">
-                <div class="text-center">
-                    <image class="img-fluid"
-                        src="{{ count(@$product->image)>0 ? env('DO_URL_BASE').'/'.$product->image[0]->url:'' }}" />
-                </div>
-                <p class="text-center">
-                    <span style="font-weight: bold; font-size: 14px">{{ $product->name }}</span><br />
-                    @if ($product->price>0)
-                    <span style="font-weight: bold; font-size: 16px">${{ $product->price }}</span><br />
-                    @endif
-                </p>
+    <div class="scrolling-pagination pb-5 mb-4">
+        @foreach ($products as $product)
+        <div class="col-md-4 p-1">
+            <div class="text-center">
+                <image class="img-fluid"
+                    src="{{ count(@$product->image)>0 ? env('DO_URL_BASE').'/'.$product->image[0]->url:'' }}" />
             </div>
-            @endforeach
+            <p class="text-center">
+                <span style="font-weight: bold; font-size: 14px">{{ $product->name }}</span><br />
+                @if ($product->price>0)
+                <span style="font-weight: bold; font-size: 16px">${{ $product->price }}</span><br />
+                @endif
+            </p>
         </div>
+        @endforeach
         <div class="d-none">
             {{ $products->links() }}
         </div>
