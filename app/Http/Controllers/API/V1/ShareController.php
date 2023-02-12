@@ -28,7 +28,7 @@ class ShareController extends Controller
         $data['id_encriptado'] = $id_encriptado;
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
-        $data['categories'] = Category::all();
+        $data['categories'] = Category::where('user_id', $id_usuario)->get();
         if ($planUser && $planUser->plan_id == 2) {
             $cat = null;
             if (request()->cat && request()->cat > 0) {
