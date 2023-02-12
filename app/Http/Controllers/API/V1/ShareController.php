@@ -42,12 +42,22 @@ class ShareController extends Controller
             if (request()->cat && request()->cat > 0) {
                 $cat = request()->cat;
             }
-
-            $data['products'] = Product::query()
-                ->with('image','category')
+            $total = Product::query()
+                ->with('image', 'category')
                 ->where('share', 1)
                 ->where('user_id', $id_usuario)
-                ->when($cat>0, function ($q) {
+                ->when($cat > 0, function ($q) {
+                    $q->where('category_id', request()->cat);
+                })
+                ->count();
+
+            $data['pages'] = (int)($total / 4);
+
+            $data['products'] = Product::query()
+                ->with('image', 'category')
+                ->where('share', 1)
+                ->where('user_id', $id_usuario)
+                ->when($cat > 0, function ($q) {
                     $q->where('category_id', request()->cat);
                 })
                 ->paginate(5);
@@ -75,7 +85,7 @@ class ShareController extends Controller
                 $cat = request()->cat;
             }
             $data['products'] = Product::query()
-                ->with('image','category')
+                ->with('image', 'category')
                 ->where('share', 1)
                 ->where('user_id', $id_usuario)
                 ->when($cat, function ($q) {

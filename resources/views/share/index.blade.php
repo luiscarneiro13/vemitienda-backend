@@ -64,6 +64,7 @@
             <div class="text-center" style="font-size: 32px">
                 {{ $company->slogan }}
             </div>
+
         </div>
     </div>
 
@@ -89,12 +90,14 @@
 
 <script type="text/javascript">
     var page = 1;
-    console.log("Scroll",$(window).scrollTop() + $(window).height())
-    console.log("Height",$(document).height())
+    const pages='{{ $pages }}'
+
     $(window).scroll(function() {
 	    if($(window).scrollTop() + $(window).height()+100 >= $(document).height()) {
-            page++;
-            loadMoreData(page);
+            if(page<pages){
+                page++;
+                loadMoreData(page);
+            }
 	    }
 	});
 
