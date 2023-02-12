@@ -25,15 +25,40 @@ class ShareController extends Controller
     public function share($id_encriptado)
     {
         $id_usuario = Crypt::decrypt($id_encriptado);
+        $data['id_encriptado'] = $id_encriptado;
+        $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
+        $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
+        $data['categories'] = Category::all();
+        if ($planUser && $planUser->plan_id == 2) {
+            $data['products'] = Product::query()
+                ->with('image')
+                ->where('share', 1)
+                ->where('user_id', $id_usuario)
+                ->when(request()->cat, function ($q) {
+                    $q->where('category_id', request()->cat);
+                })
+                ->paginate(10);
+        } else {
+            $data['products'] = [];
+        }
+        return view('share.index', $data);
+    }
+
+    public function shareAPI($id_encriptado)
+    {
+        $id_usuario = Crypt::decrypt($id_encriptado);
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
         if ($planUser && $planUser->plan_id == 2) {
-            $data['categories'] = Category::with(['products' => function ($q) {
-                $q->where('share', 1);
-            }])->where('user_id', $id_usuario)->get();
+            $data['products'] = Product::query()
+                ->with('image')
+                ->where('share', 1)
+                ->where('user_id', $id_usuario)
+                ->paginate(5);
         } else {
-            $data['categories'] = [];
+            $data['products'] = [];
         }
-        return view('share.index', $data);
+
+        return response()->json($data);
     }
 }

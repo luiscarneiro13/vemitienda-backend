@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\UrlGenerator;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -51,5 +52,7 @@ class AppServiceProvider extends ServiceProvider
             }
             $view->with('version', $version_js);
         });
+
+        Paginator::useBootstrap();
     }
 }

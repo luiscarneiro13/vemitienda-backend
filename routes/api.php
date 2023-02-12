@@ -21,6 +21,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('searchEmail', 'API\V1\UserController@searchEmail')->name('searchEmail');
     Route::post('reset1', 'API\V1\UserController@reset1')->name('reset1');
 
+    Route::get('share/{id_encriptado}', 'API\V1\ShareController@shareAPI');
+
     Route::group(['middleware' => 'auth:api'], function () {
         // Route::get('productos', 'API\V1\ProductosController@index');
         Route::get('planes', 'API\V1\PlanesController@index');
