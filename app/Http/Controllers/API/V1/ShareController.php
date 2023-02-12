@@ -34,10 +34,10 @@ class ShareController extends Controller
                 ->with('image')
                 ->where('share', 1)
                 ->where('user_id', $id_usuario)
-                ->when(request()->cat, function ($q) {
+                ->when((request()->cat && request()->cat > 0), function ($q) {
                     $q->where('category_id', request()->cat);
                 })
-                ->paginate(10);
+                ->paginate(5);
         } else {
             $data['products'] = [];
         }
