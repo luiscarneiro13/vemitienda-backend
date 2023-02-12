@@ -24,6 +24,11 @@ class ShareController extends Controller
 
     public function share($id_encriptado)
     {
+
+        if (!isset(request()->cat)) {
+            return redirect(url('share/' . $id_encriptado . '?cat=0'));
+        }
+        $data['cat'] = request()->cat;
         $id_usuario = Crypt::decrypt($id_encriptado);
         $data['id_encriptado'] = $id_encriptado;
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
