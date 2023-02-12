@@ -92,7 +92,7 @@
     console.log("Scroll",$(window).scrollTop() + $(window).height())
     console.log("Height",$(document).height())
     $(window).scroll(function() {
-	    if($(window).scrollTop() + $(window).height()+20 >= $(document).height()) {
+	    if($(window).scrollTop() + $(window).height()+100 >= $(document).height()) {
             page++;
             loadMoreData(page);
 	    }
