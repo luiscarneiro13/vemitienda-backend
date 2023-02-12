@@ -30,11 +30,15 @@ class ShareController extends Controller
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
         $data['categories'] = Category::all();
         if ($planUser && $planUser->plan_id == 2) {
+            $cat = null;
+            if (request()->cat && request()->cat > 0) {
+                $cat = request()->cat;
+            }
             $data['products'] = Product::query()
                 ->with('image')
                 ->where('share', 1)
                 ->where('user_id', $id_usuario)
-                ->when((request()->cat && request()->cat > 0), function ($q) {
+                ->when($cat, function ($q) {
                     $q->where('category_id', request()->cat);
                 })
                 ->paginate(5);
@@ -50,10 +54,17 @@ class ShareController extends Controller
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
         if ($planUser && $planUser->plan_id == 2) {
+            $cat = null;
+            if (request()->cat && request()->cat > 0) {
+                $cat = request()->cat;
+            }
             $data['products'] = Product::query()
                 ->with('image')
                 ->where('share', 1)
                 ->where('user_id', $id_usuario)
+                ->when($cat, function ($q) {
+                    $q->where('category_id', request()->cat);
+                })
                 ->paginate(5);
         } else {
             $data['products'] = [];
