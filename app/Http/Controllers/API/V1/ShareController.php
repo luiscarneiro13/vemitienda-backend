@@ -22,12 +22,13 @@ class ShareController extends Controller
         return redirect(url("share/" . $id_usuario));
     }
 
-    public function share($id_encriptado)
+    public function share(Request $request, $id_encriptado)
     {
 
         if (!isset(request()->cat)) {
             return redirect(url('share/' . $id_encriptado . '?cat=0'));
         }
+
         $data['cat'] = request()->cat;
         $id_usuario = Crypt::decrypt($id_encriptado);
         $data['id_encriptado'] = $id_encriptado;
@@ -50,6 +51,12 @@ class ShareController extends Controller
         } else {
             $data['products'] = [];
         }
+
+        if ($request->ajax()) {
+            $view = view('share.data', $data)->render();
+            return response()->json(['html' => $view]);
+        }
+
         return view('share.index', $data);
     }
 

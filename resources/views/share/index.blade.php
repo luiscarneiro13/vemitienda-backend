@@ -30,32 +30,20 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+
+    <style type="text/css">
+        .ajax-load {
+            background: #e1e1e1;
+            padding: 10px 0px;
+            width: 100%;
+        }
+    </style>
+
     <style>
         body {
             font-family: "Roboto", sans-serif;
         }
     </style>
-    <script type="text/javascript">
-        // $('ul.pagination').hide();
-        $(function() {
-            $('.scrolling-pagination').jscroll({
-                autoTrigger: true,
-                padding: 0,
-                nextSelector: '.pagination li.active + li a',
-                contentSelector: 'div.scrolling-pagination',
-                callback: function() {
-                    $('ul.pagination').remove();
-                },
-                loadingHtml:'<center><small>Cargando...</small></center>'
-            });
-
-            if (window.location.protocol == "http:") {
-                var restOfUrl = window.location.href.substr(5);
-                window.location = "https:" + restOfUrl;
-            }
-        });
-    </script>
 </head>
 
 @if($company)
@@ -79,25 +67,13 @@
         </div>
     </div>
 
-    <div class="scrolling-pagination pb-5 mb-4">
-        @foreach ($products as $product)
-        <div class="col-md-4 p-1">
-            <div class="text-center">
-                <image class="img-fluid"
-                    src="{{ count(@$product->image)>0 ? env('DO_URL_BASE').'/'.$product->image[0]->url:'' }}" />
-            </div>
-            <p class="text-center">
-                <span style="font-weight: bold; font-size: 14px">{{ $product->name }}</span><br />
-                @if ($product->price>0)
-                <span style="font-weight: bold; font-size: 16px">${{ $product->price }}</span><br />
-                @endif
-            </p>
-        </div>
-        @endforeach
-        <div class="d-none">
-            {{ $products->links() }}
-        </div>
+    <div class="ajax-load text-center" style="display:none">
+        <p>Cargando más ...</p>
     </div>
+    <div class="col-md-12" id="post-data">
+        @include('share.data')
+    </div>
+
 
 </body>
 @else
@@ -109,5 +85,45 @@
 </body>
 
 @endif
+
+
+<script type="text/javascript">
+    var page = 1;
+    console.log("Scroll",$(window).scrollTop() + $(window).height())
+    console.log("Height",$(document).height())
+    $(window).scroll(function() {
+	    if($(window).scrollTop() + $(window).height()+100 >= $(document).height()) {
+            page++;
+            loadMoreData(page);
+	    }
+	});
+
+    function loadMoreData(page){
+        const cat='{{ $cat }}'
+        const idEncriptado='{{ $id_encriptado }}'
+        const url='{{ url('share') }}'+'/'+idEncriptado+'?cat='+cat+'&page='+page
+
+        $.ajax(
+            {
+                url: url,
+                type: "get",
+                beforeSend: function () {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function (data) {
+
+                if (data.html == " ") {
+                    $('.ajax-load').html("No more records found");
+                    return;
+                }
+                $('.ajax-load').hide();
+                $("#post-data").append(data.html);
+            })
+            .fail(function (jqXHR, ajaxOptions, thrownError) {
+                alert('server not responding...');
+            });
+	}
+</script>
 
 </html>
