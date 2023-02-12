@@ -67,13 +67,13 @@
         </div>
     </div>
 
-    <div class="ajax-load text-center" style="display:none">
-        <p>Cargando más ...</p>
-    </div>
     <div class="col-md-12" id="post-data">
         @include('share.data')
     </div>
 
+    <div class="ajax-load text-center" style="display:none">
+        <img src="{{ asset('img/loader.gif') }}" alt="">
+    </div>
 
 </body>
 @else
