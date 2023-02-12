@@ -50,7 +50,7 @@
 
 <body style="background-color:{{  $company->background_color_catalog }}}">
     <x-menu logo="{{ $company->logo? env('DO_URL_BASE').'/'.$company->logo->thumbnail:'' }}" :categories="@$categories"
-        idEncriptado='{{ $id_encriptado }}' />
+        idEncriptado='{{ $id_encriptado }}' :cat='@$cat' :products='@$products' />
 
 
     <div class="row mt-5">
@@ -71,8 +71,8 @@
         @include('share.data')
     </div>
 
-    <div class="ajax-load text-center" style="display:none">
-        <img src="{{ asset('img/loader.gif') }}" alt="">
+    <div class="ajax-load text-center bg-light" style="display:none">
+        <img width="50px" src="{{ asset('img/loader.gif') }}" alt="">
     </div>
 
 </body>
@@ -92,7 +92,7 @@
     console.log("Scroll",$(window).scrollTop() + $(window).height())
     console.log("Height",$(document).height())
     $(window).scroll(function() {
-	    if($(window).scrollTop() + $(window).height()+100 >= $(document).height()) {
+	    if($(window).scrollTop() + $(window).height()+20 >= $(document).height()) {
             page++;
             loadMoreData(page);
 	    }

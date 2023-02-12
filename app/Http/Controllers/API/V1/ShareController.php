@@ -36,15 +36,18 @@ class ShareController extends Controller
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
         $data['categories'] = Category::where('user_id', $id_usuario)->get();
         if ($planUser && $planUser->plan_id == 2) {
-            $cat = null;
+
+            $cat = 0;
+
             if (request()->cat && request()->cat > 0) {
                 $cat = request()->cat;
             }
+
             $data['products'] = Product::query()
-                ->with('image')
+                ->with('image','category')
                 ->where('share', 1)
                 ->where('user_id', $id_usuario)
-                ->when($cat, function ($q) {
+                ->when($cat>0, function ($q) {
                     $q->where('category_id', request()->cat);
                 })
                 ->paginate(5);
@@ -62,6 +65,7 @@ class ShareController extends Controller
 
     public function shareAPI($id_encriptado)
     {
+        $data['cat'] = request()->cat;
         $id_usuario = Crypt::decrypt($id_encriptado);
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
@@ -71,7 +75,7 @@ class ShareController extends Controller
                 $cat = request()->cat;
             }
             $data['products'] = Product::query()
-                ->with('image')
+                ->with('image','category')
                 ->where('share', 1)
                 ->where('user_id', $id_usuario)
                 ->when($cat, function ($q) {
