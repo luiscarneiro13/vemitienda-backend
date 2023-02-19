@@ -125,12 +125,15 @@
                             style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
                             <h1 style="font-size: 48px; font-weight: 400; margin: 2;">
                                 Contacto<br>
-                                Nombre y Apellido: <strong>{{ @$name }}</strong> <br>
-                                Email: <strong>{{ @$email }}</strong> <br>
-                                Teléfono: <strong>{{ @$phone }}</strong> <br>
-                                Mensaje: <strong>{{ @$message }}</strong> <br>
                             </h1> <img src="https://vemitienda.online/img/logo.png" width="125" height="120"
                                 style="display: block; border: 0px;" />
+                            <div align="left" class="text-left" style="font-size: 12px;">
+                                <h1>&nbsp;</h1>
+                                <strong>Nombre y Apellido: </strong>{{ @$name }} <br>
+                                <strong>Email: </strong>{{ @$email }} <br>
+                                <strong>Teléfono: </strong>{{ @$phone }} <br>
+                                <strong>Mensaje: </strong>{{ @$mensaje }} <br>
+                            </div>
                         </td>
                     </tr>
                 </table>

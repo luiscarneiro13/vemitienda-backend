@@ -12,21 +12,23 @@ class ContactController extends Controller
     public function index(ContactRequest $request)
     {
         try {
-            $parametros['name'] = request()->name;
-            $parametros['destinatario'] = 'vemitienda@gmail.com';
+            $parametros['destinatario'] = 'carneiroluis2@gmail.com';
             $parametros['type'] = 'Contacto';
-            $parametros['data'] = request()->all();
+            $parametros['name'] = request()->name;
+            $parametros['email'] = request()->email;
+            $parametros['phone'] = request()->phone;
+            $parametros['mensaje'] = request()->message;
 
             dispatch(new SendEmailJob($parametros));
 
             return redirect()->route('contacto')->with([
-                'message'=> 'Ya recibimos su correo, en breve un asistente de ventas se pondrá en contacto con usted',
-                'color'=>'success'
+                'message' => 'Ya recibimos su correo, en breve un asistente de ventas se pondrá en contacto con usted',
+                'color' => 'success'
             ]);
         } catch (\Throwable $th) {
             return redirect()->route('contacto')->with([
-                'message'=> 'Ocurrió un error inesperado, por favor intenta de nuevo',
-                'color'=>'danger'
+                'message' => 'Ocurrió un error inesperado, por favor intenta de nuevo',
+                'color' => 'danger'
             ]);
         }
     }

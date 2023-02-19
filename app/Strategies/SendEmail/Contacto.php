@@ -11,9 +11,8 @@ class Contacto implements SendEmailInterface
 {
     public function sendEmail($data)
     {
-        info($data);
         try {
-            Mail::to($data['destinatario'])->send(new MailContacto($data['data']));
+            Mail::to($data['destinatario'])->send(new MailContacto($data));
         } catch (Exception $th) {
             return null;
         }
