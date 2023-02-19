@@ -37,8 +37,12 @@
     <link href="{{ asset('plantillas/evolo/css/magnific-popup.css')}}" rel="stylesheet" />
     <link href="{{ asset('plantillas/evolo/css/styles.css')}}" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- Favicon  -->
     <link rel="icon" href="{{ asset('plantillas/evolo/images/logo.png') }}" />
+    @include('toastr')
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -85,7 +89,7 @@
                     <a class="nav-link page-scroll" href="#precio">Precio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#contacto">Contacto</a>
+                    <a class="nav-link page-scroll" href="{{ url('contacto') }}">Contacto</a>
                 </li>
             </ul>
         </div>
@@ -248,7 +252,7 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#contacto">Lo quiero</a>
+                                <a class="btn-solid-reg page-scroll" href="{{ url('contacto') }}">Lo quiero</a>
                             </div>
                         </div>
                     </div>
@@ -275,64 +279,12 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#contacto">Lo quiero</a>
+                                <a class="btn-solid-reg page-scroll" href="{{ url('contacto') }}">Lo quiero</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2"></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="contacto" class="form-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="text-container">
-                        <h2 class="text-center">Contáctanos mediante el formulario</h2>
-                        <p>
-                            O escríbenos un correo a:
-                            <strong>info@vemitienda.online</strong> para ofrecerte la
-                            información y medios de pago
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-container">
-                        <form id="requestForm" data-toggle="validator" data-focus="false">
-                            <div class="form-group">
-                                <input type="text" class="form-control-input" id="rname" name="name" required />
-                                <label class="label-control" for="rname">Nombre y Apellido</label>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control-input" id="remail" name="email" required />
-                                <label class="label-control" for="remail">Email</label>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control-input" id="rphone" name="phone" required />
-                                <label class="label-control" for="rphone">Teléfono</label>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control-input" id="rmessage" name="message"></textarea>
-                                <label class="label-control" for="rmessage">Mensaje</label>
-                                <div class="help-block with-errors"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="form-control-submit-button">
-                                    Enviar
-                                </button>
-                            </div>
-                            <div class="form-message">
-                                <div id="rmsgSubmit" class="h3 text-center hidden"></div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Auth::routes();
 
@@ -29,6 +29,12 @@ Route::get('message', 'API\V1\UserController@message')->name('message');
 
 Route::get('reset2/{user_id}', 'API\V1\UserController@reset2')->name('reset2');
 Route::post('reset3', 'API\V1\UserController@reset3')->name('reset3');
+
+Route::post('contact', 'API\V1\ContactController@index')->name('contact');
+
+Route::get('contacto',  function () {
+    return view('contacto');
+})->name('contacto');
 
 Route::get('prueba', function () {
     return view('auth.resetPassword');
