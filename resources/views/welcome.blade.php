@@ -31,11 +31,11 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext"
         rel="stylesheet" />
-    <link href="{{ asset('plantillas/evolo/css/bootstrap.css')}}" rel="stylesheet" />
-    <link href="{{ asset('plantillas/evolo/css/fontawesome-all.css')}}" rel="stylesheet" />
-    <link href="{{ asset('plantillas/evolo/css/swiper.css')}}" rel="stylesheet" />
-    <link href="{{ asset('plantillas/evolo/css/magnific-popup.css')}}" rel="stylesheet" />
-    <link href="{{ asset('plantillas/evolo/css/styles.css')}}" rel="stylesheet" />
+    <link href="{{ asset('plantillas/evolo/css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="{{ asset('plantillas/evolo/css/fontawesome-all.css') }}" rel="stylesheet" />
+    <link href="{{ asset('plantillas/evolo/css/swiper.css') }}" rel="stylesheet" />
+    <link href="{{ asset('plantillas/evolo/css/magnific-popup.css') }}" rel="stylesheet" />
+    <link href="{{ asset('plantillas/evolo/css/styles.css') }}" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -154,17 +154,17 @@
                         </div>
                     </div>
 
-                    <div class="card">
-                        <img class="card-image" src="{{ asset('plantillas/evolo/images/services-icon-2.svg')}}"
+                    {{-- <div class="card">
+                        <img class="card-image" src="{{ asset('plantillas/evolo/images/services-icon-2.svg') }}"
                             alt="alternative" />
                         <div class="card-body">
                             <h4 class="card-title">Personaliza</h4>
                             <p>Cambia el color de fondo de tu catálogo online</p>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="card">
-                        <img class="card-image" src="{{ asset('plantillas/evolo/images/services-icon-3.svg')}}"
+                        <img class="card-image" src="{{ asset('plantillas/evolo/images/services-icon-3.svg') }}"
                             alt="alternative" />
                         <div class="card-body">
                             <h4 class="card-title">Comparte</h4>
@@ -172,6 +172,27 @@
                                 Crearemos un catálogo de forma automática para ti, el cual
                                 podrás compartir con tus clientes
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colocar el Video -->
+
+            <div class="basic-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>Video promocional</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <iframe width="560" height="315"
+                                src="https://www.youtube.com/embed/rQRL8t2uhNE?autoplay=1&controls=0"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -208,7 +229,8 @@
                 <!-- end of col -->
                 <div class="col-lg-6">
                     <div class="image-container">
-                        <img class="img-fluid" src="{{ asset('plantillas/evolo/images/details-1-office-worker.svg')}}"
+                        <img class="img-fluid"
+                            src="{{ asset('plantillas/evolo/images/details-1-office-worker.svg') }}"
                             alt="alternative" />
                     </div>
                 </div>
@@ -288,46 +310,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Cuando se quiera colocar el Video -->
-
-    <!-- <div class="basic-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h2>Check Out The Video</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="image-container">
-              <div class="video-wrapper">
-                <a
-                  class="popup-youtube"
-                  href="https://www.youtube.com/watch?v=fLCjQJCekTs"
-                  data-effect="fadeIn"
-                >
-                  <img
-                    class="img-fluid"
-                    src="images/video-frame.svg"
-                    alt="alternative"
-                  />
-                  <span class="video-play-button">
-                    <span></span>
-                  </span>
-                </a>
-              </div>
-            </div>
-
-            <p>
-              This video will show you a case study for one of our
-              <strong>Major Customers</strong> and will help you understand why
-              your startup needs Evolo in this highly competitive market
-            </p>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
     <!-- Cuando se quiera colocar los testimonios -->
     <!-- <div class="slider-2">
@@ -503,35 +485,37 @@
     <!-- end of copyright -->
 
     <!-- Scripts -->
-    <script src="{{ asset('plantillas/evolo/js/jquery.min.js')}}"></script>
+    <script src="{{ asset('plantillas/evolo/js/jquery.min.js') }}"></script>
     <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="{{ asset('plantillas/evolo/js/popper.min.js')}}"></script>
+    <script src="{{ asset('plantillas/evolo/js/popper.min.js') }}"></script>
     <!-- Popper tooltip library for Bootstrap -->
-    <script src="{{ asset('plantillas/evolo/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('plantillas/evolo/js/bootstrap.min.js') }}"></script>
     <!-- Bootstrap framework -->
-    <script src="{{ asset('plantillas/evolo/js/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('plantillas/evolo/js/jquery.easing.min.js') }}"></script>
     <!-- jQuery Easing for smooth scrolling between anchors -->
-    <script src="{{ asset('plantillas/evolo/js/swiper.min.js')}}"></script>
+    <script src="{{ asset('plantillas/evolo/js/swiper.min.js') }}"></script>
     <!-- Swiper for image and text sliders -->
-    <script src="{{ asset('plantillas/evolo/js/jquery.magnific-popup.js')}}"></script>
+    <script src="{{ asset('plantillas/evolo/js/jquery.magnific-popup.js') }}"></script>
     <!-- Magnific Popup for lightboxes -->
-    <script src="{{ asset('plantillas/evolo/js/validator.min.js')}}"></script>
+    <script src="{{ asset('plantillas/evolo/js/validator.min.js') }}"></script>
     <!-- Validator.js - Bootstrap plugin that validates forms -->
-    <script src="{{ asset('plantillas/evolo/js/scripts.js')}}"></script>
+    <script src="{{ asset('plantillas/evolo/js/scripts.js') }}"></script>
     <!-- Custom scripts -->
 
     <script>
         $(function() {
-    // esta parte es la que controla cuando se mueve el scroll y ejecuta una función
+            // esta parte es la que controla cuando se mueve el scroll y ejecuta una función
             $(document).scroll(function() {
                 // aca se pregunta si el scroll se movio de pa bajo.
-            if ($(this).scrollTop() > 1) {
-                // esta parte cambia el atributo "src" de la etiqueta "img"
-                $('#logo').attr('src', "img/logo2.png")
-            }
-            if ($(this).scrollTop() < 1) {
-                $('#logo').attr('src', "img/logo2blanco.png" ); } });
+                if ($(this).scrollTop() > 1) {
+                    // esta parte cambia el atributo "src" de la etiqueta "img"
+                    $('#logo').attr('src', "img/logo2.png")
+                }
+                if ($(this).scrollTop() < 1) {
+                    $('#logo').attr('src', "img/logo2blanco.png");
+                }
             });
+        });
     </script>
 </body>
 
