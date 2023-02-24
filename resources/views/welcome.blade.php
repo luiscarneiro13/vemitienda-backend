@@ -188,7 +188,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-center">
-                            <video width="640" height="480" controls autoplay>
+                            <video width="960" height="720" controls autoplay>
                                 <source src="{{ asset('videos/promocional.mp4') }}" type="video/mp4">
                               </video>
 
