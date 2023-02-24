@@ -188,11 +188,10 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-center">
-                            <iframe width="560" height="315"
-                                src="https://www.youtube.com/embed/rQRL8t2uhNE?autoplay=1&controls=0"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
+                            <video width="640" height="480" controls autoplay>
+                                <source src="{{ asset('videos/promocional.mp4') }}" type="video/mp4">
+                              </video>
+
                         </div>
                     </div>
                 </div>
