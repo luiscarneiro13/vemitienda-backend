@@ -97,6 +97,8 @@
             if(page<pages){
                 page++;
                 loadMoreData(page);
+            }else{
+                alert('Suspendida momentáneamente')
             }
 	    }
 	});
