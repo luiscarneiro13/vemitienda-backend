@@ -63,6 +63,7 @@ class ShareController extends Controller
                 ->paginate(5);
         } else {
             $data['products'] = [];
+            $data['pages'] = 0;
         }
 
         if ($request->ajax()) {
