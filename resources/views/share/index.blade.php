@@ -11,7 +11,8 @@
     <meta property="og:title" content="{{ $company->name }}" />
     <meta name="description" content="{{ $company->slogan }}" />
     <meta property="og:description" content="{{ $company->slogan }}" />
-    <meta property="og:image" content="{{ $company->logo ? env('DO_URL_BASE').'/'.$company->logo->thumbnail:'' }}" />
+    <meta property="og:image"
+        content="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}" />
     <meta property="og:type" content="article" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
@@ -46,77 +47,77 @@
     </style>
 </head>
 
-@if($company)
+@if ($company)
 
-<body style="background-color:{{  $company->background_color_catalog }}}">
-    <x-menu logo="{{ $company->logo? env('DO_URL_BASE').'/'.$company->logo->thumbnail:'' }}" :categories="@$categories"
-        idEncriptado='{{ $id_encriptado }}' :cat='@$cat' :products='@$products' />
+    <body style="background-color:{{ $company->background_color_catalog }}}">
+        <x-menu logo="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}"
+            :categories="@$categories" idEncriptado='{{ $id_encriptado }}' :cat='@$cat' :products='@$products' />
 
 
-    <div class="row mt-5">
-        <div class="col-md-4 text-center">
-            <image class="img-fluid p-5" src="{{$company->logo? env('DO_URL_BASE').'/'.$company->logo->url:'' }}" />
-        </div>
-        <div class="col-md-8">
-            <div class="text-center" style="font-size: 52px; font-weight: bolder; margin-top: 65px">
-                {{ $company->name }}
+        <div class="row mt-5">
+            <div class="col-md-4 text-center">
+                <image class="img-fluid p-5"
+                    src="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->url : '' }}" />
             </div>
-            <div class="text-center" style="font-size: 32px">
-                {{ $company->slogan }}
+            <div class="col-md-8">
+                <div class="text-center" style="font-size: 52px; font-weight: bolder; margin-top: 65px">
+                    {{ $company->name }}
+                </div>
+                <div class="text-center" style="font-size: 32px">
+                    {{ $company->slogan }}
+                </div>
+
             </div>
-
         </div>
-    </div>
 
-    <div class="col-md-12" id="post-data">
-        @include('share.data')
-    </div>
+        <div class="col-md-12" id="post-data">
+            @include('share.data')
+        </div>
 
-    <div class="ajax-load text-center bg-light" style="display:none">
-        <img width="50px" src="{{ asset('img/loader.gif') }}" alt="">
-    </div>
+        <div class="ajax-load text-center bg-light" style="display:none">
+            <img width="50px" src="{{ asset('img/loader.gif') }}" alt="">
+        </div>
 
-</body>
+    </body>
 @else
 
-<body>
-    <div class="text-center">
-        <h1>Falta información de la Tienda</h1>
-    </div>
-</body>
-
+    <body>
+        <div class="text-center">
+            <h1>Falta información de la Tienda</h1>
+        </div>
+    </body>
 @endif
 
 
 <script type="text/javascript">
     var page = 1;
-    const pages='{{ $pages }}'
+    const pages = '{{ $pages }}'
 
     $(window).scroll(function() {
-	    if($(window).scrollTop() + $(window).height()+100 >= $(document).height()) {
-            if(page<pages){
+        if (!(pages > 0)) {
+            alert('Suspendida momentáneamente')
+        }
+        if ($(window).scrollTop() + $(window).height() + 100 >= $(document).height()) {
+            if (page < pages) {
                 page++;
                 loadMoreData(page);
-            }else{
-                alert('Suspendida momentáneamente')
             }
-	    }
-	});
+        }
+    });
 
-    function loadMoreData(page){
-        const cat='{{ $cat }}'
-        const idEncriptado='{{ $id_encriptado }}'
-        const url='{{ url('share') }}'+'/'+idEncriptado+'?cat='+cat+'&page='+page
+    function loadMoreData(page) {
+        const cat = '{{ $cat }}'
+        const idEncriptado = '{{ $id_encriptado }}'
+        const url = '{{ url('share') }}' + '/' + idEncriptado + '?cat=' + cat + '&page=' + page
 
-        $.ajax(
-            {
+        $.ajax({
                 url: url,
                 type: "get",
-                beforeSend: function () {
+                beforeSend: function() {
                     $('.ajax-load').show();
                 }
             })
-            .done(function (data) {
+            .done(function(data) {
 
                 if (data.html == " ") {
                     $('.ajax-load').html("No more records found");
@@ -125,10 +126,10 @@
                 $('.ajax-load').hide();
                 $("#post-data").append(data.html);
             })
-            .fail(function (jqXHR, ajaxOptions, thrownError) {
+            .fail(function(jqXHR, ajaxOptions, thrownError) {
                 alert('server not responding...');
             });
-	}
+    }
 </script>
 
 </html>
