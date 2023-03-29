@@ -5,7 +5,7 @@
         <input type="hidden" value="{{ $product->name }}" name="name">
         <input type="hidden" value="1" name="quantity">
         <input type="hidden" value="{{ $product->price }}" name="price">
-        <input type="hidden" value="{{ env('DO_URL_BASE') . '/' . $product->image[0]->url }}" name="image">
+        <input type="hidden" value="{{ env('DO_URL_BASE') . '/' . $product->image[0]->thumbnail }}" name="image">
         <div
             class="w-full max-w-sm mx-auto overflow-hidden rounded-md shadow-md relative bg-white rounded-md p-3 sm:p-4 flex flex-col">
             <div class="relative flex items-center fade-in cursor-pointer __background-image-grid justify-center">
