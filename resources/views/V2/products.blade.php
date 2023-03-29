@@ -91,6 +91,7 @@
                     }
                     if ($(window).scrollTop() + $(window).height() + 100 >= $(document).height()) {
                         if ((page < pages) && !loading) {
+                            $('.ajax-load').show();
                             page++;
                             loadMoreData(page);
                         }
@@ -112,7 +113,6 @@
                             url: url,
                             type: "get",
                             beforeSend: function() {
-                                $('.ajax-load').show();
                                 loading = true
                             }
                         })
