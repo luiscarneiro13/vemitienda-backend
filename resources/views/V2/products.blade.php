@@ -112,6 +112,7 @@
                             url: url,
                             type: "get",
                             beforeSend: function() {
+                                $('.ajax-load').show();
                                 loading = true
                             }
                         })
@@ -121,10 +122,13 @@
                                 $('.ajax-load').html("No more records found");
                                 return;
                             }
+
                             $('.ajax-load').hide();
                             $("#post-data").append(data.html);
-                            $('.ajax-load').show();
+
+
                             loading = false
+
                         })
                         .fail(function(jqXHR, ajaxOptions, thrownError) {
                             alert('server not responding...');
