@@ -10,6 +10,7 @@ use App\Repositories\CompaniesRepository;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CompaniesController extends Controller
 {
@@ -49,9 +50,10 @@ class CompaniesController extends Controller
      *        @OA\JsonContent(
      *           required={"email","name","slogan","phone"},
      *           @OA\Property(property="email", type="string", format="email", example="sistelconet@gmail.com"),
-     *           @OA\Property(property="name", type="string", format="name", example="Sistelconet"),
+     *           @OA\Property(property="name", type="string", format="name", example="Sistelconet El Tigre"),
      *           @OA\Property(property="slogan", type="string", format="slogan", example="Tu Solución en Sistemas"),
      *           @OA\Property(property="phone", type="string", format="phone", example="+584248807465"),
+     *           @OA\Property(property="theme_id", type="integer", format="phone", example=1),
      *        ),
      *     ),
      *     @OA\Response(
@@ -69,7 +71,7 @@ class CompaniesController extends Controller
         $user = Auth::user();
         $company = Company::where('user_id', $user->id)->first();
         try {
-            $datos = array_merge(['user_id' => $user->id], request()->all());
+            $datos = array_merge(['user_id' => $user->id, 'slug' => Str::slug(request()->name, '-')], request()->all());
             if ($company) {
                 $company = CompaniesRepository::updateCompany($company->id);
             } else {

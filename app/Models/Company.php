@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 
 class Company extends Model
 {
@@ -20,15 +21,18 @@ class Company extends Model
         'background_color_catalog'
     ];
 
-    protected $appends = [
-        'url_tienda'
-    ];
+    protected $appends = ['url_tienda', 'slug'];
 
     public function getUrlTiendaAttribute()
     {
         $id_usuario = Crypt::encrypt($this->attributes['user_id']);
         $url = 'https://vemitienda.online/share/' . $id_usuario;
         return $this->attributes['url_tienda'] = $url;
+    }
+
+    public function getSlugAttribute($value)
+    {
+        return $this->attributes['slug'] = Str::slug($this->attributes['name'], '-');
     }
 
     public function user()
@@ -39,5 +43,10 @@ class Company extends Model
     public function logo()
     {
         return $this->morphOne(\App\Models\Image::class, 'imageable');
+    }
+
+    public function theme()
+    {
+        return $this->belongsTo('App\Models\Theme');
     }
 }

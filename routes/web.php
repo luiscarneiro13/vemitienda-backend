@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\WEB\V2\CartController;
+use App\Http\Controllers\WEB\V2\ProductController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
@@ -39,3 +41,11 @@ Route::get('contacto',  function () {
 Route::get('prueba', function () {
     return view('auth.resetPassword');
 });
+
+
+Route::get('/{slug}', [ProductController::class, 'productList'])->name('products.list');
+Route::get('/{slug}/cart', [CartController::class, 'cartList'])->name('cart.list');
+Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
+Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');

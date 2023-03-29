@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://whale-app-gd46k.ondigitalocean.app/api/v1/"
+            "url": "https://vemitiendabackend.tests/api/v1/"
         }
     ],
     "paths": {
@@ -218,7 +218,7 @@
                                     "name": {
                                         "type": "string",
                                         "format": "name",
-                                        "example": "Sistelconet"
+                                        "example": "Sistelconet El Tigre"
                                     },
                                     "slogan": {
                                         "type": "string",
@@ -229,6 +229,11 @@
                                         "type": "string",
                                         "format": "phone",
                                         "example": "+584248807465"
+                                    },
+                                    "theme_id": {
+                                        "type": "integer",
+                                        "format": "phone",
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"
@@ -236,6 +241,35 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/company/{id}": {
+            "delete": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Borrar categoría de un Usuario App",
+                "operationId": "d70242fba1f19b199fc885a114092bee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Exitoso"

@@ -37,7 +37,7 @@ class UserController extends Controller
      *   description="Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize"
      *   )
      * @OA\Server(
-     *  url="https://whale-app-gd46k.ondigitalocean.app/api/v1/"
+     *  url="https://vemitiendabackend.tests/api/v1/"
      * )
      * @OAS\SecurityScheme(
      *      securityScheme="bearerAuth",

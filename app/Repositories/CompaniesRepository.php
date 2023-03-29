@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CompaniesRepository
 {
@@ -41,6 +42,8 @@ class CompaniesRepository
         $model = Company::find($id);
         $model->user_id = $user->id;
         $model->name = request()->name;
+        $model->slug = Str::slug(request()->name, '-');
+        $model->theme_id = Str::slug(request()->theme_id, '-');
         $model->slogan = request()->slogan;
         $model->email = request()->email;
         $model->phone = request()->phone;

@@ -12,6 +12,7 @@
         "ext-gd": "*",
         "barryvdh/laravel-dompdf": "^1.0.2",
         "darkaonline/l5-swagger": "^8.4",
+        "darryldecode/cart": "^4.2",
         "doctrine/dbal": "^2.0",
         "fakerphp/faker": "^1.9.1",
         "fideloper/proxy": "^4.4",
