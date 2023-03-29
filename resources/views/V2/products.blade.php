@@ -14,6 +14,7 @@
     <div class="bg-white">
 
         <x-encabezadoTienda :company="@$company" />
+        @include('V2.modalCart')
 
         <div class="sticky top-0 z-30"
             style="box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 14px -10px, rgba(0, 0, 0, 0) 0px 4px 6px -2px;">
@@ -25,7 +26,7 @@
                         $active = true;
                     @endphp
 
-                    <x-iconCart :slug="$slug" />
+                    @include('V2.iconCart')
 
                     @if (!$cat)
                         <x-itemMenu title="Todo" url="{{ @$slug . '?cat=0' }}" :active="true"
@@ -133,6 +134,20 @@
                             alert('server not responding...');
                         });
                 }
+
+                const modal = document.querySelector('.modal')
+                const showModal = document.querySelector('.show-modal')
+                const closeModal = document.querySelectorAll('.close-modal')
+
+                showModal.addEventListener('click', function() {
+                    modal.classList.remove('hidden')
+                })
+
+                closeModal.forEach(close => {
+                    close.addEventListener('click', function() {
+                        modal.classList.add('hidden')
+                    })
+                })
             </script>
         </main>
     </div>

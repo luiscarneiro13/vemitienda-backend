@@ -13,6 +13,39 @@
 <body>
     <div class="bg-white">
         <x-encabezadoTienda :company="@$company" />
+
+
+
+        <div class="px-4 text-sm scrolling-auto __show-delivery-cart lg:px-6 __scroll-cart content-products">
+            <div class="flex justify-between mt-3 mb-4 lg:px-2">
+                <h2 class="uppercase text-sm font-medium lg:text-lg">
+                    Resumen del Pedido
+                </h2> <span class="font-medium text-sm lg:text-lg">
+                    <b class="text-green-600">{{ Cart::getTotalQuantity() }}</b> Artículos
+                </span>
+            </div>
+            @foreach ($cartItems as $item)
+                <x-cardCart :product="$item" :company="@$company" />
+            @endforeach
+
+            <div class="my-6 block text-center">
+                <button
+                    class="flex flex-row justify-center items-center m-auto pb-1 border-b-2 border-dashed border-gray-300 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="h-4 w-4 text-gray-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                        </path>
+                    </svg>
+                    <span class="ml-1 font-normal text-sm text-gray-400">Vaciar
+                        Carrito</span>
+                </button>
+            </div>
+        </div>
+
+
+
+
         <main class="my-8">
             <div class="container px-6 mx-auto">
                 <div class="flex justify-center my-6">
