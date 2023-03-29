@@ -59,6 +59,8 @@
 
                                                         <form action="{{ route('cart.update') }}" method="POST">
                                                             @csrf
+                                                            <input type="hidden" name="slug"
+                                                                value="{{ $slug }}">
                                                             <input type="hidden" name="id"
                                                                 value="{{ $item->id }}">
                                                             <input type="number" name="quantity"
@@ -79,6 +81,7 @@
                                                 <form action="{{ route('cart.remove') }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" value="{{ $item->id }}" name="id">
+                                                    <input type="hidden" value="{{ $slug }}" name="slug">
                                                     <button class="px-4 py-2 text-white bg-red-600">x</button>
                                                 </form>
 
@@ -94,6 +97,7 @@
                             <div>
                                 <form action="{{ route('cart.clear') }}" method="POST">
                                     @csrf
+                                    <input type="hidden" value="{{ $slug }}" name="slug">
                                     <button class="px-6 py-2 text-red-800 bg-red-300">Remove All Cart</button>
                                 </form>
                             </div>

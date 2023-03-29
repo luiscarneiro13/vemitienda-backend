@@ -14,6 +14,7 @@ class CartController extends Controller
     {
         $data['cartItems'] = Cart::getContent();
         $data['company'] = Company::with('theme')->where('slug', $slug)->first();
+        $data['slug'] = $slug;
         return view('V2.cart', $data);
     }
 
@@ -31,7 +32,7 @@ class CartController extends Controller
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
 
-        return redirect()->route('cart.list');
+        return redirect()->route('cart.list', ['slug' => request()->slug]);
     }
 
     public function updateCart(Request $request)
@@ -48,7 +49,7 @@ class CartController extends Controller
 
         session()->flash('success', 'Item Cart is Updated Successfully !');
 
-        return redirect()->route('cart.list');
+        return redirect()->route('cart.list', ['slug' => request()->slug]);
     }
 
     public function removeCart(Request $request)
@@ -56,7 +57,7 @@ class CartController extends Controller
         Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
 
-        return redirect()->route('cart.list');
+        return redirect()->route('cart.list', ['slug' => request()->slug]);
     }
 
     public function clearAllCart()
@@ -65,6 +66,6 @@ class CartController extends Controller
 
         session()->flash('success', 'All Item Cart Clear Successfully !');
 
-        return redirect()->route('cart.list');
+        return redirect()->route('cart.list', ['slug' => request()->slug]);
     }
 }

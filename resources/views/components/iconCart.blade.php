@@ -1,4 +1,4 @@
-<a href="{{ url(@$company->slug . '/cart') }}" class="flex float-right mr-2 text-{{ @$company->theme->name }} rounded">
+<a href="{{ url(@$slug . '/cart') }}" class="flex float-right mr-2 text-{{ @$company->theme->name }} rounded">
     <svg class="h-10 " fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
         stroke="currentColor">
         <path

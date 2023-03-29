@@ -2,7 +2,7 @@
     <div>
         <div class="px-4">
             <center>
-                <div class="box-logo z-10 w-24 lg:w-32 ">
+                <div class="box-logo z-10 w-24 lg:w-32 pt-4">
                     <img src="{{ @$company->logo ? asset(env('DO_URL_BASE') . '/' . $company->logo->url) : '' }}"
                         alt="logo" class="border-solid border-white border-2 rounded-full z-10 fade-in">
                 </div>

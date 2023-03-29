@@ -15,18 +15,17 @@
 
         <x-encabezadoTienda :company="@$company" />
 
-        <div data-v-dc4763d4="" data-v-d7fe4f3a="" class="sticky top-0 z-30"
+        <div class="sticky top-0 z-30"
             style="box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 14px -10px, rgba(0, 0, 0, 0) 0px 4px 6px -2px;">
-            <div data-v-dc4763d4="" class="flex flex-col lg:flex-row pl-2 bg-white z-30 pb-3 pt-4 w-full relative">
-                <div data-v-dc4763d4=""
-                    class="flex flex-no-wrap w-full max-w-full menu lg:pb-4 overflow-auto text-gray-700">
+            <div class="flex flex-col lg:flex-row pl-2 bg-white z-30 pb-3 pt-4 w-full relative">
+                <div class="flex flex-no-wrap w-full max-w-full menu lg:pb-4 overflow-auto text-gray-700">
 
                     @php
                         $cat = @request()->query()['cat'];
                         $active = true;
                     @endphp
 
-                    <x-iconCart />
+                    <x-iconCart :slug="$slug" />
 
                     @if (!$cat)
                         <x-itemMenu title="Todo" url="{{ @$slug . '?cat=0' }}" :active="true"

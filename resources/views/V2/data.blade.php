@@ -2,6 +2,7 @@
     <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{ $product->id }}" name="id">
+        <input type="hidden" value="{{ $slug }}" name="slug">
         <input type="hidden" value="{{ $product->name }}" name="name">
         <input type="hidden" value="1" name="quantity">
         <input type="hidden" value="{{ $product->price }}" name="price">
