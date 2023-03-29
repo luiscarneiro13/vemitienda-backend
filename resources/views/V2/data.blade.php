@@ -7,14 +7,16 @@
         <input type="hidden" value="{{ $product->price }}" name="price">
         <input type="hidden" value="{{ env('DO_URL_BASE') . '/' . $product->image[0]->thumbnail }}" name="image">
         <div
-            class="w-full max-w-sm mx-auto overflow-hidden rounded-md shadow-md relative bg-white rounded-md p-3 sm:p-4 flex flex-col">
+            class="h-64 w-full max-w-sm mx-auto overflow-hidden rounded-md shadow-md relative bg-white rounded-md p-3 sm:p-4 flex flex-col">
             <div class="relative flex items-center fade-in cursor-pointer __background-image-grid justify-center">
                 <img src="{{ env('DO_URL_BASE') . '/' . $product->image[0]->thumbnail }}" alt="Mango Importado"
                     title="Mango Importado" width="112px" height="112px" class="lazyLoad isLoaded">
             </div>
             <div class="w-full flex flex-col relative justify-start flex-auto">
-                <h2 class="text-sm font-semibold leading-snug  cursor-pointer text-black elipsis-item mt-2">
-                    <center>{{ $product->name }}</center>
+                <h2 class="text-xs font-semibold leading-snug  cursor-pointer text-black elipsis-item mt-2">
+                    <center>
+                        {{ \Illuminate\Support\Str::limit($product->name, 40, $end = '...') }}
+                    </center>
                 </h2>
             </div>
             <div class="flex flex-col">

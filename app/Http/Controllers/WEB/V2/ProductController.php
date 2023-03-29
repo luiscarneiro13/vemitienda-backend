@@ -15,6 +15,10 @@ class ProductController extends Controller
     {
         $data['company'] = Company::with('theme')->where('slug', $slug)->first();
 
+        if (!$data['company']) {
+            return redirect()->route('home');
+        }
+
         // $data['products'] = Product::with('image', 'category')->where('user_id', $data['company']->user_id)->get();
 
         $data['cat'] = request()->cat;
@@ -59,7 +63,7 @@ class ProductController extends Controller
             $view = view('V2.data', $data)->render();
             return response()->json(['html' => $view]);
         }
-// return $data['company']->theme;
+        // return $data['company']->theme;
         return view('V2.products', $data);
     }
 }
