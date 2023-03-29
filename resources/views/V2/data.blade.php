@@ -26,11 +26,11 @@
                     </div>
                 </div>
                 <div class="relative w-full">
-                    <div data-v-67e7d139="" class="flex">
-                        <button data-v-67e7d139=""
+                    <div class="flex">
+                        <button
                             class="lg:px-6 rounded inline-flex py-2 w-full justify-center items-center focus:outline-none shadow-xs transition duration-500 ease-in-out
                     bg-{{ $company->theme->name }}">
-                            <div data-v-67e7d139="" class="h-4 w-4 mr-1">
+                            <div class="h-4 w-4 mr-1">
                                 <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" viewBox="0 0 24 24" stroke="white">
                                     <path
@@ -38,7 +38,7 @@
                                     </path>
                                 </svg>
                             </div>
-                            <span data-v-67e7d139="" class="text-sm font-semibold text-white">
+                            <span class="text-sm font-semibold text-white">
                                 AGREGAR
                             </span>
                         </button>

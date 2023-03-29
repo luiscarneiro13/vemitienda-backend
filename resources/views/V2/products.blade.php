@@ -26,7 +26,7 @@
                         $active = true;
                     @endphp
 
-                    <x-iconCart/>
+                    <x-iconCart />
 
                     @if (!$cat)
                         <x-itemMenu title="Todo" url="{{ @$slug . '?cat=0' }}" :active="true"
@@ -66,7 +66,14 @@
                 <div id="post-data" class="grid grid-cols-2 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-6">
                     @include('V2.data')
                 </div>
-
+                {{-- <div>
+                    <button onclick="loadMore()"
+                        class="mt-5 bg-gray-100 lg:px-6 rounded inline-flex py-2 w-full justify-center items-center focus:outline-none shadow-xs transition duration-500 ease-in-out">
+                        <span class="text-sm font-semibold text-black ">
+                            Clic para ver más
+                        </span>
+                    </button>
+                </div> --}}
                 <div class="ajax-load text-center" style="display:none">
                     <center><img width="50px" src="{{ asset('img/loader.gif') }}" alt=""></center>
                 </div>
@@ -76,18 +83,26 @@
             <script type="text/javascript">
                 var page = 1;
                 const pages = '{{ $pages }}'
+                let loading = false
 
                 $(window).scroll(function() {
                     if (!(pages > 0)) {
                         alert('Suspendida momentáneamente')
                     }
                     if ($(window).scrollTop() + $(window).height() + 100 >= $(document).height()) {
-                        if (page < pages) {
+                        if ((page < pages) && !loading) {
                             page++;
                             loadMoreData(page);
                         }
                     }
                 });
+
+                // function loadMore() {
+                //     if (page < pages) {
+                //         page++;
+                //         loadMoreData(page);
+                //     }
+                // }
 
                 function loadMoreData(page) {
                     const cat = '{{ $cat }}'
@@ -97,7 +112,7 @@
                             url: url,
                             type: "get",
                             beforeSend: function() {
-                                $('.ajax-load').show();
+                                loading = true
                             }
                         })
                         .done(function(data) {
@@ -108,6 +123,8 @@
                             }
                             $('.ajax-load').hide();
                             $("#post-data").append(data.html);
+                            $('.ajax-load').show();
+                            loading = false
                         })
                         .fail(function(jqXHR, ajaxOptions, thrownError) {
                             alert('server not responding...');
