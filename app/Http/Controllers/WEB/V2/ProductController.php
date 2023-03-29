@@ -49,7 +49,7 @@ class ProductController extends Controller
                 ->when($cat > 0, function ($q) {
                     $q->where('category_id', request()->cat);
                 })
-                ->paginate(12);
+                ->paginate(5);
         } else {
             $data['products'] = [];
             $data['pages'] = 0;
