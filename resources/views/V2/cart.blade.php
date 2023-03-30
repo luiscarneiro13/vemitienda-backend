@@ -126,7 +126,7 @@
                 <h1>&nbsp;</h1>
                 `,
                 showCancelButton: true,
-                cancelButtonText: 'Revisar pedido',
+                cancelButtonText: 'Cerrar',
                 confirmButtonColor: company.theme.hexadecimal,
                 confirmButtonText: 'Enviar pedido',
                 focusConfirm: false,
