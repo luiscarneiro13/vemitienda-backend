@@ -1,4 +1,4 @@
-<div class="flex justify-between py-4 border-b border-gray-100 relative w-full">
+<div class="flex justify-between py-1 border-b border-gray-100 relative w-full">
     <span class="text-gray-600 text-xs ml-3 underline cursor-pointer absolute left-0" style="top: 12px;">
         <div class="h-6 w-6 cursor-pointer">
 
@@ -21,7 +21,7 @@
         </div>
     </span>
     <div class="ml-8">
-        <div class="h-36 w-36 relative flex p-3">
+        <div class="h-24 relative flex p-3">
             <img src="{{ $product->attributes->image }}" alt="">
         </div>
     </div>
@@ -32,8 +32,12 @@
             </span>
             <div class="flex items-center pt-1 pb-2">
                 <div class="__promo flex flex-wrap pb-2">
-                    <span class="font-semibold mr-2 lg:text-base text-{{ $company->theme->name }}">
-                        $ {{ $product->price }}
+                    <span class="font-semibold text-sm" style="">
+                        {{-- Cantidad: &nbsp;&nbsp;&nbsp;<input type="text" class="border border-gray-200" size="3" value="{{ $product->quantity }}"> --}}
+                        Cant.: {{ $product->quantity }}
+                    </span>
+                    <span class="font-semibold ml-5 lg:text-base text-{{ $company->theme->name }}">
+                        Precio: ${{ $product->price }}
                     </span>
                 </div>
             </div>
@@ -42,10 +46,7 @@
             <div class="flex">
                 <div
                     class="flex justify-between control w-full border-solid rounded transition duration-500 ease-in-out">
-                    <span class="font-semibold text-sm" style="">
-                        {{-- Cantidad: &nbsp;&nbsp;&nbsp;<input type="text" class="border border-gray-200" size="3" value="{{ $product->quantity }}"> --}}
-                        Cantidad: {{ $product->quantity }}
-                    </span>
+
                 </div>
             </div>
         </div>
