@@ -64,7 +64,7 @@
             </style>
 
             <div id="flashMessage"
-                class="w-full h-10 bg-{{ $company->theme->name }} border-t-2 border-white
+                class="w-full h-10 bg-{{ @$company->theme->name }} border-t-2 border-white
             fixed left-0 bottom-0
             flex justify-center items-center
             text-white text-2xl z-10 hidden">
