@@ -8,6 +8,7 @@
     <title>{{ @$company->slug }}</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -61,6 +62,14 @@
                     width: 100%;
                 }
             </style>
+
+            <div id="flashMessage"
+                class="w-full h-10 bg-{{ $company->theme->name }} border-t-2 border-white
+            fixed left-0 bottom-0
+            flex justify-center items-center
+            text-white text-2xl z-10 hidden">
+                &nbsp;
+            </div>
 
             <div class="container px-6 mx-auto">
                 <div id="post-data" class="grid grid-cols-2 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-6">
@@ -148,6 +157,31 @@
                 //         modal.classList.add('hidden')
                 //     })
                 // })
+
+                const BASE_URL = "{{ url('') }}"
+                const BASE_IMAGE = "{{ env('DO_URL_BASE') }}"
+
+                async function addCart(product, slug) {
+
+                    const data = {
+                        'id': product.id,
+                        'name': product.name,
+                        'price': product.price,
+                        'quantity': 1,
+                        'image': BASE_IMAGE + '/' + product.image[0].thumbnail
+                    }
+
+                    const resp = await axios.post(BASE_URL + '/cart', data)
+
+                    if (resp.data.status) {
+                        $('#quantityCart').html(resp.data.quantity)
+                        $('#flashMessage').html('&nbsp;&nbsp;' + resp.data.message)
+                        $('#flashMessage').show()
+                        setTimeout(() => {
+                            $('#flashMessage').hide()
+                        }, 3000);
+                    }
+                }
             </script>
         </main>
     </div>

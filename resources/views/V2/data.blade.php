@@ -30,7 +30,7 @@
                 </div>
                 <div class="relative w-full">
                     <div class="flex">
-                        <button
+                        <a onclick="addCart({{ $product }},'{{ $slug }}')"
                             class="lg:px-6 rounded inline-flex py-2 w-full justify-center items-center focus:outline-none shadow-xs transition duration-500 ease-in-out
                     bg-{{ $company->theme->name }}">
                             <div class="h-4 w-4 mr-1">
@@ -44,7 +44,7 @@
                             <span class="text-sm font-semibold text-white">
                                 AGREGAR
                             </span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

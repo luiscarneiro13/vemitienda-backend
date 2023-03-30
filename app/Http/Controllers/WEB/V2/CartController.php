@@ -21,7 +21,7 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        Cart::add([
+        $inserts = [
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
@@ -29,10 +29,18 @@ class CartController extends Controller
             'attributes' => array(
                 'image' => $request->image,
             )
-        ]);
-        session()->flash('success', 'Product is Added to Cart Successfully !');
+        ];
 
-        return redirect()->route('cart.list', ['slug' => request()->slug]);
+        Cart::add($inserts);
+
+        $data = [
+            "status" => 200,
+            "quantity" => Cart::getTotalQuantity(),
+            "message" => 'Producto agregado al carrito',
+            "inserts" => $inserts
+        ];
+
+        return response()->json($data);
     }
 
     public function updateCart(Request $request)
