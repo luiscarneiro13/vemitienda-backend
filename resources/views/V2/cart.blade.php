@@ -8,6 +8,7 @@
     <title>{{ @$company->slug }}</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -16,37 +17,58 @@
 
 
 
-        <div class="px-4 text-sm scrolling-auto __show-delivery-cart lg:px-6 __scroll-cart content-products">
-            <div class="flex justify-between mt-3 mb-4 lg:px-2">
-                <h2 class="uppercase text-sm font-medium lg:text-lg">
+        <div class="px-4 text-sm scrolling-auto  lg:px-6">
+            <div class="mt-3 mb-4 lg:px-2">
+                <h2 class="uppercase text-sm font-medium ">
                     Resumen del Pedido
-                </h2> <span class="font-medium text-sm lg:text-lg">
-                    <b class="text-green-600">{{ Cart::getTotalQuantity() }}</b> Artículos
-                </span>
+                </h2>
             </div>
             @foreach ($cartItems as $item)
                 <x-cardCart :product="$item" :company="@$company" />
             @endforeach
 
             <div class="my-6 block text-center">
-                <button
-                    class="flex flex-row justify-center items-center m-auto pb-1 border-b-2 border-dashed border-gray-300 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="h-4 w-4 text-gray-400">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                        </path>
-                    </svg>
-                    <span class="ml-1 font-normal text-sm text-gray-400">Vaciar
-                        Carrito</span>
-                </button>
+                <form action="{{ route('cart.clear') }}" method="POST">
+                    @csrf
+                    <input type="hidden" value="{{ $slug }}" name="slug">
+
+                    <button
+                        class="flex flex-row justify-center items-center m-auto pb-1 border-b-2 border-dashed border-gray-300 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="h-4 w-4 text-gray-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                            </path>
+                        </svg>
+                        <span class="ml-1 font-normal text-sm text-gray-400">
+                            Vaciar Carrito
+                        </span>
+                    </button>
+                </form>
+            </div>
+
+            <div
+                class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b text-{{ $company->theme->name }}">
+                Total a pagar: $<span id="total">{{ Cart::getTotal() }}</span>
+            </div>
+            <div class="flex items-center p-2 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <a href="{{ url($slug) }}"
+                    class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 ">
+                    Seguir comprando
+                </a>
+                @if (Cart::getTotalQuantity() > 0)
+                    <button data-modal-hide="defaultModal" type="button"
+                        class="close-modal text-white bg-{{ $company->theme->name }} focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Finalizar pedido
+                    </button>
+                @endif
             </div>
         </div>
 
 
 
-
-        <main class="my-8">
+        {{-- Carrito viejo --}}
+        {{-- <main class="my-8">
             <div class="container px-6 mx-auto">
                 <div class="flex justify-center my-6">
                     <div
@@ -140,9 +162,19 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </main> --}}
 
     </div>
+    <script>
+        const BASE_URL = "{{ url('remove') }}"
+
+        async function deleteProductCart(id, slug) {
+            const resp = await axios.post(BASE_URL, {
+                id: id
+            })
+            location.reload()
+        }
+    </script>
 </body>
 
 </html>
