@@ -10,6 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .swal2-html-container {
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -79,7 +84,11 @@
     </div>
     <script type="text/javascript">
         const BASE_URL = "{{ url('remove') }}"
-        const company = <?php echo json_encode($company); ?>
+        // las siguientes 2 líneas llevan el ; al final
+        const pedido = <?php echo json_encode(Cart::getContent()); ?>;
+        let company = <?php echo json_encode($company); ?>;
+
+        console.log(pedido)
 
         async function deleteProductCart(id, slug) {
             const resp = await axios.post(BASE_URL, {
@@ -89,24 +98,56 @@
         }
 
         function enviarPedido() {
+            // Swal.fire({
+            //     title: 'Realizar pedido',
+            //     text: "Por favor, revise su pedido antes de enviarlo",
+            //     showCancelButton: true,
+            //     cancelButtonText: 'Revisar pedido',
+            //     cancelButtonColor: '#c1c1c1',
+            //     confirmButtonColor: company.theme.hexadecimal,
+            //     confirmButtonText: 'Enviar pedido',
+            // }).then((result) => {
+            //     if (result.isConfirmed) {
+            //         Swal.fire({
+            //             icon: 'success',
+            //             title: 'Pedido enviado',
+            //             showConfirmButton: false,
+            //             timer: 1500
+            //         })
+            //     }
+            // })
+
             Swal.fire({
-                title: 'Realizar pedido',
-                text: "Por favor, revise su pedido antes de enviarlo",
+                title: 'Realizar el pedido',
+                html: `
+                <input type="text" class="swal2-input" placeholder="Nombre y Apellido">
+                <input type="text" class="swal2-input" placeholder="Correo electrónico">
+                <input type="text" class="swal2-input" placeholder="Teléfono">
+                <h1>&nbsp;</h1>
+                `,
                 showCancelButton: true,
                 cancelButtonText: 'Revisar pedido',
-                cancelButtonColor: '#c1c1c1',
                 confirmButtonColor: company.theme.hexadecimal,
                 confirmButtonText: 'Enviar pedido',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Pedido enviado',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                focusConfirm: false,
+                preConfirm: () => {
+                    const login = Swal.getPopup().querySelector('#login').value
+                    const password = Swal.getPopup().querySelector('#password').value
+                    if (!login || !password) {
+                        Swal.showValidationMessage(`Please enter login and password`)
+                    }
+                    return {
+                        login: login,
+                        password: password
+                    }
                 }
+            }).then((result) => {
+                Swal.fire(`
+    Login: ${result.value.login}
+    Password: ${result.value.password}
+  `.trim())
             })
+
         }
     </script>
 </body>

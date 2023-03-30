@@ -49,4 +49,9 @@ class Company extends Model
     {
         return $this->belongsTo('App\Models\Theme');
     }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 }
