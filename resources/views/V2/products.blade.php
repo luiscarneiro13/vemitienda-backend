@@ -163,6 +163,9 @@
 
                 async function addCart(product, slug) {
 
+                    $('#button-' + product.id).hide()
+                    $('#loadingButton-' + product.id).show()
+
                     const data = {
                         'id': product.id,
                         'name': product.name,
@@ -177,7 +180,10 @@
                         $('#quantityCart').html(resp.data.quantity)
                         $('#flashMessage').html('&nbsp;&nbsp;' + resp.data.message)
                         $('#flashMessage').show()
+                        $('#button-' + product.id).show()
+                        $('#loadingButton-' + product.id).hide()
                         setTimeout(() => {
+
                             $('#flashMessage').hide()
                         }, 3000);
                     }

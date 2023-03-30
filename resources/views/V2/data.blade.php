@@ -28,7 +28,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="relative w-full">
+                <div id="button-{{ $product->id }}" class="relative w-full">
                     <div class="flex">
                         <a onclick="addCart({{ $product }},'{{ $slug }}')"
                             class="lg:px-6 rounded inline-flex py-2 w-full justify-center items-center focus:outline-none shadow-xs transition duration-500 ease-in-out
@@ -41,10 +41,16 @@
                                     </path>
                                 </svg>
                             </div>
-                            <span class="text-sm font-semibold text-white">
+                            <span
+                                class="text-sm font-semibold text-white cursor-pointer">
                                 AGREGAR
                             </span>
                         </a>
+                    </div>
+                </div>
+                <div id="loadingButton-{{ $product->id }}" style="display:none">
+                    <div class="text-center" >
+                        <center><img width="50px" src="{{ asset('img/loader.gif') }}" alt=""></center>
                     </div>
                 </div>
             </div>
