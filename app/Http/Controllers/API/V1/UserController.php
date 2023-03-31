@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API\V1;
 
 use App\User;
 use Exception;
-use App\Helpers\SendMail;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
 use Laravel\Passport\HasApiTokens;

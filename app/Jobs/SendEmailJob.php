@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Strategies\SendEmail\ActivarCuenta;
 use App\Strategies\SendEmail\Contacto;
+use App\Strategies\SendEmail\OrdenCompra;
 use App\Strategies\SendEmail\RecuperarCuenta;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -19,7 +20,8 @@ class SendEmailJob implements ShouldQueue
     public const STRATEGY = [
         'Contacto'        => Contacto::class,
         'ActivarCuenta'   => ActivarCuenta::class,
-        'RecuperarCuenta' => RecuperarCuenta::class
+        'RecuperarCuenta' => RecuperarCuenta::class,
+        'OrdenCompra'     => OrdenCompra::class,
     ];
 
     public $parametros;

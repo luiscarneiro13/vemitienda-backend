@@ -24,11 +24,13 @@
 
 
         <div class="px-4 text-sm scrolling-auto  lg:px-6">
-            <div class="mt-3 mb-4 lg:px-2">
-                <h2 class="uppercase text-sm font-medium flex justify-center items-center">
-                    Resumen del Pedido
-                </h2>
-            </div>
+            @if (Cart::getTotalQuantity() > 0)
+                <div class="mt-3 mb-4 lg:px-2">
+                    <h2 class="uppercase text-sm font-medium flex justify-center items-center">
+                        Resumen del Pedido
+                    </h2>
+                </div>
+            @endif
 
             <div class="flex justify-center items-center space-x-2">
                 <a href="{{ url($slug) }}"
@@ -51,19 +53,20 @@
                 <form action="{{ route('cart.clear') }}" method="POST">
                     @csrf
                     <input type="hidden" value="{{ $slug }}" name="slug">
-
-                    <button
-                        class="flex flex-row justify-center items-center m-auto pb-1 border-b-2 border-dashed border-gray-300 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            class="h-4 w-4 text-gray-400">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                            </path>
-                        </svg>
-                        <span class="ml-1 font-normal text-sm text-gray-400">
-                            Vaciar Carrito
-                        </span>
-                    </button>
+                    @if (Cart::getTotalQuantity() > 0)
+                        <button id="vaciarCarrito"
+                            class="flex flex-row justify-center items-center m-auto pb-1 border-b-2 border-dashed border-gray-300 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" class="h-4 w-4 text-gray-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                </path>
+                            </svg>
+                            <span class="ml-1 font-normal text-sm text-gray-400">
+                                Vaciar Carrito
+                            </span>
+                        </button>
+                    @endif
                 </form>
             </div>
 
@@ -83,15 +86,15 @@
         </div>
     </div>
     <script type="text/javascript">
-        const BASE_URL = "{{ url('remove') }}"
+        const BASE_URL = "{{ url('') }}"
+        const SLUG = "{{ $slug }}"
+        const TOTAL = "{{ Cart::getTotal() }}"
         // las siguientes 2 líneas llevan el ; al final
         const pedido = <?php echo json_encode(Cart::getContent()); ?>;
         let company = <?php echo json_encode($company); ?>;
 
-        console.log(pedido)
-
         async function deleteProductCart(id, slug) {
-            const resp = await axios.post(BASE_URL, {
+            const resp = await axios.post(BASE_URL + '/remove', {
                 id: id
             })
             location.reload()
@@ -99,24 +102,6 @@
 
         function enviarPedido() {
             let validado = false
-            // Swal.fire({
-            //     title: 'Realizar pedido',
-            //     text: "Por favor, revise su pedido antes de enviarlo",
-            //     showCancelButton: true,
-            //     cancelButtonText: 'Revisar pedido',
-            //     cancelButtonColor: '#c1c1c1',
-            //     confirmButtonColor: company.theme.hexadecimal,
-            //     confirmButtonText: 'Enviar pedido',
-            // }).then((result) => {
-            //     if (result.isConfirmed) {
-            //         Swal.fire({
-            //             icon: 'success',
-            //             title: 'Pedido enviado',
-            //             showConfirmButton: false,
-            //             timer: 1500
-            //         })
-            //     }
-            // })
 
             Swal.fire({
                 title: 'Realizar el pedido',
@@ -155,15 +140,33 @@
                         validado: true
                     }
                 }
-            }).then((result) => {
+            }).then(async (result) => {
 
                 if (result.value?.validado && !result.isDismissed) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Pedido enviado',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+
+                    const params = {
+                        name: result.value?.name,
+                        email: result.value?.email,
+                        phone: result.value?.phone,
+                        company_id: company.id,
+                        total: TOTAL,
+                        cart: pedido
+                    }
+                    console.log(pedido)
+
+                    const resp = await axios.post(BASE_URL + '/order', params)
+
+                    if (resp.status) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pedido enviado',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            $("#vaciarCarrito").trigger("click");
+                        })
+                    }
+
                 }
                 // Swal.fire(`
             //         Name: ${result.value?.name}
