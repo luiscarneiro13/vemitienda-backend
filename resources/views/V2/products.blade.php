@@ -95,7 +95,7 @@
                 let loading = false
 
                 $(window).scroll(function() {
-                    if (!(pages > 0)) {
+                    if (!(pages > -1)) {
                         alert('Suspendida momentáneamente')
                     }
                     if ($(window).scrollTop() + $(window).height() + 100 >= $(document).height()) {
