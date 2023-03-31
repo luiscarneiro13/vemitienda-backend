@@ -33,7 +33,7 @@ class OrderController extends Controller
         }
 
         $data['order'] = Order::with('details', 'company.logo', 'company.user')->where('id', $order->id)->first();
-        $this->emailOrder($data['order']);
+        $this->emailOrder($data['order'], request()->email);
 
         return response()->json(["status" => 200]);
     }
@@ -44,12 +44,16 @@ class OrderController extends Controller
         // return view('Mails.Order', $data);
     }
 
-    public function emailOrder($order)
+    public function emailOrder($order, $emailComprador)
     {
         $parametros['order'] = $order;
         $parametros['destinatario'] = $order->company->user->email;
         $parametros['type'] = 'OrdenCompra';
 
-        dispatch(new SendEmailJob($parametros));
+        $parametros2['order'] = $order;
+        $parametros2['destinatario'] = $emailComprador;
+        $parametros2['type'] = 'OrdenCompra';
+
+        dispatch(new SendEmailJob($parametros2));
     }
 }
