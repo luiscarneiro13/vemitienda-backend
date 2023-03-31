@@ -32,7 +32,7 @@ class OrderController extends Controller
             ]);
         }
 
-        $data['order'] = Order::with('details', 'company.logo', 'company.user')->where('id', 10)->first();
+        $data['order'] = Order::with('details', 'company.logo', 'company.user')->where('id', $order->id)->first();
         $this->emailOrder($data['order']);
 
         return response()->json(["status" => 200]);
