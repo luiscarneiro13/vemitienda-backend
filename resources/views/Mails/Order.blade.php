@@ -30,12 +30,14 @@
                     <td><img width="100px" src="{{ $item->image }}" alt=""></td>
                     <td>
                         <p>{{ $item->name }}</p>
-                        <p>Cantidad: {{ $item->quantity }}</p>
+                        <p>
+                            Cantidad: {{ $item->quantity }} <br/>
+                            $ {{ $item->price }}
+                        </p>
                     </td>
-                    <td>$ {{ $item->price }}</td>
                 </tr>
                 <tr>
-                    <td colspan="3">
+                    <td colspan="2">
                         <hr>
                     </td>
                 </tr>
