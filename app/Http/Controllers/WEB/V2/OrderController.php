@@ -32,15 +32,16 @@ class OrderController extends Controller
             ]);
         }
 
+        $data['order'] = Order::with('details', 'company.logo', 'company.user')->where('id', 10)->first();
+        $this->emailOrder($data['order']);
+
         return response()->json(["status" => 200]);
     }
 
     public function prueba()
     {
-        $data['order'] = Order::with('details', 'company.logo', 'company.user')->where('id', 10)->first();
-        // return $data;
-        $this->emailOrder($data['order']);
-        return view('Mails.Order', $data);
+
+        // return view('Mails.Order', $data);
     }
 
     public function emailOrder($order)
