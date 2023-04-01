@@ -18,7 +18,8 @@ class Company extends Model
         'slogan',
         'email',
         'phone',
-        'background_color_catalog'
+        'background_color_catalog',
+        'is_shop'
     ];
 
     protected $appends = ['url_tienda', 'slug'];

@@ -247,24 +247,16 @@ class UserController extends Controller
                 $user->email_verified_at = now();
                 $user->save();
                 /* 2.1.- Asignarle el plan premium */
-                $plan = Plan::where('name', 'Premium')->first();
+                $plan = Plan::where('name', 'Tienda Online')->first();
 
                 $planUser = PlanUser::create([
                     'plan_id' => $plan->id,
                     'user_id' => $user->id,
-                    'activo' => 1
-                ]);
-                $planUser->save();
-                /* 2.2.- Asignarle un pago como pagado por 30 días */
-
-                $payment = Payment::create([
-                    'user_id' => $user->id,
-                    'quantity_months' => 1,
+                    'activo' => 1,
                     'start_date' => Carbon::parse(now())->format('Y-m-d H:i:s'),
                     'end_date' => Carbon::parse(now())->addDays(30)->format('Y-m-d H:i:s'),
-                    'paid_out' => 1
                 ]);
-                $payment->save();
+                $planUser->save();
 
                 return redirect('/message')->with('message', 'Cuenta activada con éxito');
             } else {

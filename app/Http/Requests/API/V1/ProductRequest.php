@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\API\V1;
 
+use App\Models\Company;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
@@ -37,15 +38,34 @@ class ProductRequest extends FormRequest
     {
         $user = Auth::user();
 
-        return [
-            'name'         => [
-                'required', 'min:3', 'max:120',
-                Rule::unique('products')->where('user_id', $user->id)->where('category_id', $this->category_id)->where('name', $this->name)->ignore($this->product)
-            ],
-            'category_id' => 'required|integer|exists:categories,id',
-            'price'       => 'between:0,999999999999999999.99',
-            'share'       => 'integer|min:0|max:1'
-        ];
+        // Busco la company y veo si es tienda o catálogo
+        $company = Company::where('user_id', $user->id)->first();
+        if ($company->is_shop) {
+            //Como es tienda, se requiere la cantidad disponible y el precio
+            $datos = [
+                'name'         => [
+                    'required', 'min:3', 'max:120',
+                    Rule::unique('products')->where('user_id', $user->id)->where('category_id', $this->category_id)->where('name', $this->name)->ignore($this->product)
+                ],
+                'category_id' => 'required|integer|exists:categories,id',
+                'price'       => 'required|between:0,999999999999999999.99',
+                'available'   => 'integer|min:0|max:100000',
+                'share'       => 'integer|min:0|max:1'
+            ];
+        } else {
+            //Como solo es un catálogo no se requiere cantidad disponible ni precio
+            $datos = [
+                'name'         => [
+                    'required', 'min:3', 'max:120',
+                    Rule::unique('products')->where('user_id', $user->id)->where('category_id', $this->category_id)->where('name', $this->name)->ignore($this->product)
+                ],
+                'category_id' => 'required|integer|exists:categories,id',
+                'price'       => 'between:0,999999999999999999.99',
+                'share'       => 'integer|min:0|max:1'
+            ];
+        }
+
+        return $datos;
     }
 
     public function messages()

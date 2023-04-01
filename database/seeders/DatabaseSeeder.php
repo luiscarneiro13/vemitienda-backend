@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PlansSeeder::class,
             PaymentMethodsSeeder::class,
             ThemesSeeder::class,
+            OrderStatusesSeeder::class,
         ]);
 
     }

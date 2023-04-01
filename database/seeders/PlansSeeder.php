@@ -19,7 +19,10 @@ class PlansSeeder extends Seeder
             $plan = Plan::create(['name' => 'Free', 'quantity' => 0]);
             $plan->save();
 
-            $plan = Plan::create(['name' => 'Premium', 'quantity' => 100]);
+            $plan = Plan::create(['name' => 'Catálogo', 'quantity' => 100]);
+            $plan->save();
+
+            $plan = Plan::create(['name' => 'Tienda online', 'quantity' => 100]);
             $plan->save();
         }
     }
