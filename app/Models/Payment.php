@@ -10,7 +10,7 @@ class Payment extends Model
     use HasFactory;
 
     protected $table = 'payments';
-    protected $fillable = ['user_id', 'quantity_months', 'start_date', 'end_date', 'paid_out'];
+    protected $fillable = ['user_id', 'quantity_months', 'start_date', 'end_date', 'paid_out', 'plan_id'];
 
     public function user()
     {
