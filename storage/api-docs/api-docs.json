@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://vemitiendabackend.tests/api/v1/"
+            "url": "https://vemitienda.online/api/v2/"
         }
     ],
     "paths": {
@@ -475,6 +475,25 @@
                 ]
             }
         },
+        "/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Mostrar todas los pedidos del Usuario de la App",
+                "operationId": "dda8295991ae09c433d0659876fd8af2",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/products-user": {
             "get": {
                 "tags": [
@@ -689,13 +708,13 @@
                 ]
             }
         },
-        "/company-theme": {
+        "/themes": {
             "get": {
                 "tags": [
-                    "Company"
+                    "Themes"
                 ],
                 "summary": "Mostrar los temas disponibles",
-                "operationId": "74ad6f3669fb373a5a3ac03c515e4020",
+                "operationId": "379b5b898419c2137e0eb26d4482e67e",
                 "responses": {
                     "200": {
                         "description": "Exitoso"

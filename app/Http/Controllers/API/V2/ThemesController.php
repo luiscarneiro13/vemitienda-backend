@@ -4,14 +4,16 @@ namespace App\Http\Controllers\API\V2;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\ThemesRepository;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
 class ThemesController extends Controller
 {
+    use ApiResponser;
     /**
      * @OA\Get(
-     *     tags={"Company"},
-     *     path="/company-theme",
+     *     tags={"Themes"},
+     *     path="/themes",
      *     security={{"bearer_token":{}}},
      *     summary="Mostrar los temas disponibles",
      *     @OA\Response(
