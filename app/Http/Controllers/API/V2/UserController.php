@@ -18,6 +18,7 @@ use App\Http\Requests\API\V1\ResetPasswordRequest;
 use App\Http\Requests\API\V1\ResetRequest;
 use App\Http\Resources\API\V1\UserInformationResource;
 use App\Jobs\SendEmailJob;
+use App\Models\Company;
 use App\Models\Payment;
 use App\Models\Plan;
 use App\Models\PlanUser;
@@ -248,6 +249,12 @@ class UserController extends Controller
                 $user->save();
                 /* 2.1.- Asignarle el plan premium */
                 $plan = Plan::where('name', 'Tienda Online')->first();
+
+                // Le creo una compañía sin nombre
+                $company = Company::create([
+                    "user_id" => $user_id,
+                    "is_shop" => 1
+                ]);
 
                 $planUser = PlanUser::create([
                     'plan_id' => $plan->id,
