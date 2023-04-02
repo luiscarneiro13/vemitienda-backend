@@ -17,7 +17,7 @@
                     "Categories"
                 ],
                 "summary": "Mostrar Categorías para Usuario de la App",
-                "operationId": "487cb1da6c7cac44da0d8bf04b16ba85",
+                "operationId": "228d36883ec25e90557f1e30d8bbe036",
                 "responses": {
                     "200": {
                         "description": "Exitoso"
@@ -37,7 +37,7 @@
                     "Categories"
                 ],
                 "summary": "Crear nueva categoría de un Usuario App",
-                "operationId": "63ddd258f5f535800f6d82fb9fb6d5a0",
+                "operationId": "aa6d4695fe4121d0fdc36e3bae2b5a56",
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
@@ -77,7 +77,7 @@
                     "Categories"
                 ],
                 "summary": "Ver categoría de un Usuario App por Id",
-                "operationId": "8ea23abffbb1efe0621f8e1b9ab028a4",
+                "operationId": "12ffe18d17e577130c9243c4539a7b3a",
                 "parameters": [
                     {
                         "name": "id",
@@ -104,7 +104,7 @@
                     "Categories"
                 ],
                 "summary": "Actualizar categoría de un Usuario App",
-                "operationId": "0684137f88c06f27bba84b1ba89717ec",
+                "operationId": "b47545a84a363cc5cfe16a8c761d4dad",
                 "parameters": [
                     {
                         "name": "id",
@@ -147,7 +147,7 @@
                     "Categories"
                 ],
                 "summary": "Borrar categoría de un Usuario App",
-                "operationId": "6a7b4e6ffe2251f8f26ac76ea1fc4b4a",
+                "operationId": "a5032937e5f16f4cfe1beea390727d58",
                 "parameters": [
                     {
                         "name": "id",
@@ -176,7 +176,7 @@
                     "Company"
                 ],
                 "summary": "Mostrar los datos de la Empresa del Usuario de la App",
-                "operationId": "c81c57a22b280dd0807ec5923b9d3c7f",
+                "operationId": "6f04fc576db29466780120374d438262",
                 "responses": {
                     "200": {
                         "description": "Exitoso"
@@ -196,7 +196,7 @@
                     "Company"
                 ],
                 "summary": "Si la Empresa no existe, la crea y si la empresa existe entonces la actualiza",
-                "operationId": "73c33f62482b88b25b1a8cc11ce55c27",
+                "operationId": "f4c2614f7266b8d3c8c28f1b8adb49af",
                 "requestBody": {
                     "description": "Datos de la Empresa",
                     "required": true,
@@ -262,7 +262,7 @@
                     "Company"
                 ],
                 "summary": "Borrar categoría de un Usuario App",
-                "operationId": "d70242fba1f19b199fc885a114092bee",
+                "operationId": "c843a200fa9f8a5656f842c43f7ddafa",
                 "parameters": [
                     {
                         "name": "id",
@@ -291,7 +291,7 @@
                     "Logo"
                 ],
                 "summary": "Crear logo de Empresa",
-                "operationId": "c02940ca283f321e907a52e30ae26449",
+                "operationId": "1d8753a79835382a37ea5c60dcb237c2",
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
@@ -340,7 +340,7 @@
                     "Products"
                 ],
                 "summary": "Crear logo de Empresa",
-                "operationId": "1f737b584cbb8b35c95148e16bf036f3",
+                "operationId": "6345fb44cd9d07e6b3697b0bd63eac36",
                 "parameters": [
                     {
                         "name": "product_id",
@@ -396,7 +396,7 @@
                     "Products"
                 ],
                 "summary": "Crear logo de Empresa",
-                "operationId": "04fb494e58bcd71c53de96983d1682b5",
+                "operationId": "b46aa27ebfc4ae083c593d72bcb71d37",
                 "parameters": [
                     {
                         "name": "image_id",
@@ -452,7 +452,7 @@
                     "Products"
                 ],
                 "summary": "Borrar imagen de un Producto",
-                "operationId": "17123540ceeab893b1d032e9348ff017",
+                "operationId": "41f933c768eb694a23dcc8cd9131e792",
                 "parameters": [
                     {
                         "name": "image_id",
@@ -481,7 +481,7 @@
                     "Products"
                 ],
                 "summary": "Mostrar los productos del Usuario de la App",
-                "operationId": "d239b30ada0789f70403de548ff35391",
+                "operationId": "15a318fcf170ad2f13c34c991c8069ea",
                 "responses": {
                     "200": {
                         "description": "Exitoso"
@@ -498,7 +498,7 @@
                     "Products"
                 ],
                 "summary": "Crear Producto de un Usuario App",
-                "operationId": "31107d028b12319ba5a1fdb409022172",
+                "operationId": "af132bd42aa2667f7cd404fb30d86750",
                 "requestBody": {
                     "description": "Datos del Producto",
                     "required": true,
@@ -565,7 +565,7 @@
                     "Products"
                 ],
                 "summary": "Ver producto de un Usuario App por Id",
-                "operationId": "044b4c485d1ef88fdf41ce1c21858a4f",
+                "operationId": "995cf64a31f886d07c5e149328c5c50d",
                 "parameters": [
                     {
                         "name": "id",
@@ -592,7 +592,7 @@
                     "Products"
                 ],
                 "summary": "Actualizar producto de un Usuario App",
-                "operationId": "b48fb1542e2268bb33cc0a422cf55813",
+                "operationId": "ea63301f0a7d18f56aa74f154b0e78e2",
                 "parameters": [
                     {
                         "name": "id",
@@ -666,7 +666,7 @@
                     "Products"
                 ],
                 "summary": "Borrar producto de un Usuario App",
-                "operationId": "23797433772c37cf0742953102ab0112",
+                "operationId": "ac647a80b01a33eb00fdcd52fb26caf8",
                 "parameters": [
                     {
                         "name": "id",
@@ -689,13 +689,13 @@
                 ]
             }
         },
-        "/templates": {
+        "/company-theme": {
             "get": {
                 "tags": [
                     "Company"
                 ],
-                "summary": "Mostrar plantillas para el catálogo de productos que exporta la App",
-                "operationId": "172b641a4f1ca650a58e61716eff304d",
+                "summary": "Mostrar los temas disponibles",
+                "operationId": "74ad6f3669fb373a5a3ac03c515e4020",
                 "responses": {
                     "200": {
                         "description": "Exitoso"
@@ -714,7 +714,7 @@
         "/user-information": {
             "get": {
                 "summary": "Mostrar Información del Usuario de la App",
-                "operationId": "7ba535b69ac822f82129f3610b6ac46d",
+                "operationId": "893938bfaa8a0c0a151576c8fa0637e7",
                 "responses": {
                     "200": {
                         "description": "Exitoso"
@@ -810,7 +810,7 @@
                     "Auth"
                 ],
                 "summary": "Desloguear usuario",
-                "operationId": "7c822f4eec9424890f34674874012768",
+                "operationId": "44f840e0e6715faeb943540b44d5c1bc",
                 "responses": {
                     "200": {
                         "description": "Exitoso"
@@ -832,7 +832,7 @@
                     "Auth"
                 ],
                 "summary": "Dar de baja al usuario",
-                "operationId": "73acaae339ec1746a5c1c6214654850e",
+                "operationId": "b6554db81114fa12ae99b4db1831ae94",
                 "responses": {
                     "200": {
                         "description": "Exitoso"

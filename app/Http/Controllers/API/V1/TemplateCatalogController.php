@@ -11,23 +11,6 @@ class TemplateCatalogController extends Controller
 {
     use ApiResponser;
 
-    /**
-     * @OA\Get(
-     *     tags={"Company"},
-     *     path="/templates",
-     *     security={{"bearer_token":{}}},
-     *     summary="Mostrar plantillas para el catálogo de productos que exporta la App",
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
-
     public function index()
     {
         try {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\V1;
+namespace App\Http\Controllers\API\V2;
 
 use App\User;
 use Exception;
@@ -29,16 +29,94 @@ class UserController extends Controller
     use ApiResponser, HasApiTokens;
     //url="https://whale-app-gd46k.ondigitalocean.app/api/v1/"
     //url="https://vemitiendabackend.tests/api/v1/"
+    /**
+     * @OA\Info(
+     *   title="API Ve mi Tienda",
+     *   version="1.0",
+     *   description="Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize"
+     *   )
+     * @OA\Server(
+     *  url="https://vemitiendabackend.tests/api/v1/"
+     * )
+     * @OAS\SecurityScheme(
+     *      securityScheme="bearerAuth",
+     *      type="http",
+     *      scheme="bearer"
+     * )
+     * @OA\Tag(
+     *   name="Auth",
+     *   description="Auth de la aplicación"
+     * ),
+     * @OA\Tag(
+     *   name="Categories",
+     *   description="Endpoints de Categorías"
+     * )
+     */
+
     public function index()
     {
         return $this->successResponse(['data' => UsersRepository::getUsers()]);
     }
 
+
+    /**
+     * @OA\Get(
+     *     path="/user-information",
+     *     security={{"bearer_token":{}}},
+     *     summary="Mostrar Información del Usuario de la App",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function userInformation()
     {
         $data = UsersRepository::getUserInformation();
         return $this->successResponse(['data' => $data]);
     }
+
+
+    /**
+     * @OA\Post(
+     * path="/login",
+     * operationId="authLogin",
+     * tags={"Auth"},
+     * summary="User Login",
+     * security={{"bearerAuth":{}}},
+     * description="Login User Here",
+     *     @OA\RequestBody(
+     *        required=true,
+     *        description="Datos de la Empresa",
+     *        @OA\JsonContent(
+     *           required={"email","password"},
+     *           @OA\Property(property="email", type="string", format="email", example="administrador@gmail.com"),
+     *           @OA\Property(property="password", type="string", format="password", example="123456"),
+     *        )
+     *     ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Login Successfully",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Login Successfully",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     */
 
     public function login(LoginRequest $request)
     {
@@ -73,6 +151,22 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     tags={"Auth"},
+     *     path="/logout",
+     *     security={{"bearer_token":{}}},
+     *     summary="Desloguear usuario",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function logout()
     {
         $user = Auth::user()->token();
@@ -80,6 +174,22 @@ class UserController extends Controller
         return $this->successResponse();
     }
 
+    /**
+     * @OA\Post(
+     *     tags={"Auth"},
+     *     path="/cancel-account",
+     *     security={{"bearer_token":{}}},
+     *     summary="Dar de baja al usuario",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function cancelAccount()
     {
         $user = Auth::user();

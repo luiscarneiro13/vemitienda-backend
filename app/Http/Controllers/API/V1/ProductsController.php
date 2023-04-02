@@ -22,18 +22,6 @@ class ProductsController extends Controller
         $this->image = new Images();
     }
 
-    /**
-     * @OA\Get(
-     *     tags={"Products"},
-     *     path="/products-user",
-     *     security={{"bearer_token":{}}},
-     *     summary="Mostrar los productos del Usuario de la App",
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     )
-     * )
-     */
     public function index()
     {
         try {
@@ -43,35 +31,6 @@ class ProductsController extends Controller
         }
     }
 
-
-    /**
-     * @OA\Post(
-     *     tags={"Products"},
-     *     path="/products-user",
-     *     security={{"bearer_token":{}}},
-     *     summary="Crear Producto de un Usuario App",
-     *     @OA\RequestBody(
-     *        required=true,
-     *        description="Datos del Producto",
-     *        @OA\JsonContent(
-     *           required={"category_id","name","description","price","share"},
-     *           @OA\Property(property="category_id", type="string", format="category_id", example="4"),
-     *           @OA\Property(property="name", type="string", format="name", example="Product X"),
-     *           @OA\Property(property="description", type="string", format="description", example="Descripción del producto de prueba"),
-     *           @OA\Property(property="price", type="string", format="price", example="100"),
-     *           @OA\Property(property="share", type="string", format="share", example="1"),
-     *        ),
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function store(ProductRequest $request)
     {
         $user = Auth::user();
@@ -86,65 +45,11 @@ class ProductsController extends Controller
     }
 
 
-    /**
-     * @OA\Get(
-     *     tags={"Products"},
-     *     path="/products-user/{id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Ver producto de un Usuario App por Id",
-     *      @OA\Parameter(
-     *          name="id",
-     *          in="path",
-     *          required=true
-     *      ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function show($id)
     {
         return $this->successResponse(['data' => ProductsRepository::getProductsUserId($id)]);
     }
 
-    /**
-     * @OA\Put(
-     *     tags={"Products"},
-     *     path="/products-user/{id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Actualizar producto de un Usuario App",
-     *     @OA\Parameter(
-     *        name="id",
-     *        in="path",
-     *        required=true
-     *     ),
-     *     @OA\RequestBody(
-     *        required=true,
-     *        description="Datos del producto",
-     *        @OA\JsonContent(
-     *           required={"category_id","name","description","price","share"},
-     *           @OA\Property(property="category_id", type="string", format="category_id", example="4"),
-     *           @OA\Property(property="name", type="string", format="name", example="Product X"),
-     *           @OA\Property(property="description", type="string", format="description", example="Descripción del producto de prueba"),
-     *           @OA\Property(property="price", type="string", format="price", example="100"),
-     *           @OA\Property(property="share", type="string", format="share", example="1"),
-     *        ),
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function update(Request $request, $id)
     {
         try {
@@ -154,27 +59,6 @@ class ProductsController extends Controller
         }
     }
 
-    /**
-     * @OA\Delete(
-     *     tags={"Products"},
-     *     path="/products/{id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Borrar producto de un Usuario App",
-     *      @OA\Parameter(
-     *          name="id",
-     *          in="path",
-     *          required=true
-     *      ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function destroy($id)
     {
         try {

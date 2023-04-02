@@ -28,7 +28,7 @@ class CompaniesRepository
     static function showCompanyUser()
     {
         $user = Auth::user();
-        return Company::with('user', 'logo')->where('user_id', $user->id)->first();
+        return Company::with('user', 'logo', 'theme')->where('user_id', $user->id)->first();
     }
 
     static function editCompany($id)
