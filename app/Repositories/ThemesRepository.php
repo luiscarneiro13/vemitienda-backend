@@ -10,10 +10,15 @@ class ThemesRepository
     {
         $filtrar = request()->get('query');
 
-        return Theme::query()
-            ->when($filtrar, function ($q) use ($filtrar) {
-                $q->where('name', 'like', '%' . $filtrar . '%');
-                return $q;
-            })->paginate($limit);
+        $datos = Theme::when($filtrar, function ($q) use ($filtrar) {
+            $q->where('name', 'like', '%' . $filtrar . '%');
+            return $q;
+        });
+
+        if ($limit == -1) {
+            return $datos->get();
+        } else {
+            return $datos->paginate($limit);
+        }
     }
 }

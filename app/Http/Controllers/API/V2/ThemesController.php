@@ -28,6 +28,6 @@ class ThemesController extends Controller
      */
     public function index()
     {
-        return $this->successResponse(['data' => ThemesRepository::getThemes()]);
+        return $this->successResponse(['data' => ThemesRepository::getThemes(-1)]);
     }
 }
