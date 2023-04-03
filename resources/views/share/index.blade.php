@@ -95,7 +95,7 @@
 
     $(window).scroll(function() {
         if (!(pages > 0)) {
-            alert('Suspendida momentáneamente')
+            // alert('Suspendida momentáneamente')
         }
         if ($(window).scrollTop() + $(window).height() + 100 >= $(document).height()) {
             if (page < pages) {
