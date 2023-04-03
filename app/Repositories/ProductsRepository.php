@@ -62,7 +62,6 @@ class ProductsRepository
         $model->share = request()->share ? request()->share : 0;
         $model->available = request()->available ? request()->available : 0;
         $model->save();
-        info($model);
         return $model->with('category', 'image')->first();
     }
 }
