@@ -12,7 +12,7 @@ class CompaniesRepository
     {
         $filtrar = request()->get('query');
 
-        return Company::query()
+        return Company::with('theme')
             ->when($filtrar, function ($q) use ($filtrar) {
                 $q->where('name', 'like', '%' . $filtrar . '%');
                 $q->orWhere('slogan', 'like', '%' . $filtrar . '%');
