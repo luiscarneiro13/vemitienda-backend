@@ -12,7 +12,7 @@ class CompaniesRepository
     {
         $filtrar = request()->get('query');
 
-        return Company::query()
+        return Company::with('theme')
             ->when($filtrar, function ($q) use ($filtrar) {
                 $q->where('name', 'like', '%' . $filtrar . '%');
                 $q->orWhere('slogan', 'like', '%' . $filtrar . '%');
@@ -22,6 +22,7 @@ class CompaniesRepository
 
     static function storeCompany($insert)
     {
+        $insert['slug'] = Str::slug(request()->name, '-');
         return Company::create($insert);
     }
 
@@ -43,7 +44,7 @@ class CompaniesRepository
         $model->user_id = $user->id;
         $model->name = request()->name;
         $model->slug = Str::slug(request()->name, '-');
-        $model->theme_id = Str::slug(request()->theme_id, '-');
+        $model->theme_id = request()->theme_id;
         $model->slogan = request()->slogan;
         $model->email = request()->email;
         $model->phone = request()->phone;

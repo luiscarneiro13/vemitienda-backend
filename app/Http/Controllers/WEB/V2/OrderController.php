@@ -49,6 +49,7 @@ class OrderController extends Controller
         $parametros['order'] = $order;
         $parametros['destinatario'] = $order->company->user->email;
         $parametros['type'] = 'OrdenCompra';
+        dispatch(new SendEmailJob($parametros));
 
         $parametros2['order'] = $order;
         $parametros2['destinatario'] = $emailComprador;
