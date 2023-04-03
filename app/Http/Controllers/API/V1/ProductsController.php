@@ -52,6 +52,7 @@ class ProductsController extends Controller
 
     public function update(Request $request, $id)
     {
+        info(request()->all());
         try {
             return $this->successResponse(['data' =>  ProductsRepository::updateProduct($id)]);
         } catch (\Throwable $th) {
