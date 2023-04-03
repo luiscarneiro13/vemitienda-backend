@@ -26,7 +26,7 @@ class ThemesSeeder extends Seeder
             $theme = Theme::create(['name' => 'yellow-500', 'spanish' => 'amarillo', 'hexadecimal' => '#F59E0B']);
             $theme->save();
 
-            $theme = Theme::create(['name' => 'green-500', 'spanish' => 'verde', 'hexadecimal' => '#FFFFFF']);
+            $theme = Theme::create(['name' => 'green-500', 'spanish' => 'verde', 'hexadecimal' => '#10B981']);
             $theme->save();
 
             $theme = Theme::create(['name' => 'blue-500', 'spanish' => 'azul', 'hexadecimal' => '#3B82F6']);
