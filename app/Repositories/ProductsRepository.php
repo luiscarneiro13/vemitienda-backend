@@ -41,7 +41,7 @@ class ProductsRepository
     static function storeProduct($insert)
     {
         $product = Product::create($insert);
-        return Product::with('category','image')->where('id', $product->id)->first();
+        return Product::with('category', 'image')->where('id', $product->id)->first();
     }
 
     static function deleteProduct($id)
@@ -56,11 +56,12 @@ class ProductsRepository
         $model = Product::find($id);
         $model->user_id = $user->id;
         $model->name = request()->name;
+        $model->available    = request()->available;
         $model->category_id = request()->category_id;
         $model->description = request()->description;
         $model->price = request()->price ? request()->price : 0;
         $model->share = request()->share ? request()->share : 0;
         $model->save();
-        return $model->with('category','image')->first();
+        return $model->with('category', 'image')->first();
     }
 }
