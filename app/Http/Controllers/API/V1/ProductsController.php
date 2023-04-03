@@ -36,7 +36,7 @@ class ProductsController extends Controller
         $user = Auth::user();
 
         try {
-            $datos = array_merge(['user_id' => $user->id], request()->all());
+            $datos = array_merge(['user_id' => $user->id, 'quantity' => 0], request()->all());
             $products = ProductsRepository::storeProduct($datos);
             return $this->successResponse(['data' => $products]);
         } catch (\Throwable $th) {
