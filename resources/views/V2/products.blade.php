@@ -69,7 +69,6 @@
             text-white text-2xl z-10 hidden">
                 &nbsp;
             </div>
-
             <div class="container px-6 mx-auto">
                 <div id="post-data" class="grid grid-cols-2 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-6">
                     @include('V2.data')
@@ -101,7 +100,7 @@
                         if ((page < pages) && !loading) {
                             $('.ajax-load').show();
                             page++;
-                            loadMoreData(page);
+                            // loadMoreData(page);
                         }
                     }
                 });
@@ -115,7 +114,7 @@
 
                 function loadMoreData(page) {
                     const cat = '{{ $cat }}'
-                    const url = '{{ url($slug) }}' + '?cat=' + cat + '&page=' + page
+                    const url = '{{ url($company->slug) }}' + '?cat=' + cat + '&page=' + page
 
                     $.ajax({
                             url: url,
