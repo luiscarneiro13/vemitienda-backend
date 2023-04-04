@@ -62,7 +62,7 @@ class ImagesController extends Controller
             try {
                 $urlImage = Images::uploadImage('images');
                 $thumbnail = Images::uploadThumbnail('thumbnails');
-                // sleep(3);
+                sleep(3);
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
@@ -86,7 +86,7 @@ class ImagesController extends Controller
             try {
                 $urlImage = Images::uploadImage('images');
                 $thumbnail = Images::uploadThumbnail('thumbnails');
-                // sleep(3);
+                sleep(3);
                 $product = Product::find($image->imageable_id);
                 $product->image()->delete();
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
