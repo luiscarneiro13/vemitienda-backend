@@ -9,25 +9,23 @@ use Illuminate\Support\Facades\Storage;
 
 class Images
 {
-    public function uploadImage($folder)
+    static function uploadImage($folder)
     {
-        $path = request()->file('image')->storePublicly($folder, 'do');
-        return $path;
+        return request()->file('image')->storePublicly($folder, 'do');
     }
 
-    public function uploadThumbnail($folder)
+    static function uploadThumbnail($folder)
     {
-        $path = request()->file('thumbnail')->storePublicly($folder, 'do');
-        return $path;
+        return request()->file('thumbnail')->storePublicly($folder, 'do');
     }
 
 
-    public function deleteImage($url)
+    static function deleteImage($url)
     {
         Storage::disk('do')->delete($url);
     }
 
-    public function convertUrlToBase64()
+    static function convertUrlToBase64()
     {
         return base64_encode(file_get_contents(request()->file('image')));
     }
