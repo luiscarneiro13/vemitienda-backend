@@ -60,9 +60,11 @@ class ImagesController extends Controller
         $product = Product::with('image')->find($product_id);
         if ($product && request()->image && request()->thumbnail) {
             try {
-                $urlImage = Images::uploadImage('images');
-                $thumbnail = Images::uploadThumbnail('thumbnails');
-                sleep(3);
+                // $urlImage = Images::uploadImage('images');
+                // $thumbnail = Images::uploadThumbnail('thumbnails');
+                $urlImage = request()->file('image')->storePublicly('images', 'do');
+                $thumbnail = request()->file('thumbnail')->storePublicly('thumbnails', 'do');
+                // sleep(3);
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
@@ -84,9 +86,11 @@ class ImagesController extends Controller
             }
 
             try {
-                $urlImage = Images::uploadImage('images');
-                $thumbnail = Images::uploadThumbnail('thumbnails');
-                sleep(3);
+                // $urlImage = Images::uploadImage('images');
+                // $thumbnail = Images::uploadThumbnail('thumbnails');
+                // sleep(3);
+                $urlImage = request()->file('image')->storePublicly('images', 'do');
+                $thumbnail = request()->file('thumbnail')->storePublicly('thumbnails', 'do');
                 $product = Product::find($image->imageable_id);
                 $product->image()->delete();
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);

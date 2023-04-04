@@ -11,12 +11,14 @@ class Images
 {
     static function uploadImage($folder)
     {
-        return request()->file('image')->storePublicly($folder, 'do');
+        $path = request()->file('image')->storePublicly($folder, 'do');
+        return $path;
     }
 
     static function uploadThumbnail($folder)
     {
-        return request()->file('thumbnail')->storePublicly($folder, 'do');
+        $path = request()->file('thumbnail')->storePublicly($folder, 'do');
+        return $path;
     }
 
 
