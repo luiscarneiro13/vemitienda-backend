@@ -41,7 +41,7 @@
                 @if ($product->available > 0)
                     <div class="flex items-center pt-1 pb-2 justify-center">
                         <div class="__promo flex flex-row items-center">
-                            <span class="text-sm lg:text-base font-semibold text-{{ $company->theme->name }}">
+                            <span class="text-sm lg:text-base font-semibold text-{{ @$company->theme->name }}">
                                 ${{ $product->price }}
                             </span>
                         </div>
@@ -50,7 +50,7 @@
                         <div class="flex">
                             <a onclick="addCart({{ $product }},'{{ $slug }}')"
                                 class="lg:px-6 rounded inline-flex py-2 w-full justify-center items-center focus:outline-none shadow-xs transition duration-500 ease-in-out
-                    bg-{{ $company->theme->name }}">
+                    bg-{{ @$company->theme->name }}">
                                 <div class="h-4 w-4 mr-1">
                                     <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" viewBox="0 0 24 24" stroke="white">

@@ -102,25 +102,25 @@
         <div class="header-content">
             <div class="container">
                 <div class="row" style="margin-top:-70px">
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                         <div class="text-container">
                             <div class="text-center">
                                 <img height="200px" src="{{ asset('plantillas/evolo/images/logo.png') }}"
                                     alt="alternative" />
                             </div>
                             <h1>
-                                <span class="turquoise" style="font-size: 40px">Tu catálogo automático</span>
+                                <span class="turquoise" style="font-size: 40px">Crea tu propia tienda online</span>
                                 <br />30 días gratis
                             </h1>
                             <p class="p-large">
-                                Con nuestra aplicación, puedes cargar tus productos y
-                                compartir el enlace de tu catálogo online por redes sociales,
-                                email, entre otros.
+                                Con nuestra aplicación, puedes crear tu propia tienda en línea. Agrega tus productos y
+                                recibe pedidos
                             </p>
-                            <a class="btn-solid-lg page-scroll" href="#funcionamiento">¿Cómo funciona?</a>
+                            <a class="btn-solid-lg page-scroll mt-1" target="_blank" href="https://play.google.com/store/apps/details?id=com.vemitienda.online">DESCARGAR</a>
+                            <a class="btn-solid-lg page-scroll mt-1" target="_blank" href="https://vemitienda.online/ve-mi-tienda">DEMO</a>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="mt-5 pt-5 text-right">
                             <img class="img-fluid" src="{{ asset('plantillas/evolo/images/mobile.png') }}"
                                 alt="alternative" />
@@ -137,9 +137,9 @@
             <div class="row">
                 <div class="col-lg-12 mt-5">
                     <h2>¿Cómo funciona?</h2>
-                    <p class="p-heading p-large">
+                    {{-- <p class="p-heading p-large">
                         Descarga la aplicación, crea tu cuenta e ingresa
-                    </p>
+                    </p> --}}
                 </div>
             </div>
 
@@ -150,28 +150,42 @@
                             alt="alternative" />
                         <div class="card-body">
                             <h4 class="card-title">Crea</h4>
-                            <p>Puedes agregar productos con su respectiva imagen</p>
+                            <div class="text-left">
+                                <p># Agrega la información de tu tienda</p>
+                                <p># Agrega las categorías de los productos que vendes</p>
+                                <p># Agrega tus productos con su imagen, precio y cantidad disponible</p>
+                                <p># La aplicación creará tu tienda automáticamente</p>
+                            </div>
                         </div>
                     </div>
-
-                    {{-- <div class="card">
-                        <img class="card-image" src="{{ asset('plantillas/evolo/images/services-icon-2.svg') }}"
-                            alt="alternative" />
-                        <div class="card-body">
-                            <h4 class="card-title">Personaliza</h4>
-                            <p>Cambia el color de fondo de tu catálogo online</p>
-                        </div>
-                    </div> --}}
 
                     <div class="card">
                         <img class="card-image" src="{{ asset('plantillas/evolo/images/services-icon-3.svg') }}"
                             alt="alternative" />
                         <div class="card-body">
                             <h4 class="card-title">Comparte</h4>
-                            <p>
-                                Crearemos un catálogo de forma automática para ti, el cual
-                                podrás compartir con tus clientes
-                            </p>
+                            <div class="text-left">
+                                <p># Comparte solo el catálogo (sin carrito de compras) o tu tienda con carrito de
+                                    compras</p>
+                                <p># Puedes compartir tu tienda por whatsapp y otras redes sociales, además tendrás un
+                                    link permanente de tu tienda</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img class="card-image" src="{{ asset('plantillas/evolo/images/services-icon-2.svg') }}"
+                            alt="alternative" />
+                        <div class="card-body">
+                            <h4 class="card-title">Recibe Pedidos</h4>
+                            <div class="text-left">
+                                <p># Cuando tus clientes entran en tu tienda, podrán ver todos tus productos</p>
+                                <p># Además tu tienda contará con un carrito de compras</p>
+                                <p># Cuando tu cliente hace un pedido, la aplicación te envía un notificación por correo
+                                    con todos los productos que seleccionó el comprador</p>
+                                <p># Además, el pedido se verá reflejado en la pantalla de pedidos de la aplicación
+                                    móvil</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -188,9 +202,9 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-center">
-                            <video width="960" height="720" controls autoplay>
+                            <video class="img-fluid" width="960" height="720" controls autoplay>
                                 <source src="{{ asset('videos/promocional.mp4') }}" type="video/mp4">
-                              </video>
+                            </video>
 
                         </div>
                     </div>
@@ -206,22 +220,18 @@
                     <div class="text-container">
                         <h2 class="text-center">¿Porqué usar Ve mi Tienda?</h2>
                         <p>
-                            1.- Creamos un catálogo online para ti, automáticamente en menos
-                            de 1 minuto.
+                            1.- Al agregar tus productos y la información de tu tienda, la aplicación móvil creará
+                            automáticamente un sitio web con todos tus productos y un carrito de compras.
                         </p>
                         <p>
-                            2.- Si quieres quitar productos del catálogo, solo deberás
-                            seleccionar la opción de no mostrar. Tu producto queda
-                            almacenado y en cualquier otro momento lo puedes mostrar de
-                            nuevo, ya no será necesario volver a crear un catálogo solo para
-                            quitar o agregar productos.
+                            2.- La aplicación va descontando los productos con cada pedido que te hagan y si tienes
+                            productos agotados, los clientes no podrán comprarlos.
                         </p>
-                        <p>3.- El catálogo se adapta a todo tipo de dispositivo.</p>
+                        <p>3.- Tu tienda se adapta a todo tipo de dispositivo.</p>
                         <p>
-                            4.- Acceso súper rápido para compartir el catálogo, es solo
+                            4.- Acceso súper rápido para compartir la tienda, es solo
                             pulsar un botón y se hace la magia.
                         </p>
-                        <p>5.- El catálogo es una página web de tus productos.</p>
                     </div>
                     <!-- end of text-container -->
                 </div>
@@ -254,22 +264,26 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-title">MENSUAL</div>
+                            <div class="card-title">Catálogo</div>
                             <div class="card-subtitle"></div>
                             <hr class="cell-divide-hr" />
                             <div class="price">
-                                <span class="currency">$</span><span class="value">1</span>
+                                <span class="currency">$</span><span class="value">2</span>
                                 <div class="frequency">Mensualmente</div>
                             </div>
                             <hr class="cell-divide-hr" />
                             <ul class="list-unstyled li-space-lg">
                                 <li class="media">
                                     <i class="fas fa-check"></i>
-                                    <div class="media-body">Hasta 100 productos</div>
+                                    <div class="media-body">Productos ilimitados</div>
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-check"></i>
                                     <div class="media-body">Compartir ilimitado</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Catálogo virtual</div>
                                 </li>
                             </ul>
                             <div class="button-wrapper">
@@ -281,22 +295,38 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-title">ANUAL</div>
+                            <div class="card-title">Tienda Virtual</div>
                             <div class="card-subtitle"></div>
                             <hr class="cell-divide-hr" />
                             <div class="price">
-                                <span class="currency">$</span><span class="value">10</span>
-                                <div class="frequency">Anualmente</div>
+                                <span class="currency">$</span><span class="value">9</span>
+                                <div class="frequency">Mensualmente</div>
                             </div>
                             <hr class="cell-divide-hr" />
                             <ul class="list-unstyled li-space-lg">
                                 <li class="media">
                                     <i class="fas fa-check"></i>
-                                    <div class="media-body">Hasta 100 productos</div>
+                                    <div class="media-body">Productos ilimitados</div>
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-check"></i>
                                     <div class="media-body">Compartir ilimitado</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Catálogo virtual</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Tienda virtual</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Carrito de compras</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check"></i>
+                                    <div class="media-body">Gestión de pedidos</div>
                                 </li>
                             </ul>
                             <div class="button-wrapper">
