@@ -81,5 +81,6 @@ Route::group(['prefix' => 'v2'], function () {
         Route::get('prueba', 'API\V2\UserController@prueba');
 
         Route::get('themes', 'API\V2\ThemesController@index');
+        Route::get('orders', 'API\V2\OrdersController@index');
     });
 });
