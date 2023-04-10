@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API\V2;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\OrdersRepository;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
+    use ApiResponser;
     /**
      * @OA\Get(
      *     tags={"Orders"},
