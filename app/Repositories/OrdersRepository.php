@@ -13,7 +13,7 @@ class OrdersRepository
         $user = Auth::user();
         $company = Company::where('user_id', $user->id)->first();
 
-        return Order::with('details', 'status')
+        return Order::with('details.product', 'status')
             ->where('company_id', $company->id)
             ->get();
     }
