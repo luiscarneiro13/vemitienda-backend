@@ -110,12 +110,12 @@
                     }
                 });
 
-                // function loadMore() {
-                //     if (page < pages) {
-                //         page++;
-                //         loadMoreData(page);
-                //     }
-                // }
+                function loadMore() {
+                    if (page < pages) {
+                        page++;
+                        loadMoreData(page);
+                    }
+                }
 
                 function loadMoreData(page) {
                     const cat = '{{ $cat }}'
