@@ -15,6 +15,7 @@ class OrdersRepository
 
         return Order::with('details.product', 'status')
             ->where('company_id', $company->id)
+            ->orderBy('id', 'desc')
             ->get();
     }
 }
