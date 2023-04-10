@@ -6,16 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ @$company->slug }}</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .bg-orange {
+            background: #F44C04
+        }
+    </style>
 </head>
 
 <body>
     <div class="bg-white">
 
         <x-encabezadoTienda :company="@$company" />
-        {{-- @include('V2.modalCart') --}}
 
         <div class="sticky top-0 z-30"
             style="box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 14px -10px, rgba(0, 0, 0, 0) 0px 4px 6px -2px;">
@@ -70,7 +74,6 @@
             text-white text-2xl z-10 hidden">
                 &nbsp;
             </div>
-
             <div class="container px-6 mx-auto">
                 <div id="post-data" class="grid grid-cols-2 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-6">
                     @include('V2.data')
@@ -102,21 +105,21 @@
                         if ((page < pages) && !loading) {
                             $('.ajax-load').show();
                             page++;
-                            loadMoreData(page);
+                            // loadMoreData(page);
                         }
                     }
                 });
 
-                // function loadMore() {
-                //     if (page < pages) {
-                //         page++;
-                //         loadMoreData(page);
-                //     }
-                // }
+                function loadMore() {
+                    if (page < pages) {
+                        page++;
+                        loadMoreData(page);
+                    }
+                }
 
                 function loadMoreData(page) {
                     const cat = '{{ $cat }}'
-                    const url = '{{ url($slug) }}' + '?cat=' + cat + '&page=' + page
+                    const url = '{{ url($company->slug) }}' + '?cat=' + cat + '&page=' + page
 
                     $.ajax({
                             url: url,

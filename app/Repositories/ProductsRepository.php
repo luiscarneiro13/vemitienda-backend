@@ -55,13 +55,12 @@ class ProductsRepository
         $user = Auth::user();
         $model = Product::find($id);
         $model->user_id = $user->id;
-        $model->name = request()->name;
-        $model->available    = request()->available;
-        $model->quantity    = 1;
         $model->category_id = request()->category_id;
+        $model->name = request()->name;
         $model->description = request()->description;
         $model->price = request()->price ? request()->price : 0;
         $model->share = request()->share ? request()->share : 0;
+        $model->available = request()->available ? request()->available : 0;
         $model->save();
         return $model->with('category', 'image')->first();
     }
