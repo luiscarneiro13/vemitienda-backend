@@ -18,7 +18,8 @@ class OrderController extends Controller
             "email" => request()->email,
             "phone" => request()->phone,
             "total" => request()->total,
-            "company_id" => request()->company_id
+            "company_id" => request()->company_id,
+            "status_id" => 1
         ]);
 
         foreach (request()->cart as $value) {
