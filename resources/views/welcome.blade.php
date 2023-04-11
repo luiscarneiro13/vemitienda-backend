@@ -36,7 +36,52 @@
     <link href="{{ asset('plantillas/evolo/css/swiper.css') }}" rel="stylesheet" />
     <link href="{{ asset('plantillas/evolo/css/magnific-popup.css') }}" rel="stylesheet" />
     <link href="{{ asset('plantillas/evolo/css/styles.css') }}" rel="stylesheet" />
+    <style>
+        .rojo {
+            background-color: #EF4444;
+            border: 0.125rem solid #EF4444;
+        }
 
+        .verde {
+            background-color: #10B981;
+            border: 0.125rem solid #10B981;
+        }
+
+        .naranja {
+            background-color: #F44C04;
+            border: 0.125rem solid #F44C04;
+        }
+
+        .amarillo {
+            background-color: #F59E0B;
+            border: 0.125rem solid #F59E0B;
+        }
+
+        .gris {
+            background-color: #6B7280;
+            border: 0.125rem solid #6B7280;
+        }
+
+        .azul-anil {
+            background-color: #6366F1;
+            border: 0.125rem solid #6366F1;
+        }
+
+        .purpura {
+            background-color: #8B5CF6;
+            border: 0.125rem solid #8B5CF6;
+        }
+
+        .negro {
+            background-color: #000000;
+            border: 0.125rem solid #000000;
+        }
+
+        .azul {
+            background-color: #3B82F6;
+            border: 0.125rem solid #3B82F6;
+        }
+    </style>
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -83,6 +128,9 @@
                     <a class="nav-link page-scroll" href="#funcionamiento">Funcionamiento</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#demo">DEMO</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link page-scroll" href="#vemitienda">Ve mi Tienda</a>
                 </li>
                 <li class="nav-item">
@@ -116,8 +164,9 @@
                                 Con nuestra aplicación, puedes crear tu propia tienda en línea. Agrega tus productos y
                                 recibe pedidos
                             </p>
-                            <a class="btn-solid-lg page-scroll mt-1" target="_blank" href="https://play.google.com/store/apps/details?id=com.vemitienda.online">DESCARGAR</a>
-                            <a class="btn-solid-lg page-scroll mt-1" target="_blank" href="https://vemitienda.online/ve-mi-tienda">DEMO</a>
+                            <a class="btn-solid-lg page-scroll mt-1" target="_blank"
+                                href="https://play.google.com/store/apps/details?id=com.vemitienda.online">DESCARGAR</a>
+                            <a class="btn-solid-lg page-scroll mt-1" target="_blank" href="#demo">DEMO</a>
                         </div>
                     </div>
                     <div class="col-lg-5">
@@ -193,7 +242,7 @@
 
             <!-- Colocar el Video -->
 
-            <div class="basic-3">
+            {{-- <div class="basic-3">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -209,6 +258,120 @@
                         </div>
                     </div>
                 </div>
+            </div> --}}
+        </div>
+    </div>
+
+    <div id="demo" class="cards-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mt-5">
+                    <h2>DEMO</h2>
+                    <p class="p-heading p-large">
+                        Puede ver los demos en diferentes temas (colores)
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tema rojo</h4>
+                            <div class="text-center">
+                                <a class="btn-solid-lg page-scroll mt-1 rojo" target="_blank" href="rojo">Ver
+                                    demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tema verde</h4>
+                            <div class="text-center">
+                                <a class="btn-solid-lg page-scroll mt-1 verde" target="_blank" href="verde">Ver
+                                    demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tema naranja</h4>
+                            <div class="text-center">
+                                <a class="btn-solid-lg page-scroll mt-1 naranja" target="_blank" href="naranja">Ver
+                                    demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tema amarillo</h4>
+                            <div class="text-center">
+                                <a class="btn-solid-lg page-scroll mt-1 amarillo" target="_blank" href="amarillo">Ver
+                                    demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tema gris</h4>
+                            <div class="text-center">
+                                <a class="btn-solid-lg page-scroll mt-1 gris" target="_blank" href="gris">Ver
+                                    demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tema azul añil</h4>
+                            <div class="text-center">
+                                <a class="btn-solid-lg page-scroll mt-1 azul-anil" target="_blank"
+                                    href="azul-anil">Ver
+                                    demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tema púrpura</h4>
+                            <div class="text-center">
+                                <a class="btn-solid-lg page-scroll mt-1 purpura" target="_blank" href="purpura">Ver
+                                    demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tema negro</h4>
+                            <div class="text-center">
+                                <a class="btn-solid-lg page-scroll mt-1 negro" target="_blank" href="negro">Ver
+                                    demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Tema azul</h4>
+                            <div class="text-center">
+                                <a class="btn-solid-lg page-scroll mt-1 azul" target="_blank" href="azul">Ver
+                                    demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -284,6 +447,21 @@
                                 <li class="media">
                                     <i class="fas fa-check"></i>
                                     <div class="media-body">Catálogo virtual</div>
+                                </li>
+                                <li class="media">
+                                    <strike>
+                                        <div class="media-body">Tienda virtual</div>
+                                    </strike>
+                                </li>
+                                <li class="media">
+                                    <strike>
+                                        <div class="media-body">Carrito de compras</div>
+                                    </strike>
+                                </li>
+                                <li class="media">
+                                    <strike>
+                                        <div class="media-body">Gestión de pedidos</div>
+                                    </strike>
                                 </li>
                             </ul>
                             <div class="button-wrapper">
