@@ -22,10 +22,48 @@ class OrdersController extends Controller
      *     )
      * )
      */
+
     public function index()
     {
         try {
             return $this->successResponse(['data' => OrdersRepository::getOrders()]);
+        } catch (\Throwable $th) {
+            return $this->errorResponse(['message' => $th]);
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *     tags={"Orders"},
+     *     path="/updateStatus",
+     *     security={{"bearer_token":{}}},
+     *     summary="Se actualiza el status del pedido",
+     *     @OA\RequestBody(
+     *        required=true,
+     *        description="Status del pedido",
+     *        @OA\JsonContent(
+     *           required={"order_id","status_id"},
+     *           @OA\Property(property="order_id", type="integer", format="order_id", example="1"),
+     *           @OA\Property(property="status_id", type="integer", format="status_id", example="2"),
+     *        ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+
+    public function updateStatus()
+    {
+        $order_id = request()->order_id;
+        $status_id = request()->status_id;
+        try {
+            return $this->successResponse(['data' => OrdersRepository::updateStatus($order_id, $status_id)]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
         }

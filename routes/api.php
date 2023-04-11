@@ -82,5 +82,6 @@ Route::group(['prefix' => 'v2'], function () {
 
         Route::get('themes', 'API\V2\ThemesController@index');
         Route::get('orders', 'API\V2\OrdersController@index');
+        Route::get('updateStatus', 'API\V2\OrdersController@updateStatus');
     });
 });

@@ -494,6 +494,55 @@
                 ]
             }
         },
+        "/updateStatus": {
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Se actualiza el status del pedido",
+                "operationId": "044906d78e717a3d9bbf33647a03ab8d",
+                "requestBody": {
+                    "description": "Status del pedido",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "order_id",
+                                    "status_id"
+                                ],
+                                "properties": {
+                                    "order_id": {
+                                        "type": "integer",
+                                        "format": "order_id",
+                                        "example": "1"
+                                    },
+                                    "status_id": {
+                                        "type": "integer",
+                                        "format": "status_id",
+                                        "example": "2"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/products-user": {
             "get": {
                 "tags": [

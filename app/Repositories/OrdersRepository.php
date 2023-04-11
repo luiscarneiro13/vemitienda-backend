@@ -18,4 +18,13 @@ class OrdersRepository
             ->orderBy('id', 'desc')
             ->get();
     }
+
+    static function updateStatus($order_id, $status_id)
+    {
+        $order = Order::where('id', $order_id)->first();
+        $order->status_id = $status_id;
+        $order->save();
+
+        return $order;
+    }
 }
