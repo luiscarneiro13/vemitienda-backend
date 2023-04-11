@@ -11,17 +11,17 @@
     <meta name="author" content="Inovatik" />
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
-    <meta property="og:site_name" content="" />
+    <meta property="og:site_name" content="Ve mi Tienda" />
     <!-- website name -->
-    <meta property="og:site" content="" />
+    <meta property="og:site" content="https://vemitienda.online" />
     <!-- website link -->
-    <meta property="og:title" content="" />
+    <meta property="og:title" content="Ve mi Tienda" />
     <!-- title shown in the actual shared post -->
-    <meta property="og:description" content="" />
+    <meta property="og:description" content="Crea tu propia tienda online" />
     <!-- description shown in the actual shared post -->
-    <meta property="og:image" content="" />
+    <meta property="og:image" content="https://vemitienda.online/plantillas/evolo/images/logo.png" />
     <!-- image link, make sure it's jpg -->
-    <meta property="og:url" content="" />
+    <meta property="og:url" content="https://vemitienda.online" />
     <!-- where do you want your post to link to -->
     <meta property="og:type" content="article" />
 
