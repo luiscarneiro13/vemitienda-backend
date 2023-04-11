@@ -19,7 +19,7 @@
     <!-- title shown in the actual shared post -->
     <meta property="og:description" content="Crea tu propia tienda online" />
     <!-- description shown in the actual shared post -->
-    <meta property="og:image" content="https://vemitienda.online/plantillas/evolo/images/logo.png" />
+    <meta property="og:image" content="https://vemitienda.online/plantillas/evolo/images/logometa.png" />
     <!-- image link, make sure it's jpg -->
     <meta property="og:url" content="https://vemitienda.online" />
     <!-- where do you want your post to link to -->
