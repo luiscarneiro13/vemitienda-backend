@@ -7,7 +7,7 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="Create a stylish landing page for your business startup and get leads for the offered vemitienda with this HTML landing page template." />
+        content="Crea tu propia tienda online" />
     <meta name="author" content="Inovatik" />
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
