@@ -14,6 +14,9 @@
         .swal2-html-container {
             margin: 0;
         }
+        .bg-orange {
+            background: #F44C04
+        }
     </style>
 </head>
 
