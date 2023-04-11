@@ -42,6 +42,10 @@ class UserController extends Controller
 
     public function login(LoginRequest $request)
     {
+        return $this->errorValidation([
+            "email" => ["Por favor actualice la aplicación"],
+            "message" => ["Por favor actualice la aplicación"]
+        ]);
         try {
             $user = User::with('planUser')->where('email', request()->email)->first();
             if (is_object($user)) {
@@ -93,7 +97,10 @@ class UserController extends Controller
 
     public function register(RegisterRequest $request)
     {
-
+        return $this->errorValidation([
+            "email" => ["Por favor actualice la aplicación"],
+            "message" => ["Por favor actualice la aplicación"]
+        ]);
         try {
             $user = User::create([
                 'name'     => request()->name,
