@@ -6,22 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- SEO Meta Tags -->
-    <meta name="description"
-        content="Crea tu propia tienda online" />
+    <meta name="description" content="Crea tu propia tienda online" />
     <meta name="author" content="Inovatik" />
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
     <meta property="og:site_name" content="Ve mi Tienda" />
     <!-- website name -->
-    <meta property="og:site" content="https://vemitienda.online" />
+    <meta property="og:site" content="{{ url('/') }}" />
     <!-- website link -->
     <meta property="og:title" content="Ve mi Tienda" />
     <!-- title shown in the actual shared post -->
     <meta property="og:description" content="Crea tu propia tienda online" />
     <!-- description shown in the actual shared post -->
-    <meta property="og:image" content="https://vemitienda.online/plantillas/evolo/images/logometa.png" />
+    <meta property="og:image" content="{{ asset('img/logometa.png') }}" />
     <!-- image link, make sure it's jpg -->
-    <meta property="og:url" content="https://vemitienda.online" />
+    <meta property="og:url" content="{{ url('/') }}" />
     <!-- where do you want your post to link to -->
     <meta property="og:type" content="article" />
 
