@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SendEmailJob;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -31,6 +32,15 @@ class OrderController extends Controller
                 "quantity" => $value['quantity'],
                 "image" => $value['attributes']['image']
             ]);
+
+            $product = Product::find($value['id']);
+            $newAvailable = $product->available - (int)$value['quantity'];
+
+            if ($newAvailable < 0) {
+                $newAvailable = 0;
+            }
+            $product->available = $newAvailable;
+            $product->save();
         }
 
         $data['order'] = Order::with('details', 'company.logo', 'company.user')->where('id', $order->id)->first();

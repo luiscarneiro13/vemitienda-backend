@@ -47,7 +47,6 @@ class CompaniesRepository
         $model->slug = Str::slug(request()->name, '-');
         $model->theme_id = request()->theme_id;
         $model->slogan = request()->slogan;
-        $model->email = request()->email;
         $model->phone = request()->phone;
         $model->background_color_catalog = request()->background_color_catalog;
         $model->save();

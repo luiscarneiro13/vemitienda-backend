@@ -44,7 +44,7 @@ class UserController extends Controller
     {
         return $this->errorValidation([
             "email" => ["Por favor actualice la aplicación"],
-            "message" => ["Por favor actualice la aplicación"]
+            "message" => ["Hay una actualización disponible"]
         ]);
         try {
             $user = User::with('planUser')->where('email', request()->email)->first();
@@ -99,7 +99,7 @@ class UserController extends Controller
     {
         return $this->errorValidation([
             "email" => ["Por favor actualice la aplicación"],
-            "message" => ["Por favor actualice la aplicación"]
+            "message" => ["Hay una actualización disponible"]
         ]);
         try {
             $user = User::create([
