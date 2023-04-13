@@ -19,7 +19,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('login', 'API\V1\UserController@login');
     Route::post('register', 'API\V1\UserController@register');
     Route::post('searchEmail', 'API\V1\UserController@searchEmail');
-    Route::post('reset1', 'API\V1\UserController@reset1')->name('reset1');
+    Route::post('reset1', 'API\V1\UserController@reset1');
 
     Route::get('share/{id_encriptado}', 'API\V1\ShareController@shareAPI');
 
