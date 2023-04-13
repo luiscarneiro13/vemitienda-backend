@@ -23,7 +23,6 @@ class CompaniesRepository
     static function storeCompany($insert)
     {
         $insert['slug'] = Str::slug(request()->name, '-');
-        info($insert);
         return Company::create($insert);
     }
 
