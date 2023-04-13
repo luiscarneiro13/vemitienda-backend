@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Repositories\CompaniesRepository;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -70,8 +71,9 @@ class CompaniesController extends Controller
     {
         $user = Auth::user();
         $company = Company::where('user_id', $user->id)->first();
+        $userInfo = User::find($user->id);
         try {
-            $datos = array_merge(['user_id' => $user->id, 'slug' => Str::slug(request()->name, '-')], request()->all());
+            $datos = array_merge(['email' => $userInfo->email, 'user_id' => $user->id, 'slug' => Str::slug(request()->name, '-')], request()->all());
             if ($company) {
                 $company = CompaniesRepository::updateCompany($company->id);
             } else {
