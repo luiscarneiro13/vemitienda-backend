@@ -17,6 +17,7 @@ class Company extends Model
         'name',
         'slogan',
         'email',
+        'slug',
         'phone',
         'background_color_catalog',
         'is_shop',
