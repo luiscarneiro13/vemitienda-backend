@@ -6,6 +6,7 @@ use App\Helpers\Images;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\CompanyRequest;
 use App\Models\Company;
+use App\Models\PlanUser;
 use App\Repositories\CompaniesRepository;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
@@ -77,6 +78,15 @@ class CompaniesController extends Controller
             if ($company) {
                 $company = CompaniesRepository::updateCompany($company->id);
             } else {
+                $planUser = PlanUser::where('user_id', $user->id)->first();
+
+                if ($planUser->plan_id == 3) {
+                    $is_shop = 1;
+                } else {
+                    $is_shop = 0;
+                }
+
+                $datos = array_merge(['is_shop' => $is_shop], $datos);
                 $company = CompaniesRepository::storeCompany($datos);
             }
             return $this->successResponse(['message' => 'Empresa guardada', 'data' => $company]);

@@ -247,7 +247,7 @@ class UserController extends Controller
                 /* 2.1.- Verificar email del usuario*/
                 $user->email_verified_at = now();
                 $user->save();
-                /* 2.1.- Asignarle el plan premium */
+                /* 2.1.- Asignarle el plan tienda */
                 $plan = Plan::where('name', 'Tienda Online')->first();
 
                 // Le creo una compañía sin nombre
@@ -255,6 +255,7 @@ class UserController extends Controller
                     "user_id" => $user_id,
                     "is_shop" => 1
                 ]);
+                $company->save();
 
                 $planUser = PlanUser::create([
                     'plan_id' => $plan->id,
