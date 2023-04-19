@@ -252,7 +252,7 @@ class UserController extends Controller
 
                 // Le creo una compañía sin nombre
                 $company = Company::create([
-                    "user_id" => $user_id,
+                    "user_id" => $user->id,
                     "is_shop" => 1
                 ]);
                 $company->save();
