@@ -250,12 +250,12 @@ class UserController extends Controller
                 /* 2.1.- Asignarle el plan tienda */
                 $plan = Plan::where('name', 'Tienda Online')->first();
 
-                // Le creo una compañía sin nombre
-                $company = Company::create([
-                    "user_id" => $user->id,
-                    "is_shop" => 1
-                ]);
-                $company->save();
+                // El usuario crea la compañía cuando edita los datos en la App
+                // $company = Company::create([
+                //     "user_id" => $user->id,
+                //     "is_shop" => 1
+                // ]);
+                // $company->save();
 
                 $planUser = PlanUser::create([
                     'plan_id' => $plan->id,
