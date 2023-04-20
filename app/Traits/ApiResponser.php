@@ -39,9 +39,19 @@ trait ApiResponser
 
     public function errorResponse($params = [])
     {
-        $params['success'] = false;
-        $resp['error'] = $params['error'] || null;
-        return $this->successResponse($params);
+        $status    = $params['status'] ?? 200;
+        $message = $params['message'] ?? 'Operación exitosa';
+        $success = isset($params['success']) ? $params['success'] : false;
+        $error = $params['error'] || null;
+
+        $responseAttributes = [
+            'status'    => $status,
+            'message' => $message,
+            'success' => $success,
+            'error' => $error
+        ];
+
+        return response()->json($responseAttributes, $status);
     }
 
     public function errorValidation($params = [])

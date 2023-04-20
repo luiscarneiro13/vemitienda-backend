@@ -228,7 +228,7 @@ class UserController extends Controller
             ]);
         } catch (Exception $th) {
             info('Entro error en try');
-            return $this->errorResponse(['error' => $th]);
+            return $this->errorResponse(['error' => $th, 'message'=>'error']);
         }
     }
 
