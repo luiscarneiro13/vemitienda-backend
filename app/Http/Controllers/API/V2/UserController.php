@@ -211,6 +211,7 @@ class UserController extends Controller
         }
 
         try {
+            info('Entro en try');
             $user = User::create([
                 'name'     => request()->name,
                 'email'    => request()->email,
@@ -226,6 +227,7 @@ class UserController extends Controller
                 'message' => 'Registro exitoso, le enviamos un email para que confirme su cuenta'
             ]);
         } catch (Exception $th) {
+            info('Entro error en try');
             return $this->errorResponse(['error' => $th]);
         }
     }
