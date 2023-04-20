@@ -40,6 +40,7 @@ trait ApiResponser
     public function errorResponse($params = [])
     {
         $params['success'] = false;
+        $resp['errors'] = $params;
         return $this->successResponse($params);
     }
 

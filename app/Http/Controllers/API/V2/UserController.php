@@ -219,7 +219,6 @@ class UserController extends Controller
             ]);
             $user->save();
 
-            info('user', json_encode($user));
             $this->emailWellcome($user);
 
             return $this->successResponse([
