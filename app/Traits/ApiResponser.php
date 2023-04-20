@@ -40,7 +40,7 @@ trait ApiResponser
     public function errorResponse($params = [])
     {
         $params['success'] = false;
-        $resp['errors'] = $params;
+        $resp['error'] = $params['error'] || null;
         return $this->successResponse($params);
     }
 
@@ -49,7 +49,6 @@ trait ApiResponser
         $resp['errors'] = $params;
         $resp['status'] = 400;
         return $resp;
-
     }
 
     public function unauthorizedResponse()
