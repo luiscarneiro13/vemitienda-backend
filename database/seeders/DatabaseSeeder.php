@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PaymentMethodsSeeder::class,
             ThemesSeeder::class,
             OrderStatusesSeeder::class,
+            CountriesSeeder::class,
         ]);
 
     }

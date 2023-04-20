@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable, HasFactory;
@@ -66,5 +67,10 @@ class User extends Authenticatable
     public function payments()
     {
         return $this->hasMany('App\Models\PlanUser');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country');
     }
 }
