@@ -204,12 +204,17 @@ class UserController extends Controller
 
     public function register(RegisterRequest $request)
     {
-
+        if (!@request()->country_id) {
+            $country_id = 1;
+        } else {
+            $country_id = request()->country_id;
+        }
         try {
             $user = User::create([
                 'name'     => request()->name,
                 'email'    => request()->email,
-                'password' => Hash::make(request()->password)
+                'password' => Hash::make(request()->password),
+                'country_id' => $country_id
             ]);
             $user->save();
             $this->emailWellcome($user);
