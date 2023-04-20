@@ -209,6 +209,7 @@ class UserController extends Controller
         } else {
             $country_id = request()->country_id;
         }
+        info('country_id: '.$country_id);
         try {
             $user = User::create([
                 'name'     => request()->name,
