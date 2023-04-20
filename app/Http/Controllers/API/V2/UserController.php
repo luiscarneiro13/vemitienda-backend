@@ -207,9 +207,9 @@ class UserController extends Controller
         if (!isset(request()->country_id)) {
             $country_id = 1;
         } else {
-            $country_id = request()->country_id;
+            $country_id = (int)request()->country_id;
         }
-        info('country_id: '.$country_id);
+
         try {
             $user = User::create([
                 'name'     => request()->name,
@@ -218,6 +218,8 @@ class UserController extends Controller
                 'country_id' => $country_id
             ]);
             $user->save();
+
+            info('user', json_encode($user));
             $this->emailWellcome($user);
 
             return $this->successResponse([
