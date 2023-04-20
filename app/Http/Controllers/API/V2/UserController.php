@@ -204,7 +204,7 @@ class UserController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        if (!@request()->country_id) {
+        if (!isset(request()->country_id)) {
             $country_id = 1;
         } else {
             $country_id = request()->country_id;
