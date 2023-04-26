@@ -79,7 +79,7 @@
             <div class="float-left" style="margin-top: 10px">
                 Mostrando {{ $data['infoData']->perPage() }} registros de un total de {{ $data['infoData']->total() }}
             </div>
-            <div class="float-right">
+            <div class="float-right table-responsive">
                 {{ $data['infoData']->links() }}
             </div>
         </div>
