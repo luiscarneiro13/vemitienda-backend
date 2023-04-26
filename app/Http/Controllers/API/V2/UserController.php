@@ -204,12 +204,14 @@ class UserController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        if (!@request()->country_id) {
+        if (!isset(request()->country_id)) {
             $country_id = 1;
         } else {
-            $country_id = request()->country_id;
+            $country_id = (int)request()->country_id;
         }
+
         try {
+            info('Entro en try');
             $user = User::create([
                 'name'     => request()->name,
                 'email'    => request()->email,
@@ -217,6 +219,7 @@ class UserController extends Controller
                 'country_id' => $country_id
             ]);
             $user->save();
+
             $this->emailWellcome($user);
 
             return $this->successResponse([
@@ -224,7 +227,9 @@ class UserController extends Controller
                 'message' => 'Registro exitoso, le enviamos un email para que confirme su cuenta'
             ]);
         } catch (Exception $th) {
-            return $this->errorResponse(['error' => $th]);
+            info('Entro error en try');
+            info($th);
+            return $this->errorResponse(['error' => $th, 'message'=>'error']);
         }
     }
 
