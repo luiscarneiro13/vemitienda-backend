@@ -57,6 +57,7 @@ class ProductsRepository
         $model->user_id = $user->id;
         $model->category_id = request()->category_id;
         $model->name = request()->name;
+        $model->code = request()->code;
         $model->description = request()->description;
         $model->price = request()->price ? request()->price : 0;
         $model->share = request()->share ? request()->share : 0;
