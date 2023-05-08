@@ -111,7 +111,7 @@
                         if ((page < pages) && !loading) {
                             $('.ajax-load').show();
                             page++;
-                            // loadMoreData(page);
+                            loadMoreData(page);
                         }
                     }
                 });
