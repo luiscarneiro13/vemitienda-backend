@@ -25,8 +25,7 @@ class ProductController extends Controller
         $id_usuario = $data['company']->user_id;
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['categories'] = Category::where('user_id', $id_usuario)->get();
-
-        if ($planUser && $planUser->plan_id >=2) {
+        if ($planUser && $planUser->plan_id >= 2) {
 
             $cat = 0;
             $data['slug'] = $slug;
@@ -36,24 +35,24 @@ class ProductController extends Controller
             }
 
             $total = Product::query()
-                ->with('image', 'category')
-                ->where('share', 1)
-                ->where('user_id', $id_usuario)
-                ->when($cat > 0, function ($q) {
-                    $q->where('category_id', request()->cat);
-                })
-                ->count();
+            ->with('image', 'category')
+            ->where('share', 1)
+            ->where('user_id', $id_usuario)
+            ->when($cat > 0, function ($q) {
+                $q->where('category_id', request()->cat);
+            })
+            ->count();
 
             $data['pages'] = (int)($total / 4);
 
             $data['products'] = Product::query()
-                ->with('image', 'category')
-                ->where('share', 1)
-                ->where('user_id', $id_usuario)
-                ->when($cat > 0, function ($q) {
-                    $q->where('category_id', request()->cat);
-                })
-                ->paginate(10);
+            ->with('image', 'category')
+            ->where('share', 1)
+            ->where('user_id', $id_usuario)
+            ->when($cat > 0, function ($q) {
+                $q->where('category_id', request()->cat);
+            })
+            ->paginate(10);
         } else {
             $data['products'] = [];
             $data['pages'] = -1;

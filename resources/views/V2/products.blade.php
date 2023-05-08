@@ -23,7 +23,15 @@
 </head>
 
 <body>
-    <div class="bg-white">
+    <div id="suspendida" class="text-center" style="display: none">
+        <h1
+            class="mt-5 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            Tienda suspendida
+            <br>
+            <span class="text-blue-600 dark:text-blue-500">momentáneamente</span></h1>
+
+    </div>
+    <div id="tienda" class="bg-white">
 
         <x-encabezadoTienda :company="@$company" />
 
@@ -100,13 +108,17 @@
 
             <script type="text/javascript">
                 var page = 1;
-                const pages = '{{ $pages }}'
+                const pages = JSON.parse('{{ $pages }}')
+
                 let loading = false
 
+                if (!(pages > -1)) {
+                    $('#suspendida').show();
+                    $('#tienda').hide();
+                    alert('Suspendida momentáneamente')
+                }
+
                 $(window).scroll(function() {
-                    if (!(pages > -1)) {
-                        alert('Suspendida momentáneamente')
-                    }
                     if ($(window).scrollTop() + $(window).height() + 100 >= $(document).height()) {
                         if ((page < pages) && !loading) {
                             $('.ajax-load').show();
