@@ -56,7 +56,7 @@ class ProductController extends Controller
                 ->paginate(10);
         } else {
             $data['products'] = [];
-            $data['pages'] = 0;
+            $data['pages'] = -1;
         }
 
         if ($request->ajax()) {
