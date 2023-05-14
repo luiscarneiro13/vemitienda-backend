@@ -430,7 +430,7 @@
                             <div class="card-subtitle"></div>
                             <hr class="cell-divide-hr" />
                             <div class="price">
-                                <span class="currency">$</span><span class="value">2</span>
+                                <span class="currency">$</span><span class="value">1</span>
                                 <div class="frequency">Mensualmente</div>
                             </div>
                             <hr class="cell-divide-hr" />
@@ -476,7 +476,7 @@
                             <div class="card-subtitle"></div>
                             <hr class="cell-divide-hr" />
                             <div class="price">
-                                <span class="currency">$</span><span class="value">9</span>
+                                <span class="currency">$</span><span class="value">2</span>
                                 <div class="frequency">Mensualmente</div>
                             </div>
                             <hr class="cell-divide-hr" />
