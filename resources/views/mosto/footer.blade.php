@@ -1,51 +1,48 @@
-<footer class="footer-section bg_img" data-background="{{ asset('plantillas/mosto/images/footer/footer-bg.jpg') }}">
+<footer class="footer-section bg_img" data-background="{{ asset('img/footer/footer-bg.jpg') }}">
     <div class="container">
         <div class="footer-top padding-top padding-bottom">
-            <div class="logo">
+            <div class="text-center mb-2">
                 <a href="#0">
-                    <img src="{{ asset('plantillas/mosto/images/logo/footer-logo.png') }}" alt="logo">
+                    <img src="{{ asset('img/logoMenu.webp') }}" height="80px" alt="logo">
                 </a>
+            </div>
+            <div class="mb-3">
+                <p class="footer-link text-light">Email: info@vemitienda.online</p>
+                <p class="footer-link text-light">Whatsapp: +0428496899</p>
             </div>
             <ul class="social-icons">
                 <li>
-                    <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/profile.php?id=100090743526087"><i
+                            class="fab fa-facebook-f"></i></a>
                 </li>
                 <li>
-                    <a href="#0" class="active"><i class="fab fa-twitter"></i></a>
-                </li>
-                <li>
-                    <a href="#0"><i class="fab fa-pinterest-p"></i></a>
-                </li>
-                <li>
-                    <a href="#0"><i class="fab fa-google-plus-g"></i></a>
-                </li>
-                <li>
-                    <a href="#0"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/vemitienda.online"><i
+                            class="fab fa-instagram"></i></a>
                 </li>
             </ul>
         </div>
         <div class="footer-bottom">
             <ul class="footer-link">
                 <li>
-                    <a href="#0">About</a>
+                    <a href="#home">Inicio</a>
                 </li>
                 <li>
-                    <a href="#0">FAQs</a>
+                    <a href="#features">Características</a>
                 </li>
                 <li>
-                    <a href="#0">Contact</a>
+                    <a href="#yourCustomers">Tus Clientes</a>
                 </li>
                 <li>
-                    <a href="#0">Terms of Service</a>
+                    <a href="#plans">Planes</a>
                 </li>
                 <li>
-                    <a href="#0">Privacy</a>
+                    <a href="#testimonies">Testimonios</a>
                 </li>
             </ul>
         </div>
         <div class="copyright">
             <p>
-                Copyright © 2022.All Rights Reserved By <a href="#0">Mosto</a>
+                Copyright © 2023. All Rights Reserved By <a href="#0">Ve mi Tienda</a>
             </p>
         </div>
     </div>

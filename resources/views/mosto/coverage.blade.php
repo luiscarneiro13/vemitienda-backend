@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="coverage-wrapper bg_img" data-background="{{ asset('plantillas/mosto/images/bg/world-map.png') }}">
+        <div class="coverage-wrapper bg_img" data-background="{{ asset('img/bg/world-map.png') }}">
             <div class="border-item-1">
                 <span class="name">North America</span>
                 <h2 class="title">70.7%</h2>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Mosto - Software and App Landing Pages HTML Template</title>
+    <title>Ve mi Tienda</title>
     <link rel="icon" href="{{ asset('plantillas/evolo/images/logo.png') }}" />
 
     <!-- SEO Meta Tags -->
@@ -67,12 +67,12 @@
 
 
     <!--============= LISTO Exclusive Section Starts Here =============-->
-    @include('mosto.exclusive')
+    @include('mosto.features')
     <!--============= Exclusive Section Ends Here =============-->
 
 
-    <!--============= EN DESARROLLO Colaboration Section Starts Here =============-->
-    @include('mosto.collaboration')
+    <!--============= LISTO Colaboration Section Starts Here =============-->
+    @include('mosto.yourCustomers')
     <!--============= Colaboration Section Ends Here =============-->
 
 
@@ -81,13 +81,13 @@
     <!--============= Smart Watch Section Ends Here =============-->
 
 
-    <!--============= Pricing Section Starts Here =============-->
-    @include('mosto.pricing')
+    <!--============= LISTO Pricing Section Starts Here =============-->
+    @include('mosto.plans')
     <!--============= Pricing Section Ends Here =============-->
 
 
     <!--============= Newslater Section Starts Here =============-->
-    @include('mosto.newsLater')
+    {{-- @include('mosto.newsLater') --}}
     <!--============= Newslater Section Ends Here =============-->
 
 
@@ -96,17 +96,17 @@
     <!--============= Coverage Section Ends Here =============-->
 
 
-    <!--============= Testimonial Section Starts Here =============-->
-    @include('mosto.testimonial')
+    <!--============= LISTO Testimonial Section Starts Here =============-->
+    @include('mosto.testimonies', ['testimonies' => $testimonies])
     <!--============= Testimonial Section Ends Here =============-->
 
 
     <!--============= Faq Section Starts Here =============-->
-    @include('mosto.faq')
+    {{-- @include('mosto.faq') --}}
     <!--============= Faq Section Ends Here =============-->
 
 
-    <!--============= Trial Section Starts Here =============-->
+    <!--============= LISTO Trial Section Starts Here =============-->
     @include('mosto.trial')
     <!--============= Trial Section Ends Here =============-->
 

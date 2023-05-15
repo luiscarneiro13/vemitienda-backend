@@ -7,12 +7,11 @@
                 </a>
             </div>
             <ul class="menu">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Funcionamiento</a></li>
-                <li><a href="#">DEMO</a></li>
-                <li><a href="#">Ve mi Tienda</a></li>
-                <li><a href="#">Precios</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#features">Características</a></li>
+                <li><a href="#yourCustomers">Tus Clientes</a></li>
+                <li><a href="#plans">Planes</a></li>
+                <li><a href="#">Testimonios</a></li>
             </ul>
             <div class="header-bar d-lg-none">
                 <span></span>

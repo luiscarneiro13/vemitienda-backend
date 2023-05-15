@@ -4,7 +4,7 @@
             <div class="col-lg-6">
                 <div class="faq-header">
                     <div class="cate">
-                        <img src="{{ asset('plantillas/mosto/images/cate.png') }}" alt="cate">
+                        <img src="{{ asset('img/cate.png') }}" alt="cate">
                     </div>
                     <h2 class="title">Frequently Asked Questions</h2>
                     <a href="#0">More Questions <i class="flaticon-right"></i></a>
