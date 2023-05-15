@@ -24,22 +24,19 @@
         <div class="footer-bottom">
             <ul class="footer-link">
                 <li>
-                    <a href="#home">Inicio</a>
+                    <a href="/#home">Inicio</a>
                 </li>
                 <li>
-                    <a href="#features">Características</a>
+                    <a href="/#features">Características</a>
                 </li>
                 <li>
-                    <a href="#yourCustomers">Tus Clientes</a>
+                    <a href="/#yourCustomers">Tus Clientes</a>
                 </li>
                 <li>
-                    <a href="#plans">Planes</a>
+                    <a href="/#plans">Planes</a>
                 </li>
                 <li>
-                    <a href="#testimonies">Testimonios</a>
-                </li>
-                <li>
-                    <a href="/contacto">Contacto</a>
+                    <a href="/#testimonies">Testimonios</a>
                 </li>
             </ul>
         </div>

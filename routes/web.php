@@ -35,7 +35,7 @@ Route::post('reset3', 'API\V1\UserController@reset3')->name('reset3');
 Route::post('contact', 'API\V1\ContactController@index')->name('contact');
 
 Route::get('contacto',  function () {
-    return view('contacto');
+    return view('newContact');
 })->name('contacto');
 
 Route::get('prueba', function () {
