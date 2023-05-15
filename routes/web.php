@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/newWelcome', function () {
+    return view('newWelcome');
+})->name('newHome');
+
 // Auth::routes();
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
