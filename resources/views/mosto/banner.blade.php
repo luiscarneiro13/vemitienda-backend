@@ -59,8 +59,8 @@
                             <img src="{{ asset('img/icon/counter2.png') }}" alt="icon">
                         </div>
                         <div class="counter-content">
-                            <h2 class="title"><span class="counter">374</span></h2>
-                            <span>Visitas Diarias</span>
+                            <h2 class="title"><span class="counter">{{ $visits }}</span></h2>
+                            <span>Visitas</span>
                         </div>
                     </div>
                 </div>

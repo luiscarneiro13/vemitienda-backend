@@ -62,7 +62,7 @@
 
 
     <!--============= LISTO Banner Section Starts Here =============-->
-    @include('mosto.banner')
+    @include('mosto.banner', ['visits' => $visits])
     <!--============= Banner Section Ends Here =============-->
 
 
