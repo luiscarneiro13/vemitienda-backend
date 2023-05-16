@@ -34,14 +34,7 @@ Route::post('reset3', 'API\V1\UserController@reset3')->name('reset3');
 
 Route::post('contact', 'API\V1\ContactController@index')->name('contact');
 
-Route::get('contacto',  function () {
-    return view('newContact');
-})->name('contacto');
-
-Route::get('prueba', function () {
-    return view('auth.resetPassword');
-});
-
+Route::get('contacto', 'ContactoController@index')->name('contacto');
 
 Route::get('/{slug}', [ProductController::class, 'productList'])->name('products.list');
 Route::get('/{slug}/cart', [CartController::class, 'cartList'])->name('cart.list');
