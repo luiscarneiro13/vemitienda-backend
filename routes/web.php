@@ -1,9 +1,10 @@
 <?php
 
+use App\Helpers\Visits;
 use App\Http\Controllers\WEB\V2\CartController;
 use App\Http\Controllers\WEB\V2\OrderController;
 use App\Http\Controllers\WEB\V2\ProductController;
-use App\Models\Product;
+use App\Models\Visit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::post('reset3', 'API\V1\UserController@reset3')->name('reset3');
 
 Route::post('contact', 'API\V1\ContactController@index')->name('contact');
 
+Route::get('prueba', [OrderController::class, 'prueba']);
 Route::get('contacto', 'ContactoController@index')->name('contacto');
 
 Route::get('/{slug}', [ProductController::class, 'productList'])->name('products.list');
@@ -43,4 +45,4 @@ Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.up
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 Route::post('order', [OrderController::class, 'index'])->name('order.store');
-Route::get('prueba', [OrderController::class, 'prueba']);
+

@@ -7,6 +7,7 @@ use App\Jobs\SendEmailJob;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -51,8 +52,15 @@ class OrderController extends Controller
 
     public function prueba()
     {
+        // $visits = Visit::all();
+        // $i = 1;
+        // foreach ($visits as $value) {
+        //     $value->id = $i;
+        //     $value->save();
+        //     $i++;
+        // }
 
-        // return view('Mails.Order', $data);
+        return "HOPLA";
     }
 
     public function emailOrder($order, $emailComprador)
