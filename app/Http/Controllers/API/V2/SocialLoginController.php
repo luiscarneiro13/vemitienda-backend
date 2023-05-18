@@ -17,21 +17,26 @@ class SocialLoginController extends Controller
 
     public function handleProviderCallback($provider)
     {
-        $socialUser = Socialite::driver($provider)->user();
+        try {
+            //code...
+            $socialUser = Socialite::driver($provider)->user();
 
-        $user = User::where('provider_user_id', $socialUser->getId())->first();
+            $user = User::where('provider_user_id', $socialUser->getId())->first();
 
-        if (!$user) {
-            $user = new User();
-            $user->name = $socialUser->getName();
-            $user->email = $socialUser->getEmail();
-            $user->provider = $provider;
-            $user->provider_user_id = $socialUser->getId();
-            $user->save();
+            if (!$user) {
+                $user = new User();
+                $user->name = $socialUser->getName();
+                $user->email = $socialUser->getEmail();
+                $user->provider = $provider;
+                $user->provider_user_id = $socialUser->getId();
+                $user->save();
+            }
+
+            $user->token = $user->createToken('Social Login')->accessToken;
+            $data = $user;
+            return $this->successResponse(['data' => $data]);
+        } catch (\Throwable $th) {
+            return $this->errorResponse(['message' => $th]);
         }
-
-        $user->token = $user->createToken('Social Login')->accessToken;
-        $data = $user;
-        return $this->successResponse(['data' => $data]);
     }
 }
