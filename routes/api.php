@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\V2\SocialLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,12 @@ Route::group(['prefix' => 'v1'], function () {
 });
 
 Route::group(['prefix' => 'v2'], function () {
+
+    Route::group(['prefix' => 'social'], function () {
+        Route::get('/login/{provider}', [SocialLoginController::class, 'redirectToProvider']);
+        Route::get('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
+    });
+
     Route::post('login', 'API\V2\UserController@login');
     Route::post('register', 'API\V2\UserController@register');
     Route::post('searchEmail', 'API\V2\UserController@searchEmail')->name('searchEmail');
