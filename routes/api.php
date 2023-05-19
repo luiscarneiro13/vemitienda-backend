@@ -23,7 +23,7 @@ Route::group(['prefix' => 'v1'], function () {
 Route::group(['prefix' => 'v2'], function () {
 
     Route::group(['prefix' => 'social'], function () {
-        Route::get('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
+        Route::post('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
     });
 
     Route::post('login', 'API\V2\UserController@login');
