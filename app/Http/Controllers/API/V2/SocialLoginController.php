@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class SocialLoginController extends Controller
 {
 
-    public function redirectToProvider($provider)
-    {
-        return Socialite::driver($provider)->redirect();
-    }
+    use ApiResponser;
 
     public function handleProviderCallback(Request $request, $provider)
     {
@@ -41,8 +38,9 @@ class SocialLoginController extends Controller
             $user->token = $user->createToken(env('APP_KEY'))->accessToken;
             $data = $user;
             return $this->successResponse(['data' => $data]);
-        } catch (\Throwable $th) {
-            return $this->errorResponse(['message' => $th]);
+        } catch (Exception $th) {
+            info($th);
+            return $this->errorResponse(['error' => $th]);
         }
     }
 
