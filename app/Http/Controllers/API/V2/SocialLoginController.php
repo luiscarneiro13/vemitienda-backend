@@ -23,8 +23,8 @@ class SocialLoginController extends Controller
 
             if (!$user) {
                 $user = new User();
-                $user->name = $socialUser->getName();
-                $user->email = $socialUser->getEmail();
+                $user->name = request()->name;
+                $user->email = request()->email;
                 $user->provider = $provider;
                 $user->provider_user_id = $socialUser->getId();
                 $user->save();
