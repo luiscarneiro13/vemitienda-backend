@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Traits\ApiResponser;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class SocialLoginController extends Controller
 {
@@ -26,6 +27,7 @@ class SocialLoginController extends Controller
                 $user = new User();
                 $user->name = request()->name;
                 $user->email = request()->email;
+                $user->password= Hash::make('asdlkjalskdj234234234');
                 $user->provider = $provider;
                 $user->provider_user_id = $socialUser->getId();
                 $user->save();
