@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use App\Traits\ApiResponser;
 
 class SocialLoginController extends Controller
 {
+
+    use ApiResponser;
 
     public function redirectToProvider($provider)
     {
