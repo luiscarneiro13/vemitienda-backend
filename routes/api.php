@@ -22,9 +22,7 @@ Route::group(['prefix' => 'v1'], function () {
 
 Route::group(['prefix' => 'v2'], function () {
 
-    Route::group(['prefix' => 'social'], function () {
-        Route::post('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
-    });
+
 
     Route::post('login', 'API\V2\UserController@login');
     Route::post('register', 'API\V2\UserController@register');
@@ -34,6 +32,11 @@ Route::group(['prefix' => 'v2'], function () {
     Route::get('share/{id_encriptado}', 'API\V2\ShareController@shareAPI');
 
     Route::group(['middleware' => 'auth:api'], function () {
+
+        Route::group(['prefix' => 'social'], function () {
+            Route::post('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
+        });
+
         // Route::get('productos', 'API\V2\ProductosController@index');
         Route::get('planes', 'API\V2\PlanesController@index');
         Route::post('productos/store-user', 'API\V2\ProductosController@storeProductUser');
