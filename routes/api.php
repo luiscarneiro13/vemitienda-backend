@@ -23,7 +23,6 @@ Route::group(['prefix' => 'v1'], function () {
 Route::group(['prefix' => 'v2'], function () {
 
     Route::group(['prefix' => 'social'], function () {
-        Route::post('/login/{provider}', [SocialLoginController::class, 'redirectToProvider']);
         Route::get('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
     });
 
