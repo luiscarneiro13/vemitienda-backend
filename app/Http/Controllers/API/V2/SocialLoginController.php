@@ -39,7 +39,7 @@ class SocialLoginController extends Controller
             $data = $user;
             return $this->successResponse(['data' => $data]);
         } catch (\Throwable $th) {
-            return $this->errorResponse(['message' => $th]);
+            return $this->errorResponse(['error' => $th]);
         }
     }
 }
