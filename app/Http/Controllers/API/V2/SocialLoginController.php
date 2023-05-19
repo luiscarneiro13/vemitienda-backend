@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Traits\ApiResponser;
+use Exception;
 
 class SocialLoginController extends Controller
 {
@@ -33,7 +34,8 @@ class SocialLoginController extends Controller
             $user->token = $user->createToken('Social Login')->accessToken;
             $data = $user;
             return $this->successResponse(['data' => $data]);
-        } catch (\Throwable $th) {
+        } catch (Exception $th) {
+            info($th);
             return $this->errorResponse(['error' => $th]);
         }
     }
