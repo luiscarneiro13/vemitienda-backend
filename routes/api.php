@@ -22,6 +22,13 @@ Route::group(['prefix' => 'v1'], function () {
 
 Route::group(['prefix' => 'v2'], function () {
 
+    //INICIO Sesión con redes sociales
+    Route::group(['prefix' => 'social'], function () {
+        Route::get('/login/{provider}', [SocialLoginController::class, 'redirectToProvider']);
+        Route::get('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
+    });
+    //FIN Sesión con redes sociales
+
     Route::post('login', 'API\V2\UserController@login');
     Route::post('register', 'API\V2\UserController@register');
     Route::post('searchEmail', 'API\V2\UserController@searchEmail')->name('searchEmail');
@@ -30,13 +37,6 @@ Route::group(['prefix' => 'v2'], function () {
     Route::get('share/{id_encriptado}', 'API\V2\ShareController@shareAPI');
 
     Route::group(['middleware' => 'auth:api'], function () {
-
-        //INICIO Sesión con redes sociales
-        Route::group(['prefix' => 'social'], function () {
-            Route::get('/login/{provider}', [SocialLoginController::class, 'redirectToProvider']);
-            Route::get('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
-        });
-        //FIN Sesión con redes sociales
 
         Route::get('planes', 'API\V2\PlanesController@index');
         Route::post('productos/store-user', 'API\V2\ProductosController@storeProductUser');
