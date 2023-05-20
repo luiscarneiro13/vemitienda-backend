@@ -16,6 +16,11 @@ class SocialLoginController extends Controller
 
     use ApiResponser;
 
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
     public function handleProviderCallback(Request $request, $provider)
     {
         try {
