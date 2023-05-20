@@ -18,14 +18,14 @@ class SocialLoginController extends Controller
     public function handleProviderCallback($provider)
     {
         try {
-
-            $user = User::where('email', request()->email)->first();
+            $user = Socialite::driver($provider)->user();
+            // $user = User::where('email', request()->email)->first();
 
             if (!$user) {
                 $user = new User();
                 $user->name = request()->name;
                 $user->email = request()->email;
-                $user->password= Hash::make('asdlkjalskdj234234234');
+                $user->password= Hash::make('lkjasdlkj98729834oiHJHJAuiywermnqwe76');
                 $user->save();
             }
 
