@@ -37,8 +37,7 @@ class SocialLoginController extends Controller
                 $user->save();
             }
 
-            $user->token = $user->createToken(env('APP_KEY'))->accessToken;
-            $data = $user;
+            $data = $user->createToken(env('APP_KEY'))->accessToken;
             return $this->successResponse(['data' => $data]);
         } catch (Exception $th) {
             info($th);
