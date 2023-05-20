@@ -55,27 +55,4 @@ class SocialLoginController extends Controller
         }
     }
 
-    // public function handleProviderCallback($provider)
-    // {
-    //     try {
-    //         //code...
-    //         $socialUser = Socialite::driver($provider)->user();
-
-    //         $user = User::where('email', request()->email)->first();
-
-    //         if (!$user) {
-    //             $user = new User();
-    //             $user->name = $socialUser->getName();
-    //             $user->email = $socialUser->getEmail();
-    //             $user->password= Hash::make('sadlkjhASLKDJ23879287323');
-    //             $user->save();
-    //         }
-
-    //         $user->token = $user->createToken(env('APP_KEY'))->accessToken;
-    //         $data = $user;
-    //         return $this->successResponse(['data' => $data]);
-    //     } catch (\Throwable $th) {
-    //         return $this->errorResponse(['message' => $th]);
-    //     }
-    // }
 }
