@@ -16,15 +16,14 @@ class SocialLoginController extends Controller
 
     use ApiResponser;
 
-    public function redirectToProvider($provider)
-    {
-        return Socialite::driver($provider)->redirect();
-    }
-
     public function handleProviderCallback(Request $request, $provider)
     {
         try {
-            $socialUser = Socialite::driver($provider)->stateless()->user();
+
+            $token = request()->access_token;
+
+            $socialUser = Socialite::driver($provider)->userFromToken($token);
+
             $user = User::where('provider_user_id', $socialUser->getId())->first();
 
             if (!$user) {
@@ -32,7 +31,6 @@ class SocialLoginController extends Controller
                 $user->name = request()->name;
                 $user->email = request()->email;
                 $user->password = Hash::make('lkjasdlkj98729834oiHJHJAuiywermnqwe76');
-                $user->provider = $provider;
                 $user->provider_user_id = $socialUser->getId();
                 $user->save();
             }

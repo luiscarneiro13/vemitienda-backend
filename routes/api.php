@@ -24,8 +24,7 @@ Route::group(['prefix' => 'v2'], function () {
 
     //INICIO Sesión con redes sociales
     Route::group(['prefix' => 'social'], function () {
-        Route::get('/login/{provider}', [SocialLoginController::class, 'redirectToProvider']);
-        Route::get('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
+        Route::post('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
     });
     //FIN Sesión con redes sociales
 
