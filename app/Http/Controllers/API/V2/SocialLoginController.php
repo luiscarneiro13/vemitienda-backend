@@ -26,13 +26,24 @@ class SocialLoginController extends Controller
 
             $user = User::where('provider_user_id', $providerUser->id)->first();
 
+            // Si no existe el proveedor dentro de ningún usuario
             if (!$user) {
-                $user = new User();
-                $user->name = request()->name;
-                $user->email = request()->email;
-                $user->password = Hash::make('lkjasdlkj98729834oiHJHJAuiywermnqwe76');
-                $user->provider_user_id = $providerUser->id;
-                $user->save();
+
+                // Busco al usuario por su email
+                $user = User::where('email', request()->email)->first();
+
+                // Si lo encuentro, actualizo su perfil
+                if ($user) {
+                    $user->provider_user_id = $providerUser->id;
+                    $user->save();
+                } else { // Si no lo encuentro, creo el usuario
+                    $user = new User();
+                    $user->name = request()->name;
+                    $user->email = request()->email;
+                    $user->password = Hash::make('lkjasdlkj98729834oiHJHJAuiywermnqwe76');
+                    $user->provider_user_id = $providerUser->id;
+                    $user->save();
+                }
             }
 
             $data = $user->createToken(env('APP_KEY'))->accessToken;
