@@ -24,7 +24,7 @@ class SocialLoginController extends Controller
     public function handleProviderCallback(Request $request, $provider)
     {
         try {
-            $socialUser = Socialite::driver($provider)->user();
+            $socialUser = Socialite::driver($provider)->stateless()->user();
             $user = User::where('provider_user_id', $socialUser->getId())->first();
 
             if (!$user) {
