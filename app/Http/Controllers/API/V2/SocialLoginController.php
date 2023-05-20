@@ -22,16 +22,16 @@ class SocialLoginController extends Controller
 
             $token = request()->access_token;
 
-            $socialUser = Socialite::driver($provider)->userFromToken($token);
+            $providerUser = Socialite::driver($provider)->userFromToken($token);
 
-            $user = User::where('provider_user_id', $socialUser->getId())->first();
+            $user = User::where('provider_user_id', $providerUser->id)->first();
 
             if (!$user) {
                 $user = new User();
                 $user->name = request()->name;
                 $user->email = request()->email;
                 $user->password = Hash::make('lkjasdlkj98729834oiHJHJAuiywermnqwe76');
-                $user->provider_user_id = $socialUser->getId();
+                $user->provider_user_id = $providerUser->id;
                 $user->save();
             }
 
