@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V2;
 
 use App\Http\Controllers\Controller;
+use App\Traits\ApiResponser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,28 +13,37 @@ use Illuminate\Support\Facades\Auth;
 
 class SocialLoginController extends Controller
 {
-
     use ApiResponser;
 
     public function handleProviderCallback(Request $request, $provider)
     {
         try {
-            //code...
-            $socialUser = Socialite::driver($provider)->stateless()->userFromToken($request->input('token'));
 
-            $user = User::where('email', $socialUser->email)->first();
+            $token = request()->access_token;
 
+            $providerUser = Socialite::driver($provider)->userFromToken($token);
+
+            $user = User::where('provider_user_id', $providerUser->id)->first();
+
+            // Si no existe el proveedor dentro de ningún usuario
             if (!$user) {
-                $user = new User();
-                $user->name = $socialUser->getName();
-                $user->email = $socialUser->getEmail();
-                $user->password = Hash::make('lakjasldkj2348723kljhnsdf');
-                $user->provider = $provider;
-                $user->provider_user_id = $socialUser->getId();
-                $user->save();
-            }
 
-            Auth::login($user, true);
+                // Busco al usuario por su email
+                $user = User::where('email', request()->email)->first();
+
+                // Si lo encuentro, actualizo su perfil
+                if ($user) {
+                    $user->provider_user_id = $providerUser->id;
+                    $user->save();
+                } else { // Si no lo encuentro, creo el usuario
+                    $user = new User();
+                    $user->name = request()->name;
+                    $user->email = request()->email;
+                    $user->password = Hash::make('lkjasdlkj98729834oiHJHJAuiywermnqwe76');
+                    $user->provider_user_id = $providerUser->id;
+                    $user->save();
+                }
+            }
 
             $user->token = $user->createToken(env('APP_KEY'))->accessToken;
             $data = $user;
@@ -43,28 +53,4 @@ class SocialLoginController extends Controller
             return $this->errorResponse(['error' => $th]);
         }
     }
-
-    // public function handleProviderCallback($provider)
-    // {
-    //     try {
-    //         //code...
-    //         $socialUser = Socialite::driver($provider)->user();
-
-    //         $user = User::where('email', request()->email)->first();
-
-    //         if (!$user) {
-    //             $user = new User();
-    //             $user->name = $socialUser->getName();
-    //             $user->email = $socialUser->getEmail();
-    //             $user->password= Hash::make('sadlkjhASLKDJ23879287323');
-    //             $user->save();
-    //         }
-
-    //         $user->token = $user->createToken(env('APP_KEY'))->accessToken;
-    //         $data = $user;
-    //         return $this->successResponse(['data' => $data]);
-    //     } catch (\Throwable $th) {
-    //         return $this->errorResponse(['message' => $th]);
-    //     }
-    // }
 }

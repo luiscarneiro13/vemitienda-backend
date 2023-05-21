@@ -22,9 +22,12 @@ Route::group(['prefix' => 'v1'], function () {
 
 Route::group(['prefix' => 'v2'], function () {
 
+    //INICIO Sesión con redes sociales
     Route::group(['prefix' => 'social'], function () {
         Route::post('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
     });
+    //FIN Sesión con redes sociales
+
 
     Route::post('login', 'API\V2\UserController@login');
     Route::post('register', 'API\V2\UserController@register');
@@ -35,7 +38,6 @@ Route::group(['prefix' => 'v2'], function () {
 
     Route::group(['middleware' => 'auth:api'], function () {
 
-        // Route::get('productos', 'API\V2\ProductosController@index');
         Route::get('planes', 'API\V2\PlanesController@index');
         Route::post('productos/store-user', 'API\V2\ProductosController@storeProductUser');
         Route::get('usuarios', 'API\V2\UserController@index');
