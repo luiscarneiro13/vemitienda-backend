@@ -24,6 +24,9 @@ Route::get('/', 'NewHomeController@index')->name('home');
 Route::get('politica', function () {
     return view('politica');
 });
+Route::get('privacidad', function () {
+    return view('privacidad');
+});
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
