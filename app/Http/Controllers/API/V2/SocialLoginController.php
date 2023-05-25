@@ -39,6 +39,7 @@ class SocialLoginController extends Controller
                     $user = new User();
                     $user->name = request()->name;
                     $user->email = request()->email;
+                    $user->email_verified_at = now();
                     $user->password = Hash::make('lkjasdlkj98729834oiHJHJAuiywermnqwe76');
                     $user->provider_user_id = $providerUser->id;
                     $user->save();
