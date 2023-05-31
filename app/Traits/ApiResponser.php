@@ -42,7 +42,7 @@ trait ApiResponser
         $status    = $params['status'] ?? 200;
         $message = $params['message'] ?? 'Operación exitosa';
         $success = isset($params['success']) ? $params['success'] : false;
-        $error = $params['error'] || null;
+        $error = isset($params['error']) ? $params['error'] : null;
 
         $responseAttributes = [
             'status'    => $status,

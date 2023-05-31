@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Strategies\SendEmail\ActivarCuenta;
 use App\Strategies\SendEmail\Contacto;
+use App\Strategies\SendEmail\EmailSoporte;
 use App\Strategies\SendEmail\OrdenCompra;
 use App\Strategies\SendEmail\RecuperarCuenta;
 use Illuminate\Bus\Queueable;
@@ -22,6 +23,7 @@ class SendEmailJob implements ShouldQueue
         'ActivarCuenta'   => ActivarCuenta::class,
         'RecuperarCuenta' => RecuperarCuenta::class,
         'OrdenCompra'     => OrdenCompra::class,
+        'EmailSoporte'    => EmailSoporte::class,
     ];
 
     public $parametros;

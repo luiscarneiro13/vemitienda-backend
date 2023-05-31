@@ -22,6 +22,9 @@ Route::group(['prefix' => 'v1'], function () {
 
 Route::group(['prefix' => 'v2'], function () {
 
+    // Enviar correo de soporte a un usuario
+    Route::post('soporte', 'API\V2\EmailsController@soporte');
+
     //INICIO Sesión con redes sociales
     Route::group(['prefix' => 'social'], function () {
         Route::post('/login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
