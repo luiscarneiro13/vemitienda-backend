@@ -33,7 +33,7 @@ class SocialLoginController extends Controller
             if (!$user) {
 
                 // Busco al usuario por su email
-                $user = User::where('email', request()->email)->first();
+                $user = User::with('planUser')->where('email', request()->email)->first();
 
                 // Si lo encuentro, actualizo su perfil
                 if ($user) {
@@ -66,6 +66,8 @@ class SocialLoginController extends Controller
                         "background_color_catalog" => '#FFFFFF'
                     ]);
                     $company->save();
+
+                    $user = User::with('planUser')->where('email', $user->email)->first();
                 }
             }
 
