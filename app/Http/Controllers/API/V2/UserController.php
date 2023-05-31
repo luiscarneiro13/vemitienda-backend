@@ -276,6 +276,15 @@ class UserController extends Controller
                 ]);
                 $planUser->save();
 
+                // Le creo la tienda de una vez
+                $company = Company::create([
+                    "user_id" => $user->id,
+                    "is_shop" => 1,
+                    "email" => $user->email,
+                    "background_color_catalog" => '#FFFFFF'
+                ]);
+                $company->save();
+
                 return redirect('/message')->with('message', 'Cuenta activada con éxito');
             } else {
                 return redirect('/message')->with('message', 'Cuenta activada previamente');

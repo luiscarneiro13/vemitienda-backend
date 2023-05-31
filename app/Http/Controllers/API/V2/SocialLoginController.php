@@ -4,8 +4,11 @@ namespace App\Http\Controllers\API\V2;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Plan;
+use App\Models\PlanUser;
 use App\Traits\ApiResponser;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
@@ -44,6 +47,16 @@ class SocialLoginController extends Controller
                     $user->password = Hash::make('lkjasdlkj98729834oiHJHJAuiywermnqwe76');
                     $user->provider_user_id = $providerUser->id;
                     $user->save();
+
+                    $plan = Plan::where('name', 'Tienda Online')->first();
+                    $planUser = PlanUser::create([
+                        'plan_id' => $plan->id,
+                        'user_id' => $user->id,
+                        'activo' => 1,
+                        'start_date' => Carbon::parse(now())->format('Y-m-d H:i:s'),
+                        'end_date' => Carbon::parse(now())->addDays(30)->format('Y-m-d H:i:s'),
+                    ]);
+                    $planUser->save();
 
                     // Le creo la tienda de una vez
                     $company = Company::create([
