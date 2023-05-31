@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V2;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Traits\ApiResponser;
 use App\User;
 use Illuminate\Http\Request;
@@ -43,6 +44,15 @@ class SocialLoginController extends Controller
                     $user->password = Hash::make('lkjasdlkj98729834oiHJHJAuiywermnqwe76');
                     $user->provider_user_id = $providerUser->id;
                     $user->save();
+
+                    // Le creo la tienda de una vez
+                    $company = Company::create([
+                        "user_id" => $user->id,
+                        "is_shop" => 1,
+                        "email" => $user->email,
+                        "background_color_catalog" => '#FFFFFF'
+                    ]);
+                    $company->save();
                 }
             }
 
