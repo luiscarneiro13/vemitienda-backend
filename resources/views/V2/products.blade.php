@@ -28,7 +28,8 @@
             class="mt-5 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
             Tienda suspendida
             <br>
-            <span class="text-blue-600 dark:text-blue-500">momentáneamente</span></h1>
+            <span class="text-blue-600 dark:text-blue-500">momentáneamente</span>
+        </h1>
 
     </div>
     <div id="tienda" class="bg-white">
@@ -92,14 +93,6 @@
                 <div id="post-data" class="grid grid-cols-2 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-6">
                     @include('V2.data')
                 </div>
-                {{-- <div>
-                    <button onclick="loadMore()"
-                        class="mt-5 bg-gray-100 lg:px-6 rounded inline-flex py-2 w-full justify-center items-center focus:outline-none shadow-xs transition duration-500 ease-in-out">
-                        <span class="text-sm font-semibold text-black ">
-                            Clic para ver más
-                        </span>
-                    </button>
-                </div> --}}
                 <div class="ajax-load text-center" style="display:none">
                     <center><img width="50px" src="{{ asset('img/loader.gif') }}" alt=""></center>
                 </div>
