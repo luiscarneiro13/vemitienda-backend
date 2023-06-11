@@ -27,7 +27,7 @@ class SocialLoginController extends Controller
 
             $providerUser = Socialite::driver($provider)->userFromToken($token);
 
-            $user = User::where('provider_user_id', $providerUser->id)->first();
+            $user = User::with('planUser')->where('provider_user_id', $providerUser->id)->first();
 
             // Si no existe el proveedor dentro de ningún usuario
             if (!$user) {
