@@ -25,6 +25,9 @@ Route::group(['prefix' => 'v2'], function () {
     // Enviar correo de soporte a un usuario
     Route::post('soporte', 'API\V2\EmailsController@soporte');
 
+    // Asignar nombre de tienda a las tiendas que no tienen nombre ni slug
+    Route::get('asignarNombreTienda','API\V2\CorreccionesController@asignarNombreTienda');
+
     // Agregar compañias a usuarios que no las tienen
     Route::post('add/companies', 'API\V2\ControlesController@addCompanyUser');
 
@@ -63,10 +66,9 @@ Route::group(['prefix' => 'v2'], function () {
 
         Route::post('company/delete', 'API\V2\CompaniesController@destroy');
 
-        Route::get('prueba', 'API\V2\UserController@prueba');
-
         Route::get('themes', 'API\V2\ThemesController@index');
         Route::get('orders', 'API\V2\OrdersController@index');
         Route::post('updateStatus', 'API\V2\OrdersController@updateStatus');
+
     });
 });
