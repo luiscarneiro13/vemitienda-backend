@@ -50,8 +50,8 @@ class ShareController extends Controller
                 ->when($cat > 0, function ($q) {
                     $q->where('category_id', request()->cat);
                 })
-                ->when(request()->query, function ($q) {
-                    $q->where('name', 'LIKE', '%' . request()->query . '%');
+                ->when(isset(request()->query) && request()->query!='', function ($q) {
+                    $q->where('name', 'LIKE', '%' . (string)request()->query . '%');
                 })
                 ->count();
 
@@ -64,8 +64,8 @@ class ShareController extends Controller
                 ->when($cat > 0, function ($q) {
                     $q->where('category_id', request()->cat);
                 })
-                ->when(request()->query, function ($q) {
-                    $q->where('name', 'LIKE', '%' . request()->query . '%');
+                ->when(isset(request()->query) && request()->query!='', function ($q) {
+                    $q->where('name', 'LIKE', '%' . (string)request()->query . '%');
                 })
                 ->paginate(5);
         } else {
@@ -99,8 +99,8 @@ class ShareController extends Controller
                 ->when($cat, function ($q) {
                     $q->where('category_id', request()->cat);
                 })
-                ->when(request()->query, function ($q) {
-                    $q->where('name', 'LIKE', '%' . request()->query . '%');
+                ->when(isset(request()->query) && request()->query!='', function ($q) {
+                    $q->where('name', 'LIKE', '%' . (string)request()->query . '%');
                 })
                 ->paginate(5);
         } else {
