@@ -35,6 +35,7 @@ class ShareController extends Controller
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
         $data['categories'] = Category::where('user_id', $id_usuario)->get();
+
         if ($planUser && $planUser->plan_id == 2) {
 
             $cat = 0;
@@ -49,6 +50,9 @@ class ShareController extends Controller
                 ->when($cat > 0, function ($q) {
                     $q->where('category_id', request()->cat);
                 })
+                ->when(request()->query, function ($q) {
+                    $q->where('name', 'like', '%' . request()->query) . '%';
+                })
                 ->count();
 
             $data['pages'] = (int)($total / 4);
@@ -59,6 +63,9 @@ class ShareController extends Controller
                 ->where('user_id', $id_usuario)
                 ->when($cat > 0, function ($q) {
                     $q->where('category_id', request()->cat);
+                })
+                ->when(request()->query, function ($q) {
+                    $q->where('name', 'like', '%' . request()->query) . '%';
                 })
                 ->paginate(5);
         } else {
@@ -91,6 +98,9 @@ class ShareController extends Controller
                 ->where('user_id', $id_usuario)
                 ->when($cat, function ($q) {
                     $q->where('category_id', request()->cat);
+                })
+                ->when(request()->query, function ($q) {
+                    $q->where('name', 'like', '%' . request()->query) . '%';
                 })
                 ->paginate(5);
         } else {
