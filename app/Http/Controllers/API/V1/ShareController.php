@@ -25,7 +25,7 @@ class ShareController extends Controller
     public function share(Request $request, $id_encriptado)
     {
 
-        if (!isset(request()->cat)) {
+        if (!isset(request()->query) && !isset(request()->cat)) {
             return redirect(url('share/' . $id_encriptado . '?cat=0'));
         }
 
