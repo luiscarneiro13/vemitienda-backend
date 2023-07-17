@@ -18,7 +18,7 @@
             </div>
         @endif
         <br>
-        <input style="width: 300px;height:40px;margin-left:20px" type="text" name="query" id="query"
+        <input style="width: 200px;height:40px;margin-left:20px" type="text" name="query" id="query"
             placeholder="Filtrar por nombre" class="mt-2 form-control">
         <button id="submit" style="height:40px;margin-left:5px" class="mt-2 btn btn-sm btn-primary">
             <i class="fas fa-search"></i>
