@@ -40,34 +40,47 @@ class ShareController extends Controller
 
             $cat = 0;
 
-            if (request()->cat && request()->cat > 0) {
-                $cat = request()->cat;
+            if (request()->query) {
+                $total = Product::query()
+                    ->with('image', 'category')
+                    ->where('share', 1)
+                    ->where('user_id', $id_usuario)
+                    ->where('name', 'LIKE', '%' . request()->input('query') . '%')
+                    ->count();
+
+                $data['pages'] = (int)($total / 4);
+
+                $data['products'] = Product::query()
+                    ->with('image', 'category')
+                    ->where('share', 1)
+                    ->where('user_id', $id_usuario)
+                    ->where('name', 'LIKE', '%' . request()->input('query') . '%')
+                    ->paginate(30);
+            } else {
+                if (request()->cat && request()->cat > 0) {
+                    $cat = request()->cat;
+                }
+
+                $total = Product::query()
+                    ->with('image', 'category')
+                    ->where('share', 1)
+                    ->where('user_id', $id_usuario)
+                    ->when($cat > 0, function ($q) {
+                        $q->where('category_id', request()->cat);
+                    })
+                    ->count();
+
+                $data['pages'] = (int)($total / 4);
+
+                $data['products'] = Product::query()
+                    ->with('image', 'category')
+                    ->where('share', 1)
+                    ->where('user_id', $id_usuario)
+                    ->when($cat > 0, function ($q) {
+                        $q->where('category_id', request()->cat);
+                    })
+                    ->paginate(5);
             }
-            $total = Product::query()
-                ->with('image', 'category')
-                ->where('share', 1)
-                ->where('user_id', $id_usuario)
-                ->when($cat > 0, function ($q) {
-                    $q->where('category_id', request()->cat);
-                })
-                ->when(isset(request()->query) && request()->query!='', function ($q) {
-                    $q->where('name', 'LIKE', '%' . (string)request()->query . '%');
-                })
-                ->count();
-
-            $data['pages'] = (int)($total / 4);
-
-            $data['products'] = Product::query()
-                ->with('image', 'category')
-                ->where('share', 1)
-                ->where('user_id', $id_usuario)
-                ->when($cat > 0, function ($q) {
-                    $q->where('category_id', request()->cat);
-                })
-                ->when(isset(request()->query) && request()->query!='', function ($q) {
-                    $q->where('name', 'LIKE', '%' . (string)request()->query . '%');
-                })
-                ->paginate(5);
         } else {
             $data['products'] = [];
             $data['pages'] = 0;
@@ -98,9 +111,6 @@ class ShareController extends Controller
                 ->where('user_id', $id_usuario)
                 ->when($cat, function ($q) {
                     $q->where('category_id', request()->cat);
-                })
-                ->when(isset(request()->query) && request()->query!='', function ($q) {
-                    $q->where('name', 'LIKE', '%' . (string)request()->query . '%');
                 })
                 ->paginate(5);
         } else {
