@@ -9,6 +9,7 @@ use App\Models\PlanUser;
 use App\Traits\ApiResponser;
 use App\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
@@ -27,13 +28,13 @@ class SocialLoginController extends Controller
 
             $providerUser = Socialite::driver($provider)->userFromToken($token);
 
-            $user = User::with('planUser')->where('provider_user_id', $providerUser->id)->first();
+            $user = User::where('provider_user_id', $providerUser->id)->first();
 
             // Si no existe el proveedor dentro de ningún usuario
             if (!$user) {
 
                 // Busco al usuario por su email
-                $user = User::with('planUser')->where('email', request()->email)->first();
+                $user = User::where('email', request()->email)->first();
 
                 // Si lo encuentro, actualizo su perfil
                 if ($user) {
@@ -48,16 +49,6 @@ class SocialLoginController extends Controller
                     $user->provider_user_id = $providerUser->id;
                     $user->save();
 
-                    $plan = Plan::where('name', 'Tienda Online')->first();
-                    $planUser = PlanUser::create([
-                        'plan_id' => $plan->id,
-                        'user_id' => $user->id,
-                        'activo' => 1,
-                        'start_date' => Carbon::parse(now())->format('Y-m-d H:i:s'),
-                        'end_date' => Carbon::parse(now())->addDays(30)->format('Y-m-d H:i:s'),
-                    ]);
-                    $planUser->save();
-
                     // Le creo la tienda de una vez
                     $company = Company::create([
                         "user_id" => $user->id,
@@ -67,7 +58,7 @@ class SocialLoginController extends Controller
                     ]);
                     $company->save();
 
-                    $user = User::with('planUser')->where('email', $user->email)->first();
+                    $user = User::where('email', $user->email)->first();
                 }
             }
 
@@ -75,7 +66,6 @@ class SocialLoginController extends Controller
             $data = $user;
             return $this->successResponse(['data' => $data]);
         } catch (Exception $th) {
-            info($th);
             return $this->errorResponse(['error' => $th]);
         }
     }
