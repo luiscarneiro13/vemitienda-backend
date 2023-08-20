@@ -30,15 +30,15 @@ Route::get('privacidad', function () {
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
-Route::get('init/{id_usuario}', 'API\V1\ShareController@init');
-Route::get('share/{id_encriptado}', 'API\V1\ShareController@share');
-Route::get('confirmationuser/{id_encriptado}', 'API\V1\UserController@confirmationuser');
-Route::get('message', 'API\V1\UserController@message')->name('message');
+Route::get('init/{id_usuario}', 'API\V3\ShareController@init');
+Route::get('share/{id_encriptado}', 'API\V3\ShareController@share');
+Route::get('confirmationuser/{id_encriptado}', 'API\V3\UserController@confirmationuser');
+Route::get('message', 'API\V3\UserController@message')->name('message');
 
-Route::get('reset2/{user_id}', 'API\V1\UserController@reset2')->name('reset2');
-Route::post('reset3', 'API\V1\UserController@reset3')->name('reset3');
+Route::get('reset2/{user_id}', 'API\V3\UserController@reset2')->name('reset2');
+Route::post('reset3', 'API\V3\UserController@reset3')->name('reset3');
 
-Route::post('contact', 'API\V1\ContactController@index')->name('contact');
+Route::post('contact', 'API\V3\ContactController@index')->name('contact');
 
 Route::get('prueba', [OrderController::class, 'prueba']);
 Route::get('contacto', 'ContactoController@index')->name('contacto');
