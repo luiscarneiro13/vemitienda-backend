@@ -25,7 +25,7 @@ class ShareController extends Controller
     public function share(Request $request, $id_encriptado)
     {
 
-        if (!isset(request()->cat)) {
+        if (!isset(request()->query) && !isset(request()->cat)) {
             return redirect(url('share/' . $id_encriptado . '?cat=0'));
         }
 
@@ -35,32 +35,52 @@ class ShareController extends Controller
         $planUser = PlanUser::where('user_id', $id_usuario)->orderBy('id', 'Desc')->first();
         $data['company'] = Company::with('logo')->where('user_id', $id_usuario)->first();
         $data['categories'] = Category::where('user_id', $id_usuario)->get();
+
         if ($planUser && $planUser->plan_id == 2) {
 
             $cat = 0;
 
-            if (request()->cat && request()->cat > 0) {
-                $cat = request()->cat;
+            if (request()->query) {
+                $total = Product::query()
+                    ->with('image', 'category')
+                    ->where('share', 1)
+                    ->where('user_id', $id_usuario)
+                    ->where('name', 'LIKE', '%' . request()->input('query') . '%')
+                    ->count();
+
+                $data['pages'] = (int)($total / 4);
+
+                $data['products'] = Product::query()
+                    ->with('image', 'category')
+                    ->where('share', 1)
+                    ->where('user_id', $id_usuario)
+                    ->where('name', 'LIKE', '%' . request()->input('query') . '%')
+                    ->paginate(30);
+            } else {
+                if (request()->cat && request()->cat > 0) {
+                    $cat = request()->cat;
+                }
+
+                $total = Product::query()
+                    ->with('image', 'category')
+                    ->where('share', 1)
+                    ->where('user_id', $id_usuario)
+                    ->when($cat > 0, function ($q) {
+                        $q->where('category_id', request()->cat);
+                    })
+                    ->count();
+
+                $data['pages'] = (int)($total / 4);
+
+                $data['products'] = Product::query()
+                    ->with('image', 'category')
+                    ->where('share', 1)
+                    ->where('user_id', $id_usuario)
+                    ->when($cat > 0, function ($q) {
+                        $q->where('category_id', request()->cat);
+                    })
+                    ->paginate(5);
             }
-            $total = Product::query()
-                ->with('image', 'category')
-                ->where('share', 1)
-                ->where('user_id', $id_usuario)
-                ->when($cat > 0, function ($q) {
-                    $q->where('category_id', request()->cat);
-                })
-                ->count();
-
-            $data['pages'] = (int)($total / 4);
-
-            $data['products'] = Product::query()
-                ->with('image', 'category')
-                ->where('share', 1)
-                ->where('user_id', $id_usuario)
-                ->when($cat > 0, function ($q) {
-                    $q->where('category_id', request()->cat);
-                })
-                ->paginate(5);
         } else {
             $data['products'] = [];
             $data['pages'] = 0;
