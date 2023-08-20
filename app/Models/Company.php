@@ -21,7 +21,8 @@ class Company extends Model
         'phone',
         'background_color_catalog',
         'is_shop',
-        'theme_id'
+        'theme_id',
+        'onboarding'
     ];
 
     protected $appends = ['url_tienda', 'slug'];
