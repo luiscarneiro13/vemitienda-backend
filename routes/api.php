@@ -95,6 +95,8 @@ Route::group(['prefix' => 'v3'], function () {
 
     Route::get('share/{id_encriptado}', 'API\V3\ShareController@shareAPI');
 
+    Route::get('themes', 'API\V3\ThemesController@index');
+
     Route::group(['middleware' => 'auth:api'], function () {
 
         Route::get('planes', 'API\V3\PlanesController@index');
@@ -118,7 +120,6 @@ Route::group(['prefix' => 'v3'], function () {
 
         Route::get('prueba', 'API\V3\UserController@prueba');
 
-        Route::get('themes', 'API\V3\ThemesController@index');
         Route::get('orders', 'API\V3\OrdersController@index');
         Route::post('updateStatus', 'API\V3\OrdersController@updateStatus');
     });
