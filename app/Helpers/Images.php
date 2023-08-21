@@ -11,14 +11,18 @@ class Images
 {
     public function uploadImage($folder)
     {
+        info(1);
         // Paso 1: Recibe un file llamado image y de tipo png
         $imagen = request()->file('image');
+        info(2);
 
         // Paso 2: Convierte el file en webp
         $imagenWebp = Image::make($imagen)->encode('webp');
+        info(3);
 
         // Paso 3: Almacénalo en DigitalOcean con storePublicly
         $rutaImagen = $imagenWebp->storePublicly($folder, 'do');
+        info(4);
 
         return $rutaImagen;
     }
