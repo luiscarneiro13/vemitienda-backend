@@ -11,31 +11,16 @@ class Images
 {
     public function uploadImage($folder)
     {
+        // Paso 1: Recibe un file llamado image y de tipo png
         $imagen = request()->file('image');
-        $nombreImagen = time() . '.' . $imagen->getClientOriginalExtension();
 
-        // Guardar la imagen original
-        $rutaTemporal = $imagen->storePublicly('temp', 'public');
+        // Paso 2: Convierte el file en webp
+        $imagenWebp = Image::make($imagen)->encode('webp');
 
-        // Convertir la imagen a formato WebP utilizando Intervention Image
-        $imagenWebP = Image::make(public_path('storage/' . $rutaTemporal))->encode('webp', 75);
-        $rutaImagenWebP = 'temp/' . $nombreImagen . '.webp';
-        Storage::disk('public')->put($rutaImagenWebP, $imagenWebP->getEncoded());
+        // Paso 3: Almacénalo en DigitalOcean con storePublicly
+        $rutaImagen = $imagenWebp->storePublicly($folder, 'do');
 
-        // Eliminar la imagen original
-        Storage::disk('public')->delete($rutaTemporal);
-
-        // Guardar la imagen en el bucket de DigitalOcean
-        $rutaImagenS3 = $folder . '/' . $nombreImagen;
-        Storage::disk('do')->put($rutaImagenS3, file_get_contents(public_path('storage/' . $rutaImagenWebP)));
-
-        // Eliminar la imagen en formato WebP temporal
-        Storage::disk('public')->delete($rutaImagenWebP);
-
-        //Se asigna permiso público para que la imagen se pueda ver
-        Storage::disk('do')->setVisibility($rutaImagenS3, 'public');
-
-        return $rutaImagenS3;
+        return $rutaImagen;
     }
     // public function uploadImage($folder)
     // {
@@ -45,31 +30,16 @@ class Images
 
     public function uploadThumbnail($folder)
     {
+        // Paso 1: Recibe un file llamado image y de tipo png
         $imagen = request()->file('thumbnail');
-        $nombreImagen = time() . '.' . $imagen->getClientOriginalExtension();
 
-        // Guardar la imagen original
-        $rutaTemporal = $imagen->storePublicly('temp', 'public');
+        // Paso 2: Convierte el file en webp
+        $imagenWebp = Image::make($imagen)->encode('webp');
 
-        // Convertir la imagen a formato WebP utilizando Intervention Image
-        $imagenWebP = Image::make(public_path('storage/' . $rutaTemporal))->encode('webp', 75);
-        $rutaImagenWebP = 'temp/' . $nombreImagen . '.webp';
-        Storage::disk('public')->put($rutaImagenWebP, $imagenWebP->getEncoded());
+        // Paso 3: Almacénalo en DigitalOcean con storePublicly
+        $rutaImagen = $imagenWebp->storePublicly($folder, 'do');
 
-        // Eliminar la imagen original
-        Storage::disk('public')->delete($rutaTemporal);
-
-        // Guardar la imagen en el bucket de DigitalOcean
-        $rutaImagenS3 = $folder . '/' . $nombreImagen;
-        Storage::disk('do')->put($rutaImagenS3, file_get_contents(public_path('storage/' . $rutaImagenWebP)));
-
-        // Eliminar la imagen en formato WebP temporal
-        Storage::disk('public')->delete($rutaImagenWebP);
-
-        //Se asigna permiso público para que la imagen se pueda ver
-        Storage::disk('do')->setVisibility($rutaImagenS3, 'public');
-
-        return $rutaImagenS3;
+        return $rutaImagen;
     }
 
 
