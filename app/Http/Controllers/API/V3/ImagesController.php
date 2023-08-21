@@ -85,8 +85,8 @@ class ImagesController extends Controller
             }
 
             try {
-                $urlImage = $this->image->uploadImage($request, 'images');
-                $thumbnail = $this->image->uploadThumbnail($request, 'thumbnails');
+                $urlImage = $this->image->uploadImage($request->file('image'), 'images');
+                $thumbnail = $this->image->uploadThumbnail($request->file('thumbnail'), 'thumbnails');
                 // sleep(3);
                 $image = $company->logo()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
                 return $this->successResponse(['data' => $image]);
@@ -151,8 +151,8 @@ class ImagesController extends Controller
         $product = Product::with('image')->find($product_id);
         if ($product && request()->image && request()->thumbnail) {
             try {
-                $urlImage = $this->image->uploadImage($request, 'images');
-                $thumbnail = $this->image->uploadThumbnail($request, 'thumbnails');
+                $urlImage = $this->image->uploadImage($request->file('image'), 'images');
+                $thumbnail = $this->image->uploadThumbnail($request->file('thumbnail'), 'thumbnails');
                 // sleep(3);
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
                 return $this->successResponse(['data' => $image]);
@@ -222,8 +222,8 @@ class ImagesController extends Controller
             }
 
             try {
-                $urlImage = $this->image->uploadImage($request, 'images');
-                $thumbnail = $this->image->uploadThumbnail($request, 'thumbnails');
+                $urlImage = $this->image->uploadImage($request->file('image'), 'images');
+                $thumbnail = $this->image->uploadThumbnail($request->file('thumbnail'), 'thumbnails');
                 // sleep(3);
                 $product = Product::find($image->imageable_id);
                 $product->image()->delete();

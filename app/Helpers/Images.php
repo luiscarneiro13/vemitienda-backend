@@ -9,25 +9,22 @@ use Intervention\Image\Facades\Image;
 
 class Images
 {
-    public function uploadImage($request, $folder)
+    public function uploadImage($imagen, $folder)
     {
-        // Recibe un archivo llamado "image" de tipo "png"
-        $file = $request->file('image');
+        // Crear una instancia de Intervention Image con la imagen cargada
+        $image = Image::make($imagen);
 
-        // Convierte el archivo a formato webp
-        $image = Image::make($file)->encode('webp');
+        // Convertir la imagen a formato WebP
+        $image->encode('webp');
 
-        // Obtén el nombre original del archivo
-        $fileName = Str::random(10) . '.webp';
+        // Generar un nombre único para la imagen
+        $nombreImagen = $folder . '/' . uniqid() . '.webp';
 
-        // Almacena el archivo en S3 con el nombre especificado y permisos públicos
-        $path = Storage::disk('do')->putFileAs($folder, $image, $fileName, 'public');
+        // Subir la imagen a Amazon DO
+        Storage::disk('do')->put($nombreImagen, $image->stream(), 'public');
 
-        // Obtiene la URL completa del archivo almacenado
-        $url = Storage::disk('do')->url($path);
-
-        // Devuelve la ruta completa del archivo
-        return $url;
+        // Devolver la URL de la imagen en S3
+        return $nombreImagen;
     }
     // public function uploadImage($folder)
     // {
@@ -35,25 +32,22 @@ class Images
     //     return $path;
     // }
 
-    public function uploadThumbnail($request, $folder)
+    public function uploadThumbnail($imagen, $folder)
     {
-        // Recibe un archivo llamado "image" de tipo "png"
-        $file = $request->file('thumbnail');
+        // Crear una instancia de Intervention Image con la imagen cargada
+        $image = Image::make($imagen);
 
-        // Convierte el archivo a formato webp
-        $image = Image::make($file)->encode('webp');
+        // Convertir la imagen a formato WebP
+        $image->encode('webp');
 
-        // Obtén el nombre original del archivo
-        $fileName = Str::random(10) . '.webp';
+        // Generar un nombre único para la imagen
+        $nombreImagen = $folder . '/' . uniqid() . '.webp';
 
-        // Almacena el archivo en S3 con el nombre especificado y permisos públicos
-        $path = Storage::disk('do')->putFileAs($folder, $image, $fileName, 'public');
+        // Subir la imagen a Amazon DO
+        Storage::disk('do')->put($nombreImagen, $image->stream(), 'public');
 
-        // Obtiene la URL completa del archivo almacenado
-        $url = Storage::disk('do')->url($path);
-
-        // Devuelve la ruta completa del archivo
-        return $url;
+        // Devolver la URL de la imagen en S3
+        return $nombreImagen;
     }
 
     public function deleteImage($url)
