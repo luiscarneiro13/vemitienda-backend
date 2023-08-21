@@ -48,6 +48,11 @@ class CompaniesRepository
         $model->slogan = request()->slogan;
         $model->phone = request()->phone;
         $model->background_color_catalog = request()->background_color_catalog;
+
+        if (request()->onboarding) {
+            $model->onboarding = request()->onboarding;
+        }
+
         $model->save();
         return $model;
     }
