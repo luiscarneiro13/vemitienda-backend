@@ -11,14 +11,23 @@ class Images
 {
     public function uploadImage($folder)
     {
-        // Paso 1: Recibe un archivo llamado "image" de tipo "png"
-        $file = request()->file('image');
+        // Recibe un archivo llamado "image" de tipo "png"
+        $file = $request->file('image');
 
-        // Paso 2: Convierte el archivo a formato webp
+        // Convierte el archivo a formato webp
         $image = Image::make($file)->encode('webp');
 
-        // Paso 3: Almacena el archivo en S3 con permisos públicos
-        return Storage::disk('do')->put($folder, $image, 'public');
+        // Obtén el nombre original del archivo
+        $fileName = Str::random(10) . '.webp';
+
+        // Almacena el archivo en S3 con el nombre especificado y permisos públicos
+        $path = Storage::disk('do')->putFileAs($folder, $image, $fileName, 'public');
+
+        // Obtiene la URL completa del archivo almacenado
+        $url = Storage::disk('do')->url($path);
+
+        // Devuelve la ruta completa del archivo
+        return $url;
     }
     // public function uploadImage($folder)
     // {
@@ -28,14 +37,23 @@ class Images
 
     public function uploadThumbnail($folder)
     {
-        // Paso 1: Recibe un archivo llamado "image" de tipo "png"
-        $file = request()->file('thumbnail');
+        // Recibe un archivo llamado "image" de tipo "png"
+        $file = $request->file('thumbnail');
 
-        // Paso 2: Convierte el archivo a formato webp
+        // Convierte el archivo a formato webp
         $image = Image::make($file)->encode('webp');
 
-        // Paso 3: Almacena el archivo en S3 con permisos públicos
-        return Storage::disk('do')->put($folder, $image, 'public');
+        // Obtén el nombre original del archivo
+        $fileName = Str::random(10) . '.webp';
+
+        // Almacena el archivo en S3 con el nombre especificado y permisos públicos
+        $path = Storage::disk('do')->putFileAs($folder, $image, $fileName, 'public');
+
+        // Obtiene la URL completa del archivo almacenado
+        $url = Storage::disk('do')->url($path);
+
+        // Devuelve la ruta completa del archivo
+        return $url;
     }
 
     public function deleteImage($url)
