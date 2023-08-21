@@ -11,20 +11,17 @@ class Images
 {
     public function uploadImage($folder)
     {
-        info(1);
-        // Paso 1: Recibe un file llamado image y de tipo png
-        $imagen = request()->file('image');
-        info(2);
+        // Paso 1: Recibe un archivo llamado "image" de tipo "png"
+        $file = request()->file('image');
 
-        // Paso 2: Convierte el file en webp
-        $imagenWebp = Image::make($imagen)->encode('webp');
-        info(3);
+        // Paso 2: Convierte el archivo a formato webp
+        $image = Image::make($file)->encode('webp');
 
-        // Paso 3: Almacénalo en DigitalOcean con storePublicly
-        $rutaImagen = $imagenWebp->storePublicly($folder, 'do');
-        info(4);
+        // Paso 3: Almacena el archivo en S3 con permisos públicos
+        $path = Storage::disk('do')->put($folder, $image, 'public');
 
-        return $rutaImagen;
+        // Devuelve la URL pública del archivo almacenado
+        return Storage::disk('do')->url($path);
     }
     // public function uploadImage($folder)
     // {
@@ -34,16 +31,17 @@ class Images
 
     public function uploadThumbnail($folder)
     {
-        // Paso 1: Recibe un file llamado image y de tipo png
-        $imagen = request()->file('thumbnail');
+        // Paso 1: Recibe un archivo llamado "image" de tipo "png"
+        $file = request()->file('thumbnail');
 
-        // Paso 2: Convierte el file en webp
-        $imagenWebp = Image::make($imagen)->encode('webp');
+        // Paso 2: Convierte el archivo a formato webp
+        $image = Image::make($file)->encode('webp');
 
-        // Paso 3: Almacénalo en DigitalOcean con storePublicly
-        $rutaImagen = $imagenWebp->storePublicly($folder, 'do');
+        // Paso 3: Almacena el archivo en S3 con permisos públicos
+        $path = Storage::disk('do')->put($folder, $image, 'public');
 
-        return $rutaImagen;
+        // Devuelve la URL pública del archivo almacenado
+        return Storage::disk('do')->url($path);
     }
 
 
