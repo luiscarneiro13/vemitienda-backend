@@ -60,7 +60,8 @@ class PruebasController extends Controller
                 Storage::disk('do')->delete($imageThumbnail);
             }
         }
-        return "Migración Lista: ".time();
+        $falta = ModelsImage::where('migrated', 0)->count();
+        return "Faltan: " . $falta . " - Migración Lista: " . time();
     }
 
     public function getAllImagesDB($limit)
