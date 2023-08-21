@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\V3\SocialLoginController;
+use App\Http\Controllers\API\V2\SocialLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
