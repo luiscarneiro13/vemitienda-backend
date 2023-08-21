@@ -18,10 +18,7 @@ class Images
         $image = Image::make($file)->encode('webp');
 
         // Paso 3: Almacena el archivo en S3 con permisos públicos
-        $path = Storage::disk('do')->put($folder, $image, 'public');
-
-        // Devuelve la URL pública del archivo almacenado
-        return Storage::disk('do')->url($path);
+        return Storage::disk('do')->put($folder, $image, 'public');
     }
     // public function uploadImage($folder)
     // {
@@ -38,12 +35,8 @@ class Images
         $image = Image::make($file)->encode('webp');
 
         // Paso 3: Almacena el archivo en S3 con permisos públicos
-        $path = Storage::disk('do')->put($folder, $image, 'public');
-
-        // Devuelve la URL pública del archivo almacenado
-        return Storage::disk('do')->url($path);
+        return Storage::disk('do')->put($folder, $image, 'public');
     }
-
 
     public function deleteImage($url)
     {
@@ -53,5 +46,22 @@ class Images
     public function convertUrlToBase64()
     {
         return base64_encode(file_get_contents(request()->file('image')));
+    }
+
+    public function getImagesFromS3Folder()
+    {
+        $folder = 'nombre_de_la_carpeta'; // Reemplaza 'nombre_de_la_carpeta' por el nombre de tu carpeta en S3
+
+        $files = Storage::disk('s3')->files($folder);
+
+        $images = [];
+
+        foreach ($files as $file) {
+            if (Storage::disk('s3')->mimeType($file) == 'image/jpeg' || Storage::disk('s3')->mimeType($file) == 'image/png') {
+                $images[] = Storage::disk('s3')->url($file);
+            }
+        }
+
+        return $images;
     }
 }
