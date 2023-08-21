@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
 Route::get('/', 'NewHomeController@index')->name('home');
+Route::get('/pruebas', 'PruebasController@index')->name('pruebas');
 Route::get('politica', function () {
     return view('politica');
 });
