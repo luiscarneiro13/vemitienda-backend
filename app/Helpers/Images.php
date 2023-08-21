@@ -12,7 +12,7 @@ class Images
     public function uploadImage($folder)
     {
         // Recibe un archivo llamado "image" de tipo "png"
-        $file = $request->file('image');
+        $file = request()->file('image');
 
         // Convierte el archivo a formato webp
         $image = Image::make($file)->encode('webp');
@@ -38,7 +38,7 @@ class Images
     public function uploadThumbnail($folder)
     {
         // Recibe un archivo llamado "image" de tipo "png"
-        $file = $request->file('thumbnail');
+        $file = request()->file('thumbnail');
 
         // Convierte el archivo a formato webp
         $image = Image::make($file)->encode('webp');
