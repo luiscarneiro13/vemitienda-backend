@@ -60,7 +60,7 @@ class PruebasController extends Controller
                 Storage::disk('do')->delete($imageThumbnail);
             }
         }
-        return "Migración Lista";
+        return "Migración Lista: ".time();
     }
 
     public function getAllImagesDB($limit)
