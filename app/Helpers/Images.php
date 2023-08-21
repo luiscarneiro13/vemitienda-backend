@@ -13,24 +13,10 @@ class Images
     {
         $image = Image::make($imagen);
         $image->encode('webp');
-        $nombreImagen = $folder . '/' . uniqid() . '.webp';
+        $nombreImagen = $folder . '/' . uniqid() . uniqid() . '.webp';
         Storage::disk('do')->put($nombreImagen, $image->stream(), 'public');
         return $nombreImagen;
     }
-    // public function uploadImage($folder)
-    // {
-    //     $path = request()->file('image')->storePublicly($folder, 'do');
-    //     return $path;
-    // }
-
-    // public function uploadThumbnail($imagen, $folder)
-    // {
-    //     $image = Image::make($imagen);
-    //     $image->encode('webp');
-    //     $nombreImagen = $folder . '/' . uniqid() . '.webp';
-    //     Storage::disk('do')->put($nombreImagen, $image->stream(), 'public');
-    //     return $nombreImagen;
-    // }
 
     public function deleteImage($url)
     {
@@ -41,5 +27,4 @@ class Images
     {
         return base64_encode(file_get_contents(request()->file('image')));
     }
-
 }
