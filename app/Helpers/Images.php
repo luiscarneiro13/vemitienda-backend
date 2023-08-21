@@ -9,10 +9,10 @@ use Intervention\Image\Facades\Image;
 
 class Images
 {
-    public function uploadImage($folder)
+    public function uploadImage($request, $folder)
     {
         // Recibe un archivo llamado "image" de tipo "png"
-        $file = request()->file('image');
+        $file = $request->file('image');
 
         // Convierte el archivo a formato webp
         $image = Image::make($file)->encode('webp');
@@ -35,10 +35,10 @@ class Images
     //     return $path;
     // }
 
-    public function uploadThumbnail($folder)
+    public function uploadThumbnail($request, $folder)
     {
         // Recibe un archivo llamado "image" de tipo "png"
-        $file = request()->file('thumbnail');
+        $file = $request->file('thumbnail');
 
         // Convierte el archivo a formato webp
         $image = Image::make($file)->encode('webp');

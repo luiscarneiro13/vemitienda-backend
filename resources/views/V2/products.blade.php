@@ -106,9 +106,9 @@
                 let loading = false
 
                 if (!(pages > -1)) {
-                    $('#suspendida').show();
-                    $('#tienda').hide();
-                    alert('Suspendida momentáneamente')
+                    // $('#suspendida').show();
+                    // $('#tienda').hide();
+                    // alert('Suspendida momentáneamente')
                 }
 
                 $(window).scroll(function() {

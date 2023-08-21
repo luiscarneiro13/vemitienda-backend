@@ -71,7 +71,7 @@ class ImagesController extends Controller
      *     )
      * )
      */
-    public function storeLogo()
+    public function storeLogo(Request $request)
     {
         $user = Auth::user();
         $company = Company::where('user_id', $user->id)->first();
@@ -85,8 +85,8 @@ class ImagesController extends Controller
             }
 
             try {
-                $urlImage = $this->image->uploadImage('images');
-                $thumbnail = $this->image->uploadThumbnail('thumbnails');
+                $urlImage = $this->image->uploadImage($request, 'images');
+                $thumbnail = $this->image->uploadThumbnail($request, 'thumbnails');
                 // sleep(3);
                 $image = $company->logo()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
                 return $this->successResponse(['data' => $image]);
@@ -146,13 +146,13 @@ class ImagesController extends Controller
      * )
      */
 
-    public function storeImageProduct($product_id)
+    public function storeImageProduct(Request $request, $product_id)
     {
         $product = Product::with('image')->find($product_id);
         if ($product && request()->image && request()->thumbnail) {
             try {
-                $urlImage = $this->image->uploadImage('images');
-                $thumbnail = $this->image->uploadThumbnail('thumbnails');
+                $urlImage = $this->image->uploadImage($request, 'images');
+                $thumbnail = $this->image->uploadThumbnail($request, 'thumbnails');
                 // sleep(3);
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
                 return $this->successResponse(['data' => $image]);
@@ -211,7 +211,7 @@ class ImagesController extends Controller
      *     )
      * )
      */
-    public function updateImageProduct($image_id)
+    public function updateImageProduct(Request $request, $image_id)
     {
         $image = Image::find($image_id);
 
@@ -222,8 +222,8 @@ class ImagesController extends Controller
             }
 
             try {
-                $urlImage = $this->image->uploadImage('images');
-                $thumbnail = $this->image->uploadThumbnail('thumbnails');
+                $urlImage = $this->image->uploadImage($request, 'images');
+                $thumbnail = $this->image->uploadThumbnail($request, 'thumbnails');
                 // sleep(3);
                 $product = Product::find($image->imageable_id);
                 $product->image()->delete();
