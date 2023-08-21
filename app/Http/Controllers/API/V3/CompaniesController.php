@@ -74,21 +74,7 @@ class CompaniesController extends Controller
         $company = Company::where('user_id', $user->id)->first();
         $userInfo = User::find($user->id);
         try {
-            $datos = array_merge(['email' => $userInfo->email, 'user_id' => $user->id, 'slug' => Str::slug(request()->name, '-')], request()->all());
-            if ($company) {
-                $company = CompaniesRepository::updateCompany($company->id);
-            } else {
-                $planUser = PlanUser::where('user_id', $user->id)->first();
-
-                if ($planUser->plan_id == 3) {
-                    $is_shop = 1;
-                } else {
-                    $is_shop = 0;
-                }
-
-                $datos = array_merge(['is_shop' => $is_shop], $datos);
-                $company = CompaniesRepository::storeCompany($datos);
-            }
+            $company = CompaniesRepository::updateCompany($company->id);
             return $this->successResponse(['message' => 'Empresa guardada', 'data' => $company]);
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
