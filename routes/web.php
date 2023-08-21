@@ -1,9 +1,6 @@
 <?php
 
 use App\Helpers\Visits;
-use App\Http\Controllers\WEB\V2\CartController;
-use App\Http\Controllers\WEB\V2\OrderController;
-use App\Http\Controllers\WEB\V2\ProductController;
 use App\Http\Controllers\WEB\V3\CartController as CartController3;
 use App\Http\Controllers\WEB\V3\OrderController as OrderController3;
 use App\Http\Controllers\WEB\V3\ProductController as ProductController3;
