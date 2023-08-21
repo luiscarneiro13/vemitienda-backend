@@ -48,12 +48,14 @@ class PruebasController extends Controller
 
             if ($extensionImage != 'webp') {
                 $item->url = $this->convertImageToWebpAndUploadToS3($imageUrl, 'images');
+                $item->migrated = 1;
                 $item->save();
                 Storage::disk('do')->delete($imageUrl);
             }
 
             if ($extensionThumbnail != 'webp') {
                 $item->thumbnail = $this->convertImageToWebpAndUploadToS3($imageThumbnail, 'thumbnails');
+                $item->migrated = 1;
                 $item->save();
                 Storage::disk('do')->delete($imageThumbnail);
             }
