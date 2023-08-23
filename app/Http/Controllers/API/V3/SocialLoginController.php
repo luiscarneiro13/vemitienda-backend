@@ -58,7 +58,7 @@ class SocialLoginController extends Controller
                     ]);
                     $company->save();
 
-                    $user = User::where('email', $user->email)->first();
+                    $user = User::with('company')->where('email', $user->email)->first();
                 }
             }
 
