@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/style.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/custom.css?v=6') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/custom.css?v=' . $version) }}" type="text/css">
 </head>
 
 <body>
@@ -193,7 +193,6 @@
                 heroSection.classList.remove('scrolled');
             }
         });
-
     </script>
 </body>
 
