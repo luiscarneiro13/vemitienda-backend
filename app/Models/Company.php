@@ -25,7 +25,7 @@ class Company extends Model
         'onboarding'
     ];
 
-    protected $appends = ['url_tienda', 'slug'];
+    protected $appends = ['url_tienda', 'url_catalogo', 'url_tienda_new', 'slug'];
 
     public function getUrlTiendaAttribute()
     {
