@@ -33,6 +33,18 @@ class Company extends Model
         return $this->attributes['url_tienda'] = $url;
     }
 
+    public function getUrlTiendaNewAttribute()
+    {
+        $url = 'https://vemitienda.online/' . $this->attributes['slug'];
+        return $this->attributes['url_tienda_new'] = $url;
+    }
+
+    public function getUrlCatalogoAttribute()
+    {
+        $url = 'https://vemitienda.online/catalogo/' . $this->attributes['slug'];
+        return $this->attributes['url_catalogo'] = $url;
+    }
+
     public function getSlugAttribute($value)
     {
         return $this->attributes['slug'] = Str::slug($this->attributes['name'], '-');
