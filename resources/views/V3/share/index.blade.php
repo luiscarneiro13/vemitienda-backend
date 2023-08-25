@@ -34,7 +34,8 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    {{-- {{ $company }} --}}
+    {{-- {{ url('catalog/'.$company->slug) }} --}}
+    {{-- {{ $company->theme }} --}}
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
@@ -122,15 +123,17 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="hero__categories">
-                        <div class="hero__categories__all">
+                        <div class="hero__categories__all {{ $company->theme->name }}">
                             <i class="fa fa-bars"></i>
                             <span>Categorías</span>
                         </div>
                         <ul style="display: none; background:'white'">
                             @if (@count($categories) > 0)
-                                <li><a href="#">Todos los productos</a></li>
+                                <li><a href="{{ url('catalogo/' . $company->slug) }}">Todos los productos</a></li>
                                 @foreach ($categories as $category)
-                                    <li><a href="#">{{ $category->name }}</a></li>
+                                    <li><a
+                                            href="{{ url('catalogo/' . $company->slug . '?cat=' . $category->id) }}">{{ $category->name }}</a>
+                                    </li>
                                 @endforeach
                             @endif
                         </ul>
@@ -139,9 +142,9 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <input type="text" placeholder="Buscar por nombre">
-                                <button type="submit" class="site-btn">Buscar</button>
+                            <form>
+                                <input id="query" name="query" type="text" placeholder="Buscar por nombre">
+                                <button class="site-btn {{ $company->theme->name }}">Buscar</button>
                             </form>
                         </div>
                     </div>
@@ -183,11 +186,11 @@
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             if (scrollTop >= topeScroll.offsetTop) {
                 heroSection.classList.add('scrolled');
-            }
-            else {
+            } else {
                 heroSection.classList.remove('scrolled');
             }
         });
+
     </script>
 </body>
 

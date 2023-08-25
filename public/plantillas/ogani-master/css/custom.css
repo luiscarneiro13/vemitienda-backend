@@ -3,7 +3,7 @@
     top: 0;
     width: 100%;
     z-index: 9999;
-    padding-top:10px;
+    padding-top: 10px;
     background: white;
     height: 120px;
 }
@@ -16,4 +16,40 @@
     height: 400px;
     /* ajusta la altura según tus necesidades */
     overflow-y: scroll;
+}
+
+.gray-500 {
+    background: #6B7280;
+}
+
+.red-500 {
+    background: #EF4444;
+}
+
+.yellow-500 {
+    background: #F59E0B;
+}
+
+.green-500 {
+    background: #10B981;
+}
+
+.blue-500 {
+    background: #3B82F6;
+}
+
+.indigo-500 {
+    background: #6366F1;
+}
+
+.purple-500 {
+    background: #8B5CF6;
+}
+
+.black {
+    cursor: pointer;
+}
+
+.orange {
+    background: #F44C04;
 }

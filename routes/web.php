@@ -37,7 +37,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('init/{id_usuario}', 'API\V3\ShareController@init');
 Route::get('share/{id_encriptado}', 'API\V3\ShareController@share');
-Route::get('catalog/{slug}', 'WEB\V3\ShareController@index');
+Route::get('catalogo/{slug}', 'WEB\V3\ShareController@index');
 Route::get('confirmationuser/{id_encriptado}', 'API\V3\UserController@confirmationuser');
 Route::get('message', 'API\V3\UserController@message')->name('message');
 
