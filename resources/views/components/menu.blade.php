@@ -27,6 +27,7 @@
             <label for="">Ver por Categoría</label>
 
         </div> --}}
+
     </div>
     <div class="col-2"></div>
     @if ((int) $cat > 0)

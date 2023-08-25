@@ -29,6 +29,9 @@ Route::get('politica', function () {
 Route::get('privacidad', function () {
     return view('privacidad');
 });
+Route::get('ejemplo', function () {
+    return view('ejemplo');
+});
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
