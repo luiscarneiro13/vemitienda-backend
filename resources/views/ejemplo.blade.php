@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/custom.css') }}" type="text/css">
 </head>
 
 <body>
@@ -103,9 +104,10 @@
         </div>
     </header>
     <!-- Header Section End -->
-
+    {{-- No borrar esta lpinea --}}
+    <div id="topeScroll"></div>
     <!-- Hero Section Begin -->
-    <section class="hero">
+    <section id="hero" class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -114,7 +116,7 @@
                             <i class="fa fa-bars"></i>
                             <span>Categorías</span>
                         </div>
-                        <ul style="display: none;">
+                        <ul style="display: none; background:'white'">
                             <li><a href="#">Fresh Meat</a></li>
                             <li><a href="#">Vegetables</a></li>
                             <li><a href="#">Fruit & Nut Gifts</a></li>
@@ -151,7 +153,8 @@
             <div class="row featured__filter">
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-1.jpg')}}">
+                        <div class="featured__item__pic set-bg"
+                            data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-1.jpg') }}">
                             {{-- <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -166,7 +169,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-2.jpg')}}">
+                        <div class="featured__item__pic set-bg"
+                            data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-2.jpg') }}">
                             {{-- <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -181,7 +185,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-3.jpg')}}">
+                        <div class="featured__item__pic set-bg"
+                            data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-3.jpg') }}">
                             {{-- <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -196,7 +201,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-4.jpg')}}">
+                        <div class="featured__item__pic set-bg"
+                            data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-4.jpg') }}">
                             {{-- <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -211,7 +217,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-5.jpg')}}">
+                        <div class="featured__item__pic set-bg"
+                            data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-5.jpg') }}">
                             {{-- <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -226,7 +233,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-6.jpg')}}">
+                        <div class="featured__item__pic set-bg"
+                            data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-6.jpg') }}">
                             {{-- <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -241,7 +249,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-7.jpg')}}">
+                        <div class="featured__item__pic set-bg"
+                            data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-7.jpg') }}">
                             {{-- <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -256,7 +265,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-8.jpg')}}">
+                        <div class="featured__item__pic set-bg"
+                            data-setbg="{{ asset('plantillas/ogani-master/img/featured/feature-8.jpg') }}">
                             {{-- <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -285,6 +295,21 @@
     <script src="{{ asset('plantillas/ogani-master/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('plantillas/ogani-master/js/main.js') }}"></script>
 
+    <script>
+        // Obtén la sección hero
+        const topeScroll = document.getElementById('topeScroll');
+        const heroSection = document.getElementById('hero');
+
+        // Agrega la clase 'scrolled' cuando la sección hero llegue al top de la pantalla
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop >= topeScroll.offsetTop) {
+                heroSection.classList.add('scrolled');
+            } else {
+                heroSection.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 
 </html>

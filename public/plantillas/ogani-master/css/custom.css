@@ -1,0 +1,19 @@
+#hero.scrolled {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    padding-top:10px;
+    background: white;
+    height: 120px;
+}
+
+.hero__categories ul {
+    background: white;
+}
+
+.products {
+    height: 400px;
+    /* ajusta la altura según tus necesidades */
+    overflow-y: scroll;
+}
