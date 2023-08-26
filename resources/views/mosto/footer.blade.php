@@ -33,9 +33,6 @@
                     <a href="#yourCustomers">Tus Clientes</a>
                 </li>
                 <li>
-                    <a href="#plans">Planes</a>
-                </li>
-                <li>
                     <a href="#testimonies">Testimonios</a>
                 </li>
                 <li>

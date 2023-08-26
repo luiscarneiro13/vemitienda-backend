@@ -81,9 +81,9 @@
     <!--============= Smart Watch Section Ends Here =============-->
 
 
-    <!--============= LISTO Pricing Section Starts Here =============-->
+    {{-- <!--============= LISTO Pricing Section Starts Here =============-->
     @include('mosto.plans')
-    <!--============= Pricing Section Ends Here =============-->
+    <!--============= Pricing Section Ends Here =============--> --}}
 
 
     <!--============= Newslater Section Starts Here =============-->

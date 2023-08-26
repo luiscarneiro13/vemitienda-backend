@@ -55,15 +55,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('plans.index') }}"
-                                class="nav-link {{ Request::segment(2)=='plans' ? 'active' : '' }}"">
-                            <i class=" nav-icon fas fa-user-edit"></i>
-                                <p>
-                                    Planes
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('categories.index') }}"
                                 class="nav-link {{ Request::segment(2)=='categories' ? 'active' : '' }}"">
                             <i class=" nav-icon fas fa-user-edit"></i>

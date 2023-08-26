@@ -10,7 +10,6 @@
                 <li><a href="/#home">Inicio</a></li>
                 <li><a href="/#features">Características</a></li>
                 <li><a href="/#yourCustomers">Tus Clientes</a></li>
-                <li><a href="/#plans">Planes</a></li>
                 <li><a href="/#">Testimonios</a></li>
             </ul>
             <div class="header-bar d-lg-none">
