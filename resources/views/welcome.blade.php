@@ -87,6 +87,8 @@
     <!-- Favicon  -->
     <link rel="icon" href="{{ asset('plantillas/evolo/images/logo.png') }}" />
     @include('toastr')
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9259103767509807"
+     crossorigin="anonymous"></script>
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">

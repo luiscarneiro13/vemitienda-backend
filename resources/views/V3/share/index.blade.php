@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/custom.css?v=' . $version) }}" type="text/css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9259103767509807"
+     crossorigin="anonymous"></script>
 </head>
 
 <body>
