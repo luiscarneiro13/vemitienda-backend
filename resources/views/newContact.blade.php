@@ -38,22 +38,6 @@
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/main.css') }}">
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51"></script>
-
-    <script>
-        function onClick(e) {
-            e.preventDefault();
-            grecaptcha.enterprise.ready(async () => {
-                const token = await grecaptcha.enterprise.execute('6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51', {
-                    action: 'LOGIN'
-                });
-                // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
-                // reCAPTCHA Enterprise to the end user's browser.
-                // This token must be validated by creating an assessment.
-                // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
-            });
-        }
-    </script>
 </head>
 
 <body data-spy="scroll" data-target="#faq-menu" data-offset="150">
@@ -107,7 +91,7 @@
                             <br><br><br>
                         @else
                             <h4 class="title text-center mb-30">Formulario</h4>
-                            <form action="{{ route('contact') }}" method="POST" autocomplete="off"
+                            <form id="form" action="{{ route('contact') }}" method="POST" autocomplete="off"
                                 class="contact-form">
                                 @csrf
                                 <div class="form-group">
@@ -154,8 +138,10 @@
 
                                 <span id="msg"></span>
 
+                                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+
                                 <div class="form-group">
-                                    <button onclick="onClick()" type="submit">Enviar
+                                    <button onclick="onClick(event)" type="submit">Enviar
                                         Mensaje</button>
                                 </div>
                             </form>
@@ -220,7 +206,18 @@
     <script src="{{ asset('plantillas/mosto/js/map.js') }}"></script>
     <script src="{{ asset('plantillas/mosto/js/contact.js') }}"></script>
     <script src="{{ asset('plantillas/mosto/js/main.js') }}"></script>
-
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51"></script>
+    <script>
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.enterprise.ready(async () => {
+                const token = await grecaptcha.enterprise.execute('6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51', {
+                    action: 'LOGIN'
+                });
+            });
+            document.getElementById('#form').submit();
+        }
+    </script>
 
 </body>
 
