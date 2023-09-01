@@ -44,7 +44,7 @@ class ContactController extends Controller
                 $parametros['phone'] = request()->phone;
                 $parametros['mensaje'] = request()->message;
 
-                // dispatch(new SendEmailJob($parametros));
+                dispatch(new SendEmailJob($parametros));
 
                 return redirect()->route('contacto')->with([
                     'message' => 'Ya recibimos su correo, en breve un asistente de ventas se pondrá en contacto con usted',
