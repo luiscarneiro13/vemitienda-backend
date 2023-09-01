@@ -38,6 +38,22 @@
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/main.css') }}">
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51"></script>
+
+    <script>
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.enterprise.ready(async () => {
+                const token = await grecaptcha.enterprise.execute('6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51', {
+                    action: 'LOGIN'
+                });
+                // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
+                // reCAPTCHA Enterprise to the end user's browser.
+                // This token must be validated by creating an assessment.
+                // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
+            });
+        }
+    </script>
 </head>
 
 <body data-spy="scroll" data-target="#faq-menu" data-offset="150">
