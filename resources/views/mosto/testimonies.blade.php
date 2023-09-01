@@ -6,10 +6,10 @@
         </div>
         <div class="testimonial-wrapper">
             <a href="#0" class="testi-next trigger">
-                <img src="{{ asset('img/client/left.png') }}" alt="client">
+                <img src="{{ asset('img/client/left.webp') }}" alt="client">
             </a>
             <a href="#0" class="testi-prev trigger">
-                <img src="{{ asset('img/client/right.png') }}" alt="client">
+                <img src="{{ asset('img/client/right.webp') }}" alt="client">
             </a>
             <div class="testimonial-area testimonial-slider owl-carousel owl-theme">
                 @forelse ($testimonies as $item)

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Ve mi Tienda</title>
-    <link rel="icon" href="{{ asset('plantillas/evolo/images/logo.png') }}" />
+    <link rel="icon" href="{{ asset('img/logometa.webp') }}" />
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Crea tu propia tienda online" />
@@ -22,7 +22,7 @@
     <!-- title shown in the actual shared post -->
     <meta property="og:description" content="Crea tu propia tienda online" />
     <!-- description shown in the actual shared post -->
-    <meta property="og:image" content="https://vemitienda.online/img/logometa.png" />
+    <meta property="og:image" content="https://vemitienda.online/img/logometa.webp" />
     <!-- image link, make sure it's jpg -->
     <meta property="og:url" content="https://vemitienda.online" />
     <!-- where do you want your post to link to -->
@@ -44,14 +44,14 @@
 
 <body>
     <!--============= ScrollToTop Section Starts Here =============-->
-    <div class="preloader">
+    {{-- <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </div>
+    </div> --}}
     <a href="#0" class="scrollToTop"><i class="fas fa-angle-up"></i></a>
     <div class="overlay"></div>
     <!--============= ScrollToTop Section Ends Here =============-->

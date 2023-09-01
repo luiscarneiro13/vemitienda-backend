@@ -1,4 +1,4 @@
-<footer class="footer-section bg_img" data-background="{{ asset('img/footer/footer-bg.jpg') }}">
+<footer class="footer-section bg_img" data-background="{{ asset('img/footer/footer-bg.webp') }}">
     <div class="container">
         <div class="footer-top padding-top padding-bottom">
             <div class="text-center mb-2">

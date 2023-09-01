@@ -11,7 +11,7 @@
                     <div class="col-sm-6">
                         <div class="exclusive-item">
                             <div class="exclusive-thumb">
-                                <img src="{{ asset('img/feature/01.png') }}" alt="feature">
+                                <img src="{{ asset('img/feature/01.webp') }}" alt="feature">
                             </div>
                             <div class="exclusive-content">
                                 <h6 class="title">Rápido</h6>
@@ -21,7 +21,7 @@
                     <div class="col-sm-6">
                         <div class="exclusive-item">
                             <div class="exclusive-thumb">
-                                <img src="{{ asset('img/feature/02.png') }}" alt="feature">
+                                <img src="{{ asset('img/feature/02.webp') }}" alt="feature">
                             </div>
                             <div class="exclusive-content">
                                 <h6 class="title">Fácil Uso</h6>
@@ -31,7 +31,7 @@
                     <div class="col-sm-6">
                         <div class="exclusive-item">
                             <div class="exclusive-thumb">
-                                <img src="{{ asset('img/feature/03.png') }}" alt="feature">
+                                <img src="{{ asset('img/feature/03.webp') }}" alt="feature">
                             </div>
                             <div class="exclusive-content">
                                 <h6 class="title">Diseño Intuitivo</h6>
@@ -41,7 +41,7 @@
                     <div class="col-sm-6">
                         <div class="exclusive-item">
                             <div class="exclusive-thumb">
-                                <img src="{{ asset('img/feature/04.png') }}" alt="feature">
+                                <img src="{{ asset('img/feature/04.webp') }}" alt="feature">
                             </div>
                             <div class="exclusive-content">
                                 <h6 class="title">Seguridad Garantizada</h6>
@@ -51,7 +51,7 @@
                     <div class="col-sm-6">
                         <div class="exclusive-item">
                             <div class="exclusive-thumb">
-                                <img src="{{ asset('img/feature/05.png') }}" alt="feature">
+                                <img src="{{ asset('img/feature/05.webp') }}" alt="feature">
                             </div>
                             <div class="exclusive-content">
                                 <h6 class="title">Historial pedidos</h6>
@@ -61,7 +61,7 @@
                     <div class="col-sm-6">
                         <div class="exclusive-item">
                             <div class="exclusive-thumb">
-                                <img src="{{ asset('img/feature/06.png') }}" alt="feature">
+                                <img src="{{ asset('img/feature/06.webp') }}" alt="feature">
                             </div>
                             <div class="exclusive-content">
                                 <h6 class="title">Atención al cliente</h6>
@@ -71,14 +71,14 @@
                 </div>
                 <div class="app-button-group mt-5">
                     <a href="https://play.google.com/store/apps/details?id=com.vemitienda.online" class="app-button">
-                        <img src="{{ asset('img/button/google.png') }}"
+                        <img src="{{ asset('img/button/google.webp') }}"
                             alt="button">
                     </a>
                 </div>
             </div>
             <div class="col-lg-5 col-xl-6 d-lg-block d-none">
                 <div class="feature-1-thumb mt-0 ex-feature">
-                    <img src="{{ asset('img/feature/feature02.png') }}" alt="feature">
+                    <img src="{{ asset('img/feature/feature02.webp') }}" alt="feature">
                 </div>
             </div>
         </div>

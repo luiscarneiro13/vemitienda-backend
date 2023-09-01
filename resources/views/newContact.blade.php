@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Ve mi Tienda</title>
-    <link rel="icon" href="{{ asset('plantillas/evolo/images/logo.png') }}" />
+    <link rel="icon" href="{{ asset('img/logometa.webp') }}" />
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Crea tu propia tienda online" />
@@ -22,7 +22,7 @@
     <!-- title shown in the actual shared post -->
     <meta property="og:description" content="Crea tu propia tienda online" />
     <!-- description shown in the actual shared post -->
-    <meta property="og:image" content="{{ asset('img/logometa.png') }}" />
+    <meta property="og:image" content="{{ asset('img/logometa.webp') }}" />
     <!-- image link, make sure it's jpg -->
     <meta property="og:url" content="{{ url('/') }}" />
     <!-- where do you want your post to link to -->
@@ -61,9 +61,9 @@
 
 
     <!--============= Header Section Ends Here =============-->
-    <section class="page-header single-header bg_img oh" data-background="{{ asset('img/page-header.png') }}">
+    <section class="page-header single-header bg_img oh" data-background="{{ asset('img/page-header1.webp') }}">
         <div class="bottom-shape d-none d-md-block">
-            <img src="{{ asset('plantillas/mosto/css/img/page-header.png') }}" alt="css">
+            <img src="{{ asset('img/page-header.webp') }}" alt="css">
         </div>
     </section>
     <!--============= Header Section Ends Here =============-->
@@ -86,7 +86,7 @@
                                 pronto nos pondremos en
                                 contacto contigo!</h5>
                             <div class="text-center">
-                                <img src="{{ asset('img/icon/counter5.png') }}" alt="">
+                                <img src="{{ asset('img/icon/counter5.webp') }}" alt="">
                             </div>
                             <br><br><br>
                         @else
@@ -149,7 +149,7 @@
                 <div class="col-lg-4">
                     <div class="contact-content">
                         <div class="man d-lg-block d-none">
-                            <img src="{{ asset('img/contact/man.png') }}" alt="bg">
+                            <img src="{{ asset('img/contact/man.webp') }}" alt="bg">
                         </div>
                         {{-- <div class="section-header left-style">
                             <h3 class="title">Have questions?</h3>
@@ -160,7 +160,7 @@
                         <div class="contact-area">
                             <div class="contact-item">
                                 <div class="contact-thumb">
-                                    <img src="{{ asset('img/contact/contact1.png') }}" alt="contact">
+                                    <img src="{{ asset('img/contact/contact1.webp') }}" alt="contact">
                                 </div>
                                 <div class="contact-contact">
                                     <h5 class="subtitle">Email</h5>
@@ -169,7 +169,7 @@
                             </div>
                             <div class="contact-item">
                                 <div class="contact-thumb">
-                                    <img src="{{ asset('img/contact/contact2.png') }}" alt="contact">
+                                    <img src="{{ asset('img/contact/contact2.webp') }}" alt="contact">
                                 </div>
                                 <div class="contact-contact">
                                     <h5 class="subtitle">Whatsapp</h5>

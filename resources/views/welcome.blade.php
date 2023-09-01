@@ -18,7 +18,7 @@
     <!-- title shown in the actual shared post -->
     <meta property="og:description" content="Crea tu propia tienda online" />
     <!-- description shown in the actual shared post -->
-    <meta property="og:image" content="{{ asset('img/logometa.png') }}" />
+    <meta property="og:image" content="{{ asset('img/logometa.webp') }}" />
     <!-- image link, make sure it's jpg -->
     <meta property="og:url" content="{{ url('/') }}" />
     <!-- where do you want your post to link to -->

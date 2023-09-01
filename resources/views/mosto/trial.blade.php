@@ -2,7 +2,7 @@
     <div class="container">
         <div class="trial-wrapper padding-top padding-bottom pr">
             <div class="ball-1">
-                <img src="{{ asset('img/balls/balls.png') }}" alt="balls">
+                <img src="{{ asset('img/balls/balls.webp') }}" alt="balls">
             </div>
             <div class="trial-content cl-white">
                 <h3 class="title">Liberamos la App y Ahora es totalmente Gratuita</h3>

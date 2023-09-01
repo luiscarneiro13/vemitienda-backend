@@ -1,5 +1,4 @@
-<section class="banner-4 bg_img oh bottom_left"
-    data-background="{{ asset('img/banner-bg-4.png') }}">
+<section class="banner-4 bg_img oh bottom_left">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-xl-7">
@@ -18,7 +17,7 @@
             </div>
             <div class="col-xl-5">
                 <div class="banner-nav-container bg_img bg_contain bottom_center"
-                    data-background="{{ asset('img/banner/banner-4.png') }}">
+                    data-background="{{ asset('img/banner/banner-4.webp') }}">
                     <div class="ban-nav">
                         <a href="#0" class="ban-prev active">
                             <i class="flaticon-left"></i>
@@ -29,16 +28,16 @@
                     </div>
                     <div class="banner-4-slider owl-theme owl-carousel">
                         <div class="slide-item bg_img"
-                            data-background="{{ asset('img/banner/slide1.png') }}">
+                            data-background="{{ asset('img/banner/slide1.webp') }}">
                         </div>
                         <div class="slide-item bg_img"
-                            data-background="{{ asset('img/banner/slide2.png') }}">
+                            data-background="{{ asset('img/banner/slide2.webp') }}">
                         </div>
                         <div class="slide-item bg_img"
-                            data-background="{{ asset('img/banner/slide3.png') }}">
+                            data-background="{{ asset('img/banner/slide3.webp') }}">
                         </div>
                         <div class="slide-item bg_img"
-                            data-background="{{ asset('img/banner/slide4.png') }}">
+                            data-background="{{ asset('img/banner/slide4.webp') }}">
                         </div>
                     </div>
                 </div>
@@ -47,7 +46,7 @@
                 <div class="banner-odometer">
                     <div class="counter-item">
                         <div class="counter-thumb">
-                            <img src="{{ asset('img/icon/counter1.png') }}" alt="icon">
+                            <img src="{{ asset('img/icon/counter1.webp') }}" alt="icon">
                         </div>
                         <div class="counter-content">
                             <h2 class="title"><span class="counter">120</span></h2>
@@ -56,7 +55,7 @@
                     </div>
                     <div class="counter-item">
                         <div class="counter-thumb">
-                            <img src="{{ asset('img/icon/counter2.png') }}" alt="icon">
+                            <img src="{{ asset('img/icon/counter2.webp') }}" alt="icon">
                         </div>
                         <div class="counter-content">
                             <h2 class="title"><span class="counter">{{ $visits }}</span></h2>

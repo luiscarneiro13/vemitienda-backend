@@ -4,32 +4,32 @@
             <div class="col-lg-6 col-xl-7 rtl">
                 <div class="collaboration-anime-area">
                     <div class="main-thumb">
-                        <img src="{{ asset('img/collaboration/main.png') }}" alt="colaboration">
+                        <img src="{{ asset('img/collaboration/main.webp') }}" alt="colaboration">
                     </div>
                     <div class="mobile wow slideInUp" data-wow-delay="1s">
                         <div class="show-up">
-                            <img src="{{ asset('img/collaboration/mobile.png') }}" alt="colaboration">
+                            <img src="{{ asset('img/collaboration/mobile.webp') }}" alt="colaboration">
                         </div>
                         <div class="mobile-slider owl-theme owl-carousel ltr">
                             <div class="mobile-item bg_img"
-                                data-background="{{ asset('img/collaboration/screen1.png') }}">
+                                data-background="{{ asset('img/collaboration/screen1.webp') }}">
                             </div>
                             <div class="mobile-item bg_img"
-                                data-background="{{ asset('img/collaboration/screen2.png') }}">
+                                data-background="{{ asset('img/collaboration/screen2.webp') }}">
                             </div>
                             <div class="mobile-item bg_img"
-                                data-background="{{ asset('img/collaboration/screen3.png') }}">
+                                data-background="{{ asset('img/collaboration/screen3.webp') }}">
                             </div>
                             <div class="mobile-item bg_img"
-                                data-background="{{ asset('img/collaboration/screen4.png') }}">
+                                data-background="{{ asset('img/collaboration/screen4.webp') }}">
                             </div>
                             <div class="mobile-item bg_img"
-                                data-background="{{ asset('img/collaboration/screen5.png') }}">
+                                data-background="{{ asset('img/collaboration/screen5.webp') }}">
                             </div>
                         </div>
                     </div>
                     <div class="girl wow slideInLeft">
-                        <img src="{{ asset('img/collaboration/girl.png') }}" alt="colaboration">
+                        <img src="{{ asset('img/collaboration/girl.webp') }}" alt="colaboration">
                     </div>
                 </div>
             </div>
@@ -97,10 +97,10 @@
                     </div>
                     <div class="cola-nav">
                         <a href="#0" class="cola-prev mr-4">
-                            <img src="{{ asset('img/collaboration/left.png') }}" alt="colaboration">
+                            <img src="{{ asset('img/collaboration/left.webp') }}" alt="colaboration">
                         </a>
                         <a href="#0" class="cola-next">
-                            <img src="{{ asset('img/collaboration/right.png') }}" alt="colaboration">
+                            <img src="{{ asset('img/collaboration/right.webp') }}" alt="colaboration">
                         </a>
                     </div>
                 </div>
