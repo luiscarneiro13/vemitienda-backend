@@ -161,7 +161,7 @@
                                 <div class="form-group">
                                     <button class="g-recaptcha"
                                         data-sitekey="6Lc4ovAnAAAAACerisb_PVs3fa28jnN3WlX54UNF"
-                                        data-callback='onSubmit' data-action='submit' type="submit">Enviar
+                                        data-callback='onSubmit' data-action='submit'>Enviar
                                         Mensaje</button>
                                 </div>
                             </form>
