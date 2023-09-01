@@ -14,7 +14,7 @@ class Alter4CompaniesTable extends Migration
     public function up()
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->boolean('onboarding')->default(1);
+            $table->boolean('onboarding')->default(0);
         });
     }
 
