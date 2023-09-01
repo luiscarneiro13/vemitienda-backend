@@ -49,11 +49,11 @@
                             <img src="{{ asset('img/icon/counter1.webp') }}" alt="icon">
                         </div>
                         <div class="counter-content">
-                            <h2 class="title"><span class="counter">120</span></h2>
-                            <span>Usuarios Premium</span>
+                            <h2 class="title"><span class="counter">100</span>%</h2>
+                            <span>Gratis</span>
                         </div>
                     </div>
-                    <div class="counter-item">
+                    {{-- <div class="counter-item">
                         <div class="counter-thumb">
                             <img src="{{ asset('img/icon/counter2.webp') }}" alt="icon">
                         </div>
@@ -61,7 +61,7 @@
                             <h2 class="title"><span class="counter">{{ $visits }}</span></h2>
                             <span>Visitas</span>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
