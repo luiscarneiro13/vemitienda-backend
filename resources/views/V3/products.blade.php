@@ -13,7 +13,7 @@
         content="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}" />
     <meta property="og:type" content="article" />
 
-    <x-googleAnalythics />
+    <x-googleAnalytics />
     <x-googleAdsense />
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />

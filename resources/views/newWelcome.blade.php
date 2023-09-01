@@ -28,7 +28,7 @@
     <!-- where do you want your post to link to -->
     <meta property="og:type" content="article" />
 
-    <x-googleAnalythics />
+    <x-googleAnalytics />
     <x-googleAdsense/>
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/all.min.css') }}">
