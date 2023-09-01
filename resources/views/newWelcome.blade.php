@@ -28,6 +28,8 @@
     <!-- where do you want your post to link to -->
     <meta property="og:type" content="article" />
 
+    <x-googleAnalythics />
+    <x-googleAdsense/>
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/animate.css') }}">
@@ -38,8 +40,7 @@
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9259103767509807"
-    crossorigin="anonymous"></script>
+
 </head>
 
 <body>

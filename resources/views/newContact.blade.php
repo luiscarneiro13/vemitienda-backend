@@ -27,7 +27,8 @@
     <meta property="og:url" content="{{ url('/') }}" />
     <!-- where do you want your post to link to -->
     <meta property="og:type" content="article" />
-
+    <x-googleAnalythics />
+    <x-googleAdsense />
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/animate.css') }}">
@@ -37,7 +38,6 @@
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/main.css') }}">
-
 </head>
 
 <body data-spy="scroll" data-target="#faq-menu" data-offset="150">
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Email</label>
-                                    <input type="text" name="email" id="remail"  value="{{ old('email') }}"
+                                    <input type="text" name="email" id="remail" value="{{ old('email') }}"
                                         placeholder="Ingresa tu correo electrónico" required>
                                     <div class="help-block with-errors" style="color:#F6442C">
                                         @if (Session::has('errors') && @Session::get('errors')->first('email'))
@@ -117,7 +117,7 @@
 
                                 <div class="form-group">
                                     <label for="name">Teléfono</label>
-                                    <input type="text" name="phone" id="rphone"  value="{{ old('phone') }}"
+                                    <input type="text" name="phone" id="rphone" value="{{ old('phone') }}"
                                         placeholder="Ingresa tu número de teléfono" required>
                                     <div class="help-block with-errors" style="color:#F6442C">
                                         @if (Session::has('errors') && @Session::get('errors')->first('phone'))

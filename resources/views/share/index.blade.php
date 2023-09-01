@@ -15,6 +15,9 @@
         content="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}" />
     <meta property="og:type" content="article" />
 
+    <x-googleAnalythics />
+    <x-googleAdsense />
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
         rel="stylesheet">
 
