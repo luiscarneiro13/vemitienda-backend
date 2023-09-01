@@ -38,6 +38,30 @@
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/main.css') }}">
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51"></script>
+    <script>
+        document.addEventListener('submit', funtion(e) {
+
+            e.preventDefault();
+
+            grecaptcha.enterprise.ready(async () => {
+
+                const token = await grecaptcha.enterprise.execute('6Lc4ovAnAAAAACerisb_PVs3fa28jnN3WlX54UNF', {
+                    action: 'LOGIN'
+                });
+
+                let form = e.target;
+                let input = document.createElement('input');
+
+                input.type = 'hidden';
+                input.name = 'g-recaptcha-response'
+                input.value = token
+
+                form.appendChild(input)
+                form.submit()
+            });
+        })
+    </script>
 </head>
 
 <body data-spy="scroll" data-target="#faq-menu" data-offset="150">
@@ -141,7 +165,9 @@
                                 <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
 
                                 <div class="form-group">
-                                    <button onclick="onClick(event)" type="submit">Enviar
+                                    <button class="g-recaptcha"
+                                        data-sitekey="6Lc4ovAnAAAAACerisb_PVs3fa28jnN3WlX54UNF"
+                                        data-callback='onSubmit' data-action='submit' type="submit">Enviar
                                         Mensaje</button>
                                 </div>
                             </form>
@@ -206,18 +232,7 @@
     <script src="{{ asset('plantillas/mosto/js/map.js') }}"></script>
     <script src="{{ asset('plantillas/mosto/js/contact.js') }}"></script>
     <script src="{{ asset('plantillas/mosto/js/main.js') }}"></script>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51"></script>
-    <script>
-        function onClick(e) {
-            e.preventDefault();
-            grecaptcha.enterprise.ready(async () => {
-                const token = await grecaptcha.enterprise.execute('6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51', {
-                    action: 'LOGIN'
-                });
-            });
-            document.getElementById('#form').submit();
-        }
-    </script>
+
 
 </body>
 
