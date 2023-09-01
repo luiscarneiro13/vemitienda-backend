@@ -1,3 +1,17 @@
 .header-section.header-cl-black.active {
     opacity: 0.9;
 }
+
+/* Estilos para el margen en pantallas grandes */
+@media screen and (min-width: 768px) {
+    .banner-content-3 {
+        margin-top: -250px;
+    }
+}
+
+/* Estilos para el margen en dispositivos móviles */
+@media screen and (max-width: 767px) {
+    .banner-content-3 {
+        margin-top: 50px;
+    }
+}
