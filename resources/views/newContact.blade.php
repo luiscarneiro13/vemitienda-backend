@@ -40,7 +40,8 @@
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/main.css') }}">
     <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51"></script>
     <script>
-        document.addEventListener('submit', funtion(e) {
+
+        document.addEventListener('submit', function(e) {
 
             e.preventDefault();
 
