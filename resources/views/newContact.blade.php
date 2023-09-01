@@ -38,26 +38,20 @@
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/main.css') }}">
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeQLPAnAAAAAPM-fhlGuSrejjofH3B-DuvY8F51"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lc4ovAnAAAAACerisb_PVs3fa28jnN3WlX54UNF"></script>
     <script>
 
         document.addEventListener('submit', function(e) {
-
             e.preventDefault();
-
             grecaptcha.enterprise.ready(async () => {
-
                 const token = await grecaptcha.enterprise.execute('6Lc4ovAnAAAAACerisb_PVs3fa28jnN3WlX54UNF', {
                     action: 'LOGIN'
                 });
-
                 let form = e.target;
                 let input = document.createElement('input');
-
                 input.type = 'hidden';
                 input.name = 'g-recaptcha-response'
                 input.value = token
-
                 form.appendChild(input)
                 form.submit()
             });
