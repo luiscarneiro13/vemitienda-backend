@@ -228,7 +228,7 @@
     <script src="{{ asset('plantillas/mosto/js/owl.min.js') }}"></script>
     <script src="{{ asset('plantillas/mosto/js/counterup.min.js') }}"></script>
     <script src="{{ asset('plantillas/mosto/js/paroller.js') }}"></script>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script>
+    {{-- <script src="https://maps.google.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script> --}}
     <script src="{{ asset('plantillas/mosto/js/map.js') }}"></script>
     <script src="{{ asset('plantillas/mosto/js/contact.js') }}"></script>
     <script src="{{ asset('plantillas/mosto/js/main.js') }}"></script>
