@@ -155,7 +155,7 @@
                                 <span id="msg"></span>
 
                                 <div class="form-group">
-                                    <button type="submit">Enviar
+                                    <button onclick="onClick()" type="submit">Enviar
                                         Mensaje</button>
                                 </div>
                             </form>
