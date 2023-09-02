@@ -17,10 +17,10 @@ class ContactController extends Controller
         $lastSubmissionTime = Session::get('last_submission_time');
         $currentTime = Date::now();
 
-        if ($lastSubmissionTime && $currentTime->diffInSeconds($lastSubmissionTime) < 1) {
+        if ($lastSubmissionTime && $currentTime->diffInSeconds($lastSubmissionTime) < 21600) {
             return back()->with(
                 [
-                    'message' => 'No puedes enviar mensajes tan rápido. Por favor, espera 24 horas.',
+                    'message' => 'No puedes enviar mensajes tan rápido. Por favor, espera 6 horas para enviar el siguiente email!',
                     'color' => 'danger'
                 ]
             );
