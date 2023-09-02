@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Crea tu propia tienda online" />
+    <meta name="description" content="Crea tu propia tienda online gratis" />
     <meta name="author" content="Inovatik" />
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
@@ -16,7 +16,7 @@
     <!-- website link -->
     <meta property="og:title" content="Ve mi Tienda" />
     <!-- title shown in the actual shared post -->
-    <meta property="og:description" content="Crea tu propia tienda online" />
+    <meta property="og:description" content="Crea tu propia tienda online gratis" />
     <!-- description shown in the actual shared post -->
     <meta property="og:image" content="{{ asset('img/logometa.webp') }}" />
     <!-- image link, make sure it's jpg -->
@@ -158,7 +158,7 @@
                                     alt="alternative" />
                             </div>
                             <h1>
-                                <span class="turquoise" style="font-size: 40px">Crea tu propia tienda online</span>
+                                <span class="turquoise" style="font-size: 40px">Crea tu propia tienda online gratis</span>
                                 <br />30 días gratis
                             </h1>
                             <p class="p-large">

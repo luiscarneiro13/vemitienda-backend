@@ -10,7 +10,7 @@
     <link rel="icon" href="{{ asset('img/logometa.webp') }}" />
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Crea tu propia tienda online" />
+    <meta name="description" content="Crea tu propia tienda online gratis" />
     <meta name="author" content="Inovatik" />
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
@@ -20,7 +20,7 @@
     <!-- website link -->
     <meta property="og:title" content="Ve mi Tienda" />
     <!-- title shown in the actual shared post -->
-    <meta property="og:description" content="Crea tu propia tienda online" />
+    <meta property="og:description" content="Crea tu propia tienda online gratis" />
     <!-- description shown in the actual shared post -->
     <meta property="og:image" content="{{ asset('img/logometa.webp') }}" />
     <!-- image link, make sure it's jpg -->

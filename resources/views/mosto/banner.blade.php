@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-xl-7">
                 <div class="banner-content-3">
-                    <h1 class="title">Crea tu propia tienda online</h1>
+                    <h1 class="title">Crea tu propia tienda online gratis!</h1>
                     <p>Con nuestra aplicación, puedes crear tu propia tienda en línea. Agrega tus productos y recibe
                         pedidos</p>
                     <div class="banner-button-group">

@@ -10,7 +10,7 @@
     <link rel="icon" href="{{ asset('img/logometa.webp') }}" />
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Crea tu propia tienda online" />
+    <meta name="description" content="Crea tu propia tienda online gratis" />
     <meta name="author" content="Inovatik" />
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
@@ -20,7 +20,7 @@
     <!-- website link -->
     <meta property="og:title" content="Ve mi Tienda" />
     <!-- title shown in the actual shared post -->
-    <meta property="og:description" content="Crea tu propia tienda online" />
+    <meta property="og:description" content="Crea tu propia tienda online gratis" />
     <!-- description shown in the actual shared post -->
     <meta property="og:image" content="https://vemitienda.online/img/logometa.webp" />
     <!-- image link, make sure it's jpg -->
@@ -29,7 +29,7 @@
     <meta property="og:type" content="article" />
 
     <x-googleAnalytics />
-    <x-googleAdsense/>
+    <x-googleAdsense />
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/animate.css') }}">
@@ -112,6 +112,14 @@
     @include('mosto.trial')
     <!--============= Trial Section Ends Here =============-->
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9259103767509807"
+        crossorigin="anonymous"></script>
+    <!-- banner-footer -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9259103767509807" data-ad-slot="9365824986"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
     <!--============= Footer Section Starts Here =============-->
     @include('mosto.footer')
