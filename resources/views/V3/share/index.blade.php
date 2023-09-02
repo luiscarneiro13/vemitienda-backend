@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/custom.css?v=' . $version) }}" type="text/css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9259103767509807"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -170,6 +170,15 @@
     </section>
     <!-- Featured Section End -->
 
+    <section class="">
+        <div class="container">
+            <div class="row featured__filter">
+                <div class="col-12">
+                    <center><img width="200px" src="{{ asset('img/sistelconet.webp') }}" alt=""></center>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Js Plugins -->
 
     <script src="{{ asset('plantillas/ogani-master/js/jquery-3.3.1.min.js') }}"></script>
