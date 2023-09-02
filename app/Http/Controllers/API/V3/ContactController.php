@@ -17,14 +17,7 @@ class ContactController extends Controller
         $lastSubmissionTime = Session::get('last_submission_time');
         $currentTime = Date::now();
 
-        return back()->with(
-            [
-                'message' => 'No puedes enviar mensajes tan rápido. Por favor, espera 24 horas.',
-                'color' => 'danger'
-            ]
-        );
-
-        if ($lastSubmissionTime && $currentTime->diffInSeconds($lastSubmissionTime) < 86400) {
+        if ($lastSubmissionTime && $currentTime->diffInSeconds($lastSubmissionTime) < 1) {
             return back()->with(
                 [
                     'message' => 'No puedes enviar mensajes tan rápido. Por favor, espera 24 horas.',
