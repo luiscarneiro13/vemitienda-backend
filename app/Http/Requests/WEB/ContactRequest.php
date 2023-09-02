@@ -28,7 +28,7 @@ class ContactRequest extends FormRequest
             'email'   => 'required|min:3|email|max:120',
             'phone'   => 'required|min:3|max:120',
             'message' => 'required|min:3|max:120',
-            'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha],
         ];
 
         return $datos;

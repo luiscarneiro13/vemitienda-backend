@@ -16,7 +16,12 @@ class ContactController extends Controller
     {
         $lastSubmissionTime = Session::get('last_submission_time');
         $currentTime = Date::now();
-
+        return back()->with(
+            [
+                'message' => 'No puedes enviar mensajes tan rápido. Por favor, espera 24 horas.',
+                'color' => 'error'
+            ]
+        );
         if ($lastSubmissionTime && $currentTime->diffInSeconds($lastSubmissionTime) < 86400) {
             return back()->with(
                 [
@@ -28,35 +33,26 @@ class ContactController extends Controller
 
         Session::put('last_submission_time', $currentTime);
 
-        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => env('RECAPTCHA_SECRET_KEY'),
-            'response' => $request->input('g-recaptcha-response')
-        ])->object();
+
         // Validar los campos del formulario
 
-        if ($response->success && $response->score >= 0.7) {
-            // El usuario es real
-            try {
-                $parametros['destinatario'] = 'carneiroluis2@gmail.com';
-                $parametros['type'] = 'Contacto';
-                $parametros['name'] = request()->name;
-                $parametros['email'] = request()->email;
-                $parametros['phone'] = request()->phone;
-                $parametros['mensaje'] = request()->message;
 
-                dispatch(new SendEmailJob($parametros));
+        // El usuario es real
+        try {
+            $parametros['destinatario'] = 'carneiroluis2@gmail.com';
+            $parametros['type'] = 'Contacto';
+            $parametros['name'] = request()->name;
+            $parametros['email'] = request()->email;
+            $parametros['phone'] = request()->phone;
+            $parametros['mensaje'] = request()->message;
 
-                return redirect()->route('contacto')->with([
-                    'message' => 'Ya recibimos su correo, en breve un asistente de ventas se pondrá en contacto con usted',
-                    'color' => 'success'
-                ]);
-            } catch (\Throwable $th) {
-                return redirect()->route('contacto')->with([
-                    'message' => 'Ocurrió un error inesperado, por favor intenta de nuevo',
-                    'color' => 'danger'
-                ]);
-            }
-        } else {
+            dispatch(new SendEmailJob($parametros));
+
+            return redirect()->route('contacto')->with([
+                'message' => 'Ya recibimos su correo, en breve un asistente de ventas se pondrá en contacto con usted',
+                'color' => 'success'
+            ]);
+        } catch (\Throwable $th) {
             return redirect()->route('contacto')->with([
                 'message' => 'Ocurrió un error inesperado, por favor intenta de nuevo',
                 'color' => 'danger'

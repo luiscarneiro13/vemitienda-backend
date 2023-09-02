@@ -118,7 +118,7 @@
                                     <label for="name">Nombre y Apellido</label>
                                     <input type="text" name="name" id="rname" value="{{ old('name') }}"
                                         placeholder="Ingresa tu nombre y apellido" required>
-                                    <div class="help-block with-errors" style="color:#F6442C">
+                                    <div class="help-block with-errors" style="color:#F6442C;font-size: 12px;">
                                         @if (Session::has('errors') && @Session::get('errors')->first('name'))
                                             <strong>{{ Session::get('errors')->first('name') }}</strong>
                                         @endif
@@ -128,7 +128,7 @@
                                     <label for="name">Email</label>
                                     <input type="text" name="email" id="remail" value="{{ old('email') }}"
                                         placeholder="Ingresa tu correo electrónico" required>
-                                    <div class="help-block with-errors" style="color:#F6442C">
+                                    <div class="help-block with-errors" style="color:#F6442C;font-size: 12px;">
                                         @if (Session::has('errors') && @Session::get('errors')->first('email'))
                                             <strong>{{ Session::get('errors')->first('email') }}</strong>
                                         @endif
@@ -139,7 +139,7 @@
                                     <label for="name">Teléfono</label>
                                     <input type="text" name="phone" id="rphone" value="{{ old('phone') }}"
                                         placeholder="Ingresa tu número de teléfono" required>
-                                    <div class="help-block with-errors" style="color:#F6442C">
+                                    <div class="help-block with-errors" style="color:#F6442C;font-size: 12px;">
                                         @if (Session::has('errors') && @Session::get('errors')->first('phone'))
                                             <strong>{{ Session::get('errors')->first('phone') }}</strong>
                                         @endif
@@ -148,8 +148,8 @@
 
                                 <div class="form-group mb-0">
                                     <label for="message">Mensaje</label>
-                                    <textarea id="rmessage" name="message" placeholder="Escribe tu mensaje" required></textarea>
-                                    <div class="help-block with-errors" style="color:#F6442C">
+                                    <textarea id="rmessage" name="message" placeholder="Escribe tu mensaje" required>{{ old('message') }}</textarea>
+                                    <div class="help-block with-errors" style="color:#F6442C;font-size: 12px;">
                                         @if (Session::has('errors') && @Session::get('errors')->first('message'))
                                             <strong>{{ Session::get('errors')->first('message') }}</strong>
                                         @endif
@@ -157,9 +157,13 @@
                                 </div>
 
                                 <span id="msg"></span>
-
+                                <div class="help-block with-errors" style="color:#F6442C;font-size: 12px;">
+                                    @if (Session::has('errors') && @Session::get('errors')->first('g-recaptcha-response'))
+                                        <strong>{{ Session::get('errors')->first('g-recaptcha-response') }}</strong>
+                                    @endif
+                                </div>
                                 <div class="form-group">
-                                    <button class="g-recaptcha"
+                                    <button class="button-4 g-recaptcha"
                                         data-sitekey="6Lc4ovAnAAAAACerisb_PVs3fa28jnN3WlX54UNF"
                                         data-callback='onSubmit' data-action='submit'>Enviar
                                         Mensaje</button>
@@ -226,7 +230,11 @@
     {{-- <script src="{{ asset('plantillas/mosto/js/map.js') }}"></script> --}}
     <script src="{{ asset('plantillas/mosto/js/contact.js') }}"></script>
     <script src="{{ asset('plantillas/mosto/js/main.js') }}"></script>
-
+    <script>
+        function onSubmit(token) {
+            document.getElementById("form").submit()
+        }
+    </script>
 
 </body>
 
