@@ -101,10 +101,9 @@
                 <div class="col-lg-7">
                     <div class="contact-wrapper">
                         @if (Session::has('message'))
-                            <h5 class="text-center text-success mb-5">¡Gracias por escribirnos, ya recibimos tu mensaje
-                                y
-                                pronto nos pondremos en
-                                contacto contigo!</h5>
+                            <h5 class="text-center text-{{ Session::get('color') }}">{{ Session::get('message') }}
+                            </h5>
+                            <br>
                             <div class="text-center">
                                 <img src="{{ asset('img/icon/counter5.webp') }}" alt="">
                             </div>
