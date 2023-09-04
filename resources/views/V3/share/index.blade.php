@@ -170,10 +170,10 @@
     </section>
     <!-- Featured Section End -->
 
-    <section class="">
+    <section>
         <div class="container">
             <div class="row featured__filter">
-                <div class="col-12">
+                <div class="col-12 mb-5">
                     <center><img width="200px" src="{{ asset('img/sistelconet.webp') }}" alt=""></center>
                 </div>
             </div>

@@ -17,6 +17,7 @@
     <x-googleAdsense />
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('plantillas/ogani-master/css/style.css') }}" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
@@ -27,6 +28,10 @@
 </head>
 
 <body>
+
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
     <div id="tienda" class="bg-white">
 
@@ -94,7 +99,7 @@
                 </div>
             </div>
 
-
+            <script src="{{ asset('plantillas/ogani-master/js/main.js') }}"></script>
             <script type="text/javascript">
                 var page = 1;
                 const pages = JSON.parse('{{ $pages }}')
@@ -104,18 +109,18 @@
                 $(window).scroll(function() {
                     if ($(window).scrollTop() + $(window).height() + 100 >= $(document).height()) {
                         if ((page < pages) && !loading) {
-                            $('.ajax-load').show();
-                            page++;
-                            loadMoreData(page);
+                            // $('.ajax-load').show();
+                            // page++;
+                            // loadMoreData(page);
                         }
                     }
                 });
 
                 function loadMore() {
-                    if (page < pages) {
-                        page++;
-                        loadMoreData(page);
-                    }
+                    // if (page < pages) {
+                    //     page++;
+                    //     loadMoreData(page);
+                    // }
                 }
 
                 function loadMoreData(page) {
@@ -195,6 +200,15 @@
             </script>
         </main>
     </div>
+    <section>
+        <div class="container">
+            <div class="row featured__filter">
+                <div class="col-12 mb-5">
+                    <center><img width="200px" src="{{ asset('img/sistelconet.webp') }}" alt=""></center>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>

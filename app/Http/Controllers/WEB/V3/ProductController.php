@@ -48,12 +48,12 @@ class ProductController extends Controller
             ->when($cat > 0, function ($q) {
                 $q->where('category_id', request()->cat);
             })
-            ->paginate(10);
+            ->get();
 
-        if ($request->ajax()) {
-            $view = view('V3.data', $data)->render();
-            return response()->json(['html' => $view]);
-        }
+        // if ($request->ajax()) {
+        //     $view = view('V3.data', $data)->render();
+        //     return response()->json(['html' => $view]);
+        // }
         // return $data['company']->theme;
         return view('V3.products', $data);
     }
