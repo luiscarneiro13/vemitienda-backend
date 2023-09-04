@@ -94,10 +94,22 @@
                 <div id="post-data" class="grid grid-cols-2 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-6">
                     @include('V2.data')
                 </div>
+                <br><br>
+                <section>
+                    <div class="container">
+                        <div class="row featured__filter">
+                            <div class="col-12">
+                                <center><img width="200px" src="{{ asset('img/sistelconet.webp') }}" alt=""></center>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <div class="ajax-load text-center" style="display:none">
                     <center><img width="50px" src="{{ asset('img/loader.gif') }}" alt=""></center>
                 </div>
+                <br><br>
             </div>
+
 
             <script src="{{ asset('plantillas/ogani-master/js/main.js') }}"></script>
             <script type="text/javascript">
@@ -200,15 +212,7 @@
             </script>
         </main>
     </div>
-    <section>
-        <div class="container">
-            <div class="row featured__filter">
-                <div class="col-12 mb-5">
-                    <center><img width="200px" src="{{ asset('img/sistelconet.webp') }}" alt=""></center>
-                </div>
-            </div>
-        </div>
-    </section>
+
 </body>
 
 </html>
