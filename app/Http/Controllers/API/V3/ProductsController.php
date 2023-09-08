@@ -25,7 +25,7 @@ class ProductsController extends Controller
     /**
      * @OA\Get(
      *     tags={"Products"},
-     *     path="/products-user",
+     *     path="/v3/products-user",
      *     security={{"bearer_token":{}}},
      *     summary="Mostrar los productos del Usuario de la App",
      *     @OA\Response(
@@ -47,7 +47,7 @@ class ProductsController extends Controller
     /**
      * @OA\Post(
      *     tags={"Products"},
-     *     path="/products-user",
+     *     path="/v3/products-user",
      *     security={{"bearer_token":{}}},
      *     summary="Crear Producto de un Usuario App",
      *     @OA\RequestBody(
@@ -89,7 +89,7 @@ class ProductsController extends Controller
     /**
      * @OA\Get(
      *     tags={"Products"},
-     *     path="/products-user/{id}",
+     *     path="/v3/products-user/{id}",
      *     security={{"bearer_token":{}}},
      *     summary="Ver producto de un Usuario App por Id",
      *      @OA\Parameter(
@@ -115,7 +115,7 @@ class ProductsController extends Controller
     /**
      * @OA\Put(
      *     tags={"Products"},
-     *     path="/products-user/{id}",
+     *     path="/v3/products-user/{id}",
      *     security={{"bearer_token":{}}},
      *     summary="Actualizar producto de un Usuario App",
      *     @OA\Parameter(
@@ -157,7 +157,7 @@ class ProductsController extends Controller
     /**
      * @OA\Delete(
      *     tags={"Products"},
-     *     path="/products/{id}",
+     *     path="/v3/products/{id}",
      *     security={{"bearer_token":{}}},
      *     summary="Borrar producto de un Usuario App",
      *      @OA\Parameter(

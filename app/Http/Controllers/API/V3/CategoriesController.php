@@ -12,11 +12,10 @@ class CategoriesController extends Controller
 {
     use ApiResponser;
 
-
-    /**
+     /**
      * @OA\Get(
      *     tags={"Categories"},
-     *     path="/categories",
+     *     path="/v3/categories",
      *     security={{"bearer_token":{}}},
      *     summary="Mostrar Categorías para Usuario de la App",
      *     @OA\Response(
@@ -41,7 +40,7 @@ class CategoriesController extends Controller
     /**
      * @OA\Post(
      *     tags={"Categories"},
-     *     path="/categories",
+     *     path="/v3/categories",
      *     security={{"bearer_token":{}}},
      *     summary="Crear nueva categoría de un Usuario App",
      *     @OA\RequestBody(
@@ -77,7 +76,7 @@ class CategoriesController extends Controller
     /**
      * @OA\Get(
      *     tags={"Categories"},
-     *     path="/categories/{id}",
+     *     path="/v3/categories/{id}",
      *     security={{"bearer_token":{}}},
      *     summary="Ver categoría de un Usuario App por Id",
      *      @OA\Parameter(
@@ -107,7 +106,7 @@ class CategoriesController extends Controller
     /**
      * @OA\Put(
      *     tags={"Categories"},
-     *     path="/categories/{id}",
+     *     path="/v3/categories/{id}",
      *     security={{"bearer_token":{}}},
      *     summary="Actualizar categoría de un Usuario App",
      *      @OA\Parameter(
@@ -150,7 +149,7 @@ class CategoriesController extends Controller
     /**
      * @OA\Delete(
      *     tags={"Categories"},
-     *     path="/categories/{id}",
+     *     path="/v3/categories/{id}",
      *     security={{"bearer_token":{}}},
      *     summary="Borrar categoría de un Usuario App",
      *      @OA\Parameter(

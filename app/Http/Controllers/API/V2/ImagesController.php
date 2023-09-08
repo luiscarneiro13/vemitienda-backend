@@ -29,48 +29,6 @@ class ImagesController extends Controller
         $this->image = new Images();
     }
 
-    /**
-     * @OA\Post(
-     *     tags={"Logo"},
-     *     path="/storeLogo",
-     *     security={{"bearer_token":{}}},
-     *     summary="Crear logo de Empresa",
-     *      @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="multipart/form-data",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     description="Folder de la imagen",
-     *                     property="folder",
-     *                     type="string",
-     *                     format="text",
-     *                     default="logo",
-     *                 ),
-     *                 @OA\Property(
-     *                     description="subir imagen",
-     *                     property="image",
-     *                     type="string",
-     *                     format="binary",
-     *                 ),
-     *                 @OA\Property(
-     *                     description="Miniatura",
-     *                     property="thumbnail",
-     *                     type="string",
-     *                     format="binary",
-     *                 ),
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function storeLogo()
     {
         $user = Auth::user();
@@ -98,53 +56,6 @@ class ImagesController extends Controller
     }
 
 
-    /**
-     * @OA\Post(
-     *     tags={"Products"},
-     *     path="/storeImageProduct/{product_id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Crear logo de Empresa",
-     *     @OA\Parameter(
-     *        name="product_id",
-     *        in="path",
-     *        required=true
-     *     ),
-     *      @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="multipart/form-data",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     description="Folder de la imagen",
-     *                     property="folder",
-     *                     type="string",
-     *                     format="text",
-     *                     default="images",
-     *                 ),
-     *                 @OA\Property(
-     *                     description="subir imagen",
-     *                     property="image",
-     *                     type="string",
-     *                     format="binary",
-     *                 ),
-     *                 @OA\Property(
-     *                     description="Miniatura",
-     *                     property="thumbnail",
-     *                     type="string",
-     *                     format="binary",
-     *                 ),
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
 
     public function storeImageProduct($product_id)
     {
@@ -164,53 +75,6 @@ class ImagesController extends Controller
         }
     }
 
-    /**
-     * @OA\Post(
-     *     tags={"Products"},
-     *     path="/updateImageProduct/{image_id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Crear logo de Empresa",
-     *     @OA\Parameter(
-     *        name="image_id",
-     *        in="path",
-     *        required=true
-     *     ),
-     *      @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="multipart/form-data",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     description="Folder de la imagen",
-     *                     property="folder",
-     *                     type="string",
-     *                     format="text",
-     *                     default="images",
-     *                 ),
-     *                 @OA\Property(
-     *                     description="subir imagen",
-     *                     property="image",
-     *                     type="string",
-     *                     format="binary",
-     *                 ),
-     *                 @OA\Property(
-     *                     description="Miniatura",
-     *                     property="thumbnail",
-     *                     type="string",
-     *                     format="binary",
-     *                 ),
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function updateImageProduct($image_id)
     {
         $image = Image::find($image_id);
@@ -238,27 +102,6 @@ class ImagesController extends Controller
         }
     }
 
-    /**
-     * @OA\Delete(
-     *     tags={"Products"},
-     *     path="/deleteImageProduct/{image_id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Borrar imagen de un Producto",
-     *      @OA\Parameter(
-     *          name="image_id",
-     *          in="path",
-     *          required=true
-     *      ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function deleteImageProduct($image)
     {
         try {

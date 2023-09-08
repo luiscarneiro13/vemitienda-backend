@@ -13,7 +13,7 @@ class ThemesController extends Controller
     /**
      * @OA\Get(
      *     tags={"Themes"},
-     *     path="/themes",
+     *     path="/v3/themes",
      *     security={{"bearer_token":{}}},
      *     summary="Mostrar los temas disponibles",
      *     @OA\Response(

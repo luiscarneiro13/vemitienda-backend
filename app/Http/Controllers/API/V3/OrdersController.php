@@ -13,7 +13,7 @@ class OrdersController extends Controller
     /**
      * @OA\Get(
      *     tags={"Orders"},
-     *     path="/orders",
+     *     path="/v3/orders",
      *     security={{"bearer_token":{}}},
      *     summary="Mostrar todas los pedidos del Usuario de la App",
      *     @OA\Response(
@@ -35,7 +35,7 @@ class OrdersController extends Controller
     /**
      * @OA\Post(
      *     tags={"Orders"},
-     *     path="/updateStatus",
+     *     path="/v3/updateStatus",
      *     security={{"bearer_token":{}}},
      *     summary="Se actualiza el status del pedido",
      *     @OA\RequestBody(

@@ -13,22 +13,6 @@ class CategoriesController extends Controller
     use ApiResponser;
 
 
-    /**
-     * @OA\Get(
-     *     tags={"Categories"},
-     *     path="/categories",
-     *     security={{"bearer_token":{}}},
-     *     summary="Mostrar Categorías para Usuario de la App",
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function index()
     {
         try {
@@ -38,33 +22,6 @@ class CategoriesController extends Controller
         }
     }
 
-    /**
-     * @OA\Post(
-     *     tags={"Categories"},
-     *     path="/categories",
-     *     security={{"bearer_token":{}}},
-     *     summary="Crear nueva categoría de un Usuario App",
-     *     @OA\RequestBody(
-     *         @OA\JsonContent(),
-     *         @OA\MediaType(
-     *            mediaType="multipart/form-data",
-     *            @OA\Schema(
-     *               type="object",
-     *               required={"name"},
-     *               @OA\Property(property="name"),
-     *            ),
-     *        ),
-     *    ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function store(CategoryRequest $request)
     {
         try {
@@ -74,27 +31,6 @@ class CategoriesController extends Controller
         }
     }
 
-    /**
-     * @OA\Get(
-     *     tags={"Categories"},
-     *     path="/categories/{id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Ver categoría de un Usuario App por Id",
-     *      @OA\Parameter(
-     *          name="id",
-     *          in="path",
-     *          required=true
-     *      ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function show($id)
     {
         try {
@@ -104,40 +40,6 @@ class CategoriesController extends Controller
         }
     }
 
-    /**
-     * @OA\Put(
-     *     tags={"Categories"},
-     *     path="/categories/{id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Actualizar categoría de un Usuario App",
-     *      @OA\Parameter(
-     *          name="id",
-     *          in="path",
-     *          required=true
-     *      ),
-     *   @OA\RequestBody(
-     *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="application/json",
-     *       @OA\Schema(
-     *         @OA\Property(
-     *           property="name",
-     *           description="Nombre de la Categoría",
-     *           type="string",
-     *         ),
-     *       ),
-     *     ),
-     *   ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function update(CategoryRequest $request, $id)
     {
         try {
@@ -147,27 +49,6 @@ class CategoriesController extends Controller
         }
     }
 
-    /**
-     * @OA\Delete(
-     *     tags={"Categories"},
-     *     path="/categories/{id}",
-     *     security={{"bearer_token":{}}},
-     *     summary="Borrar categoría de un Usuario App",
-     *      @OA\Parameter(
-     *          name="id",
-     *          in="path",
-     *          required=true
-     *      ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function destroy($id)
     {
         try {

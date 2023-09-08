@@ -28,31 +28,7 @@ class UserController extends Controller
 {
 
     use ApiResponser, HasApiTokens;
-    //url="https://whale-app-gd46k.ondigitalocean.app/api/v1/"
-    //url="https://vemitiendabackend.tests/api/v1/"
-    /**
-     * @OA\Info(
-     *   title="API Ve mi Tienda",
-     *   version="1.0",
-     *   description="Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize"
-     *   )
-     * @OA\Server(
-     *  url="https://vemitienda.online/api/v2/"
-     * )
-     * @OAS\SecurityScheme(
-     *      securityScheme="bearerAuth",
-     *      type="http",
-     *      scheme="bearer"
-     * )
-     * @OA\Tag(
-     *   name="Auth",
-     *   description="Auth de la aplicación"
-     * ),
-     * @OA\Tag(
-     *   name="Categories",
-     *   description="Endpoints de Categorías"
-     * )
-     */
+
 
     public function index()
     {
@@ -60,21 +36,6 @@ class UserController extends Controller
     }
 
 
-    /**
-     * @OA\Get(
-     *     path="/user-information",
-     *     security={{"bearer_token":{}}},
-     *     summary="Mostrar Información del Usuario de la App",
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function userInformation()
     {
         $data = UsersRepository::getUserInformation();

@@ -2,802 +2,15 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API Ve mi Tienda",
-        "description": "Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize",
-        "version": "1.0"
+        "description": "Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize así: Bearer token",
+        "version": "2.0"
     },
     "servers": [
         {
-            "url": "https://vemitienda.online/api/v2/"
+            "url": "https://vemitiendabackend.tests/api/"
         }
     ],
     "paths": {
-        "/categories": {
-            "get": {
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "Mostrar Categorías para Usuario de la App",
-                "operationId": "228d36883ec25e90557f1e30d8bbe036",
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "Crear nueva categoría de un Usuario App",
-                "operationId": "aa6d4695fe4121d0fdc36e3bae2b5a56",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "required": [
-                                    "name"
-                                ],
-                                "properties": {
-                                    "name": {}
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {}
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/categories/{id}": {
-            "get": {
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "Ver categoría de un Usuario App por Id",
-                "operationId": "12ffe18d17e577130c9243c4539a7b3a",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            },
-            "put": {
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "Actualizar categoría de un Usuario App",
-                "operationId": "b47545a84a363cc5cfe16a8c761d4dad",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "name": {
-                                        "description": "Nombre de la Categoría",
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            },
-            "delete": {
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "Borrar categoría de un Usuario App",
-                "operationId": "a5032937e5f16f4cfe1beea390727d58",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/company-user": {
-            "get": {
-                "tags": [
-                    "Company"
-                ],
-                "summary": "Mostrar los datos de la Empresa del Usuario de la App",
-                "operationId": "6f04fc576db29466780120374d438262",
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Company"
-                ],
-                "summary": "Si la Empresa no existe, la crea y si la empresa existe entonces la actualiza",
-                "operationId": "f4c2614f7266b8d3c8c28f1b8adb49af",
-                "requestBody": {
-                    "description": "Datos de la Empresa",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "email",
-                                    "name",
-                                    "slogan",
-                                    "phone"
-                                ],
-                                "properties": {
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email",
-                                        "example": "sistelconet@gmail.com"
-                                    },
-                                    "name": {
-                                        "type": "string",
-                                        "format": "name",
-                                        "example": "Sistelconet El Tigre"
-                                    },
-                                    "slogan": {
-                                        "type": "string",
-                                        "format": "slogan",
-                                        "example": "Tu Solución en Sistemas"
-                                    },
-                                    "phone": {
-                                        "type": "string",
-                                        "format": "phone",
-                                        "example": "+584248807465"
-                                    },
-                                    "theme_id": {
-                                        "type": "integer",
-                                        "format": "phone",
-                                        "example": 1
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/company/{id}": {
-            "delete": {
-                "tags": [
-                    "Company"
-                ],
-                "summary": "Borrar categoría de un Usuario App",
-                "operationId": "c843a200fa9f8a5656f842c43f7ddafa",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/storeLogo": {
-            "post": {
-                "tags": [
-                    "Logo"
-                ],
-                "summary": "Crear logo de Empresa",
-                "operationId": "1d8753a79835382a37ea5c60dcb237c2",
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "properties": {
-                                    "folder": {
-                                        "description": "Folder de la imagen",
-                                        "type": "string",
-                                        "format": "text",
-                                        "default": "logo"
-                                    },
-                                    "image": {
-                                        "description": "subir imagen",
-                                        "type": "string",
-                                        "format": "binary"
-                                    },
-                                    "thumbnail": {
-                                        "description": "Miniatura",
-                                        "type": "string",
-                                        "format": "binary"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/storeImageProduct/{product_id}": {
-            "post": {
-                "tags": [
-                    "Products"
-                ],
-                "summary": "Crear logo de Empresa",
-                "operationId": "6345fb44cd9d07e6b3697b0bd63eac36",
-                "parameters": [
-                    {
-                        "name": "product_id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "properties": {
-                                    "folder": {
-                                        "description": "Folder de la imagen",
-                                        "type": "string",
-                                        "format": "text",
-                                        "default": "images"
-                                    },
-                                    "image": {
-                                        "description": "subir imagen",
-                                        "type": "string",
-                                        "format": "binary"
-                                    },
-                                    "thumbnail": {
-                                        "description": "Miniatura",
-                                        "type": "string",
-                                        "format": "binary"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/updateImageProduct/{image_id}": {
-            "post": {
-                "tags": [
-                    "Products"
-                ],
-                "summary": "Crear logo de Empresa",
-                "operationId": "b46aa27ebfc4ae083c593d72bcb71d37",
-                "parameters": [
-                    {
-                        "name": "image_id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "properties": {
-                                    "folder": {
-                                        "description": "Folder de la imagen",
-                                        "type": "string",
-                                        "format": "text",
-                                        "default": "images"
-                                    },
-                                    "image": {
-                                        "description": "subir imagen",
-                                        "type": "string",
-                                        "format": "binary"
-                                    },
-                                    "thumbnail": {
-                                        "description": "Miniatura",
-                                        "type": "string",
-                                        "format": "binary"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/deleteImageProduct/{image_id}": {
-            "delete": {
-                "tags": [
-                    "Products"
-                ],
-                "summary": "Borrar imagen de un Producto",
-                "operationId": "41f933c768eb694a23dcc8cd9131e792",
-                "parameters": [
-                    {
-                        "name": "image_id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/orders": {
-            "get": {
-                "tags": [
-                    "Orders"
-                ],
-                "summary": "Mostrar todas los pedidos del Usuario de la App",
-                "operationId": "dda8295991ae09c433d0659876fd8af2",
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/updateStatus": {
-            "post": {
-                "tags": [
-                    "Orders"
-                ],
-                "summary": "Se actualiza el status del pedido",
-                "operationId": "044906d78e717a3d9bbf33647a03ab8d",
-                "requestBody": {
-                    "description": "Status del pedido",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "order_id",
-                                    "status_id"
-                                ],
-                                "properties": {
-                                    "order_id": {
-                                        "type": "integer",
-                                        "format": "order_id",
-                                        "example": "1"
-                                    },
-                                    "status_id": {
-                                        "type": "integer",
-                                        "format": "status_id",
-                                        "example": "2"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/products-user": {
-            "get": {
-                "tags": [
-                    "Products"
-                ],
-                "summary": "Mostrar los productos del Usuario de la App",
-                "operationId": "15a318fcf170ad2f13c34c991c8069ea",
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Products"
-                ],
-                "summary": "Crear Producto de un Usuario App",
-                "operationId": "af132bd42aa2667f7cd404fb30d86750",
-                "requestBody": {
-                    "description": "Datos del Producto",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "category_id",
-                                    "name",
-                                    "description",
-                                    "price",
-                                    "share"
-                                ],
-                                "properties": {
-                                    "category_id": {
-                                        "type": "string",
-                                        "format": "category_id",
-                                        "example": "4"
-                                    },
-                                    "name": {
-                                        "type": "string",
-                                        "format": "name",
-                                        "example": "Product X"
-                                    },
-                                    "description": {
-                                        "type": "string",
-                                        "format": "description",
-                                        "example": "Descripción del producto de prueba"
-                                    },
-                                    "price": {
-                                        "type": "string",
-                                        "format": "price",
-                                        "example": "100"
-                                    },
-                                    "share": {
-                                        "type": "string",
-                                        "format": "share",
-                                        "example": "1"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/products-user/{id}": {
-            "get": {
-                "tags": [
-                    "Products"
-                ],
-                "summary": "Ver producto de un Usuario App por Id",
-                "operationId": "995cf64a31f886d07c5e149328c5c50d",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            },
-            "put": {
-                "tags": [
-                    "Products"
-                ],
-                "summary": "Actualizar producto de un Usuario App",
-                "operationId": "ea63301f0a7d18f56aa74f154b0e78e2",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "requestBody": {
-                    "description": "Datos del producto",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "category_id",
-                                    "name",
-                                    "description",
-                                    "price",
-                                    "share"
-                                ],
-                                "properties": {
-                                    "category_id": {
-                                        "type": "string",
-                                        "format": "category_id",
-                                        "example": "4"
-                                    },
-                                    "name": {
-                                        "type": "string",
-                                        "format": "name",
-                                        "example": "Product X"
-                                    },
-                                    "description": {
-                                        "type": "string",
-                                        "format": "description",
-                                        "example": "Descripción del producto de prueba"
-                                    },
-                                    "price": {
-                                        "type": "string",
-                                        "format": "price",
-                                        "example": "100"
-                                    },
-                                    "share": {
-                                        "type": "string",
-                                        "format": "share",
-                                        "example": "1"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/products/{id}": {
-            "delete": {
-                "tags": [
-                    "Products"
-                ],
-                "summary": "Borrar producto de un Usuario App",
-                "operationId": "ac647a80b01a33eb00fdcd52fb26caf8",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/themes": {
-            "get": {
-                "tags": [
-                    "Themes"
-                ],
-                "summary": "Mostrar los temas disponibles",
-                "operationId": "379b5b898419c2137e0eb26d4482e67e",
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/user-information": {
-            "get": {
-                "summary": "Mostrar Información del Usuario de la App",
-                "operationId": "893938bfaa8a0c0a151576c8fa0637e7",
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
         "/login": {
             "post": {
                 "tags": [
@@ -901,6 +114,911 @@
                 ],
                 "summary": "Dar de baja al usuario",
                 "operationId": "b6554db81114fa12ae99b4db1831ae94",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Mostrar Categorías para Usuario de la App",
+                "operationId": "a78569b1e605f32953ca8b4eef89e51a",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Crear nueva categoría de un Usuario App",
+                "operationId": "1327244b6aecdc1dbcfd3f9bff50ae46",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {}
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Ver categoría de un Usuario App por Id",
+                "operationId": "ec19a2106506dedcc2c75f6fbe08d0ff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Actualizar categoría de un Usuario App",
+                "operationId": "32ba80b7696c13b23ad7c13ea35eed69",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre de la Categoría",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Borrar categoría de un Usuario App",
+                "operationId": "cdf6934f0fe89843e167bea829ab98c2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/company-user": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Mostrar los datos de la Empresa del Usuario de la App",
+                "operationId": "edef5791db00d05a582a1698c53254bd",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Si la Empresa no existe, la crea y si la empresa existe entonces la actualiza",
+                "operationId": "65a112ff841bb2a55f2534a1a43c5104",
+                "requestBody": {
+                    "description": "Datos de la Empresa",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "name",
+                                    "slogan",
+                                    "phone"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "sistelconet@gmail.com"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "Sistelconet El Tigre"
+                                    },
+                                    "slogan": {
+                                        "type": "string",
+                                        "format": "slogan",
+                                        "example": "Tu Solución en Sistemas"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "phone",
+                                        "example": "+584248807465"
+                                    },
+                                    "theme_id": {
+                                        "type": "integer",
+                                        "format": "phone",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/company/{id}": {
+            "delete": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Borrar categoría de un Usuario App",
+                "operationId": "cc77e7dc6d0e8229d254120ad5ac5e7a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/storeLogo": {
+            "post": {
+                "tags": [
+                    "Logo"
+                ],
+                "summary": "Crear logo de Empresa",
+                "operationId": "98b05f4be92e597e2b3326880e41f07a",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "folder": {
+                                        "description": "Folder de la imagen",
+                                        "type": "string",
+                                        "format": "text",
+                                        "default": "logo"
+                                    },
+                                    "image": {
+                                        "description": "subir imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "thumbnail": {
+                                        "description": "Miniatura",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/storeImageProduct/{product_id}": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Crear logo de Empresa",
+                "operationId": "169af33fcb42ba25cee4c14932981338",
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "folder": {
+                                        "description": "Folder de la imagen",
+                                        "type": "string",
+                                        "format": "text",
+                                        "default": "images"
+                                    },
+                                    "image": {
+                                        "description": "subir imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "thumbnail": {
+                                        "description": "Miniatura",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/updateImageProduct/{image_id}": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Crear logo de Empresa",
+                "operationId": "9252fbaff4250305b5dd3df15ab6423a",
+                "parameters": [
+                    {
+                        "name": "image_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "folder": {
+                                        "description": "Folder de la imagen",
+                                        "type": "string",
+                                        "format": "text",
+                                        "default": "images"
+                                    },
+                                    "image": {
+                                        "description": "subir imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "thumbnail": {
+                                        "description": "Miniatura",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/deleteImageProduct/{image_id}": {
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Borrar imagen de un Producto",
+                "operationId": "9377b89171b6ac531a841d5688574e39",
+                "parameters": [
+                    {
+                        "name": "image_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Mostrar todas los pedidos del Usuario de la App",
+                "operationId": "0b6dca8b2f03ed5893812bf991fc1d00",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/updateStatus": {
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Se actualiza el status del pedido",
+                "operationId": "de6b17d9246131a79ae9793195cbe618",
+                "requestBody": {
+                    "description": "Status del pedido",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "order_id",
+                                    "status_id"
+                                ],
+                                "properties": {
+                                    "order_id": {
+                                        "type": "integer",
+                                        "format": "order_id",
+                                        "example": "1"
+                                    },
+                                    "status_id": {
+                                        "type": "integer",
+                                        "format": "status_id",
+                                        "example": "2"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/products-user": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Mostrar los productos del Usuario de la App",
+                "operationId": "ef15d2ac55530adbd7710b5e9c5bb443",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Crear Producto de un Usuario App",
+                "operationId": "0bed5787778e81c2bfc1ada54cd3b759",
+                "requestBody": {
+                    "description": "Datos del Producto",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_id",
+                                    "name",
+                                    "description",
+                                    "price",
+                                    "share"
+                                ],
+                                "properties": {
+                                    "category_id": {
+                                        "type": "string",
+                                        "format": "category_id",
+                                        "example": "4"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "Product X"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "description",
+                                        "example": "Descripción del producto de prueba"
+                                    },
+                                    "price": {
+                                        "type": "string",
+                                        "format": "price",
+                                        "example": "100"
+                                    },
+                                    "share": {
+                                        "type": "string",
+                                        "format": "share",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/products-user/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Ver producto de un Usuario App por Id",
+                "operationId": "9fccbffd9126403341f259ff789b87b2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Actualizar producto de un Usuario App",
+                "operationId": "c86584549500f1810b454ff3a87eddc3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Datos del producto",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_id",
+                                    "name",
+                                    "description",
+                                    "price",
+                                    "share"
+                                ],
+                                "properties": {
+                                    "category_id": {
+                                        "type": "string",
+                                        "format": "category_id",
+                                        "example": "4"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "Product X"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "description",
+                                        "example": "Descripción del producto de prueba"
+                                    },
+                                    "price": {
+                                        "type": "string",
+                                        "format": "price",
+                                        "example": "100"
+                                    },
+                                    "share": {
+                                        "type": "string",
+                                        "format": "share",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/products/{id}": {
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Borrar producto de un Usuario App",
+                "operationId": "9996d1d247486de5253097ab8a7b7f84",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/themes": {
+            "get": {
+                "tags": [
+                    "Themes"
+                ],
+                "summary": "Mostrar los temas disponibles",
+                "operationId": "300dcce739e48983bf975259da5a821b",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/user-information": {
+            "get": {
+                "summary": "Mostrar Información del Usuario de la App",
+                "operationId": "113e12e8e1c47f4c24a75a408e0d04b4",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User Login",
+                "description": "Login User Here",
+                "operationId": "v3authLogin",
+                "requestBody": {
+                    "description": "Datos de la Empresa",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "administrador@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v3/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Desloguear usuario",
+                "operationId": "8b8bf5773b5d8e4ee8a4d15823d61f0d",
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/cancel-account": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Dar de baja al usuario",
+                "operationId": "065bc5f7e0c0cdbb109d551e1da6c970",
                 "responses": {
                     "200": {
                         "description": "Exitoso"

@@ -28,16 +28,15 @@ class UserController extends Controller
 {
 
     use ApiResponser, HasApiTokens;
-    //url="https://whale-app-gd46k.ondigitalocean.app/api/v1/"
-    //url="https://vemitiendabackend.tests/api/v1/"
+    //url="https://vemitiendabackend.tests/api/v3/"
     /**
      * @OA\Info(
      *   title="API Ve mi Tienda",
-     *   version="1.0",
-     *   description="Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize"
+     *   version="2.0",
+     *   description="Se inicia sesión, Auth->login, se toma el token y se ingresa arriba en el botón Authorize así: Bearer token"
      *   )
      * @OA\Server(
-     *  url="https://vemitienda.online/api/v3/"
+     *  url="https://vemitiendabackend.tests/api/"
      * )
      * @OAS\SecurityScheme(
      *      securityScheme="bearerAuth",
@@ -62,7 +61,7 @@ class UserController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/user-information",
+     *     path="/v3/user-information",
      *     security={{"bearer_token":{}}},
      *     summary="Mostrar Información del Usuario de la App",
      *     @OA\Response(
@@ -84,8 +83,8 @@ class UserController extends Controller
 
     /**
      * @OA\Post(
-     * path="/login",
-     * operationId="authLogin",
+     * path="/v3/login",
+     * operationId="v3authLogin",
      * tags={"Auth"},
      * summary="User Login",
      * security={{"bearerAuth":{}}},
@@ -155,7 +154,7 @@ class UserController extends Controller
     /**
      * @OA\Post(
      *     tags={"Auth"},
-     *     path="/logout",
+     *     path="/v3/logout",
      *     security={{"bearer_token":{}}},
      *     summary="Desloguear usuario",
      *     @OA\Response(
@@ -178,7 +177,7 @@ class UserController extends Controller
     /**
      * @OA\Post(
      *     tags={"Auth"},
-     *     path="/cancel-account",
+     *     path="/v3/cancel-account",
      *     security={{"bearer_token":{}}},
      *     summary="Dar de baja al usuario",
      *     @OA\Response(

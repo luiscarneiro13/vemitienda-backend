@@ -10,22 +10,7 @@ use Illuminate\Http\Request;
 class ThemesController extends Controller
 {
     use ApiResponser;
-    /**
-     * @OA\Get(
-     *     tags={"Themes"},
-     *     path="/themes",
-     *     security={{"bearer_token":{}}},
-     *     summary="Mostrar los temas disponibles",
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
+
     public function index()
     {
         return $this->successResponse(['data' => ThemesRepository::getThemes(-1)]);

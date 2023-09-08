@@ -22,7 +22,7 @@ class CompaniesController extends Controller
     /**
      * @OA\Get(
      *     tags={"Company"},
-     *     path="/company-user",
+     *     path="/v3/company-user",
      *     security={{"bearer_token":{}}},
      *     summary="Mostrar los datos de la Empresa del Usuario de la App",
      *     @OA\Response(
@@ -43,7 +43,7 @@ class CompaniesController extends Controller
     /**
      * @OA\Post(
      *     tags={"Company"},
-     *     path="/company-user",
+     *     path="/v3/company-user",
      *     security={{"bearer_token":{}}},
      *     summary="Si la Empresa no existe, la crea y si la empresa existe entonces la actualiza",
      *     @OA\RequestBody(
@@ -89,7 +89,7 @@ class CompaniesController extends Controller
     /**
      * @OA\Delete(
      *     tags={"Company"},
-     *     path="/company/{id}",
+     *     path="/v3/company/{id}",
      *     security={{"bearer_token":{}}},
      *     summary="Borrar categoría de un Usuario App",
      *      @OA\Parameter(

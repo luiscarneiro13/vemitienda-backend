@@ -32,7 +32,7 @@ class ImagesController extends Controller
     /**
      * @OA\Post(
      *     tags={"Logo"},
-     *     path="/storeLogo",
+     *     path="/v3/storeLogo",
      *     security={{"bearer_token":{}}},
      *     summary="Crear logo de Empresa",
      *      @OA\RequestBody(
@@ -101,7 +101,7 @@ class ImagesController extends Controller
     /**
      * @OA\Post(
      *     tags={"Products"},
-     *     path="/storeImageProduct/{product_id}",
+     *     path="/v3/storeImageProduct/{product_id}",
      *     security={{"bearer_token":{}}},
      *     summary="Crear logo de Empresa",
      *     @OA\Parameter(
@@ -167,7 +167,7 @@ class ImagesController extends Controller
     /**
      * @OA\Post(
      *     tags={"Products"},
-     *     path="/updateImageProduct/{image_id}",
+     *     path="/v3/updateImageProduct/{image_id}",
      *     security={{"bearer_token":{}}},
      *     summary="Crear logo de Empresa",
      *     @OA\Parameter(
@@ -241,7 +241,7 @@ class ImagesController extends Controller
     /**
      * @OA\Delete(
      *     tags={"Products"},
-     *     path="/deleteImageProduct/{image_id}",
+     *     path="/v3/deleteImageProduct/{image_id}",
      *     security={{"bearer_token":{}}},
      *     summary="Borrar imagen de un Producto",
      *      @OA\Parameter(
