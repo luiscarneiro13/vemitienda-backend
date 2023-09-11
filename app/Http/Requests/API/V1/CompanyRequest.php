@@ -28,13 +28,14 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         $user = Auth::user();
+        $userId = $user ? $user->id : null;
 
         return [
             'name' => [
                 'required', 'min:3', 'max:120',
-                // Rule::unique('companies')->where('user_id', $user->id)->ignore($this->company)
+                Rule::unique('companies')->ignore($userId),
             ],
-            'slogan' => 'required|min:3|max:120',
+            'slogan' => ['required', 'min:3', 'max:120'],
             'phone'  => 'required|min:3|max:120'
         ];
     }
@@ -45,7 +46,7 @@ class CompanyRequest extends FormRequest
             'name.required'   => 'El nombre de la empresa es obligatorio',
             'name.min'        => 'El nombre de la empresa debe contener al menos 3 caracteres',
             'name.max'        => 'El nombre de la empresa no debe contener mas de 120 caracteres',
-            'name.unique'     => 'Ya posee una Empresa. Usted no puede tener más de una empresa en el sistema',
+            'name.unique'     => 'No se puede agregar este nombre de empresa',
             'slogan.required' => 'El slogan de la empresa es obligatorio',
             'slogan.min'      => 'El slogan de la empresa debe contener al menos 3 caracteres',
             'slogan.max'      => 'El slogan de la empresa no debe contener mas de 120 caracteres',
