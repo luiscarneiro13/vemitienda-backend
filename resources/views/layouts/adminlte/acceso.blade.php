@@ -4,14 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ve mi Tienda</title>
+    <title>Recluta Online</title>
 
-    <link rel="icon" sizes="192x192" href="{{ asset('img/favicon.jpg') }}">
-    <link rel="shortcut icon" href="{{ asset('img/favicon.jpg') }}" type="image/png" />
-    <link rel="apple-touch-icon" href="{{ asset('img/favicon.jpg') }}" type="image/png" />
+    <link rel="icon" sizes="192x192" href="{{ asset('img/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/png" />
+    <link rel="apple-touch-icon" href="{{ asset('img/favicon.png') }}" type="image/png" />
 
     @include('layouts.adminlte.top')
-    @toastr_css
 
 </head>
 
@@ -19,11 +18,10 @@
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
-
+            <div class="card-header text-center">
+                <span class="h1"><b>Recluta Online</b></span>
+            </div>
             <div class="card-body">
-                <div class="text-center">
-                    <img width="150px" height="150px" src="{{ asset('img/logo.png') }}" alt="" srcset="">
-                </div>
                 <x-alerts />
                 @yield('content')
             </div>

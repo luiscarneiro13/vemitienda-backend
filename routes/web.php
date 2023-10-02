@@ -1,10 +1,9 @@
 <?php
 
-use App\Helpers\Visits;
 use App\Http\Controllers\WEB\V3\CartController as CartController3;
 use App\Http\Controllers\WEB\V3\OrderController as OrderController3;
 use App\Http\Controllers\WEB\V3\ProductController as ProductController3;
-use App\Models\Visit;
+use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +33,18 @@ Route::get('ejemplo', function () {
 });
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
+// BACK OFFICE
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/loguear', [LoginController::class, 'loguear'])->name('loguear');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::resource('usuarios', Admin\UsersController::class);
+    Route::resource('plans', Admin\PlansController::class);
+    Route::resource('planusers', Admin\PlanUsersController::class);
+    Route::resource('paymentmethods', Admin\PaymentMethodsController::class);
+    Route::resource('payments', Admin\PaymentsController::class);
+});
 
 Route::get('init/{id_usuario}', 'API\V3\ShareController@init');
 Route::get('share/{id_encriptado}', 'API\V3\ShareController@share');

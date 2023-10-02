@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\V3;
 
+use App\Helpers\Login;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -23,11 +24,19 @@ use App\Models\Payment;
 use App\Models\Plan;
 use App\Models\PlanUser;
 use Carbon\Carbon;
+use Laravel\Passport\Bridge\UserRepository;
 
 class UserController extends Controller
 {
 
     use ApiResponser, HasApiTokens;
+
+    public $loginUser;
+
+    public function __construct()
+    {
+        $this->loginUser = new Login();
+    }
     //url="https://vemitiendabackend.tests/api/v3/"
     /**
      * @OA\Info(
@@ -94,7 +103,7 @@ class UserController extends Controller
      *        description="Datos de la Empresa",
      *        @OA\JsonContent(
      *           required={"email","password"},
-     *           @OA\Property(property="email", type="string", format="email", example="administrador@gmail.com"),
+     *           @OA\Property(property="email", type="string", format="email", example="carneiroluis2@gmail.com"),
      *           @OA\Property(property="password", type="string", format="password", example="123456"),
      *        )
      *     ),
@@ -146,6 +155,15 @@ class UserController extends Controller
                     "message" => ["Datos erróneos"]
                 ]);
             }
+        } catch (\Throwable $error) {
+            return $error;
+        }
+    }
+
+    public function login2(LoginRequest $request)
+    {
+        try {
+            return $this->loginUser->LoginUser(UsersRepository::getUserLogin());
         } catch (\Throwable $error) {
             return $error;
         }
@@ -228,7 +246,7 @@ class UserController extends Controller
         } catch (Exception $th) {
             info('Entro error en try');
             info($th);
-            return $this->errorResponse(['error' => $th, 'message'=>'error']);
+            return $this->errorResponse(['error' => $th, 'message' => 'error']);
         }
     }
 

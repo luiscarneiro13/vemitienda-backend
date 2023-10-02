@@ -938,7 +938,7 @@
                                     "email": {
                                         "type": "string",
                                         "format": "email",
-                                        "example": "administrador@gmail.com"
+                                        "example": "carneiroluis2@gmail.com"
                                     },
                                     "password": {
                                         "type": "string",

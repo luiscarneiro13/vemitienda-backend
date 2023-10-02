@@ -1,5 +1,6 @@
 @extends('layouts.adminlte.index')
 @section('content')
-{{-- <x-tablaDatos resource="plans" :data="@$data" title="Planes"/> --}}
+
+<x-TablaDatos :data="@$data" resource='plans' edit="true"/>
 
 @endsection

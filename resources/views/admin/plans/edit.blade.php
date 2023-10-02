@@ -4,7 +4,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-6">
-                <h5 class="text-default">Editar Plan</h5>
+                <h5 class="text-default"><i class="fa fa-user-circle"></i> Editar Plan</h5>
             </div>
             <div class="col-6 text-right">
                 <a href="{{ route('plans.index') }}" class="btn btn-dark btn-xs">Cancelar</a>
@@ -18,7 +18,10 @@
             <div class="card-body">
                 <div class="row">
                     <x-text name="name" columns="6" label="Nombre del Plan" required="true"
-                        placeholder="Ingrese el nombre del plan aquí..." value="{{ $plan->name }}" />
+                        placeholder="Ingrese su plan aquí..." value="{{ $plan->name }}" />
+                    <x-text type="number" name="quantity" columns="6" label="Cantidad de Productos" required="true"
+                        placeholder="Ingrese la cantidad de productos aquí..." value="{{ $plan->quantity }}" />
+
                 </div>
             </div>
 

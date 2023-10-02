@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 class UsersRepository
 {
 
+    static function getUserLogin()
+    {
+        return User::with('planUser')->where('email', request()->email)->first();
+    }
+
     static function getUsers($limit = 10, $relations = [])
     {
         $filtrar = request()->get('query');

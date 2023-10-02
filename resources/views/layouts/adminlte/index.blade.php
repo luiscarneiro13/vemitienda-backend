@@ -7,12 +7,12 @@
     <title>Ve mi Tienda</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" sizes="192x192" href="{{ asset('img/favicon.jpg') }}">
-    <link rel="shortcut icon" href="{{ asset('img/favicon.jpg') }}" type="image/png" />
-    <link rel="apple-touch-icon" href="{{ asset('img/favicon.jpg') }}" type="image/png" />
+    <link rel="icon" sizes="192x192" href="{{ asset('img/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/png" />
+    <link rel="apple-touch-icon" href="{{ asset('img/favicon.png') }}" type="image/png" />
 
     @include('layouts.adminlte.top')
-    @toastr_css
+
     <style>
         .page-item.active .page-link {
             background-color: #343a40;
@@ -37,8 +37,6 @@
 
 
     </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9259103767509807"
-    crossorigin="anonymous"></script>
 </head>
 
 <body class="sidebar-mini layout-fixed">
