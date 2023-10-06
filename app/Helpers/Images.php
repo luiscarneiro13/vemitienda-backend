@@ -19,6 +19,15 @@ class Images
         return $nombreImagen;
     }
 
+    public function uploadImagePng($imagen, $folder)
+    {
+        $image = FacadeImage::make($imagen);
+        $image->encode('png');
+        $nombreImagen = $folder . '/' . uniqid() . uniqid() . '.png';
+        Storage::disk('do')->put($nombreImagen, $image->stream(), 'public');
+        return $nombreImagen;
+    }
+
     public function deleteImage($url)
     {
         Storage::disk('do')->delete($url);

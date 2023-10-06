@@ -43,42 +43,6 @@ class UserController extends Controller
     }
 
 
-    /**
-     * @OA\Post(
-     * path="/login",
-     * operationId="authLogin",
-     * tags={"Auth"},
-     * summary="User Login",
-     * security={{"bearerAuth":{}}},
-     * description="Login User Here",
-     *     @OA\RequestBody(
-     *        required=true,
-     *        description="Datos de la Empresa",
-     *        @OA\JsonContent(
-     *           required={"email","password"},
-     *           @OA\Property(property="email", type="string", format="email", example="administrador@gmail.com"),
-     *           @OA\Property(property="password", type="string", format="password", example="123456"),
-     *        )
-     *     ),
-     *      @OA\Response(
-     *          response=201,
-     *          description="Login Successfully",
-     *          @OA\JsonContent()
-     *       ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="Login Successfully",
-     *          @OA\JsonContent()
-     *       ),
-     *      @OA\Response(
-     *          response=422,
-     *          description="Unprocessable Entity",
-     *          @OA\JsonContent()
-     *       ),
-     *      @OA\Response(response=400, description="Bad request"),
-     *      @OA\Response(response=404, description="Resource Not Found"),
-     * )
-     */
 
     public function login(LoginRequest $request)
     {
@@ -113,22 +77,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * @OA\Post(
-     *     tags={"Auth"},
-     *     path="/logout",
-     *     security={{"bearer_token":{}}},
-     *     summary="Desloguear usuario",
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function logout()
     {
         $user = Auth::user()->token();
@@ -136,22 +84,6 @@ class UserController extends Controller
         return $this->successResponse();
     }
 
-    /**
-     * @OA\Post(
-     *     tags={"Auth"},
-     *     path="/cancel-account",
-     *     security={{"bearer_token":{}}},
-     *     summary="Dar de baja al usuario",
-     *     @OA\Response(
-     *         response=200,
-     *         description="Exitoso"
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
     public function cancelAccount()
     {
         $user = Auth::user();

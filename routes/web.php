@@ -4,6 +4,8 @@ use App\Http\Controllers\WEB\V3\CartController as CartController3;
 use App\Http\Controllers\WEB\V3\OrderController as OrderController3;
 use App\Http\Controllers\WEB\V3\ProductController as ProductController3;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,13 +39,18 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/loguear', [LoginController::class, 'loguear'])->name('loguear');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('blog', [BlogController::class, 'index'])->name('blog');
+Route::get('blog/{slug}', [BlogController::class, 'show'])->name('blog');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('usuarios', Admin\UsersController::class);
+    Route::resource('blog', Admin\PostsController::class);
     Route::resource('plans', Admin\PlansController::class);
     Route::resource('planusers', Admin\PlanUsersController::class);
     Route::resource('paymentmethods', Admin\PaymentMethodsController::class);
     Route::resource('payments', Admin\PaymentsController::class);
+    // Agregar imágenes al crear posts desde el admin
+    Route::post('storeImagePost', 'API\V3\ImagesController@storeImagePost')->name("ckeditor.upload");
 });
 
 Route::get('init/{id_usuario}', 'API\V3\ShareController@init');

@@ -35,6 +35,7 @@ Route::group(['prefix' => 'v3'], function () {
     //FIN Sesión con redes sociales
 
 
+
     Route::post('login', 'API\V3\UserController@login');
     Route::post('register', 'API\V3\UserController@register');
     Route::post('searchEmail', 'API\V3\UserController@searchEmail')->name('searchEmail');

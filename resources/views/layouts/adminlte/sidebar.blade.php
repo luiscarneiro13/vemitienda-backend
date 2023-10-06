@@ -25,13 +25,13 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ route('payments.index') }}"
                         class="nav-link {{ Request::segment(2)=='payments' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>Pagos</p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a href="#" class="nav-link {{ Request::segment(1)=='admin' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
@@ -42,20 +42,12 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="{{ route('paymentmethods.index') }}"
-                                class="nav-link {{ Request::segment(2)=='paymentmethods' ? 'active' : '' }}">
+                            <a href="{{ route('blog.index') }}"
+                                class="nav-link {{ Request::segment(2)=='blog' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cog"></i>
-                                <p>Métodos de Pago</p>
+                                <p>Blog</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('planusers.index') }}"
-                                class="nav-link {{ Request::segment(2)=='planusers' ? 'active' : '' }}">
-                                <i class="nav-icon fa fa-users"></i>
-                                <p>Planes de Usuarios</p>
-                            </a>
-                        </li>
-
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -74,13 +66,13 @@
                                 <p>Usuarios</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('plans.index') }}"
                                 class="nav-link {{ Request::segment(2)=='plans' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book-open"></i>
                                 <p>Planes</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 

@@ -24,20 +24,23 @@
         <div class="footer-bottom">
             <ul class="footer-link">
                 <li>
-                    <a href="#home">Inicio</a>
+                    <a href="{{ url('/') }}#home">Inicio</a>
                 </li>
                 <li>
-                    <a href="#features">Características</a>
+                    <a href="{{ url('/') }}#features">Características</a>
                 </li>
                 <li>
-                    <a href="#yourCustomers">Tus Clientes</a>
+                    <a href="{{ url('/') }}#yourCustomers">Tus Clientes</a>
                 </li>
                 <li>
-                    <a href="#testimonies">Testimonios</a>
+                    <a href="{{ url('/') }}#testimonies">Testimonios</a>
                 </li>
                 <li>
-                    <a href="/contacto">Contacto</a>
+                    <a href="{{ url('/') }}/contacto">Contacto</a>
                 </li>
+                {{-- <li>
+                    <a href="{{ url('/') }}/blog">Blog</a>
+                </li> --}}
             </ul>
         </div>
         <div class="copyright">

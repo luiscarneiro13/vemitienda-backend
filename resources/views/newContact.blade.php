@@ -210,7 +210,7 @@
     <!--============= Contact Section Ends Here =============-->
 
     <!--============= Footer Section Starts Here =============-->
-    @include('mosto.footerContact')
+    @include('mosto.footer')
     <!--============= Footer Section Ends Here =============-->
 
     <script src="{{ asset('plantillas/mosto/js/jquery-3.3.1.min.js') }}"></script>

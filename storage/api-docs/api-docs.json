@@ -11,124 +11,6 @@
         }
     ],
     "paths": {
-        "/login": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "User Login",
-                "description": "Login User Here",
-                "operationId": "authLogin",
-                "requestBody": {
-                    "description": "Datos de la Empresa",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "email",
-                                    "password"
-                                ],
-                                "properties": {
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email",
-                                        "example": "administrador@gmail.com"
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "format": "password",
-                                        "example": "123456"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Login Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "Login Successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/logout": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Desloguear usuario",
-                "operationId": "44f840e0e6715faeb943540b44d5c1bc",
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/cancel-account": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Dar de baja al usuario",
-                "operationId": "b6554db81114fa12ae99b4db1831ae94",
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    },
-                    "default": {
-                        "description": "Ha ocurrido un error."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
         "/v3/categories": {
             "get": {
                 "tags": [
@@ -578,6 +460,50 @@
                         "required": true
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/v3/storeImagePost": {
+            "post": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Cargar imágenes de un post",
+                "operationId": "2503732017be5d1bf676679d526411a7",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "folder": {
+                                        "description": "Folder de la imagen",
+                                        "type": "string",
+                                        "format": "text",
+                                        "default": "posts"
+                                    },
+                                    "upload": {
+                                        "description": "subir imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Exitoso"

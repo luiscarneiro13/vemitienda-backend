@@ -15,3 +15,23 @@
         margin-top: 50px;
     }
 }
+
+.widget-tags ul li a:hover, .widget-tags ul li a.active {
+    color: #504c89;
+}
+
+.widget-search button {
+    color: #504c89;
+}
+
+.widget-post .slider-nav span:hover, .widget-post .slider-nav span.active {
+    color: #504c89;
+}
+
+.pagination-area a.active {
+    color: #7a89bb;
+}
+
+h2 {
+    font-size: 34px;
+}

@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Image;
 use App\Models\Product;
 use App\Traits\ApiResponser;
+use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -271,5 +272,50 @@ class ImagesController extends Controller
         } catch (\Throwable $th) {
             return $this->errorResponse(['message' => $th]);
         }
+    }
+
+    /**
+     * @OA\Post(
+     *     tags={"Posts"},
+     *     path="/v3/admin/storeImagePost",
+     *     security={{"bearer_token":{}}},
+     *     summary="Cargar imágenes de un post",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     description="Folder de la imagen",
+     *                     property="folder",
+     *                     type="string",
+     *                     format="text",
+     *                     default="posts",
+     *                 ),
+     *                 @OA\Property(
+     *                     description="subir imagen",
+     *                     property="upload",
+     *                     type="string",
+     *                     format="binary",
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Exitoso"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+    public function storeImagePost(Request $request)
+    {
+        $userApi = auth()->user();
+        $user = User::find($userApi->id);
+        $urlImage = $this->image->uploadImagePng($request->file('upload'), 'posts');
+        $image = $user->image()->create(['url' => $urlImage, 'thumbnail' => $urlImage]);
+        return env('DO_URL_BASE') . '/' . $image->url;
     }
 }

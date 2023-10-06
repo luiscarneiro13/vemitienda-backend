@@ -26,6 +26,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.4/dist/sweetalert2.all.min.js"></script>
 <script src="{{ asset('adminlte3/js/adminlte.min.js') }}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
 <script src="{{ asset('js/custom.js?v=' . $version) }}"></script>
 <script src="{{ asset('js/customDataTable.js?v=' . $version) }}"></script>
@@ -100,4 +101,6 @@
     $(".datepicker").datepicker({
         dateFormat: 'yy-mm-dd'
     });
+
+
 </script>

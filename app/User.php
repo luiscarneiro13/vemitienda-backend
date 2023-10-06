@@ -73,4 +73,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Country');
     }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
+
+    public function image()
+    {
+        return $this->morphMany(\App\Models\Image::class, 'imageable');
+    }
 }
