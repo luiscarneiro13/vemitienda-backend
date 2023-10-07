@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-6">
-                <h5 class="text-default"><i class="fa fa-user-circle"></i> {{ $resource }}</h5>
+                <h5 class="text-default"><i class="fa fa-user-circle"></i> {{ ucfirst($resource) }}</h5>
             </div>
             <div class="col-6 text-right">
                 <a href="{{ route($resource . '.create') }}" class="btn btn-dark btn-xs"><i class="fa fa-plus-circle"></i>

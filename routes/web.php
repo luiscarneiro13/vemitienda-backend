@@ -46,6 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('usuarios', Admin\UsersController::class);
     Route::resource('blog', Admin\PostsController::class);
     Route::resource('plans', Admin\PlansController::class);
+    Route::resource('tags', Admin\TagsController::class);
     Route::resource('planusers', Admin\PlanUsersController::class);
     Route::resource('paymentmethods', Admin\PaymentMethodsController::class);
     Route::resource('payments', Admin\PaymentsController::class);

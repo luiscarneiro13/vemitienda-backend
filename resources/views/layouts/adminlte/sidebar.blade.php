@@ -36,7 +36,7 @@
                     <a href="#" class="nav-link {{ Request::segment(1)=='admin' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
-                            Administración
+                            Admin Blog
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -46,6 +46,15 @@
                                 class="nav-link {{ Request::segment(2)=='blog' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>Blog</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="{{ route('tags.index') }}"
+                                class="nav-link {{ Request::segment(2)=='tags' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>Etiquetas</p>
                             </a>
                         </li>
                     </ul>
