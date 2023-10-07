@@ -1,6 +1,6 @@
 @extends('layouts.adminlte.index')
 @section('content')
 
-<x-TablaDatos :data="@$data" resource='services' edit="true" />
+<x-Grilla :data="@$data" resource='services' edit="true" />
 
 @endsection

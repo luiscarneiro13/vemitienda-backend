@@ -152,5 +152,5 @@
     </div>
 
 
-    {{-- <x-TablaDatos :data="@$data" resource='usuarios' edit="true" /> --}}
+    {{-- <x-Grilla :data="@$data" resource='usuarios' edit="true" /> --}}
 @endsection
