@@ -82,7 +82,13 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['categories'] = PostCategory::select('id', 'name as label')->get();
+        $data['tags'] = Tag::select('id', 'name as label')->get();
+        $data['status'] = [['id' => '1', 'label' => "No"], ['id' => '2', 'label' => "Si"]];
+        $data['blog'] = Post::with('tags')->find($id);
+        $data['tagSelected'] = $data['blog']->tags->pluck('id')->toArray();
+        // return $data['tagSelected'];
+        return view('Admin.Blog.edit', $data);
     }
 
     /**
@@ -94,7 +100,12 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            PostsRepository::updatePost($id);
+            return redirect()->route('blog.index');
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
     /**

@@ -28,7 +28,7 @@ class PostsRepository
         $insert = [
             'name' => $name,
             'slug' => Str::slug($name, '-'),
-            'extract' => substr(html_entity_decode(strip_tags($body)), 0, 300).'...',
+            'extract' => substr(html_entity_decode(strip_tags($body)), 0, 300) . '...',
             'body' => $body,
             'status' => request()->status,
             'user_id' => $user->id,
@@ -48,10 +48,22 @@ class PostsRepository
 
     static function updatePost($id)
     {
-        $model = Post::find($id);
-        $model->name        = request()->name;
+        $name = request()->name;
+        $body = request()->body;
+        $user = Auth::user();
 
-        return $model->save();
+        $post = Post::find($id);
+        $post->name = $name;
+        $post->slug = Str::slug($name, '-');
+        $post->extract = substr(html_entity_decode(strip_tags($body)), 0, 300) . '...';
+        $post->body = $body;
+        $post->status = request()->status;
+        $post->user_id = $user->id;
+        $post->category_id = request()->category_id;
+        $post->save();
+        $post->tags()->detach();
+        $post->tags()->attach(request()->tags);
+        return $post;
     }
 
     static function deletePost($id)

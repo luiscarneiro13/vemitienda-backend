@@ -47,8 +47,6 @@
             </form>
         </div>
     </div>
-
-    </div>
 @endsection
 @section('js')
     <script>
@@ -101,6 +99,7 @@
 
             ['clean'] // remove formatting button
         ];
+
         var quillBody = new Quill('#bodyEditor', {
             theme: 'snow',
             modules: {
