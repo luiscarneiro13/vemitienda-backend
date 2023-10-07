@@ -51,6 +51,15 @@
                     </ul>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
+                            <a href="{{ route('postcategory.index') }}"
+                                class="nav-link {{ Request::segment(2)=='postcategory' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>Categorías</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
                             <a href="{{ route('tags.index') }}"
                                 class="nav-link {{ Request::segment(2)=='tags' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cog"></i>

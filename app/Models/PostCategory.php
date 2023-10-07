@@ -9,6 +9,9 @@ class PostCategory extends Model
 {
     use HasFactory;
 
+    protected $table = 'post_categories';
+    protected $fillable = ['name', 'slug'];
+
     public function posts()
     {
         return $this->hasMany('App\Models\Post', 'category_id');
