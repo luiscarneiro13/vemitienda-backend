@@ -3,9 +3,11 @@
         <a href="#0"><i class="fas fa-angle-double-left"></i><span>Anterior</span></a>
     @endif
 
-    @foreach ($data->getUrlRange(1, $data->total() / $data->perPage() + 1) as $key => $url)
-        <a href="{{ $url }}" @if ($key == $data->currentPage()) class="active" @endif>{{ $key }}</a>
-    @endforeach
+    @if ($data->total() > 1)
+        @foreach ($data->getUrlRange(1, $data->total() / $data->perPage() + 1) as $key => $url)
+            <a href="{{ $url }}" @if ($key == $data->currentPage()) class="active" @endif>{{ $key }}</a>
+        @endforeach
+    @endif
 
     @if ($data->nextPageUrl())
         <a href="{{ $url }}"><span>Próximo</span><i class="fas fa-angle-double-right"></i></a>

@@ -34,7 +34,7 @@ class BlogController extends Controller
 
         $datos['datos'] = $posts;
 
-        $datos['categories'] = PostCategory::withCount('posts')->get();
+        $datos['categories'] = PostCategory::whereHas('posts')->withCount('posts')->get();
         $datos['tags'] = Tag::whereHas('posts')->get();
         $datos['latests'] = Post::orderBy('id', 'desc')->limit(self::LATESTS)->get();
         // return $datos['categories'];
@@ -47,7 +47,7 @@ class BlogController extends Controller
         if(!$datos['post']){
             return redirect(url('blog'));
         }
-        $datos['categories'] = PostCategory::withCount('posts')->get();
+        $datos['categories'] = PostCategory::whereHas('posts')->withCount('posts')->get();
         $datos['tags'] = Tag::whereHas('posts')->get();
         $datos['latests'] = Post::orderBy('id', 'desc')->limit(self::LATESTS)->get();
         return view('blogDetail', $datos);

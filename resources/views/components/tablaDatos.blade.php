@@ -36,11 +36,13 @@
                 @forelse ($data['infoData'] as $item)
                     <tr>
                         @foreach ($data['nombreColumnas'] as $key => $value)
-                            @if ($key=='Tienda' && @$item->$value!=null)
+                            @if ($key == 'Tienda' && @$item->$value != null)
                                 <td>
-                                    <a target="_blank" href="{{ 'https://vemitienda.online/catalogo'.'/'.$item->$value }}">Catálogo</a>
+                                    <a target="_blank"
+                                        href="{{ 'https://vemitienda.online/catalogo' . '/' . $item->$value }}">Catálogo</a>
                                     -
-                                    <a target="_blank" href="{{ 'https://vemitienda.online/'.$item->$value }}">Tienda</a>
+                                    <a target="_blank"
+                                        href="{{ 'https://vemitienda.online/' . $item->$value }}">Tienda</a>
                                 </td>
                             @else
                                 <td>{{ @$item->$value }}</td>
@@ -61,8 +63,9 @@
                                                 href="{{ route($resource . '.edit', $item->id) }}"><i
                                                     class="fa fa-edit"></i>
                                                 Editar</a>
+                                        @endif
 
-
+                                        @if (@$show)
                                             <a class="dropdown-item"
                                                 href="{{ route($resource . '.edit', $item->id) }}"><i
                                                     class="fa fa-eye"></i>
