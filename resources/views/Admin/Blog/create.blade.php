@@ -15,21 +15,27 @@
         </div>
         {{ Session::get('errors') }}
         <div class="card-body">
-            <form id="form" action="{{ route('blog.store') }}" method="POST">
+            <form id="form" action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf()
                 <div class="card-body">
                     <div class="row">
 
                         <x-text name="name" columns="6" label="Título" required="true" />
 
-                        <x-select class="select2" columns="6" label="Categoría" required="true" id="category_id"
+                        <div class="col-md-6">
+                            <label for="">Imagen principal</label><br>
+                            <input type="file" name="image" /><br>
+                            <small>Tamaño: 1920 x 541px</small>
+                        </div>
+
+                        <x-select class="select2" columns="3" label="Categoría" required="true" id="category_id"
                             name="category_id" :datos="@$categories" />
+
+                        <x-radio name="status" columns="3" label="Publicar" selected="2" columnsSeparate="4"
+                            required="true" :datos="@$status" />
 
                         <x-multiSelect required="true" name="tags[]" columns="6" label="Tags" multiple="true"
                             class="select2" :datos="@$tags" />
-
-                        <x-radio name="status" columns="6" label="Publicar" selected="2" columnsSeparate="4"
-                            required="true" :datos="@$status" />
 
                         <input type="hidden" id="extract" name="extract">
                         <input type="hidden" id="body" name="body">

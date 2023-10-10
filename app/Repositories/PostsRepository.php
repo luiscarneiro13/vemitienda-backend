@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Controllers\API\V3\ImagesController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -12,7 +13,7 @@ class PostsRepository
     {
         $filtrar = request()->get('query');
 
-        return Post::query()
+        return Post::with('image')->query()
             ->when($filtrar, function ($q) use ($filtrar) {
                 $q->where('name', 'like', '%' . $filtrar . '%');
                 return $q;
@@ -38,12 +39,17 @@ class PostsRepository
         $post->save();
         $post->tags()->attach(request()->tags);
 
+        if (request()->file('image')) {
+            $image = new ImagesController();
+            $image->storeImagePost(request()->file('image'), $post->id);
+        }
+
         return $post;
     }
 
     static function editPost($id)
     {
-        return Post::find($id);
+        return Post::with('image')->find($id);
     }
 
     static function updatePost($id)
@@ -63,6 +69,12 @@ class PostsRepository
         $post->save();
         $post->tags()->detach();
         $post->tags()->attach(request()->tags);
+
+        if (request()->file('image')) {
+            $image = new ImagesController();
+            $image->storeImagePost(request()->file('image'), $post->id);
+        }
+
         return $post;
     }
 

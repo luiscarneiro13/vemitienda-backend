@@ -6,6 +6,7 @@ use App\Helpers\Images;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Image;
+use App\Models\Post;
 use App\Models\Product;
 use App\Traits\ApiResponser;
 use App\User;
@@ -310,12 +311,12 @@ class ImagesController extends Controller
      *     )
      * )
      */
-    public function storeImagePost(Request $request)
+    public function storeImagePost($image, $id)
     {
-        $userApi = auth()->user();
-        $user = User::find($userApi->id);
-        $urlImage = $this->image->uploadImagePng($request->file('upload'), 'posts');
-        $image = $user->image()->create(['url' => $urlImage, 'thumbnail' => $urlImage]);
+        $post = Post::find($id);
+        $post->image()->delete();
+        $urlImage = $this->image->uploadImage($image, 'images');
+        $image = $post->image()->create(['url' => $urlImage, 'thumbnail' => $urlImage]);
         return env('DO_URL_BASE') . '/' . $image->url;
     }
 }

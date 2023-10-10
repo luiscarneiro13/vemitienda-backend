@@ -2,7 +2,11 @@
     @if (isset($detail))
         <div class="post-item">
             <div class="post-thumb">
-                <img src="{{ asset('img/page-header1.webp') }}" alt="blog">
+                @if (isset($blog->image->url))
+                    <img src="{{ asset($blog->image->url) }}" alt="blog">
+                @else
+                    <img src="{{ asset('img/page-header1.webp') }}" alt="blog">
+                @endif
             </div>
             <div class="post-content">
                 <h3 class="title">

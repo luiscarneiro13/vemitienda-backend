@@ -52,7 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('paymentmethods', Admin\PaymentMethodsController::class);
     Route::resource('payments', Admin\PaymentsController::class);
     // Agregar imágenes al crear posts desde el admin
-    Route::post('storeImagePost', 'API\V3\ImagesController@storeImagePost')->name("ckeditor.upload");
+    Route::post('storeImagePost', 'API\V3\ImagesController@storeImagePost')->name("upload");
 });
 
 Route::get('init/{id_usuario}', 'API\V3\ShareController@init');

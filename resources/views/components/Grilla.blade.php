@@ -45,7 +45,13 @@
                                         href="{{ 'https://vemitienda.online/' . $item->$value }}">Tienda</a>
                                 </td>
                             @else
-                                <td>{{ @$item->$value }}</td>
+                                @if ($key == 'Imagen' && isset($item->$value->url))
+                                    <td>
+                                        <img height="30px" src="{{ env('DO_URL_BASE') . '/' . $item->$value->url }}" alt="">
+                                    </td>
+                                @else
+                                    <td>{{ @$item->$value }}</td>
+                                @endif
                             @endif
                         @endforeach
 
