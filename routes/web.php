@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('usuarios', Admin\UsersController::class);
     Route::resource('blog', Admin\PostsController::class);
     Route::resource('plans', Admin\PlansController::class);
+    Route::resource('versions', Admin\VersionsController::class);
     Route::resource('tags', Admin\TagsController::class);
     Route::resource('postcategory', Admin\PostCategoryController::class);
     Route::resource('planusers', Admin\PlanUsersController::class);

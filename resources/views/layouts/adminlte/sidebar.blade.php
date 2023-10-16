@@ -84,6 +84,13 @@
                                 <p>Usuarios</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('versions.index') }}"
+                                class="nav-link {{ Request::segment(2)=='versions' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-user-alt"></i>
+                                <p>Versiones Android</p>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item">
                             <a href="{{ route('plans.index') }}"
                                 class="nav-link {{ Request::segment(2)=='plans' ? 'active' : '' }}">

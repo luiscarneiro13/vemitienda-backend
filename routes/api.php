@@ -22,6 +22,8 @@ Route::group(['prefix' => 'v1'], function () {
 
 Route::group(['prefix' => 'v3'], function () {
 
+    Route::post('version', 'API\V3\VersionsController@index');
+
     // Enviar correo de soporte a un usuario
     Route::post('soporte', 'API\V3\EmailsController@soporte');
 
@@ -70,7 +72,6 @@ Route::group(['prefix' => 'v3'], function () {
 
         Route::get('orders', 'API\V3\OrdersController@index');
         Route::post('updateStatus', 'API\V3\OrdersController@updateStatus');
-
     });
 });
 
