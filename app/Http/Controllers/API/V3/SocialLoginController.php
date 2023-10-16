@@ -22,7 +22,6 @@ class SocialLoginController extends Controller
 
     public function handleProviderCallback(Request $request, $provider)
     {
-        return $this->errorResponse(['error' => 'Aplicación en mantenimiento']);
         try {
 
             $token = request()->access_token;
