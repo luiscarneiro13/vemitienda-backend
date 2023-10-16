@@ -50,40 +50,43 @@ class DigitalOceanHostigerController extends Controller
     public function migrarImagenes()
     {
         $limit = request()->limit;
-        $companies = Company::has('logo')->with(['logo' => function ($query) {
-            $query->where('migrated', 0);
-        }])->orderBy('id', 'desc')->take($limit)->get();
-
-        //Primero voy revisando las compañías
+        $companiesArray = Company::has('logo')->orderBy('id', 'desc')->take($limit)->pluck('id');
+        $companies = Company::with(['logo' => function ($q) {
+            $q->where('migrated', 0);
+        }])->whereIn('id', $companiesArray)->take($limit)->get();
+        // return $companies;
         if (count($companies) > 0) {
+            $proceced = [];
             foreach ($companies as $company) {
-                if ($company->logo->url) {
-                    $url = $this->decargarImagen(env('APP_URL') . '/' . $company->logo->url, 'imagenes');
-                    if ($url) {
-                        $url = str_replace('/storage/', '', $url);
-                        $company->logo()->delete();
-                        $company->logo()->create(["url" => $url, "migrated" => 1]);
-                    }
+                $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $company->logo->url, 'images');
+                if ($url) {
+                    $url = str_replace('/storage/', '', $url);
+                    $company->logo()->delete();
+                    $id = $company->logo()->create(["url" => $url, "migrated" => 1]);
+                    $proceced[] = $id;
                 }
             }
-            return response()->json(["Logos de empresa procesados" => $limit]);
+            return response()->json(["Logos de empresa procesados" => $proceced]);
         } else {
-            $products = Product::has('image')->with(['image' => function ($query) {
-                $query->where('migrated', 0);
-            }])->orderBy('id', 'desc')->take($limit)->get();
+
+            $productsArray = Product::has('image')->orderBy('id', 'desc')->take($limit)->pluck('id');
+            $products = Product::with(['image' => function ($q) {
+                $q->where('migrated', 0);
+            }])->whereIn('id', $productsArray)->take($limit)->get();
+
             //Primero voy revisando las compañías
             if (count($products) > 0) {
+                $proceced = [];
                 foreach ($products as $product) {
-                    if ($product->image->url) {
-                        $url = $this->decargarImagen(env('APP_URL') . '/' . $product->image->url, 'imagenes');
-                        if ($url) {
-                            $url = str_replace('/storage/', '', $url);
-                            $product->image()->delete();
-                            $product->image()->create(["url" => $url, "migrated" => 1]);
-                        }
+                    $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $product->image->url, 'images');
+                    if ($url) {
+                        $url = str_replace('/storage/', '', $url);
+                        $product->image()->delete();
+                        $product->image()->create(["url" => $url, "migrated" => 1]);
+                        $proceced[] = $product->id;
                     }
                 }
-                return response()->json(["Imágenes de productos procesados" => $limit]);
+                return response()->json(["Imágenes de productos procesados" => $proceced]);
             }
             return response()->json(["data" => "listo"]);
         }
