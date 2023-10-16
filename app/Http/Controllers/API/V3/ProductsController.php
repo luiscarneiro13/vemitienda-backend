@@ -74,7 +74,7 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        return $this->errorResponse(['message' => 'Estamos en mantenimiento hasta el 17-10-2023']);
+        // return $this->errorResponse(['message' => 'Estamos en mantenimiento hasta el 17-10-2023']);
         $user = Auth::user();
 
         try {
@@ -148,7 +148,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->errorResponse(['message' => 'Estamos en mantenimiento hasta el 17-10-2023']);
+        // return $this->errorResponse(['message' => 'Estamos en mantenimiento hasta el 17-10-2023']);
         try {
             return $this->successResponse(['data' =>  ProductsRepository::updateProduct($id)]);
         } catch (\Throwable $th) {
