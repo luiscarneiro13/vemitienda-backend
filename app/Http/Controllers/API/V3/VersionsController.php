@@ -13,9 +13,9 @@ class VersionsController extends Controller
         $versionApp = request()->version;
         $version = Version::orderBy('id', 'desc')->first();
         if ($versionApp != $version->version) {
-            return response()->json(["actualizar" => true]);
+            return response()->json(["actualizar" => true, "versionApp"=>$versionApp,"version"=>$version->version]);
         } else {
-            return response()->json(["actualizar" => false]);
+            return response()->json(["actualizar" => false, "versionApp"=>$versionApp,"version"=>$version->version]);
         }
     }
 }
