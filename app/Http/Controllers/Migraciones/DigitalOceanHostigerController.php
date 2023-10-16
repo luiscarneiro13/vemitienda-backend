@@ -50,7 +50,9 @@ class DigitalOceanHostigerController extends Controller
     public function migrarImagenes()
     {
         $limit = request()->limit;
-        $companies = Company::has('logo')->with('logo')->orderBy('id', 'desc')->take($limit)->get();
+        $companies = Company::has('logo')->with(['logo' => function ($query) {
+            $query->where('migrated', 0);
+        }])->orderBy('id', 'desc')->take($limit)->get();
 
         //Primero voy revisando las compañías
         if (count($companies) > 0) {
@@ -59,14 +61,25 @@ class DigitalOceanHostigerController extends Controller
                 if ($url) {
                     $url = str_replace('/storage/', '', $url);
                     $company->logo()->delete();
-                    $company->logo()->create(["url" => $url]);
+                    $company->logo()->create(["url" => $url, "migrated" => 1]);
                 }
             }
-            return response()->json(["Se procesaron " => $limit]);
+            return response()->json(["Logos de empresa procesados" => $limit]);
         } else {
-            $products = Product::has('image')->with('image')->orderBy('id', 'desc')->take($limit)->get();
+            $products = Product::has('image')->with(['image' => function ($query) {
+                $query->where('migrated', 0);
+            }])->orderBy('id', 'desc')->take($limit)->get();
             //Primero voy revisando las compañías
             if (count($products) > 0) {
+                foreach ($products as $product) {
+                    $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $product->image->url, 'imagenes');
+                    if ($url) {
+                        $url = str_replace('/storage/', '', $url);
+                        $product->image()->delete();
+                        $product->image()->create(["url" => $url, "migrated" => 1]);
+                    }
+                }
+                return response()->json(["Imágenes de productos procesados" => $limit]);
             }
             return response()->json(["data" => "listo"]);
         }
