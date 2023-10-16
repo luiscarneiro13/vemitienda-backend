@@ -38,12 +38,12 @@
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/main.css') }}">
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lc4ovAnAAAAACerisb_PVs3fa28jnN3WlX54UNF"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcimqgoAAAAAD7N3jEMSyIMwjWBRIcXoHOQcG80"></script>
     <script>
         document.addEventListener('submit', function(e) {
             e.preventDefault();
             grecaptcha.ready(function() {
-                grecaptcha.execute('6Lc4ovAnAAAAACerisb_PVs3fa28jnN3WlX54UNF', {
+                grecaptcha.execute('6LcimqgoAAAAAD7N3jEMSyIMwjWBRIcXoHOQcG80', {
                     action: 'submit'
                 }).then(function(token) {
                     // Add your logic to submit to your backend server here.

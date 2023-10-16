@@ -103,7 +103,8 @@
 
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <!-- HIDDEN PREHEADER TEXT -->
-    <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+    <div
+        style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
     </div>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <!-- LOGO -->
@@ -120,8 +121,10 @@
             <td bgcolor="#007bff" align="center" style="padding: 0px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <img src="https://vemitienda.online/img/logo.png" width="125" height="120" style="display: block; border: 0px;" />
+                        <td bgcolor="#ffffff" align="center" valign="top"
+                            style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
+                            <img src="https://vemitienda.com/img/logo.png" width="125" height="120"
+                                style="display: block; border: 0px;" />
                         </td>
                     </tr>
                 </table>
@@ -131,20 +134,28 @@
             <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                        <td bgcolor="#ffffff" align="left"
+                            style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <p>Estimad@ {{ @$name }}</p>
+                            <h5 class="text-center">Hemos lanzado una actualización con correcciones de errores</h5>
+                            <h5 class="text-center">Actualiza la aplicación a la versión 1.3.5</h5>
                             <p style="margin: 0;">
-                                En nombre de Ve mi Tienda, queremos expresar nuestro agradecimiento por utilizar nuestra aplicación móvil para crear su propia tienda en línea. Nos sentimos muy orgullosos de que haya elegido nuestra plataforma para ayudarlo a desarrollar su negocio en línea.
+                                En nombre de Ve mi Tienda, queremos expresar nuestro agradecimiento por utilizar nuestra
+                                aplicación móvil para crear su propia tienda en línea. Nos sentimos muy orgullosos de
+                                que haya elegido nuestra plataforma para ayudarlo a desarrollar su negocio en línea.
                             </p>
                             <p>
-                                Nos gustaría recordarle que nuestro equipo de soporte está siempre disponible para brindarle ayuda y asistencia en cualquier momento. Estamos aquí para ayudarlo a resolver cualquier problema que pueda tener, responder preguntas o proporcionarle consejos útiles para el buen manejo de la plataforma.
+                                Nos gustaría recordarle que nuestro equipo de soporte está siempre disponible para
+                                brindarle ayuda y asistencia en cualquier momento. Estamos aquí para ayudarlo a resolver
+                                cualquier problema que pueda tener, responder preguntas o proporcionarle consejos útiles
+                                para el buen manejo de la plataforma.
                             </p>
                             <br><br>
                             <h3>Nuestros medios de contacto:</h3>
                             <p><strong>Whatsapp: </strong>0424 849 68 99</p>
-                            <p><strong>Email: </strong>info@vemitienda.online</p>
+                            <p><strong>Email: </strong>info@vemitienda.com</p>
                             <p><strong>Instagram: </strong>@vemitienda.online</p>
-                            <p><strong>Sitio WEB: </strong>https://vemitienda.online</p>
+                            <p><strong>Sitio WEB: </strong>https://vemitienda.com</p>
                         </td>
                     </tr>
                     <tr>
@@ -154,7 +165,9 @@
                                     <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
-                                                <td align="center" style="border-radius: 3px;" bgcolor="#007bff"><a href="https://vemitienda.online" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #007bff; display: inline-block;">
+                                                <td align="center" style="border-radius: 3px;" bgcolor="#007bff"><a
+                                                        href="https://vemitienda.com" target="_blank"
+                                                        style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #007bff; display: inline-block;">
                                                         Ir al Sitio WEB
                                                     </a>
                                                 </td>
