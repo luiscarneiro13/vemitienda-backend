@@ -58,7 +58,7 @@ class DigitalOceanHostigerController extends Controller
         if (count($companies) > 0) {
             $proceced = [];
             foreach ($companies as $company) {
-                if ($company->logo && $company->logo->url) {
+                if ($company->logo && isset($company->logo->url)) {
                     $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $company->logo->url, 'images');
                     if ($url) {
                         $url = str_replace('/storage/', '', $url);
@@ -80,7 +80,7 @@ class DigitalOceanHostigerController extends Controller
             if (count($products) > 0) {
                 $proceced = [];
                 foreach ($products as $product) {
-                    if ($product->image && $product->image->url) {
+                    if ($product->image && isset($product->image->url)) {
                         $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $product->image->url, 'images');
                         if ($url) {
                             $url = str_replace('/storage/', '', $url);
