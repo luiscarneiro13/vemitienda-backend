@@ -44,7 +44,6 @@
 </head>
 
 <body>
-Example
     <!--============= ScrollToTop Section Starts Here =============-->
     {{-- <div class="preloader">
         <div class="preloader-inner">
