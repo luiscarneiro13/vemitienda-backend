@@ -57,11 +57,13 @@ class DigitalOceanHostigerController extends Controller
         //Primero voy revisando las compañías
         if (count($companies) > 0) {
             foreach ($companies as $company) {
-                $url = $this->decargarImagen(env('APP_URL') . '/' . $company->logo->url, 'imagenes');
-                if ($url) {
-                    $url = str_replace('/storage/', '', $url);
-                    $company->logo()->delete();
-                    $company->logo()->create(["url" => $url, "migrated" => 1]);
+                if ($company->logo->url) {
+                    $url = $this->decargarImagen(env('APP_URL') . '/' . $company->logo->url, 'imagenes');
+                    if ($url) {
+                        $url = str_replace('/storage/', '', $url);
+                        $company->logo()->delete();
+                        $company->logo()->create(["url" => $url, "migrated" => 1]);
+                    }
                 }
             }
             return response()->json(["Logos de empresa procesados" => $limit]);
@@ -72,11 +74,13 @@ class DigitalOceanHostigerController extends Controller
             //Primero voy revisando las compañías
             if (count($products) > 0) {
                 foreach ($products as $product) {
-                    $url = $this->decargarImagen(env('APP_URL') . '/' . $product->image->url, 'imagenes');
-                    if ($url) {
-                        $url = str_replace('/storage/', '', $url);
-                        $product->image()->delete();
-                        $product->image()->create(["url" => $url, "migrated" => 1]);
+                    if ($product->image->url) {
+                        $url = $this->decargarImagen(env('APP_URL') . '/' . $product->image->url, 'imagenes');
+                        if ($url) {
+                            $url = str_replace('/storage/', '', $url);
+                            $product->image()->delete();
+                            $product->image()->create(["url" => $url, "migrated" => 1]);
+                        }
                     }
                 }
                 return response()->json(["Imágenes de productos procesados" => $limit]);
