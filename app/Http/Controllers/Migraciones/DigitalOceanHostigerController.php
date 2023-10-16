@@ -47,29 +47,42 @@ class DigitalOceanHostigerController extends Controller
         }
     }
 
-    public function migrarImagenesCompanies()
+    public function migrarImagenes()
+    {
+        $model = '';
+        switch (request()->type) {
+            case 'companies':
+                $model = 'App\Models\Company';
+                break;
+
+            case 'products':
+                $model = 'App\Models\Product';
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
+        return $this->imagesProccess($model);
+
+    }
+
+    public function imagesProccess($model)
     {
         $limit = request()->limit;
-        $companies = Company::has('logo')->with('logo')->orderBy('id', 'desc')->take($limit)->get();
-
-        //Primero voy revisando las compañías
-        if (count($companies) > 0) {
-            foreach ($companies as $company) {
-                $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $company->logo->url, 'imagenes');
-                if ($url) {
-                    $url = str_replace('/storage/', '', $url);
-                    $company->logo()->delete();
-                    $company->logo()->create(["url" => $url]);
+        $images = $this->images->where('imageable_type', $model)->orderBy('id', 'desc')->take($limit)->get();
+        $result = [];
+        if (count($images) > 0) {
+            foreach ($images as $item) {
+                if (isset($item->url)) {
+                    $result[] = env('DO_URL_BASE') . '/' . $item->url;
+                    $logo = Image::find($item->id);
+                    $logo->migrated = 1;
+                    $logo->save();
                 }
             }
-            return "Se procesaron " . $limit;
-        } else {
-            $products = Product::has('image')->with('image')->orderBy('id', 'desc')->take($limit)->get();
-            //Primero voy revisando las compañías
-            if (count($products) > 0) {
-
-            }
-            return response()->json(["data" => "listo"]);
         }
+        return $result;
     }
 }
