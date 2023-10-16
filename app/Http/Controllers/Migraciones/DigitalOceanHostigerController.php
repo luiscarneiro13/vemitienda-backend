@@ -54,7 +54,7 @@ class DigitalOceanHostigerController extends Controller
         $companies = Company::with(['logo' => function ($q) {
             $q->where('migrated', 0);
         }])->whereIn('id', $companiesArray)->take($limit)->get();
-        // return $companies;
+    return $companies;
         if (count($companies) > 0) {
             $proceced = [];
             foreach ($companies as $company) {
