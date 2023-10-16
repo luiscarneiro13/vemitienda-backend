@@ -97,4 +97,8 @@ href="{{ asset('adminlte3/plugins/datatables-responsive/css/responsive.bootstrap
     [class*=sidebar-dark] .brand-link {
         border-bottom: 1px solid #FFFFFF;
     }
+
+    .table-responsive>.table-bordered {
+        border: 1px solid #dee2e6;
+    }
 </style>
