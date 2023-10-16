@@ -12,7 +12,7 @@
     <meta name="description" content="{{ $company->slogan }}" />
     <meta property="og:description" content="{{ $company->slogan }}" />
     <meta property="og:image"
-        content="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}" />
+        content="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}" />
     <meta property="og:type" content="article" />
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">

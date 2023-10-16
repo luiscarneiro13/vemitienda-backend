@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="icon" type="image/x-icon" href="{{ env('DO_URL_BASE') . '/' . $company->logo->thumbnail }}">
+    <link rel="icon" type="image/x-icon" href="{{ env('APP_URL') . '/' . $company->logo->url }}">
 
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
@@ -15,7 +15,7 @@
     <meta name="description" content="{{ $company->slogan }}" />
     <meta property="og:description" content="{{ $company->slogan }}" />
     <meta property="og:image"
-        content="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}" />
+        content="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}" />
     <meta property="og:type" content="article" />
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -46,7 +46,7 @@
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
             <a href="#"><img
-                    src="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}"
+                    src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}"
                     alt=""></a>
         </div>
         {{-- <div class="humberger__menu__cart">
@@ -97,7 +97,7 @@
                 <div class="col-lg-3">
                     <div class="header__logo">
                         <a href="#"><img
-                                src="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}"
+                                src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}"
                                 alt=""></a>
                     </div>
                 </div>

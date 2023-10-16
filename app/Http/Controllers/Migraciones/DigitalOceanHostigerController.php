@@ -57,7 +57,7 @@ class DigitalOceanHostigerController extends Controller
         //Primero voy revisando las compañías
         if (count($companies) > 0) {
             foreach ($companies as $company) {
-                $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $company->logo->url, 'imagenes');
+                $url = $this->decargarImagen(env('APP_URL') . '/' . $company->logo->url, 'imagenes');
                 if ($url) {
                     $url = str_replace('/storage/', '', $url);
                     $company->logo()->delete();
@@ -72,7 +72,7 @@ class DigitalOceanHostigerController extends Controller
             //Primero voy revisando las compañías
             if (count($products) > 0) {
                 foreach ($products as $product) {
-                    $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $product->image->url, 'imagenes');
+                    $url = $this->decargarImagen(env('APP_URL') . '/' . $product->image->url, 'imagenes');
                     if ($url) {
                         $url = str_replace('/storage/', '', $url);
                         $product->image()->delete();

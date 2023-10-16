@@ -15,7 +15,7 @@ class Images
         $image = FacadeImage::make($imagen);
         $image->encode('webp');
         $nombreImagen = $folder . '/' . uniqid() . uniqid() . '.webp';
-        Storage::disk('do')->put($nombreImagen, $image->stream(), 'public');
+        Storage::disk('public')->put($nombreImagen, $image->stream(), 'public');
         return $nombreImagen;
     }
 
@@ -24,13 +24,13 @@ class Images
         $image = FacadeImage::make($imagen);
         $image->encode('png');
         $nombreImagen = $folder . '/' . uniqid() . uniqid() . '.png';
-        Storage::disk('do')->put($nombreImagen, $image->stream(), 'public');
+        Storage::disk('public')->put($nombreImagen, $image->stream(), 'public');
         return $nombreImagen;
     }
 
     public function deleteImage($url)
     {
-        Storage::disk('do')->delete($url);
+        Storage::disk('public')->delete($url);
     }
 
     public function convertUrlToBase64()
@@ -40,7 +40,7 @@ class Images
 
     public function getFiles()
     {
-        $images = Storage::disk('do')->files('thumbnails');
+        $images = Storage::disk('public')->files('thumbnails');
         //Regresa un array que contiene ["images/064EsMWPMR1G4f4G7trNAmNhs4OMppPQj6BYHm8K.png","images/064EsMWPMR1G4f4G7trNAmNhs4OMppPQj6BYHm8K.png"]
         $noExists = 0;
 

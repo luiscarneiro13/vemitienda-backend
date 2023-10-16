@@ -3,7 +3,7 @@
         <div class="featured__item">
             <div class="text-center">
                 <image class="img-fluid"
-                    src="{{ count(@$product->image)>0 ? env('DO_URL_BASE').'/'.$product->image[0]->url:'' }}" />
+                    src="{{ count(@$product->image)>0 ? env('APP_URL').'/'.$product->image[0]->url:'' }}" />
             </div>
             <div class="featured__item__text">
                 <h6><a href="#">{{ $product->name }}</a></h6>

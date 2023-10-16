@@ -47,7 +47,7 @@
                             @else
                                 @if ($key == 'Imagen' && isset($item->$value->url))
                                     <td>
-                                        <img height="30px" src="{{ env('DO_URL_BASE') . '/' . $item->$value->url }}" alt="">
+                                        <img height="30px" src="{{ env('APP_URL') . '/' . $item->$value->url }}" alt="">
                                     </td>
                                 @else
                                     <td>{{ @$item->$value }}</td>
