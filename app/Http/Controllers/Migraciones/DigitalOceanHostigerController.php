@@ -62,12 +62,11 @@ class DigitalOceanHostigerController extends Controller
                     $company->logo()->create(["url" => $url]);
                 }
             }
-            return "Se procesaron " . $limit;
+            return response()->json(["Se procesaron " => $limit]);
         } else {
             $products = Product::has('image')->with('image')->orderBy('id', 'desc')->take($limit)->get();
             //Primero voy revisando las compañías
             if (count($products) > 0) {
-
             }
             return response()->json(["data" => "listo"]);
         }
