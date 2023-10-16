@@ -147,7 +147,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->errorResponse(['status' => 400, 'message' => 'Error al actualizar']);
+        return $this->errorResponse(['message' => 'Error al actualizar']);
         try {
             return $this->successResponse(['data' =>  ProductsRepository::updateProduct($id)]);
         } catch (\Throwable $th) {
