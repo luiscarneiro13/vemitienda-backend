@@ -54,16 +54,18 @@ class DigitalOceanHostigerController extends Controller
         $companies = Company::with(['logo' => function ($q) {
             $q->where('migrated', 0);
         }])->whereIn('id', $companiesArray)->take($limit)->get();
-    return $companies;
+        return $companies;
         if (count($companies) > 0) {
             $proceced = [];
             foreach ($companies as $company) {
-                $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $company->logo->url, 'images');
-                if ($url) {
-                    $url = str_replace('/storage/', '', $url);
-                    $company->logo()->delete();
-                    $id = $company->logo()->create(["url" => $url, "migrated" => 1]);
-                    $proceced[] = $id;
+                if ($company->logo && $company->logo->url) {
+                    $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $company->logo->url, 'images');
+                    if ($url) {
+                        $url = str_replace('/storage/', '', $url);
+                        $company->logo()->delete();
+                        $id = $company->logo()->create(["url" => $url, "migrated" => 1]);
+                        $proceced[] = $id;
+                    }
                 }
             }
             return response()->json(["Logos de empresa procesados" => $proceced]);
@@ -78,12 +80,14 @@ class DigitalOceanHostigerController extends Controller
             if (count($products) > 0) {
                 $proceced = [];
                 foreach ($products as $product) {
-                    $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $product->image->url, 'images');
-                    if ($url) {
-                        $url = str_replace('/storage/', '', $url);
-                        $product->image()->delete();
-                        $product->image()->create(["url" => $url, "migrated" => 1]);
-                        $proceced[] = $product->id;
+                    if ($product->image && $product->image->url) {
+                        $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $product->image->url, 'images');
+                        if ($url) {
+                            $url = str_replace('/storage/', '', $url);
+                            $product->image()->delete();
+                            $product->image()->create(["url" => $url, "migrated" => 1]);
+                            $proceced[] = $product->id;
+                        }
                     }
                 }
                 return response()->json(["Imágenes de productos procesados" => $proceced]);
