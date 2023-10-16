@@ -74,4 +74,4 @@ Route::group(['prefix' => 'v3'], function () {
     });
 });
 
-Route::post('ejemploDescargar', 'Migraciones\DigitalOceanHostigerController@migrarImagenesCompanies');
+Route::post('ejemploDescargar', 'Migraciones\DigitalOceanHostigerController@migrarImagenes');
