@@ -66,44 +66,6 @@ class DigitalOceanHostigerController extends Controller
 
         return $this->imagesProccess($model);
 
-        // if (count($companies) > 0) {
-        //     $proceced = [];
-        //     foreach ($companies as $company) {
-        //         if ($company->logo && isset($company->logo->url)) {
-        //             $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $company->logo->url, 'images');
-        //             if ($url) {
-        //                 $url = str_replace('/storage/', '', $url);
-        //                 $company->logo()->delete();
-        //                 $id = $company->logo()->create(["url" => $url, "migrated" => 1]);
-        //                 $proceced[] = $id;
-        //             }
-        //         }
-        //     }
-        //     return response()->json(["Logos de empresa procesados" => $proceced]);
-        // } else {
-
-        //     $productsArray = Product::has('image')->orderBy('id', 'desc')->take($limit)->pluck('id');
-        //     $products = Product::with(['image' => function ($q) {
-        //         $q->where('migrated', 0);
-        //     }])->whereIn('id', $productsArray)->take($limit)->get();
-
-        //     if (count($products) > 0) {
-        //         $proceced = [];
-        //         foreach ($products as $product) {
-        //             if ($product->image && isset($product->image->url)) {
-        //                 $url = $this->decargarImagen(env('DO_URL_BASE') . '/' . $product->image->url, 'images');
-        //                 if ($url) {
-        //                     $url = str_replace('/storage/', '', $url);
-        //                     $product->image()->delete();
-        //                     $product->image()->create(["url" => $url, "migrated" => 1]);
-        //                     $proceced[] = $product->id;
-        //                 }
-        //             }
-        //         }
-        //         return response()->json(["Imágenes de productos procesados" => $proceced]);
-        //     }
-        //     return response()->json(["data" => "listo"]);
-        // }
     }
 
     public function imagesProccess($model)
