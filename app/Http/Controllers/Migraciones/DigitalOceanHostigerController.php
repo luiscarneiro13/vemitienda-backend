@@ -47,7 +47,7 @@ class DigitalOceanHostigerController extends Controller
         }
     }
 
-    public function migrarImagenesCompanies()
+    public function migrarImagenes()
     {
         $limit = request()->limit;
         $companies = Company::has('logo')->with('logo')->orderBy('id', 'desc')->take($limit)->get();
