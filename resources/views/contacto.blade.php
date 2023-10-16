@@ -83,7 +83,7 @@
                         <h2 class="text-center">Contáctanos mediante el formulario</h2>
                         <p>
                             O escríbenos un correo a:
-                            <strong>info@vemitienda.online</strong> para ofrecerte la
+                            <strong>info@vemitienda.com</strong> para ofrecerte la
                             información y medios de pago
                         </p>
                     </div>
@@ -151,7 +151,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <p class="p-small">
-                        Copyright © 2023 <a href="https://vemitienda.online">Ve mi Tienda</a> - Todos los derechos
+                        Copyright © 2023 <a href="https://vemitienda.com">Ve mi Tienda</a> - Todos los derechos
                         reservados
                     </p>
                 </div>

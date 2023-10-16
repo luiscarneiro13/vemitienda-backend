@@ -12,7 +12,7 @@
 
 <body>
     <p><strong>POLÍTICA DE PRIVACIDAD DEL SITIO WEB</strong></p>
-    https://vemitienda.online
+    https://vemitienda.com
     <p><strong>I. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS</strong></p>
     <p>
         Respetando lo establecido en la legislación vigente, Ve mi Tienda (en adelante,
@@ -21,7 +21,7 @@
         datos recogidos.
         Dirección: 6to callejón bis sur #256, El Tigre, Anzoátegui, Venezuela
         Teléfono de contacto: +584248496899
-        Email de contacto: info@vemitienda.online
+        Email de contacto: info@vemitienda.com
         Registro de Datos de Carácter Personal
         Los datos recabados por Ve mi Tienda, mediante los formularios extendidos en sus
         páginas quedarán incorporados y serán tratados en nuestro fichero con el fin de
@@ -62,7 +62,7 @@
         transmisión de los datos entre el servidor y el Usuario, y en retroalimentación,
         totalmente cifrada o encriptada.
         Dirección postal: 6to callejón bis sur #256, El Tigre, Anzoátegui, Venezuela
-        Correo electrónico: info@vemitienda.online
+        Correo electrónico: info@vemitienda.com
     </p>
     <p><strong>II. ACEPTACIÓN Y CAMBIOS EN ESTA POLÍTICA DE PRIVACIDAD</strong></p>
     <p>
