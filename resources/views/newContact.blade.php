@@ -189,7 +189,7 @@
                                 </div>
                                 <div class="contact-contact">
                                     <h5 class="subtitle">Email</h5>
-                                    <a href="Mailto:info@mosto.com">info@vemitienda.online</a>
+                                    <a href="Mailto:info@mosto.com">info@vemitienda.com</a>
                                 </div>
                             </div>
                             <div class="contact-item">
