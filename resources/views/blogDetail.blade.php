@@ -1,7 +1,6 @@
 @include('mosto.headerBlog')
-@section('metaBlog')
-    <x-metaComponents "title"={{ $post->name }} "description"={{ $post->extract }} "image"={{ asset($post->image->url) }} />
-@endsection
+
+<x-metaComponents "title"={{ $post->name }} "description"={{ $post->extract }} "image"={{ asset($post->image->url) }} />
 <!--============= Blog Section Starts Here =============-->
 <section class="blog-section padding-top padding-bottom">
     <div class="container">
