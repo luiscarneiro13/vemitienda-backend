@@ -34,8 +34,8 @@
                         <x-radio name="status" columns="3" label="Publicar" selected="2" columnsSeparate="4"
                             required="true" :datos="@$status" />
 
-                        <x-multiselect required="true" name="tags[]" columns="6" label="Tags" multiple="true"
-                            class="select2" :datos="@$tags" />
+                        {{-- <x-multiselect required="true" name="tags[]" columns="6" label="Tags" multiple="true"
+                            class="select2" :datos="@$tags" /> --}}
 
                         <input type="hidden" id="extract" name="extract">
                         <input type="hidden" id="body" name="body">
