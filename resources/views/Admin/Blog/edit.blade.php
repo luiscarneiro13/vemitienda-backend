@@ -29,7 +29,7 @@
                         <x-select class="select2" columns="6" label="Categoría" required="true" id="category_id"
                             name="category_id" :datos="@$categories" :selected="$blog->category_id" />
 
-                        <x-multiselect required="true" name="tags[]" columns="6" label="Tags" multiple="true"
+                        <x-multixelect required="true" name="tags[]" columns="6" label="Tags" multiple="true"
                             class="select2" :datos="@$tags" :selected="@$tagSelected" />
 
                         <x-radio name="status" columns="6" label="Publicar" :selected="$blog->status" columnsSeparate="4"
