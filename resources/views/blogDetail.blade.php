@@ -12,6 +12,7 @@
                     'url' => url('blog') . '/' . $post->slug,
                     'body' => $post->body,
                     'detail' => true,
+                    'image' => $post->image->url,
                 ])
             </div>
             <div class="col-lg-4 col-md-8 col-sm-10">

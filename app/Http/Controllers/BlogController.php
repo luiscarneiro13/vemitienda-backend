@@ -43,7 +43,7 @@ class BlogController extends Controller
 
     public function show($slug)
     {
-        $datos['post'] = Post::where('slug', $slug)->first();
+        $datos['post'] = Post::with('image')->where('slug', $slug)->first();
         if(!$datos['post']){
             return redirect(url('blog'));
         }

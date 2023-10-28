@@ -9,7 +9,8 @@
                 @endif
             </div>
             <div class="post-content">
-                <h3 class="title">
+                <img src="{{ asset($image) }}" alt="" class="img-fluid">
+                <h3 class="title mt-5">
                     <a href="{{ @$url }}">{{ @$name }}</a>
                 </h3>
                 {!! str_replace('<img', '<img class="img-responsive"', $body) !!}
