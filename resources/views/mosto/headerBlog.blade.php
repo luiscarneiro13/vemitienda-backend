@@ -8,8 +8,6 @@
 
     <title>Blog</title>
 
-    @yield('metaBlog')
-
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/animate.css') }}">
