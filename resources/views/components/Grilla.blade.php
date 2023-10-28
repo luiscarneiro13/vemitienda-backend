@@ -39,15 +39,15 @@
                             @if ($key == 'Tienda' && @$item->$value != null)
                                 <td>
                                     <a target="_blank"
-                                        href="{{ 'https://vemitienda.online/catalogo' . '/' . $item->$value }}">Catálogo</a>
+                                        href="{{ 'https://vemitienda.com/catalogo' . '/' . $item->$value }}">Catálogo</a>
                                     -
                                     <a target="_blank"
-                                        href="{{ 'https://vemitienda.online/' . $item->$value }}">Tienda</a>
+                                        href="{{ 'https://vemitienda.com/' . $item->$value }}">Tienda</a>
                                 </td>
                             @else
                                 @if ($key == 'Imagen' && isset($item->$value->url))
                                     <td>
-                                        <img height="30px" src="{{ env('DO_URL_BASE') . '/' . $item->$value->url }}" alt="">
+                                        <img height="30px" src="{{ env('APP_URL') . '/' . $item->$value->url }}" alt="">
                                     </td>
                                 @else
                                     <td>{{ @$item->$value }}</td>

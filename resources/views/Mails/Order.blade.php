@@ -11,7 +11,7 @@
 <body>
 
     <center>
-        <img width="200px" src="{{ env('DO_URL_BASE') . '/' . $order->company->logo->thumbnail }}" alt="">
+        <img width="200px" src="{{ env('APP_URL') . '/' . $order->company->logo->url }}" alt="">
     </center>
 
     <h3>Pedido n° {{ $order->id }}</h3>

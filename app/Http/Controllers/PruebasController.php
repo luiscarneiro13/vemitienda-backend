@@ -40,8 +40,8 @@ class PruebasController extends Controller
     {
         foreach ($arrayData as $item) {
 
-            $imageUrl = env('DO_URL_BASE') . '/' . $item->url;
-            $imageThumbnail = env('DO_URL_BASE') . '/' . $item->thumbnail;
+            $imageUrl = env('APP_URL') . '/' . $item->url;
+            $imageThumbnail = env('APP_URL') . '/' . $item->url;
 
             $extensionImage = $this->getExtensionFileFromURL($imageUrl);
             $extensionThumbnail = $this->getExtensionFileFromURL($imageThumbnail);

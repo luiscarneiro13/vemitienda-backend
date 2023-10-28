@@ -10,7 +10,7 @@
     <meta name="description" content="{{ $company->slogan }}" />
     <meta property="og:description" content="{{ $company->slogan }}" />
     <meta property="og:image"
-        content="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}" />
+        content="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}" />
     <meta property="og:type" content="article" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -173,7 +173,7 @@
                 // })
 
                 const BASE_URL = "{{ url('') }}"
-                const BASE_IMAGE = "{{ env('DO_URL_BASE') }}"
+                const BASE_IMAGE = "{{ env('APP_URL') }}"
 
                 async function addCart(product, slug) {
 
@@ -185,7 +185,7 @@
                         'name': product.name,
                         'price': product.price,
                         'quantity': 1,
-                        'image': BASE_IMAGE + '/' + product.image[0].thumbnail
+                        'image': BASE_IMAGE + '/' + product.image[0].url
                     }
 
                     const resp = await axios.post(BASE_URL + '/cart', data)

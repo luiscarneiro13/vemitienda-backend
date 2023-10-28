@@ -7,11 +7,11 @@
             <input type="hidden" value="{{ $product->name }}" name="name">
             <input type="hidden" value="1" name="quantity">
             <input type="hidden" value="{{ $product->price }}" name="price">
-            <input type="hidden" value="{{ env('DO_URL_BASE') . '/' . $product->image[0]->thumbnail }}" name="image">
+            <input type="hidden" value="{{ env('APP_URL') . '/' . $product->image[0]->url }}" name="image">
             <div
                 class="h-80 w-full max-w-sm mx-auto overflow-hidden rounded-md shadow-md relative bg-white rounded-md p-3 sm:p-4 flex flex-col">
                 <div class="relative flex items-center fade-in cursor-pointer __background-image-grid justify-center">
-                    <img src="{{ env('DO_URL_BASE') . '/' . $product->image[0]->thumbnail }}" alt="Mango Importado"
+                    <img src="{{ env('APP_URL') . '/' . $product->image[0]->url }}" alt="Mango Importado"
                         title="Mango Importado" width="112px" height="112px" class="lazyLoad isLoaded">
                 </div>
                 <div class="w-full flex flex-col relative justify-start flex-auto">

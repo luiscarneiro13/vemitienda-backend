@@ -16,15 +16,15 @@
     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
     <meta property="og:site_name" content="Ve mi Tienda" />
     <!-- website name -->
-    <meta property="og:site" content="https://vemitienda.online" />
+    <meta property="og:site" content="https://vemitienda.com" />
     <!-- website link -->
     <meta property="og:title" content="Ve mi Tienda" />
     <!-- title shown in the actual shared post -->
     <meta property="og:description" content="Crea tu propia tienda online gratis" />
     <!-- description shown in the actual shared post -->
-    <meta property="og:image" content="https://vemitienda.online/img/logometa.webp" />
+    <meta property="og:image" content="https://vemitienda.com/img/logometa.webp" />
     <!-- image link, make sure it's jpg -->
-    <meta property="og:url" content="https://vemitienda.online" />
+    <meta property="og:url" content="https://vemitienda.com" />
     <!-- where do you want your post to link to -->
     <meta property="og:type" content="article" />
 

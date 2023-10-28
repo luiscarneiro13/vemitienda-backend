@@ -4,7 +4,6 @@ use App\Http\Controllers\WEB\V3\CartController as CartController3;
 use App\Http\Controllers\WEB\V3\OrderController as OrderController3;
 use App\Http\Controllers\WEB\V3\ProductController as ProductController3;
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +45,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('usuarios', Admin\UsersController::class);
     Route::resource('blog', Admin\PostsController::class);
     Route::resource('plans', Admin\PlansController::class);
+    Route::resource('versions', Admin\VersionsController::class);
     Route::resource('tags', Admin\TagsController::class);
     Route::resource('postcategory', Admin\PostCategoryController::class);
     Route::resource('planusers', Admin\PlanUsersController::class);
@@ -76,3 +76,6 @@ Route::post('update-cart', [CartController3::class, 'updateCart'])->name('cart.u
 Route::post('remove', [CartController3::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [CartController3::class, 'clearAllCart'])->name('cart.clear');
 Route::post('order', [OrderController3::class, 'index'])->name('order.store');
+
+
+

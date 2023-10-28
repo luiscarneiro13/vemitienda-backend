@@ -16,7 +16,7 @@
         {{ Session::get('errors') }}
         <div class="card-body">
             @if ($blog->image)
-                <img src="{{ asset(env('DO_URL_BASE').'/'.$blog->image->url) }}" width="100px" alt="">
+                <img src="{{ asset(env('APP_URL').'/'.$blog->image->url) }}" width="100px" alt="">
             @endif
             <form id="form" action="{{ route('blog.update', $blog->id) }}" method="POST">
                 @csrf()

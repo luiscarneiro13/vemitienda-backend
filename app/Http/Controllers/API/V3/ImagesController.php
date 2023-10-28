@@ -154,9 +154,7 @@ class ImagesController extends Controller
         if ($product && request()->image && request()->thumbnail) {
             try {
                 $urlImage = $this->image->uploadImage($request->file('image'), 'images');
-                $thumbnail = $this->image->uploadImage($request->file('thumbnail'), 'thumbnails');
-                // sleep(3);
-                $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
+                $image = $product->image()->create(['url' => $urlImage]);
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
                 return $this->errorResponse(['message' => $th]);
@@ -317,6 +315,6 @@ class ImagesController extends Controller
         $post->image()->delete();
         $urlImage = $this->image->uploadImage($image, 'images');
         $image = $post->image()->create(['url' => $urlImage, 'thumbnail' => $urlImage]);
-        return env('DO_URL_BASE') . '/' . $image->url;
+        return env('APP_URL') . '/' . $image->url;
     }
 }

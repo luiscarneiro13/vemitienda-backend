@@ -74,8 +74,10 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
+      
         return $this->errorResponse(['message' => 'Acabamos de lanzar una actualización. Por favor descárgala']);
-        $user = Auth::user();
+
+      $user = Auth::user();
 
         try {
             $datos = array_merge(['user_id' => $user->id], request()->all());

@@ -22,7 +22,7 @@ class EmailSoporte extends Mailable
     public function __construct($datos)
     {
         $this->datos = $datos;
-        $this->subject = 'Queremos saber de ti!';
+        $this->subject = 'Actualización disponible!';
         $this->vista = 'Mails.MensajeGlobal';
     }
 

@@ -12,7 +12,7 @@
     <meta name="description" content="{{ $company->slogan }}" />
     <meta property="og:description" content="{{ $company->slogan }}" />
     <meta property="og:image"
-        content="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}" />
+        content="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}" />
     <meta property="og:type" content="article" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"
@@ -50,14 +50,14 @@
 @if ($company)
 
     <body style="background-color:{{ $company->background_color_catalog }}}">
-        <x-menu logo="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->thumbnail : '' }}"
+        <x-menu logo="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}"
             :categories="@$categories" idEncriptado='{{ $id_encriptado }}' :cat='@$cat' :products='@$products' />
 
 
         <div class="row mt-5">
             <div class="col-md-4 text-center">
                 <image class="img-fluid p-5"
-                    src="{{ $company->logo ? env('DO_URL_BASE') . '/' . $company->logo->url : '' }}" />
+                    src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}" />
             </div>
             <div class="col-md-8">
                 <div class="text-center" style="font-size: 52px; font-weight: bolder; margin-top: 65px">
