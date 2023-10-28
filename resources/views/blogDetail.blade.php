@@ -8,7 +8,14 @@
 
     <title>Blog</title>
 
-    <x-metaComponents title={{ $post->name }} description={{ $post->extract }} image={{ asset($post->image->url) }} />
+    <meta property="og:title" content="{{ $post->name }}" />
+    <meta name="description" content="{{ $post->extract }}" />
+    <meta property="og:description" content="{{ $post->extract }}" />
+    <meta property="og:image" content="{{ asset($post->image->url) }}" />
+    <meta property="og:type" content="article" />
+
+    <x-googleAnalytics />
+    <x-googleAdsense />
 
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plantillas/mosto/css/all.min.css') }}">
