@@ -34,7 +34,7 @@
     </div>
 
     <div id="tienda" class="bg-white">
-
+Mtto
         <x-encabezadoTienda :company="@$company" />
 
         <div class="sticky top-0 z-30"
