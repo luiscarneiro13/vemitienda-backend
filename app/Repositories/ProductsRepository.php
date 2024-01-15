@@ -16,7 +16,7 @@ class ProductsRepository
     {
         $user = Auth::user();
 
-        $datos = Product::with('category', 'image')->where('user_id', $user->id);
+        $datos = Product::whereHas('image')->whereHas('category')->with('category', 'image')->where('user_id', $user->id);
 
         if ($limit == -1) {
             return $datos->get();
@@ -41,7 +41,7 @@ class ProductsRepository
     static function storeProduct($insert)
     {
         $product = Product::create($insert);
-        return Product::with('category', 'image')->where('id', $product->id)->first();
+        return Product::whereHas('image')->whereHas('category')->with('category', 'image')->where('id', $product->id)->first();
     }
 
     static function deleteProduct($id)
@@ -63,6 +63,6 @@ class ProductsRepository
         $model->share = request()->share ? request()->share : 0;
         $model->available = request()->available ? request()->available : 0;
         $model->save();
-        return $model->with('category', 'image')->first();
+        return $model->whereHas('image')->whereHas('category')->with('category', 'image')->first();
     }
 }

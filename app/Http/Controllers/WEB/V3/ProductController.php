@@ -31,6 +31,7 @@ class ProductController extends Controller
         }
 
         $total = Product::query()
+            ->whereHas('image')->whereHas('category')
             ->with('image', 'category')
             ->where('share', 1)
             ->where('user_id', $id_usuario)
@@ -43,6 +44,7 @@ class ProductController extends Controller
 
         $data['products'] = Product::query()
             ->with('image', 'category')
+            ->whereHas('image')->whereHas('category')
             ->where('share', 1)
             ->where('user_id', $id_usuario)
             ->when($cat > 0, function ($q) {
