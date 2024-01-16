@@ -42,6 +42,7 @@ class ShareController extends Controller
         }
         $total = Product::query()
             ->with('image', 'category')
+            ->has('image')
             ->where('share', 1)
             ->where('user_id', $id_usuario)
             ->when($cat > 0, function ($q) {
@@ -53,6 +54,7 @@ class ShareController extends Controller
 
         $data['products'] = Product::query()
             ->with('image', 'category')
+            ->has('image')
             ->where('share', 1)
             ->where('user_id', $id_usuario)
             ->when($cat > 0, function ($q) {
@@ -80,6 +82,7 @@ class ShareController extends Controller
         }
         $data['products'] = Product::query()
             ->with('image', 'category')
+            ->has('image')
             ->where('share', 1)
             ->where('user_id', $id_usuario)
             ->when($cat, function ($q) {

@@ -43,6 +43,7 @@ class ShareController extends Controller
             if (request()->query) {
                 $total = Product::query()
                     ->with('image', 'category')
+                    ->has('image')
                     ->where('share', 1)
                     ->where('user_id', $id_usuario)
                     ->where('name', 'LIKE', '%' . request()->input('query') . '%')
@@ -52,6 +53,7 @@ class ShareController extends Controller
 
                 $data['products'] = Product::query()
                     ->with('image', 'category')
+                    ->has('image')
                     ->where('share', 1)
                     ->where('user_id', $id_usuario)
                     ->where('name', 'LIKE', '%' . request()->input('query') . '%')
@@ -62,6 +64,7 @@ class ShareController extends Controller
                 }
 
                 $total = Product::query()
+                    ->has('image')
                     ->with('image', 'category')
                     ->where('share', 1)
                     ->where('user_id', $id_usuario)
@@ -73,6 +76,7 @@ class ShareController extends Controller
                 $data['pages'] = (int)($total / 4);
 
                 $data['products'] = Product::query()
+                    ->has('image')
                     ->with('image', 'category')
                     ->where('share', 1)
                     ->where('user_id', $id_usuario)
@@ -107,6 +111,7 @@ class ShareController extends Controller
             }
             $data['products'] = Product::query()
                 ->with('image', 'category')
+                ->has('image')
                 ->where('share', 1)
                 ->where('user_id', $id_usuario)
                 ->when($cat, function ($q) {

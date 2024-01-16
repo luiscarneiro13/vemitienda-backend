@@ -36,13 +36,13 @@ class UsersController extends Controller
             ->paginate(20);
 // return $datos;
         $data['usuariosTotales'] = User::count();
-        $data['productosTotales'] = Product::count();
+        $data['productosTotales'] = Product::has('image')->count();
 
         $users = User::whereNotNull('provider_user_id')->select('id')->get();
         $usersArray = $users->pluck('id')->toArray();
 
         $data['totalUsuariosReales'] = $users->count();
-        $data['totalProductosReales'] = Product::whereIn('user_id', $usersArray)->get()->count();
+        $data['totalProductosReales'] = Product::has('image')->whereIn('user_id', $usersArray)->get()->count();
 
         $data['usuariosRealesConProductos'] = User::has('products')->whereIn('id', $usersArray)->count();
 

@@ -57,7 +57,7 @@ class ImagesController extends Controller
 
     public function storeImageProduct($product_id)
     {
-        $product = Product::with('image')->find($product_id);
+        $product = Product::with('image')->has('image')->find($product_id);
         if ($product && request()->image && request()->thumbnail) {
             try {
                 $urlImage = $this->image->uploadImage('images');
@@ -87,7 +87,7 @@ class ImagesController extends Controller
                 $urlImage = $this->image->uploadImage('images');
                 $thumbnail = $this->image->uploadThumbnail('thumbnails');
                 // sleep(3);
-                $product = Product::find($image->imageable_id);
+                $product = Product::has('image')->find($image->imageable_id);
                 $product->image()->delete();
                 $image = $product->image()->create(['url' => $urlImage, 'thumbnail' => $thumbnail]);
 
