@@ -24,6 +24,7 @@ class ShareController extends Controller
             "categories" => Category::where('user_id', $id_usuario)->has('products')->get(),
             "cat" => $cat,
             "products" => Product::query()
+                ->has('image')->has('category')
                 ->with('image', 'category')
                 ->where('share', 1)
                 ->where('user_id', $id_usuario)

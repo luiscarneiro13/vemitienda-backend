@@ -43,8 +43,8 @@ class ProductController extends Controller
         $data['pages'] = (int)($total / 4);
 
         $data['products'] = Product::query()
-            ->with('image', 'category')
             ->whereHas('image')->whereHas('category')
+            ->with('image', 'category')
             ->where('share', 1)
             ->where('user_id', $id_usuario)
             ->when($cat > 0, function ($q) {
