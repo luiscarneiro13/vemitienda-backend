@@ -360,4 +360,5 @@ class UserController extends Controller
             return redirect()->route('message')->with('message', '¡Datos inválidos!');
         }
     }
+
 }

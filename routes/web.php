@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Auth::routes();
+Route::get('delete-account', 'WEB\V3\DeleteAccountController@deleteAccount');
 Route::get('/', 'NewHomeController@index')->name('home');
 Route::get('/pruebas', 'PruebasController@index')->name('pruebas');
 Route::get('/changeFormat', 'PruebasController@changeFormat')->name('changeFormat');
@@ -40,20 +41,6 @@ Route::post('/loguear', [LoginController::class, 'loguear'])->name('loguear');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('blog', [BlogController::class, 'index'])->name('blog');
 Route::get('blog/{slug}', [BlogController::class, 'show'])->name('blog');
-
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::resource('usuarios', Admin\UsersController::class);
-    Route::resource('blog', Admin\PostsController::class);
-    Route::resource('plans', Admin\PlansController::class);
-    Route::resource('versions', Admin\VersionsController::class);
-    Route::resource('tags', Admin\TagsController::class);
-    Route::resource('postcategory', Admin\PostCategoryController::class);
-    Route::resource('planusers', Admin\PlanUsersController::class);
-    Route::resource('paymentmethods', Admin\PaymentMethodsController::class);
-    Route::resource('payments', Admin\PaymentsController::class);
-    // Agregar imágenes al crear posts desde el admin
-    Route::post('storeImagePost', 'API\V3\ImagesController@storeImagePost')->name("upload");
-});
 
 Route::get('init/{id_usuario}', 'API\V3\ShareController@init');
 Route::get('share/{id_encriptado}', 'API\V3\ShareController@share');
@@ -79,3 +66,16 @@ Route::post('order', [OrderController3::class, 'index'])->name('order.store');
 
 
 
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::resource('usuarios', 'Admin\UsersController'::class);
+    Route::resource('blog', 'Admin\PostsController'::class);
+    Route::resource('plans', 'Admin\PlansController'::class);
+    Route::resource('versions', 'Admin\VersionsController'::class);
+    Route::resource('tags', 'Admin\TagsController'::class);
+    Route::resource('postcategory', 'Admin\PostCategoryController'::class);
+    Route::resource('planusers', 'Admin\PlanUsersController'::class);
+    Route::resource('paymentmethods', 'Admin\PaymentMethodsController'::class);
+    Route::resource('payments', 'Admin\PaymentsController'::class);
+    // Agregar imágenes al crear posts desde el admin
+    Route::post('storeImagePost', 'API\V3\ImagesController@storeImagePost')->name("upload");
+});
