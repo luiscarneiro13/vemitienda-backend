@@ -169,6 +169,7 @@ return [
         L5Swagger\L5SwaggerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Application Service Providers...
          */
