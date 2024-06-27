@@ -95,7 +95,7 @@
         <div class="container">
             <div class="section-header mw-100 cl-white">
                 <h2 class="title">Contáctanos</h2>
-                <p>Atenderemos sus solicitudes y dudas</p>
+                <p>Para solicitar la eliminación de tu cuenta</p>
             </div>
             <div class="row justify-content-center justify-content-lg-between">
                 <div class="col-lg-7">
