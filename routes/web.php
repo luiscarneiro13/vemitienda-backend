@@ -68,6 +68,7 @@ Route::post('contact', 'API\V3\ContactController@index')->name('contact');
 
 Route::get('prueba', [OrderController3::class, 'prueba']);
 Route::get('contacto', 'ContactoController@index')->name('contacto');
+Route::get('delete-account', 'ContactoController@deleteAccount')->name('deleteAccount');
 
 Route::get('/{slug}', [ProductController3::class, 'productList'])->name('products.list');
 Route::get('/{slug}/cart', [CartController3::class, 'cartList'])->name('cart.list');

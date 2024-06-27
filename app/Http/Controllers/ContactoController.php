@@ -19,4 +19,9 @@ class ContactoController extends Controller
         $this->visits->index($request);
         return view('newContact');
     }
+
+    public function deleteAccount(Request $request)
+    {
+        return view('deleteAccount');
+    }
 }
