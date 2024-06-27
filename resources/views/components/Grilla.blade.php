@@ -39,10 +39,10 @@
                             @if ($key == 'Tienda' && @$item->$value != null)
                                 <td>
                                     <a target="_blank"
-                                        href="{{ 'https://vemitienda.com/catalogo' . '/' . $item->$value }}">Catálogo</a>
+                                        href="{{ 'https://vemitienda.com.ve/catalogo' . '/' . $item->$value }}">Catálogo</a>
                                     -
                                     <a target="_blank"
-                                        href="{{ 'https://vemitienda.com/' . $item->$value }}">Tienda</a>
+                                        href="{{ 'https://vemitienda.com.ve/' . $item->$value }}">Tienda</a>
                                 </td>
                             @else
                                 @if ($key == 'Imagen' && isset($item->$value->url))

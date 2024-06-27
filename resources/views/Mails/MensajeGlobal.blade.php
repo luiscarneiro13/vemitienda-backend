@@ -123,7 +123,7 @@
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top"
                             style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <img src="https://vemitienda.com/img/logo.png" width="125" height="120"
+                            <img src="https://vemitienda.com.ve/img/logo.png" width="125" height="120"
                                 style="display: block; border: 0px;" />
                         </td>
                     </tr>
@@ -153,9 +153,9 @@
                             <br><br>
                             <h3>Nuestros medios de contacto:</h3>
                             <p><strong>Whatsapp: </strong>0424 849 68 99</p>
-                            <p><strong>Email: </strong>info@vemitienda.com</p>
+                            <p><strong>Email: </strong>vemitienda@gmail.com</p>
                             <p><strong>Instagram: </strong>@vemitienda.online</p>
-                            <p><strong>Sitio WEB: </strong>https://vemitienda.com</p>
+                            <p><strong>Sitio WEB: </strong>https://vemitienda.com.ve</p>
                         </td>
                     </tr>
                     <tr>
@@ -166,7 +166,7 @@
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
                                                 <td align="center" style="border-radius: 3px;" bgcolor="#007bff"><a
-                                                        href="https://vemitienda.com" target="_blank"
+                                                        href="https://vemitienda.com.ve" target="_blank"
                                                         style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #007bff; display: inline-block;">
                                                         Ir al Sitio WEB
                                                     </a>

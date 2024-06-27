@@ -7,7 +7,7 @@
                 </a>
             </div>
             <div class="mb-3">
-                <p class="footer-link text-light">Email: info@vemitienda.com</p>
+                <p class="footer-link text-light">Email: vemitienda@gmail.com</p>
                 <p class="footer-link text-light">Whatsapp: +58 0424 849 68 99</p>
             </div>
             <ul class="social-icons">
