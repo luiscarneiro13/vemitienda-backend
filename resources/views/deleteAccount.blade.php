@@ -94,7 +94,7 @@
     <section class="contact-section padding-top padding-bottom">
         <div class="container">
             <div class="section-header mw-100 cl-white">
-                <h2 class="title">Contáctanos</h2>
+                <h2 class="title">Eliminar cuenta</h2>
                 <p>Para solicitar la eliminación de tu cuenta</p>
             </div>
             <div class="row justify-content-center justify-content-lg-between">
