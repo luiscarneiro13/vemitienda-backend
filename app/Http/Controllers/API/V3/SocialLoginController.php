@@ -22,7 +22,7 @@ class SocialLoginController extends Controller
 
     public function handleProviderCallback(Request $request, $provider)
     {
-        info("LUIS");
+        info(json_encode($request->all()));
         try {
 
             $token = request()->access_token;
