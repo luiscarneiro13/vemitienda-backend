@@ -65,6 +65,7 @@ class SocialLoginController extends Controller
                 }
             }
 
+            info(json_encode($user));
             $user->token = $user->createToken(env('APP_KEY'))->accessToken;
             info(json_encode($user));
             $data = $user;
