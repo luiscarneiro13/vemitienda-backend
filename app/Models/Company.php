@@ -29,19 +29,19 @@ class Company extends Model
 
     public function getUrlTiendaAttribute()
     {
-        $url = 'https://vemitienda.com/catalogo/' . $this->attributes['slug'];
+        $url = 'https://vemitienda.com.ve/catalogo/' . $this->attributes['slug'];
         return $this->attributes['url_tienda'] = $url;
     }
 
     public function getUrlTiendaNewAttribute()
     {
-        $url = 'https://vemitienda.com/' . $this->attributes['slug'];
+        $url = 'https://vemitienda.com.ve/' . $this->attributes['slug'];
         return $this->attributes['url_tienda_new'] = $url;
     }
 
     public function getUrlCatalogoAttribute()
     {
-        $url = 'https://vemitienda.com/catalogo/' . $this->attributes['slug'];
+        $url = 'https://vemitienda.com.ve/catalogo/' . $this->attributes['slug'];
         return $this->attributes['url_catalogo'] = $url;
     }
 
