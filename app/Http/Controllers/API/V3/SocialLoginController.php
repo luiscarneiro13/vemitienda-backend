@@ -22,16 +22,16 @@ class SocialLoginController extends Controller
 
     public function handleProviderCallback(Request $request, $provider)
     {
-        info(json_encode($request->all()));
+        // info(json_encode($request->all()));
         try {
 
             $token = request()->access_token;
 
             $providerUser = Socialite::driver($provider)->userFromToken($token);
-            info(json_encode($providerUser));
+            // info(json_encode($providerUser));
 
             $user = User::with('company')->where('provider_user_id', $providerUser->id)->first();
-            info(json_encode($user));
+            // info(json_encode($user));
 
             // Si no existe el proveedor dentro de ningún usuario
             if (!$user) {
@@ -66,6 +66,7 @@ class SocialLoginController extends Controller
             }
 
             $user->token = $user->createToken(env('APP_KEY'))->accessToken;
+            info(json_encode($user));
             $data = $user;
             return $this->successResponse(['data' => $data]);
         } catch (Exception $th) {
