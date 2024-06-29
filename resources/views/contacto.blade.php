@@ -95,7 +95,7 @@
                             <form id="requestForm" data-toggle="validator" data-focus="false">
                                 <div class="form-group">
                                     <input type="text" class="form-control-input" id="rname"
-                                        name="name" required />
+                                        name="name" required disabled />
                                     <label class="label-control" for="rname">Nombre y Apellido</label>
                                     <div class="help-block with-errors" style="color:#F6442C">
                                         @if (Session::has('errors') && @Session::get('errors')->first('name'))
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control-input"
-                                        id="remail" name="email" required />
+                                        id="remail" name="email" required disabled />
                                     <label class="label-control" for="remail">Email</label>
                                     <div class="help-block with-errors" style="color:#F6442C">
                                         @if (Session::has('errors') && @Session::get('errors')->first('email'))
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control-input" id="rphone"
-                                        name="phone" required />
+                                        name="phone" required disabled />
                                     <label class="label-control" for="rphone">Teléfono</label>
                                     <div class="help-block with-errors" style="color:#F6442C">
                                         @if (Session::has('errors') && @Session::get('errors')->first('phone'))
