@@ -73,7 +73,8 @@ Route::group(['prefix' => 'v3'], function () {
         Route::get('orders', 'API\V3\OrdersController@index');
         Route::post('updateStatus', 'API\V3\OrdersController@updateStatus');
     });
+
+    Route::post('logs', 'API\V3\LogsController@index');
 });
 
 Route::post('ejemploDescargar', 'Migraciones\DigitalOceanHostigerController@migrarImagenes');
-Route::post('logs', 'API\V3\LogsController@index');
