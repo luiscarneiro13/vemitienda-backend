@@ -165,7 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Telescope\TelescopeServiceProvider::class,
         L5Swagger\L5SwaggerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
@@ -177,7 +176,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\TelescopeServiceProvider::class,
 
     ],
 
