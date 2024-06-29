@@ -12,8 +12,8 @@ class EmailsController extends Controller
     // Se envía un email ofreciendo soporte y dando los medios de contacto
     public function soporte()
     {
-        // $user=User::find(204);
-        // return $this->emailUser($user);
+        $user=User::find(204);
+        return $this->emailUser($user);
         $limit = request()->limit;
         $resp = [];
 
