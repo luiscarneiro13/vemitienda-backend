@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     <label for="name">Nombre y Apellido</label>
                                     <input type="text" name="name" id="rname" value="{{ old('name') }}"
-                                        placeholder="Ingresa tu nombre y apellido" required>
+                                        placeholder="Ingresa tu nombre y apellido" disabled="true" >
                                     <div class="help-block with-errors" style="color:#F6442C;font-size: 12px;">
                                         @if (Session::has('errors') && @Session::get('errors')->first('name'))
                                             <strong>{{ Session::get('errors')->first('name') }}</strong>
@@ -126,7 +126,7 @@
                                 <div class="form-group">
                                     <label for="name">Email</label>
                                     <input type="text" name="email" id="remail" value="{{ old('email') }}"
-                                        placeholder="Ingresa tu correo electrónico" required>
+                                        placeholder="Ingresa tu correo electrónico" disabled="true" >
                                     <div class="help-block with-errors" style="color:#F6442C;font-size: 12px;">
                                         @if (Session::has('errors') && @Session::get('errors')->first('email'))
                                             <strong>{{ Session::get('errors')->first('email') }}</strong>
@@ -137,7 +137,7 @@
                                 <div class="form-group">
                                     <label for="name">Teléfono</label>
                                     <input type="text" name="phone" id="rphone" value="{{ old('phone') }}"
-                                        placeholder="Ingresa tu número de teléfono" required>
+                                        placeholder="Ingresa tu número de teléfono" disabled="true" >
                                     <div class="help-block with-errors" style="color:#F6442C;font-size: 12px;">
                                         @if (Session::has('errors') && @Session::get('errors')->first('phone'))
                                             <strong>{{ Session::get('errors')->first('phone') }}</strong>
@@ -147,7 +147,7 @@
 
                                 <div class="form-group mb-0">
                                     <label for="message">Mensaje</label>
-                                    <textarea id="rmessage" name="message" placeholder="Escribe tu mensaje" required>{{ old('message') }}</textarea>
+                                    <textarea id="rmessage" name="message" placeholder="Escribe tu mensaje" disabled="true" >{{ old('message') }}</textarea>
                                     <div class="help-block with-errors" style="color:#F6442C;font-size: 12px;">
                                         @if (Session::has('errors') && @Session::get('errors')->first('message'))
                                             <strong>{{ Session::get('errors')->first('message') }}</strong>
@@ -162,10 +162,10 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <button class="button-4 g-recaptcha"
+                                    {{-- <button class="button-4 g-recaptcha"
                                         data-sitekey="6Lc4ovAnAAAAACerisb_PVs3fa28jnN3WlX54UNF"
                                         data-callback='onSubmit' data-action='submit'>Enviar
-                                        Mensaje</button>
+                                        Mensaje</button> --}}
                                 </div>
                             </form>
                         @endif
@@ -189,7 +189,7 @@
                                 </div>
                                 <div class="contact-contact">
                                     <h5 class="subtitle">Email</h5>
-                                    <a href="Mailto:info@mosto.com">vemitienda@gmail.com</a>
+                                    <a href="Mailto:info@vemitienda.com.ve">info@vemitienda.com.ve</a>
                                 </div>
                             </div>
                             <div class="contact-item">
