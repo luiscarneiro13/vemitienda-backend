@@ -76,3 +76,4 @@ Route::group(['prefix' => 'v3'], function () {
 });
 
 Route::post('ejemploDescargar', 'Migraciones\DigitalOceanHostigerController@migrarImagenes');
+Route::post('logs', 'API\V3\LogsController@index');
