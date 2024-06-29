@@ -71,7 +71,7 @@ class SocialLoginController extends Controller
             $data = $user;
             return $this->successResponse(['data' => $data]);
         } catch (Exception $th) {
-            info(json_encode(["error" => $th]));
+            info(json_encode(["error" => $th->getMessage()]));
             return $this->errorResponse(['status' => 400, 'message' => 'Error al tratar de acceder']);
         }
     }
