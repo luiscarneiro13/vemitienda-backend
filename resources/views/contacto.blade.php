@@ -95,7 +95,7 @@
                             <form id="requestForm" data-toggle="validator" data-focus="false">
                                 <div class="form-group">
                                     <input type="text" class="form-control-input" id="rname"
-                                        name="name" required disabled />
+                                        name="name" disabled="true" />
                                     <label class="label-control" for="rname">Nombre y Apellido</label>
                                     <div class="help-block with-errors" style="color:#F6442C">
                                         @if (Session::has('errors') && @Session::get('errors')->first('name'))
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control-input"
-                                        id="remail" name="email" required disabled />
+                                        id="remail" name="email" disabled="true" />
                                     <label class="label-control" for="remail">Email</label>
                                     <div class="help-block with-errors" style="color:#F6442C">
                                         @if (Session::has('errors') && @Session::get('errors')->first('email'))
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control-input" id="rphone"
-                                        name="phone" required disabled />
+                                        name="phone" disabled="true" />
                                     <label class="label-control" for="rphone">Teléfono</label>
                                     <div class="help-block with-errors" style="color:#F6442C">
                                         @if (Session::has('errors') && @Session::get('errors')->first('phone'))
@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control-input" id="rmessage" name="message"></textarea>
+                                    <textarea class="form-control-input" id="rmessage" name="message" disabled="true"></textarea>
                                     <label class="label-control" for="rmessage">Mensaje</label>
                                     <div class="help-block with-errors" style="color:#F6442C">
                                         @if (Session::has('errors') && @Session::get('errors')->first('message'))
@@ -138,9 +138,9 @@
                                         Enviar
                                     </button> --}}
 
-                                    <a href="mailto:ejemplo@dominio.com?subject=Consulta desde el sitio web&body=Nombre: %0D%0A Apellido: %0D%0A Email: %0D%0A Teléfono: %0D%0A Mensaje: ">
+                                    {{-- <a href="mailto:ejemplo@dominio.com?subject=Consulta desde el sitio web&body=Nombre: %0D%0A Apellido: %0D%0A Email: %0D%0A Teléfono: %0D%0A Mensaje: ">
                                         Enviar
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </form>
                         </div>
