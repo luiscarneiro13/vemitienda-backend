@@ -74,8 +74,8 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
-      
-        return $this->errorResponse(['message' => 'Acabamos de lanzar una actualización. Por favor descárgala']);
+
+        // return $this->errorResponse(['message' => 'Acabamos de lanzar una actualización. Por favor descárgala']);
 
       $user = Auth::user();
 
@@ -150,7 +150,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->errorResponse(['message' => 'Acabamos de lanzar una actualización. Por favor descárgala']);
+        // return $this->errorResponse(['message' => 'Acabamos de lanzar una actualización. Por favor descárgala']);
         try {
             return $this->successResponse(['data' =>  ProductsRepository::updateProduct($id)]);
         } catch (\Throwable $th) {
