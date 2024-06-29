@@ -134,9 +134,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="form-control-submit-button">
+                                    {{-- <button type="submit" class="form-control-submit-button">
                                         Enviar
-                                    </button>
+                                    </button> --}}
+
+                                    <a href="mailto:ejemplo@dominio.com?subject=Consulta desde el sitio web&body=Nombre: %0D%0A Apellido: %0D%0A Email: %0D%0A Teléfono: %0D%0A Mensaje: ">
+                                        Enviar
+                                    </a>
                                 </div>
                             </form>
                         </div>

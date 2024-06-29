@@ -22,6 +22,7 @@ class SocialLoginController extends Controller
 
     public function handleProviderCallback(Request $request, $provider)
     {
+        info("LUIS");
         try {
 
             $token = request()->access_token;
