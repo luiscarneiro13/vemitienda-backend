@@ -28,8 +28,10 @@ class SocialLoginController extends Controller
             $token = request()->access_token;
 
             $providerUser = Socialite::driver($provider)->userFromToken($token);
+            info(json_encode($providerUser));
 
             $user = User::with('company')->where('provider_user_id', $providerUser->id)->first();
+            info(json_encode($user));
 
             // Si no existe el proveedor dentro de ningún usuario
             if (!$user) {
