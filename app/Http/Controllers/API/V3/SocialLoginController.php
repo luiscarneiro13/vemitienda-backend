@@ -65,13 +65,13 @@ class SocialLoginController extends Controller
                 }
             }
 
-            info(json_encode($user));
+            info(json_encode(["antes" => $user]));
             $user->token = $user->createToken(env('APP_KEY'))->accessToken;
-            info(json_encode($user));
+            info(json_encode(["despues" => $user]));
             $data = $user;
             return $this->successResponse(['data' => $data]);
         } catch (Exception $th) {
-            return $this->errorResponse(['status' => 400,'message'=>'Error al tratar de acceder']);
+            return $this->errorResponse(['status' => 400, 'message' => 'Error al tratar de acceder']);
         }
     }
 }
