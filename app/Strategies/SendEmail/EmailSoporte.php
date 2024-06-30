@@ -11,12 +11,12 @@ class EmailSoporte implements SendEmailInterface
 {
     public function sendEmail($data)
     {
-        try {
+        // try {
             Mail::to($data['destinatario'])->send(new MailSoporte($data));
-        } catch (Exception $th) {
-            info('No se pudo enviar correo a ' . $data['destinatario']);
-            info($th->getMessage());
-            return null;
-        }
+        // } catch (Exception $th) {
+            // info('No se pudo enviar correo a ' . $data['destinatario']);
+            // info($th->getMessage());
+            // return null;
+        // }
     }
 }
