@@ -79,10 +79,15 @@ return [
     |
     */
 
-    'failed' => [
-        'driver' => env('QUEUE_FAILED_DRIVER', 'database'),
-        'database' => env('DB_CONNECTION', 'mysql'),
-        'table' => 'failed_jobs',
-    ],
+    // 'failed' => [
+    //     'driver' => env('QUEUE_FAILED_DRIVER', 'database'),
+    //     'database' => env('DB_CONNECTION', 'mysql'),
+    //     'table' => 'failed_jobs',
+    // ],
 
+    'failed' => [
+        'driver' => 'database-uuids',
+        'table' => env('QUEUE_FAILED_TABLE', 'failed_jobs'),
+        'database' => env('DB_CONNECTION', 'mysql'),
+    ],
 ];
