@@ -39,8 +39,8 @@ return [
             'host' => env('MAIL_HOST', 'smtp.zoho.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME','info@vemitienda.com.ve'),
-            'password' => env('MAIL_PASSWORD','Admintecnologia@2.'),
+            'username' => env('MAIL_USERNAME', 'info@vemitienda.com.ve'),
+            'password' => env('MAIL_PASSWORD', 'Admintecnologia@2.'),
         ],
         'ses' => [
             'transport' => 'ses',
@@ -93,6 +93,14 @@ return [
 
         'paths' => [
             resource_path('views/vendor/mail'),
+        ],
+    ],
+
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
         ],
     ],
 
