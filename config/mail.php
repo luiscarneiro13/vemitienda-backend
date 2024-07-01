@@ -40,7 +40,7 @@ return [
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME', 'info@vemitienda.com.ve'),
-            'password' => env('MAIL_PASSWORD', 'Admintecnologia@2.'),
+            'password' => env('MAIL_PASSWORD', '78x9GtEdiTy1'),
         ],
         'ses' => [
             'transport' => 'ses',
