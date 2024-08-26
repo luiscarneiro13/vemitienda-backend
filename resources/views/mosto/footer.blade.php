@@ -38,6 +38,9 @@
                 <li>
                     <a href="{{ url('/') }}/contacto">Contacto</a>
                 </li>
+                <li>
+                    <a href="{{ url('/') }}/politica">Política de privacidad</a>
+                </li>
                 {{-- <li>
                     <a href="{{ url('/') }}/blog">Blog</a>
                 </li> --}}
