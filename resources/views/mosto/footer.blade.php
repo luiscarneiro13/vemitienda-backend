@@ -38,12 +38,18 @@
                 <li>
                     <a href="{{ url('/') }}/contacto">Contacto</a>
                 </li>
+                <li>
+                    <a href="{{ url('politica') }}">Política de privacidad</a>
+                </li>
                 {{-- <li>
                     <a href="{{ url('/') }}/blog">Blog</a>
                 </li> --}}
             </ul>
         </div>
         <div class="copyright">
+            <p>
+                <a href="{{ url('politica') }}">Política de privacidad</a>
+            </p>
             <p>
                 Copyright © 2023. All Rights Reserved By <a href="#0">Ve mi Tienda</a>
             </p>

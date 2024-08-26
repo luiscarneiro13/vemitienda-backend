@@ -677,6 +677,13 @@
     <div class="copyright">
         <div class="container">
             <div class="row">
+                <div class="col-12">
+                    <p class="p-small">
+                        <a href="{{ url('politica') }}">Política de privacidad</a>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <p class="p-small">
                         Copyright © 2023 <a href="https://vemitienda.online">Ve mi Tienda</a> - Todos los derechos
