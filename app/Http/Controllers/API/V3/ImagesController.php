@@ -151,17 +151,17 @@ class ImagesController extends Controller
     public function storeImageProduct(Request $request, $product_id)
     {
         $product = Product::with('image')->find($product_id);
-        // if ($product && request()->image && request()->thumbnail) {
-            // try {
+        if ($product && request()->image && request()->thumbnail) {
+            try {
                 $urlImage = $this->image->uploadImage($request->file('image'), 'images');
                 $image = $product->image()->create(['url' => $urlImage]);
                 return $this->successResponse(['data' => $image]);
-            // } catch (Exception $th) {
-                // return $this->errorResponse(['message' => $th]);
-            // }
-        // } else {
-            // return $this->errorResponse(['message' => 'No existe el producto o no se envió imagen']);
-        // }
+            } catch (Exception $th) {
+                return $this->errorResponse(['message' => $th]);
+            }
+        } else {
+            return $this->errorResponse(['message' => 'No existe el producto o no se envió imagen']);
+        }
     }
 
     /**
