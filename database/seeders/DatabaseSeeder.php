@@ -16,14 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            // CountriesSeeder::class,
             // UsersTableSeeder::class,
             // CompanySeeder::class,
             // PlansSeeder::class,
             // PaymentMethodsSeeder::class,
             // ThemesSeeder::class,
             // OrderStatusesSeeder::class,
-            // CountriesSeeder::class,
-
         ]);
         // PostCategory::factory(4)->create();
         // Tag::factory(8)->create();

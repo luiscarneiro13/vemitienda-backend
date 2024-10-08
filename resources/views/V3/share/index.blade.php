@@ -14,8 +14,7 @@
     <meta property="og:title" content="{{ $company->name }}" />
     <meta name="description" content="{{ $company->slogan }}" />
     <meta property="og:description" content="{{ $company->slogan }}" />
-    <meta property="og:image"
-        content="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}" />
+    <meta property="og:image" content="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}" />
     <meta property="og:type" content="article" />
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -45,8 +44,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img
-                    src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}"
+            <a href="#"><img src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}"
                     alt=""></a>
         </div>
         {{-- <div class="humberger__menu__cart">
@@ -163,8 +161,13 @@
     <!-- Featured Section Begin -->
     <section class="">
         <div class="container">
-            <div class="row featured__filter">
+            <div class="row featured__filter" id="product-container">
                 @include('V3.share.data')
+            </div>
+            <div id="loader" style="display: none;" class="text-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Cargando más...</span>
+                </div>
             </div>
         </div>
     </section>
@@ -204,7 +207,47 @@
                 heroSection.classList.remove('scrolled');
             }
         });
+
+        /*Infinite Scroll Script*/
+        let page = 1;
+        let isLoading = false;
+
+        window.onscroll = function() {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200 && !isLoading) {
+                page++;
+                loadMoreData(page);
+            }
+        };
+
+        function loadMoreData(page) {
+            const url = "{{ url('catalogo/' . $slug) }}" + "/" + '?page=' + page;
+            isLoading = true; // Indicar que se está cargando más data
+            $.ajax({
+                    url,
+                    type: 'get',
+                    beforeSend: function() {
+                        // Mostrar el spinner antes de cargar los datos
+                        $('#loader').show();
+                    }
+                })
+                .done(function(data) {
+                    if (data.html === "") {
+                        $('#loader').hide();
+                        isLoading = false; // Indicar que se terminó de cargar
+                        return;
+                    }
+                    $('#product-container').append(data);
+                    $('#loader').hide();
+                    isLoading = false; // Indicar que se terminó de cargar
+                })
+                .fail(function(jqXHR, ajaxOptions, thrownError) {
+                    console.log('Server error occurred');
+                    $('#loader').hide();
+                    isLoading = false; // Indicar que se terminó de cargar
+                });
+        }
     </script>
+
 </body>
 
 </html>
