@@ -44,8 +44,9 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}"
-                    alt=""></a>
+            <a href="#">
+                <img src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}" alt="">
+            </a>
         </div>
         {{-- <div class="humberger__menu__cart">
             <ul>
@@ -94,9 +95,10 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="#"><img
-                                src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}"
-                                alt=""></a>
+                        <a href="#">
+                            <img src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}"
+                                alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -123,7 +125,7 @@
     <section id="hero" class="hero">
         <div id="topeScroll"></div>
         <div class="container">
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-lg-3">
                     <div class="hero__categories">
                         <div class="hero__categories__all {{ $company->theme->name }}">
