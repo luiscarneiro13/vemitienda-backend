@@ -19,8 +19,6 @@
         también Sitio Web y Aplicación) se compromete a adoptar las medidas técnicas y
         organizativas necesarias, según el nivel de seguridad adecuado al riesgo de los
         datos recogidos.
-        Dirección: 6to callejón bis sur #256, El Tigre, Anzoátegui, Venezuela
-        Teléfono de contacto: +584248496899
         Email de contacto: vemitienda@gmail.com
         Registro de Datos de Carácter Personal
         Los datos recabados por Ve mi Tienda, mediante los formularios extendidos en sus

@@ -197,8 +197,8 @@
                                     <img src="{{ asset('img/contact/contact2.webp') }}" alt="contact">
                                 </div>
                                 <div class="contact-contact">
-                                    <h5 class="subtitle">Whatsapp</h5>
-                                    <a href="Tel:565656855">+58 (0424) 849-68-99</a>
+                                    {{-- <h5 class="subtitle">Whatsapp</h5>
+                                    <a href="Tel:565656855">+58 (0424) 849-68-99</a> --}}
                                 </div>
                             </div>
                         </div>
