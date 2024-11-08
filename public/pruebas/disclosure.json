@@ -1,0 +1,135 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json",
+        "https://purl.imsglobal.org/spec/ob/v3p0/extensions.json"
+    ],
+    "id": "urn:uuid:6dae6d1e-50ea-4942-9d83-058975bff336",
+    "type": [
+        "VerifiableCredential",
+        "OpenBadgeCredential"
+    ],
+    "name": "JJM-VNF-3 íü",
+    "description": "JJM-VNF-3 badge description",
+    "image": {
+        "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/XdTYY2vlLPlyt7UzIUznzSItXixyg2dFoi92h5IT.png",
+        "type": "Image",
+        "caption": "JJM-VNF-3 badge description"
+    },
+    "issuer": {
+        "type": [
+            "Profile"
+        ],
+        "id": "did:key:z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av",
+        "name": "Chavón",
+        "url": "https://territorium.com",
+        "image": {
+            "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/Auy1dyHng4zHw5dsmoV8MYHIkj6XfWs0UZJHVXBr.png",
+            "type": "Image",
+            "caption": "Chavón"
+        }
+    },
+    "validFrom": "2024-11-01T15:01:53.876820Z",
+    "credentialSubject": {
+        "id": "did:key:z6Mks33ZVfabSM2gMCbjJuwejr4PACgd4Q3qLHxaqpEDrjbf",
+        "type": [
+            "AchievementSubject"
+        ],
+        "identifier": [
+            {
+                "type": "IdentityObject",
+                "identityHash": "did:key:z6Mks33ZVfabSM2gMCbjJuwejr4PACgd4Q3qLHxaqpEDrjbf",
+                "identityType": "identifier",
+                "hashed": false,
+                "salt": "not-used"
+            },
+            {
+                "type": "IdentityObject",
+                "identityHash": "Sfsdf Sdfsdf",
+                "identityType": "name",
+                "hashed": false,
+                "salt": "not-used"
+            },
+            {
+                "type": "IdentityObject",
+                "identityHash": "jorge.galeano1000@territoriumtest.com",
+                "identityType": "emailAddress",
+                "hashed": false,
+                "salt": "not-used"
+            }
+        ],
+        "achievement": {
+            "id": "https://life-staging.territorium.com/issuedBadge?id=6dae6d1e-50ea-4942-9d83-058975bff336",
+            "type": [
+                "Achievement"
+            ],
+            "alignment": [
+                {
+                    "type": [
+                        "Alignment"
+                    ],
+                    "targetCode": "Achievement",
+                    "targetDescription": "LO 2024-11-01",
+                    "targetName": "ST 2024-11-01",
+                    "targetFramework": "LO 2024-11-01",
+                    "targetType": "CFItem",
+                    "targetUrl": "https://life-staging.territorium.com/#/statement/public?uuid=66390141-d8ed-46fe-b0e4-b8b527114927"
+                }
+            ],
+            "achievementType": "Achievement",
+            "name": "ʻŌlelo Hawaiʻi",
+            "description": "ʻŌlelo Hawaiʻi",
+            "fieldOfStudy": "ʻŌlelo Hawaiʻi",
+            "tag": [],
+            "criteria": {
+                "narrative": "JJM-VNF-3 badge criteria"
+            },
+            "image": {
+                "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/XdTYY2vlLPlyt7UzIUznzSItXixyg2dFoi92h5IT.png",
+                "type": "Image",
+                "caption": "JJM-VNF-3 badge description"
+            },
+            "resultDescription": [
+                {
+                    "id": "urn:uuid:666134b4-357b-4253-915c-e18f0a11d3a7",
+                    "type": [
+                        "ResultDescription"
+                    ],
+                    "name": "Score",
+                    "resultType": "RawScore",
+                    "requiredValue": "10.000"
+                }
+            ]
+        },
+        "result": [
+            {
+                "type": [
+                    "Result"
+                ],
+                "resultDescription": "urn:uuid:666134b4-357b-4253-915c-e18f0a11d3a7",
+                "value": "150.000"
+            }
+        ]
+    },
+    "refreshService": {
+        "id": "https://life-staging.territorium.com/credentials/6dae6d1e-50ea-4942-9d83-058975bff336",
+        "type": "1EdTechCredentialRefresh"
+    },
+    "credentialSchema": [
+        {
+            "id": "https://purl.imsglobal.org/spec/ob/v3p0/schema/json/ob_v3p0_achievementcredential_schema.json",
+            "type": "1EdTechJsonSchemaValidator2019"
+        }
+    ],
+    "proof": [
+        {
+            "id": "urn:uuid:6047f8b6-0d5b-4732-b084-6449ff2ad990",
+            "type": "DataIntegrityProof",
+            "created": "2024-11-07T22:48:33.941Z",
+            "verificationMethod": "did:key:z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av#z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av",
+            "cryptosuite": "ecdsa-sd-2023",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "u2V0BhVhAX3tcxQ3nM6AwgFVo5q3XZjkvZQWc-PhZUVGFfeG9dQ-ebFGw7xz2GFWDOyzOet-b4Y6kcsEujmm_1zJkcms3X1gjgCQCq2sSAOi8kAGpZMuOr_IWMTBzd-vZoh1jMgzMQ6iCeveApgBYIPlpQXFFQu_h0d5RAE47mxTlA1E_hISqIgF_7OE2m1o9AVggN5AslJkn1r1GVhgaYp16YfUCj4OPZa253jkNfavvVOUCWCB3Dky_4PlLzGPptu6Pay8sxqPRF5E0UtRkXSy7E6XNBgNYIPj8rBff-gkTULURWW2eVXr5gZaTrrWQiefRu7vnRS2IBFggAHmAtGMmh6wmGxM70UhfAhKevXhy9XpjB9TbMfYPGdIFWCAJmGTrbK4XMI0xaZfOZx6wSP2JlexVLiuew3eWbCg3l5hBAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBgYGRgaGBsYHBgdGB4YHxggGCEYIhgjGCQYJRgmGCcYKBgpGCoYKxgsGC0YLhgvGDAYMRgyGDMYNBg1GDYYNxg4GDkYOhg7GDwYPRg-GD8YQA"
+        }
+    ]
+}
