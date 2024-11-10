@@ -125,7 +125,7 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form>
-                                <input id="query" name="query" type="text" placeholder="Buscar por nombre">
+                                <input id="query" name="query" type="text" placeholder="Buscar por nombre" value="{{ request()->get('query') }}">
                                 <button class="site-btn {{ $company->theme->name }}">Buscar</button>
                             </form>
                         </div>
