@@ -38,9 +38,6 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    {{-- {{ url('catalog/'.$company->slug) }} --}}
-    {{-- {{ $company->theme }} --}}
-    <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
@@ -48,27 +45,14 @@
                 <img src="{{ $company->logo ? env('APP_URL') . '/' . $company->logo->url : '' }}" alt="">
             </a>
         </div>
-        {{-- <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div> --}}
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="#">{{ $company->name }}</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-        <!-- <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div> -->
         <div class="humberger__menu__contact">
             <ul>
-                {{-- <li><i class="fa fa-envelope"></i> {{ $company->user->email }}</li> --}}
                 <li>{{ $company->slogan }}</li>
             </ul>
         </div>
@@ -83,7 +67,6 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                {{-- <li><i class="fa fa-envelope"></i> {{ $company->user->email }}</li> --}}
                                 <li>{{ $company->slogan }}</li>
                             </ul>
                         </div>
@@ -105,12 +88,6 @@
 
                 </div>
                 <div class="col-lg-3">
-                    {{-- <div class="header__cart">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
-                    </div> --}}
                 </div>
             </div>
             <div class="humberger__open">
@@ -163,12 +140,25 @@
     <!-- Featured Section Begin -->
     <section class="">
         <div class="container">
-            <div class="row featured__filter" id="product-container">
-                @include('V3.share.data')
-            </div>
-            <div id="loader" style="display: none;" class="text-center">
-                <div class="spinner-border" role="status">
-                    <span class="sr-only">Cargando más...</span>
+            <div class="scrolling-pagination">
+                <div class="row featured__filter" id="product-container">
+                    @foreach ($products as $product)
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                            <div class="featured__item">
+                                <div class="text-center">
+                                    <image class="img-fluid"
+                                        src="{{ count(@$product->image) > 0 ? env('APP_URL') . '/' . $product->image[0]->url : '' }}" />
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">{{ $product->name }}</a></h6>
+                                    @if ($product->price > 0)
+                                        <h5>${{ $product->price }}</h5>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    {{ $products->links() }}
                 </div>
             </div>
         </div>
@@ -187,6 +177,7 @@
     <!-- Js Plugins -->
 
     <script src="{{ asset('plantillas/ogani-master/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('plantillas/ogani-master/js/jquery.jscroll.min.js') }}"></script>
     <script src="{{ asset('plantillas/ogani-master/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plantillas/ogani-master/js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('plantillas/ogani-master/js/jquery-ui.min.js') }}"></script>
@@ -195,61 +186,20 @@
     <script src="{{ asset('plantillas/ogani-master/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('plantillas/ogani-master/js/main.js') }}"></script>
 
-    <script>
-        // Obtén la sección hero
-        const topeScroll = document.getElementById('topeScroll');
-        const heroSection = document.getElementById('hero');
-
-        // Agrega la clase 'scrolled' cuando la sección hero llegue al top de la pantalla
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop >= topeScroll.offsetTop) {
-                heroSection.classList.add('scrolled');
-            } else {
-                heroSection.classList.remove('scrolled');
-            }
+    <script type="text/javascript">
+        $('ul.pagination').hide();
+        $(function() {
+            $('.scrolling-pagination').jscroll({
+                autoTrigger: true,
+                padding: 0,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.scrolling-pagination',
+                callback: function() {
+                    $('ul.pagination').remove();
+                }
+            });
         });
-
-        /*Infinite Scroll Script*/
-        let page = 1;
-        let isLoading = false;
-
-        window.onscroll = function() {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200 && !isLoading) {
-                page++;
-                loadMoreData(page);
-            }
-        };
-
-        function loadMoreData(page) {
-            const url = "{{ url('catalogo/' . $slug) }}" + "/" + '?page=' + page;
-            isLoading = true; // Indicar que se está cargando más data
-            $.ajax({
-                    url,
-                    type: 'get',
-                    beforeSend: function() {
-                        // Mostrar el spinner antes de cargar los datos
-                        $('#loader').show();
-                    }
-                })
-                .done(function(data) {
-                    if (data.html === "") {
-                        $('#loader').hide();
-                        isLoading = false; // Indicar que se terminó de cargar
-                        return;
-                    }
-                    $('#product-container').append(data);
-                    $('#loader').hide();
-                    isLoading = false; // Indicar que se terminó de cargar
-                })
-                .fail(function(jqXHR, ajaxOptions, thrownError) {
-                    console.log('Server error occurred');
-                    $('#loader').hide();
-                    isLoading = false; // Indicar que se terminó de cargar
-                });
-        }
     </script>
-
 </body>
 
 </html>
