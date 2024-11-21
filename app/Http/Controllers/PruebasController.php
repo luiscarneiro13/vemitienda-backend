@@ -86,4 +86,8 @@ class PruebasController extends Controller
         $extension = pathinfo($path, PATHINFO_EXTENSION);
         return $extension;
     }
+
+    public function velocity(Request $request){
+        info(json_encode($request->all()));
+    }
 }
