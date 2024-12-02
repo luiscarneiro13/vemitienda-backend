@@ -112,7 +112,7 @@
         ]
     },
     "refreshService": {
-        "id": "https://life-staging.territorium.com/credentials/d7895c4c-30db-488f-b601-6bba08e5be04",
+        "id": "https://vemitienda.com.ve/pruebas/disclosure.json",
         "type": "1EdTechCredentialRefresh"
     },
     "credentialSchema": [
