@@ -4,62 +4,60 @@
         "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json",
         "https://purl.imsglobal.org/spec/ob/v3p0/extensions.json"
     ],
-    "id": "urn:uuid:6dae6d1e-50ea-4942-9d83-058975bff336",
+    "id": "urn:uuid:d7895c4c-30db-488f-b601-6bba08e5be04",
     "type": [
         "VerifiableCredential",
         "OpenBadgeCredential"
     ],
-    "name": "JJM-VNF-3 íü",
-    "description": "JJM-VNF-3 badge description",
+    "name": "Critical thinking",
     "image": {
-        "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/XdTYY2vlLPlyt7UzIUznzSItXixyg2dFoi92h5IT.png",
+        "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/Z09nAkBdpir8aNgrQaBu6WbzZTosQwK26DgLPTj6.png",
         "type": "Image",
-        "caption": "JJM-VNF-3 badge description"
+        "caption": "The Critical Thinking Badgevrecognizes the ability to analyze information objectively, evaluate complex problems, and develop logical, evidence-based solutions. Badge holders demonstrate strong reasoning skills, effective decision-making, and the capacity to approach challenges with clarity and creativity. This badge highlights proficiency in thinking critically to drive informed and impactful outcomes."
     },
     "issuer": {
+        "id": "did:key:z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H",
         "type": [
             "Profile"
         ],
-        "id": "did:key:z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av",
-        "name": "Chavón",
-        "url": "https://territorium.com",
+        "name": "Luis C. prod0",
+        "url": "https://luiscarneiro.com",
         "image": {
-            "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/Auy1dyHng4zHw5dsmoV8MYHIkj6XfWs0UZJHVXBr.png",
+            "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/hW0OgARAw62XkhBD0T27zvPgVVtQTwRfQMgQUEJZ.jpg",
             "type": "Image",
-            "caption": "Chavón"
+            "caption": "Luis C. prod0"
         }
     },
-    "validFrom": "2024-11-01T15:01:53.876820Z",
     "credentialSubject": {
-        "id": "did:key:z6Mks33ZVfabSM2gMCbjJuwejr4PACgd4Q3qLHxaqpEDrjbf",
+        "id": "did:key:z6MkjD3DwDqr6oCTpcJruA5TY2PRBt1ruD3CVT8Y84tpFny8",
         "type": [
             "AchievementSubject"
         ],
         "identifier": [
             {
                 "type": "IdentityObject",
-                "identityHash": "did:key:z6Mks33ZVfabSM2gMCbjJuwejr4PACgd4Q3qLHxaqpEDrjbf",
+                "identityHash": "did:key:z6MkjD3DwDqr6oCTpcJruA5TY2PRBt1ruD3CVT8Y84tpFny8",
                 "identityType": "identifier",
                 "hashed": false,
                 "salt": "not-used"
             },
             {
                 "type": "IdentityObject",
-                "identityHash": "Sfsdf Sdfsdf",
+                "identityHash": "Luis Carneiro Carneiro",
                 "identityType": "name",
                 "hashed": false,
                 "salt": "not-used"
             },
             {
                 "type": "IdentityObject",
-                "identityHash": "jorge.galeano1000@territoriumtest.com",
+                "identityHash": "luis.carneiro@territorium.com",
                 "identityType": "emailAddress",
                 "hashed": false,
                 "salt": "not-used"
             }
         ],
         "achievement": {
-            "id": "https://life-staging.territorium.com/issuedBadge?id=6dae6d1e-50ea-4942-9d83-058975bff336",
+            "id": "https://life-staging.territorium.com/issuedBadge?id=d7895c4c-30db-488f-b601-6bba08e5be04",
             "type": [
                 "Achievement"
             ],
@@ -69,35 +67,37 @@
                         "Alignment"
                     ],
                     "targetCode": "Achievement",
-                    "targetDescription": "LO 2024-11-01",
-                    "targetName": "ST 2024-11-01",
-                    "targetFramework": "LO 2024-11-01",
+                    "targetDescription": "LO 28-11-24 10am",
+                    "targetName": "ST 28-11-24 10am",
+                    "targetFramework": "LO 28-11-24 10am",
                     "targetType": "CFItem",
-                    "targetUrl": "https://life-staging.territorium.com/#/statement/public?uuid=66390141-d8ed-46fe-b0e4-b8b527114927"
+                    "targetUrl": "https://life-staging.territorium.com/#/statement/public?uuid=86c14cbf-02e4-4410-97cf-21b66e4fcd84"
                 }
             ],
             "achievementType": "Achievement",
-            "name": "ʻŌlelo Hawaiʻi",
-            "description": "ʻŌlelo Hawaiʻi",
-            "fieldOfStudy": "ʻŌlelo Hawaiʻi",
-            "tag": [],
+            "name": "Hijo 3",
+            "description": "Hijo 3",
+            "fieldOfStudy": "Hijo 3",
+            "tag": [
+                "Critical thinking"
+            ],
             "criteria": {
-                "narrative": "JJM-VNF-3 badge criteria"
+                "narrative": "testing"
             },
             "image": {
-                "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/XdTYY2vlLPlyt7UzIUznzSItXixyg2dFoi92h5IT.png",
+                "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/Z09nAkBdpir8aNgrQaBu6WbzZTosQwK26DgLPTj6.png",
                 "type": "Image",
-                "caption": "JJM-VNF-3 badge description"
+                "caption": "The Critical Thinking Badgevrecognizes the ability to analyze information objectively, evaluate complex problems, and develop logical, evidence-based solutions. Badge holders demonstrate strong reasoning skills, effective decision-making, and the capacity to approach challenges with clarity and creativity. This badge highlights proficiency in thinking critically to drive informed and impactful outcomes."
             },
             "resultDescription": [
                 {
-                    "id": "urn:uuid:666134b4-357b-4253-915c-e18f0a11d3a7",
+                    "id": "urn:uuid:0b6454fa-f6a8-4787-abff-5500bb79a2fa",
                     "type": [
                         "ResultDescription"
                     ],
-                    "name": "Score",
-                    "resultType": "RawScore",
-                    "requiredValue": "10.000"
+                    "name": "LetterGrade score",
+                    "resultType": "LetterGrade",
+                    "requiredValue": "D"
                 }
             ]
         },
@@ -106,13 +106,13 @@
                 "type": [
                     "Result"
                 ],
-                "resultDescription": "urn:uuid:666134b4-357b-4253-915c-e18f0a11d3a7",
-                "value": "150.000"
+                "resultDescription": "urn:uuid:0b6454fa-f6a8-4787-abff-5500bb79a2fa",
+                "value": "A+"
             }
         ]
     },
     "refreshService": {
-        "id": "https://life-staging.territorium.com/credentials/6dae6d1e-50ea-4942-9d83-058975bff336",
+        "id": "https://life-staging.territorium.com/credentials/d7895c4c-30db-488f-b601-6bba08e5be04",
         "type": "1EdTechCredentialRefresh"
     },
     "credentialSchema": [
@@ -121,15 +121,15 @@
             "type": "1EdTechJsonSchemaValidator2019"
         }
     ],
-    "proof": [
-        {
-            "id": "urn:uuid:6047f8b6-0d5b-4732-b084-6449ff2ad990",
-            "type": "DataIntegrityProof",
-            "created": "2024-11-07T22:48:33.941Z",
-            "verificationMethod": "did:key:z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av#z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av",
-            "cryptosuite": "ecdsa-sd-2023",
-            "proofPurpose": "assertionMethod",
-            "proofValue": "u2V0BhVhAX3tcxQ3nM6AwgFVo5q3XZjkvZQWc-PhZUVGFfeG9dQ-ebFGw7xz2GFWDOyzOet-b4Y6kcsEujmm_1zJkcms3X1gjgCQCq2sSAOi8kAGpZMuOr_IWMTBzd-vZoh1jMgzMQ6iCeveApgBYIPlpQXFFQu_h0d5RAE47mxTlA1E_hISqIgF_7OE2m1o9AVggN5AslJkn1r1GVhgaYp16YfUCj4OPZa253jkNfavvVOUCWCB3Dky_4PlLzGPptu6Pay8sxqPRF5E0UtRkXSy7E6XNBgNYIPj8rBff-gkTULURWW2eVXr5gZaTrrWQiefRu7vnRS2IBFggAHmAtGMmh6wmGxM70UhfAhKevXhy9XpjB9TbMfYPGdIFWCAJmGTrbK4XMI0xaZfOZx6wSP2JlexVLiuew3eWbCg3l5hBAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBgYGRgaGBsYHBgdGB4YHxggGCEYIhgjGCQYJRgmGCcYKBgpGCoYKxgsGC0YLhgvGDAYMRgyGDMYNBg1GDYYNxg4GDkYOhg7GDwYPRg-GD8YQA"
-        }
-    ]
+    "description": "The Critical Thinking Badgevrecognizes the ability to analyze information objectively, evaluate complex problems, and develop logical, evidence-based solutions. Badge holders demonstrate strong reasoning skills, effective decision-making, and the capacity to approach challenges with clarity and creativity. This badge highlights proficiency in thinking critically to drive informed and impactful outcomes.",
+    "validFrom": "2024-11-30T18:39:15.678868Z",
+    "evidence": [],
+    "proof": {
+        "type": "DataIntegrityProof",
+        "created": "2024-11-30T18:40:00.802Z",
+        "verificationMethod": "did:key:z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H#z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H",
+        "cryptosuite": "ecdsa-sd-2023",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "u2V0BhVhAxW3JUc6Dwdg35OElYdogKZMcCrjiqJhxKNrINg0NNCrs8QqQYzyYUJNyNrD0QYJR-E7UEmLY9SlvpFytoYYYIVgjgCQC10jSzCqe2qywEguBTojrWG8J6sNQK16EeO4UEgjJ6FWJWEAzv5JS2BCYEvG7cRTZJrsW7YgiTVkVdVkQjGKnptlvnRjWIdi_brPOnUI4BYHD9algc5vQNA5NiKNSubb6usIWWEBlCQFRqXJBO81lS9csbfeJ2n-T7IMTOyuEYgwv3PL5yrb3VswXY3FmA2hGKbKS3WiTjt2WgkoMi93-u-X4dZI8WEAGtbTGUjIW8ymBhbTdJiizeQvwze1eAkI0NgRJTa2WI3zNubLjQj17EuaRpb4QaV_puCpVb7GjXxF7nuVyx-7QWEBTDlEXG2Je3yJcqDOCXKY_bYoZiV9q5GwGiQT6NLnm4E41McZ38YDb_kJwkSCwmxiNQnFo-pRsyOCdNIrSoQWSWEDQFXBr8dbsCk8XzNUyMPSa_fUzebYrTdKDYzZFRmxQJ6Z3euqorWJlE2t7jWac1uk3Mk61oz-e5S7w1vcuEVdkWECJht3DD8tgVf28jXhGA1mKSAuT-9O7qBifdvWYz901ZmMgVMIfeanties80rOip7daJzQX809oC0SyJ6Y3JVOZWEDbLe3NenKKd-VzKNPlFwnp2obYSa16zbP_yAtG1GuSet2YImKNTwp5K4f847HnVQmVCRZd9DjmqXUB0RFYDLVKWEDmR5iYlwU5g8b10QrROrAhG7WnVPPKjtK0g-qJkNLmuGytflgXhpoLWDlx6LOwvdzPdtdDlzC9EXbf2N84Y4oCWEAmSwHYWHKE2ct6D2f2ntCkXR73h8yerqPwIucLb5MOue0uo3CB_JvvY44YW9xpy_GSblIKMGNHNBaSFXI4riXrpgBYIFxruKiZ31fJI-JmTjniMAs2WIEGIgqwV3sYxe-81yurAVgg8WwDUJS0oRZj7x_ciQga8T_nb82K1ABFiwvrDRcZ3wsCWCA8uKT7kAsijL7qcY2GJ56dsiHfVCsk8aznli1Anj2GRgNYIIiLcJObS1oOdD144MM_PvkUOAE80iu6nFQkX6BP33G9BFgg2jAdSEfnb8bEYqAuamgg-yzW2tkwUzhv6OOY3Tw6IZ0FWCB6mNdy3nGLRJf5X0IBVmkhaD33Lh1QMFboGYBNe_CZBJg5AAECAwQGBwgJCgsMDQ4PEBITFBUWFxgYGBkYHhgfGCAYIRgiGCMYJBglGCYYJxgoGCkYKhgrGCwYLRguGC8YMBgxGDIYMxg0GDUYNhg3GDgYORg9GD4YPxhAGEE"
+    }
 }
