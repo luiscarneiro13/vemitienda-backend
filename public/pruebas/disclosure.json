@@ -124,12 +124,14 @@
     "description": "The Critical Thinking Badgevrecognizes the ability to analyze information objectively, evaluate complex problems, and develop logical, evidence-based solutions. Badge holders demonstrate strong reasoning skills, effective decision-making, and the capacity to approach challenges with clarity and creativity. This badge highlights proficiency in thinking critically to drive informed and impactful outcomes.",
     "validFrom": "2024-11-30T18:39:15.678868Z",
     "evidence": [],
-    "proof": {
-        "type": "DataIntegrityProof",
-        "created": "2024-11-30T18:40:00.802Z",
-        "verificationMethod": "did:key:z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H#z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H",
-        "cryptosuite": "ecdsa-sd-2023",
-        "proofPurpose": "assertionMethod",
-        "proofValue": "u2V0BhVhAxW3JUc6Dwdg35OElYdogKZMcCrjiqJhxKNrINg0NNCrs8QqQYzyYUJNyNrD0QYJR-E7UEmLY9SlvpFytoYYYIVgjgCQC10jSzCqe2qywEguBTojrWG8J6sNQK16EeO4UEgjJ6FWJWEAzv5JS2BCYEvG7cRTZJrsW7YgiTVkVdVkQjGKnptlvnRjWIdi_brPOnUI4BYHD9algc5vQNA5NiKNSubb6usIWWEBlCQFRqXJBO81lS9csbfeJ2n-T7IMTOyuEYgwv3PL5yrb3VswXY3FmA2hGKbKS3WiTjt2WgkoMi93-u-X4dZI8WEAGtbTGUjIW8ymBhbTdJiizeQvwze1eAkI0NgRJTa2WI3zNubLjQj17EuaRpb4QaV_puCpVb7GjXxF7nuVyx-7QWEBTDlEXG2Je3yJcqDOCXKY_bYoZiV9q5GwGiQT6NLnm4E41McZ38YDb_kJwkSCwmxiNQnFo-pRsyOCdNIrSoQWSWEDQFXBr8dbsCk8XzNUyMPSa_fUzebYrTdKDYzZFRmxQJ6Z3euqorWJlE2t7jWac1uk3Mk61oz-e5S7w1vcuEVdkWECJht3DD8tgVf28jXhGA1mKSAuT-9O7qBifdvWYz901ZmMgVMIfeanties80rOip7daJzQX809oC0SyJ6Y3JVOZWEDbLe3NenKKd-VzKNPlFwnp2obYSa16zbP_yAtG1GuSet2YImKNTwp5K4f847HnVQmVCRZd9DjmqXUB0RFYDLVKWEDmR5iYlwU5g8b10QrROrAhG7WnVPPKjtK0g-qJkNLmuGytflgXhpoLWDlx6LOwvdzPdtdDlzC9EXbf2N84Y4oCWEAmSwHYWHKE2ct6D2f2ntCkXR73h8yerqPwIucLb5MOue0uo3CB_JvvY44YW9xpy_GSblIKMGNHNBaSFXI4riXrpgBYIFxruKiZ31fJI-JmTjniMAs2WIEGIgqwV3sYxe-81yurAVgg8WwDUJS0oRZj7x_ciQga8T_nb82K1ABFiwvrDRcZ3wsCWCA8uKT7kAsijL7qcY2GJ56dsiHfVCsk8aznli1Anj2GRgNYIIiLcJObS1oOdD144MM_PvkUOAE80iu6nFQkX6BP33G9BFgg2jAdSEfnb8bEYqAuamgg-yzW2tkwUzhv6OOY3Tw6IZ0FWCB6mNdy3nGLRJf5X0IBVmkhaD33Lh1QMFboGYBNe_CZBJg5AAECAwQGBwgJCgsMDQ4PEBITFBUWFxgYGBkYHhgfGCAYIRgiGCMYJBglGCYYJxgoGCkYKhgrGCwYLRguGC8YMBgxGDIYMxg0GDUYNhg3GDgYORg9GD4YPxhAGEE"
-    }
+    "proof": [
+        {
+            "type": "DataIntegrityProof",
+            "created": "2024-11-30T18:40:00.802Z",
+            "verificationMethod": "did:key:z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H#z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H",
+            "cryptosuite": "ecdsa-sd-2023",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "u2V0BhVhAxW3JUc6Dwdg35OElYdogKZMcCrjiqJhxKNrINg0NNCrs8QqQYzyYUJNyNrD0QYJR-E7UEmLY9SlvpFytoYYYIVgjgCQC10jSzCqe2qywEguBTojrWG8J6sNQK16EeO4UEgjJ6FWJWEAzv5JS2BCYEvG7cRTZJrsW7YgiTVkVdVkQjGKnptlvnRjWIdi_brPOnUI4BYHD9algc5vQNA5NiKNSubb6usIWWEBlCQFRqXJBO81lS9csbfeJ2n-T7IMTOyuEYgwv3PL5yrb3VswXY3FmA2hGKbKS3WiTjt2WgkoMi93-u-X4dZI8WEAGtbTGUjIW8ymBhbTdJiizeQvwze1eAkI0NgRJTa2WI3zNubLjQj17EuaRpb4QaV_puCpVb7GjXxF7nuVyx-7QWEBTDlEXG2Je3yJcqDOCXKY_bYoZiV9q5GwGiQT6NLnm4E41McZ38YDb_kJwkSCwmxiNQnFo-pRsyOCdNIrSoQWSWEDQFXBr8dbsCk8XzNUyMPSa_fUzebYrTdKDYzZFRmxQJ6Z3euqorWJlE2t7jWac1uk3Mk61oz-e5S7w1vcuEVdkWECJht3DD8tgVf28jXhGA1mKSAuT-9O7qBifdvWYz901ZmMgVMIfeanties80rOip7daJzQX809oC0SyJ6Y3JVOZWEDbLe3NenKKd-VzKNPlFwnp2obYSa16zbP_yAtG1GuSet2YImKNTwp5K4f847HnVQmVCRZd9DjmqXUB0RFYDLVKWEDmR5iYlwU5g8b10QrROrAhG7WnVPPKjtK0g-qJkNLmuGytflgXhpoLWDlx6LOwvdzPdtdDlzC9EXbf2N84Y4oCWEAmSwHYWHKE2ct6D2f2ntCkXR73h8yerqPwIucLb5MOue0uo3CB_JvvY44YW9xpy_GSblIKMGNHNBaSFXI4riXrpgBYIFxruKiZ31fJI-JmTjniMAs2WIEGIgqwV3sYxe-81yurAVgg8WwDUJS0oRZj7x_ciQga8T_nb82K1ABFiwvrDRcZ3wsCWCA8uKT7kAsijL7qcY2GJ56dsiHfVCsk8aznli1Anj2GRgNYIIiLcJObS1oOdD144MM_PvkUOAE80iu6nFQkX6BP33G9BFgg2jAdSEfnb8bEYqAuamgg-yzW2tkwUzhv6OOY3Tw6IZ0FWCB6mNdy3nGLRJf5X0IBVmkhaD33Lh1QMFboGYBNe_CZBJg5AAECAwQGBwgJCgsMDQ4PEBITFBUWFxgYGBkYHhgfGCAYIRgiGCMYJBglGCYYJxgoGCkYKhgrGCwYLRguGC8YMBgxGDIYMxg0GDUYNhg3GDgYORg9GD4YPxhAGEE"
+        }
+    ]
 }
