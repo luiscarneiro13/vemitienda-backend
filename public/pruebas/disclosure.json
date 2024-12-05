@@ -1,137 +1,402 @@
 {
-    "@context": [
-        "https://www.w3.org/ns/credentials/v2",
-        "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json",
-        "https://purl.imsglobal.org/spec/ob/v3p0/extensions.json"
-    ],
-    "id": "urn:uuid:d7895c4c-30db-488f-b601-6bba08e5be04",
-    "type": [
-        "VerifiableCredential",
-        "OpenBadgeCredential"
-    ],
-    "name": "Critical thinking",
-    "image": {
-        "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/Z09nAkBdpir8aNgrQaBu6WbzZTosQwK26DgLPTj6.png",
-        "type": "Image",
-        "caption": "The Critical Thinking Badgevrecognizes the ability to analyze information objectively, evaluate complex problems, and develop logical, evidence-based solutions. Badge holders demonstrate strong reasoning skills, effective decision-making, and the capacity to approach challenges with clarity and creativity. This badge highlights proficiency in thinking critically to drive informed and impactful outcomes."
-    },
-    "issuer": {
-        "id": "did:key:z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H",
-        "type": [
-            "Profile"
-        ],
-        "name": "Luis C. prod0",
-        "url": "https://luiscarneiro.com",
-        "image": {
-            "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/hW0OgARAw62XkhBD0T27zvPgVVtQTwRfQMgQUEJZ.jpg",
-            "type": "Image",
-            "caption": "Luis C. prod0"
-        }
-    },
-    "credentialSubject": {
-        "id": "did:key:z6MkjD3DwDqr6oCTpcJruA5TY2PRBt1ruD3CVT8Y84tpFny8",
-        "type": [
-            "AchievementSubject"
-        ],
-        "identifier": [
-            {
-                "type": "IdentityObject",
-                "identityHash": "did:key:z6MkjD3DwDqr6oCTpcJruA5TY2PRBt1ruD3CVT8Y84tpFny8",
-                "identityType": "identifier",
-                "hashed": false,
-                "salt": "not-used"
-            },
-            {
-                "type": "IdentityObject",
-                "identityHash": "Luis Carneiro Carneiro",
-                "identityType": "name",
-                "hashed": false,
-                "salt": "not-used"
-            },
-            {
-                "type": "IdentityObject",
-                "identityHash": "luis.carneiro@territorium.com",
-                "identityType": "emailAddress",
-                "hashed": false,
-                "salt": "not-used"
-            }
-        ],
-        "achievement": {
-            "id": "https://life-staging.territorium.com/issuedBadge?id=d7895c4c-30db-488f-b601-6bba08e5be04",
-            "type": [
-                "Achievement"
-            ],
-            "alignment": [
-                {
-                    "type": [
-                        "Alignment"
-                    ],
-                    "targetCode": "Achievement",
-                    "targetDescription": "LO 28-11-24 10am",
-                    "targetName": "ST 28-11-24 10am",
-                    "targetFramework": "LO 28-11-24 10am",
-                    "targetType": "CFItem",
-                    "targetUrl": "https://life-staging.territorium.com/#/statement/public?uuid=86c14cbf-02e4-4410-97cf-21b66e4fcd84"
-                }
-            ],
-            "achievementType": "Achievement",
-            "name": "Hijo 3",
-            "description": "Hijo 3",
-            "fieldOfStudy": "Hijo 3",
-            "tag": [
-                "Critical thinking"
-            ],
-            "criteria": {
-                "narrative": "testing"
-            },
-            "image": {
-                "id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/Z09nAkBdpir8aNgrQaBu6WbzZTosQwK26DgLPTj6.png",
-                "type": "Image",
-                "caption": "The Critical Thinking Badgevrecognizes the ability to analyze information objectively, evaluate complex problems, and develop logical, evidence-based solutions. Badge holders demonstrate strong reasoning skills, effective decision-making, and the capacity to approach challenges with clarity and creativity. This badge highlights proficiency in thinking critically to drive informed and impactful outcomes."
-            },
-            "resultDescription": [
-                {
-                    "id": "urn:uuid:0b6454fa-f6a8-4787-abff-5500bb79a2fa",
-                    "type": [
-                        "ResultDescription"
-                    ],
-                    "name": "LetterGrade score",
-                    "resultType": "LetterGrade",
-                    "requiredValue": "D"
-                }
-            ]
-        },
-        "result": [
-            {
-                "type": [
-                    "Result"
-                ],
-                "resultDescription": "urn:uuid:0b6454fa-f6a8-4787-abff-5500bb79a2fa",
-                "value": "A+"
-            }
-        ]
-    },
-    "refreshService": {
-        "id": "https://vemitienda.com.ve/pruebas/disclosure.json",
-        "type": "1EdTechCredentialRefresh"
-    },
-    "credentialSchema": [
-        {
-            "id": "https://purl.imsglobal.org/spec/ob/v3p0/schema/json/ob_v3p0_achievementcredential_schema.json",
-            "type": "1EdTechJsonSchemaValidator2019"
-        }
-    ],
-    "description": "The Critical Thinking Badgevrecognizes the ability to analyze information objectively, evaluate complex problems, and develop logical, evidence-based solutions. Badge holders demonstrate strong reasoning skills, effective decision-making, and the capacity to approach challenges with clarity and creativity. This badge highlights proficiency in thinking critically to drive informed and impactful outcomes.",
-    "validFrom": "2024-11-30T18:39:15.678868Z",
-    "evidence": [],
-    "proof": [
-        {
-            "type": "DataIntegrityProof",
-            "created": "2024-11-30T18:40:00.802Z",
-            "verificationMethod": "did:key:z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H#z6MkmrL8HLVWA5fMiVU4agkKo1hos7r1zpCaW4AX9b6PtN5H",
-            "cryptosuite": "ecdsa-sd-2023",
-            "proofPurpose": "assertionMethod",
-            "proofValue": "u2V0BhVhAxW3JUc6Dwdg35OElYdogKZMcCrjiqJhxKNrINg0NNCrs8QqQYzyYUJNyNrD0QYJR-E7UEmLY9SlvpFytoYYYIVgjgCQC10jSzCqe2qywEguBTojrWG8J6sNQK16EeO4UEgjJ6FWJWEAzv5JS2BCYEvG7cRTZJrsW7YgiTVkVdVkQjGKnptlvnRjWIdi_brPOnUI4BYHD9algc5vQNA5NiKNSubb6usIWWEBlCQFRqXJBO81lS9csbfeJ2n-T7IMTOyuEYgwv3PL5yrb3VswXY3FmA2hGKbKS3WiTjt2WgkoMi93-u-X4dZI8WEAGtbTGUjIW8ymBhbTdJiizeQvwze1eAkI0NgRJTa2WI3zNubLjQj17EuaRpb4QaV_puCpVb7GjXxF7nuVyx-7QWEBTDlEXG2Je3yJcqDOCXKY_bYoZiV9q5GwGiQT6NLnm4E41McZ38YDb_kJwkSCwmxiNQnFo-pRsyOCdNIrSoQWSWEDQFXBr8dbsCk8XzNUyMPSa_fUzebYrTdKDYzZFRmxQJ6Z3euqorWJlE2t7jWac1uk3Mk61oz-e5S7w1vcuEVdkWECJht3DD8tgVf28jXhGA1mKSAuT-9O7qBifdvWYz901ZmMgVMIfeanties80rOip7daJzQX809oC0SyJ6Y3JVOZWEDbLe3NenKKd-VzKNPlFwnp2obYSa16zbP_yAtG1GuSet2YImKNTwp5K4f847HnVQmVCRZd9DjmqXUB0RFYDLVKWEDmR5iYlwU5g8b10QrROrAhG7WnVPPKjtK0g-qJkNLmuGytflgXhpoLWDlx6LOwvdzPdtdDlzC9EXbf2N84Y4oCWEAmSwHYWHKE2ct6D2f2ntCkXR73h8yerqPwIucLb5MOue0uo3CB_JvvY44YW9xpy_GSblIKMGNHNBaSFXI4riXrpgBYIFxruKiZ31fJI-JmTjniMAs2WIEGIgqwV3sYxe-81yurAVgg8WwDUJS0oRZj7x_ciQga8T_nb82K1ABFiwvrDRcZ3wsCWCA8uKT7kAsijL7qcY2GJ56dsiHfVCsk8aznli1Anj2GRgNYIIiLcJObS1oOdD144MM_PvkUOAE80iu6nFQkX6BP33G9BFgg2jAdSEfnb8bEYqAuamgg-yzW2tkwUzhv6OOY3Tw6IZ0FWCB6mNdy3nGLRJf5X0IBVmkhaD33Lh1QMFboGYBNe_CZBJg5AAECAwQGBwgJCgsMDQ4PEBITFBUWFxgYGBkYHhgfGCAYIRgiGCMYJBglGCYYJxgoGCkYKhgrGCwYLRguGC8YMBgxGDIYMxg0GDUYNhg3GDgYORg9GD4YPxhAGEE"
-        }
-    ]
+	"@context": [
+		"https://www.w3.org/ns/credentials/v2",
+		"https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json",
+		"https://purl.imsglobal.org/spec/ob/v3p0/extensions.json",
+		"https://purl.imsglobal.org/spec/ob-accred/v2p0/context/",
+		"https://purl.imsglobal.org/spec/ob-assessment/v2p0/context/",
+		"https://purl.imsglobal.org/spec/ob/v3p0/obv3p0_tcv1p0_context_v1p0.json"
+	],
+	"id": "urn:uuid:87f1feda-9ffc-4de7-ada4-1c1c67ab0196",
+	"type": [
+		"VerifiableCredential",
+		"OpenBadgeCredential",
+		"1EdTechTrustEdApplicationCredential",
+		"IssuerAccreditationProfile"
+	],
+	"name": "Spero Career Readiness One",
+	"image": {
+		"id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/1n9DIXsmX4dmB8p7B0qY2cBK80dUN6I7Q3QpM8ds.png",
+		"type": "Image",
+		"caption": "Approved 1EdTech TrustEd Microcredential. This microcredential is based on an applied learning evaluation in a professional role-play scenario."
+	},
+	"issuer": {
+		"id": "did:key:z6Mkt6mmb9Ep83rxhmud5ubLBU8rTG2HVSzfGaSDuX2VUfLL",
+		"type": [
+			"Profile"
+		],
+		"name": "Wichita State University",
+		"url": "https://www.wichita.edu/",
+		"image": {
+			"id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/jv5z2XtgBO0B98GKLHKah2iRf462QAO66thrYyDF.jpg",
+			"type": "Image",
+			"caption": "Wichita State University"
+		}
+	},
+	"accreditations": [
+		{
+			"type": [
+				"Profile",
+				"AccreditationProfile"
+			],
+			"name": "AACSB International",
+			"contactInstructions": "AACSB International 777 S. Harbour Island Blvd. Suite 750 Tampa, Florida 33602 USA",
+			"url": "https://www.aacsb.edu/",
+			"address": {
+				"type": [
+					"Address"
+				],
+				"streetAddress": "777 S. Harbour Island Blvd. Suite 750",
+				"addressLocality": "Tampa",
+				"addressRegion": "Florida",
+				"postalCode": "33602"
+			},
+			"description": "AACSB International (AACSB), a global nonprofit association, connects educators, students, and business to achieve a common goal: to create the next generation of great leaders.",
+			"logo": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/uXhg4XE2L8X6b4pCjBI116ctKZ1UUV42qjZdTcUG.png",
+			"areaServed": "Global",
+			"educationalSector": "Postsecondary"
+		},
+		{
+			"type": [
+				"Profile",
+				"AccreditationProfile"
+			],
+			"name": "Higher Learning Commission",
+			"contactInstructions": "Public information: info@hlcommission.org",
+			"url": "https://www.hlcommission.org/",
+			"address": {
+				"type": [
+					"Address"
+				],
+				"streetAddress": "Higher Learning Commission 230 South LaSalle Street, Suite 7-500",
+				"addressLocality": "Chicago",
+				"addressRegion": "Illinois",
+				"postalCode": "60604-1411"
+			},
+			"description": "The Higher Learning Commission (HLC) is an independent corporation that was founded in 1895 as one of seven regional accreditors in the United States. HLC accredits degree-granting post-secondary educational institutions in the United States. HLC is as an institutional accreditor, accrediting the institution as a whole.",
+			"logo": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/8mNpgKp9RMQRu8zaSdUYKZENqSM66e8pdeBtcfDb.png",
+			"areaServed": "United States",
+			"educationalSector": "Postsecondary"
+		}
+	],
+	"credentialSubject": {
+		"id": "did:key:z6MkivLK4RWXYcDv4g4Z4TfxGq5CAge5kUjTa9EDguUZ65vA",
+		"type": [
+			"AchievementSubject"
+		],
+		"identifier": [
+			{
+				"type": "IdentityObject",
+				"identityHash": "did:key:z6MkivLK4RWXYcDv4g4Z4TfxGq5CAge5kUjTa9EDguUZ65vA",
+				"identityType": "identifier",
+				"hashed": false,
+				"salt": "not-used"
+			},
+			{
+				"type": "IdentityObject",
+				"identityHash": "Elsa badges activated",
+				"identityType": "name",
+				"hashed": false,
+				"salt": "not-used"
+			},
+			{
+				"type": "IdentityObject",
+				"identityHash": "elsahzapata1961@yopmail.com",
+				"identityType": "emailAddress",
+				"hashed": false,
+				"salt": "not-used"
+			}
+		],
+		"achievement": {
+			"id": "https://life-api.territorium.com/issuedBadge?id=87f1feda-9ffc-4de7-ada4-1c1c67ab0196",
+			"type": [
+				"Achievement"
+			],
+			"alignment": [
+				{
+					"type": [
+						"Alignment"
+					],
+					"targetCode": "MicroCredential",
+					"targetDescription": "Through interactive activities, learners will explore the significance of professionalism, develop personal motivation, and master communication strategies to foster a collaborative and respectful work environment.",
+					"targetName": "1. Recognize and value professionalism for career advancement. Create a positive customer service experience. Demonstrate a positive attitude and work ethic.",
+					"targetFramework": "Spero Career Readiness",
+					"targetType": "CFItem",
+					"targetUrl": "https://life-api.territorium.com/#/statement/public?uuid=a4e79b3c-51ac-4979-8a39-f81173ada58d"
+				},
+				{
+					"type": [
+						"Alignment"
+					],
+					"targetCode": "MicroCredential",
+					"targetDescription": "Professional Communication Adherence ",
+					"targetName": "Professional Communication Adherence ",
+					"targetFramework": "Skill Definition",
+					"targetType": "CFItem",
+					"targetUrl": "https://life-api.territorium.com/skills/info/eyJpdiI6IlZlTXJoQjM4MjhDYVFCMTdFcWYxRFE9PSIsInZhbHVlIjoiem8wNXRSaGY4SVNnWE54RU9UbFFRZz09IiwibWFjIjoiNzg5ZWIwYjRiZDVkYmZhZjUyNzkwMWJkMmZlMjJiZmM1MjI2ZmU5OTU1Zjc1NzVkM2UxMzQ2MzE5OGJmMzI4MSIsInRhZyI6IiJ9"
+				},
+				{
+					"type": [
+						"Alignment"
+					],
+					"targetCode": "MicroCredential",
+					"targetDescription": "Professional Appearance Maintenance ",
+					"targetName": "Professional Appearance Maintenance ",
+					"targetFramework": "Skill Definition",
+					"targetType": "CFItem",
+					"targetUrl": "https://life-api.territorium.com/skills/info/eyJpdiI6IkRKTlk3UjB4eENzT0F0dGdPT2VGVWc9PSIsInZhbHVlIjoiTXBabEdCRloyWVRLNWdSQ0hCNGJYdz09IiwibWFjIjoiNTkwOGMwZDU1NmFmNDJlODU4MjQ5NWMyMzJjYjMzNDZlZTk2MTVhYWM0NjJmMjk5MTIzNDM4NDk5YjVmYjBhNSIsInRhZyI6IiJ9"
+				},
+				{
+					"type": [
+						"Alignment"
+					],
+					"targetCode": "MicroCredential",
+					"targetDescription": "Behavior Modification  ",
+					"targetName": "Behavior Modification  ",
+					"targetFramework": "Skill Definition",
+					"targetType": "CFItem",
+					"targetUrl": "https://life-api.territorium.com/skills/info/eyJpdiI6ImxDampKL2VWd0FMcldlU202SHdibVE9PSIsInZhbHVlIjoiTXJhOS9WeWNyWWQ5cVhqTlFIMmZDZz09IiwibWFjIjoiMmExZGY3YmVmZTg4ZTc5ZmMzNzMxN2E5MTc4YjY5NzZlOTIxN2QxMGQ4ODcwNzk1YjY5ZTE1ZTk4MGYxMWRjMSIsInRhZyI6IiJ9"
+				},
+				{
+					"type": [
+						"Alignment"
+					],
+					"targetCode": "MicroCredential",
+					"targetDescription": "Create a Positive Work Environment ",
+					"targetName": "Create a Positive Work Environment ",
+					"targetFramework": "Skill Definition",
+					"targetType": "CFItem",
+					"targetUrl": "https://life-api.territorium.com/skills/info/eyJpdiI6ImVUTkswbllmcmpSVEVEeElMTEJKY0E9PSIsInZhbHVlIjoiSWhqQ2oyN0VvS0YxN21IN3RScHkvdz09IiwibWFjIjoiYjQxZjdkMGI3M2ZhYmZkMGFkMDE0MjQyMTQ5YmY0YWU5N2JjYzBhZjY3ZjZmNWFlZWRjYjI0NTUzYzJjMjM4YyIsInRhZyI6IiJ9"
+				},
+				{
+					"type": [
+						"Alignment"
+					],
+					"targetCode": "MicroCredential",
+					"targetDescription": "Curious and Open-Minded Thinking ",
+					"targetName": "Curious and Open-Minded Thinking ",
+					"targetFramework": "Skill Definition",
+					"targetType": "CFItem",
+					"targetUrl": "https://life-api.territorium.com/skills/info/eyJpdiI6IlBvcmVTNUhNbUF3VFBFZDNzaHliY3c9PSIsInZhbHVlIjoiWHVMQzg3Rm5YNzhGbDVienhKdUFOZz09IiwibWFjIjoiZTdlMmU0NDYzODk4NWFjYjc3MzlhNTdiZDFlY2I2NDZjZDNhMmU4YzI1Y2NmZDU3OTc5YjE1NTBjNzQyNjM2OCIsInRhZyI6IiJ9"
+				},
+				{
+					"type": [
+						"Alignment"
+					],
+					"targetCode": "MicroCredential",
+					"targetDescription": "Demonstrate a Positive Attitude and Work Ethic ",
+					"targetName": "Demonstrate a Positive Attitude and Work Ethic ",
+					"targetFramework": "Skill Definition",
+					"targetType": "CFItem",
+					"targetUrl": "https://life-api.territorium.com/skills/info/eyJpdiI6IlhJb0JyRWNuMmFyWmcxMlM4TG5MN2c9PSIsInZhbHVlIjoiaXVpZU1DbnNSQjBhM2s3UzBkOWFEUT09IiwibWFjIjoiZDE3NGY1OWFkMWEzNDVkZDhmYjczYWVmNDg4ZmFhMTY5MzA1OTI0YThhM2Y5NTFiOTRkMTY4NzVjZWU0ZTY3MSIsInRhZyI6IiJ9"
+				},
+				{
+					"type": [
+						"Alignment"
+					],
+					"targetCode": "MicroCredential",
+					"targetDescription": "Create a Positive Customer Experience ",
+					"targetName": "Create a Positive Customer Experience ",
+					"targetFramework": "Skill Definition",
+					"targetType": "CFItem",
+					"targetUrl": "https://life-api.territorium.com/skills/info/eyJpdiI6IlFVc1ZoVFFkNGRtdmFXdjd1azhnTXc9PSIsInZhbHVlIjoiOE05MjhQNFRPajdmWHdVcERrVkFkUT09IiwibWFjIjoiZWMyZTAwYzlmY2ZkMTRlNWNlNjk5ZGZkMDZkMjYzNDUzYTJmODA1NDM0ZTdjMTY1ZmZhMTM5ZmVjYmQ1OGQxNiIsInRhZyI6IiJ9"
+				},
+				{
+					"type": [
+						"Alignment"
+					],
+					"targetCode": "MicroCredential",
+					"targetDescription": "Integrate Belief in Skill Improvement ",
+					"targetName": "Integrate Belief in Skill Improvement ",
+					"targetFramework": "Skill Definition",
+					"targetType": "CFItem",
+					"targetUrl": "https://life-api.territorium.com/skills/info/eyJpdiI6ImRwVEZOS2l2c0NSZWkwaWZrNE52bUE9PSIsInZhbHVlIjoieGZKMmY0QVFiRTNNMUQ3N3c3b25GUT09IiwibWFjIjoiNWUwYmE5MzJlOTkxYWEyZmMzZDc2ZDU2Njg2NWFlMmZiOTg3YmI5NTRiODQxYjMyODZmN2JmNmNhYmQwYTVkYSIsInRhZyI6IiJ9"
+				}
+			],
+			"achievementType": "MicroCredential",
+			"name": "Spero Career Readiness One",
+			"description": "Four assessments will be delivered through Blackboard. Students will be allowed to repeat the assessments until they achieve the minimum requirements.",
+			"fieldOfStudy": "Career Readiness",
+			"tag": [
+				"Professional Communication Adherence ",
+				"Professional Appearance Maintenance ",
+				"Behavior Modification  ",
+				"Create a Positive Work Environment ",
+				"Curious and Open-Minded Thinking ",
+				"Demonstrate a Positive Attitude and Work Ethic ",
+				"Create a Positive Customer Experience ",
+				"Integrate Belief in Skill Improvement "
+			],
+			"criteria": {
+				"narrative": "A mastery of 80 percent of each assessment and the final role-play scenario."
+			},
+			"image": {
+				"id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/1n9DIXsmX4dmB8p7B0qY2cBK80dUN6I7Q3QpM8ds.png",
+				"type": "Image",
+				"caption": "Approved 1EdTech TrustEd Microcredential. This microcredential is based on an applied learning evaluation in a professional role-play scenario."
+			},
+			"resultDescription": [
+				{
+					"id": "urn:uuid:1d1beaa4-2704-4786-af9d-c7d66d37558c",
+					"type": [
+						"ResultDescription",
+						"AssessmentResultDescription"
+					],
+					"name": "Achievement status",
+					"resultType": "Status",
+					"requiredValue": "Completed",
+					"description": "Customer service Assignment",
+					"assessmentOutput": "Four assessments will be delivered through Blackboard. Students will be allowed to repeat the assessments until they achieve the minimum requirements. See CR1 Assessments and Rubric document for details",
+					"hasGroupParticipation": false,
+					"alignment": [
+						{
+							"type": [
+								"Alignment"
+							],
+							"targetCode": "MicroCredential",
+							"targetDescription": "Through interactive activities, learners will explore the significance of professionalism, develop personal motivation, and master communication strategies to foster a collaborative and respectful work environment.",
+							"targetName": "1. Recognize and value professionalism for career advancement. Create a positive customer service experience. Demonstrate a positive attitude and work ethic.",
+							"targetFramework": "Spero Career Readiness",
+							"targetType": "CFItem",
+							"targetUrl": "https://life-api.territorium.com/#/statement/public?uuid=a4e79b3c-51ac-4979-8a39-f81173ada58d"
+						}
+					],
+					"hasGroupEvaluation": false,
+					"evaluationMethod": "Instructor assignment grade"
+				},
+				{
+					"id": "urn:uuid:1d1beaa4-2704-4786-af9d-c7d66d37558c",
+					"type": [
+						"ResultDescription"
+					],
+					"name": "Achievement status",
+					"resultType": "RubricCriterionLevel",
+					"requiredLevel": "a2a10468-a719-4dab-99e4-eda72edf70a6",
+					"rubricCriterionLevel": [
+						{
+							"id": "urn:uuid:a2a10468-a719-4dab-99e4-eda72edf70a6",
+							"type": [
+								"RubricCriterionLevel"
+							],
+							"alignment": [
+								{
+									"type": [
+										"Alignment"
+									],
+									"targetCode": "MicroCredential",
+									"targetDescription": "Through interactive activities, learners will explore the significance of professionalism, develop personal motivation, and master communication strategies to foster a collaborative and respectful work environment.",
+									"targetName": "1. Recognize and value professionalism for career advancement. Create a positive customer service experience. Demonstrate a positive attitude and work ethic.",
+									"targetFramework": "Spero Career Readiness",
+									"targetType": "CFItem",
+									"targetUrl": "https://life-api.territorium.com/#/statement/public?uuid=a4e79b3c-51ac-4979-8a39-f81173ada58d"
+								}
+							],
+							"description": "The student accurately identifies and describes the key actions or behaviors that contributed to the positive or negative customer service experience in both scenarios.",
+							"level": "Credit",
+							"name": "Identification of Key Actions/behaviors",
+							"points": 1
+						},
+						{
+							"id": "urn:uuid:a2a10468-a719-4dab-99e4-eda72edf70a6",
+							"type": [
+								"RubricCriterionLevel"
+							],
+							"alignment": [
+								{
+									"type": [
+										"Alignment"
+									],
+									"targetCode": "MicroCredential",
+									"targetDescription": "Through interactive activities, learners will explore the significance of professionalism, develop personal motivation, and master communication strategies to foster a collaborative and respectful work environment.",
+									"targetName": "1. Recognize and value professionalism for career advancement. Create a positive customer service experience. Demonstrate a positive attitude and work ethic.",
+									"targetFramework": "Spero Career Readiness",
+									"targetType": "CFItem",
+									"targetUrl": "https://life-api.territorium.com/#/statement/public?uuid=a4e79b3c-51ac-4979-8a39-f81173ada58d"
+								}
+							],
+							"description": "The student provides a clear and accurate evaluation of how the customer service impacted the overall experience and the likelihood of the customer returning to the bank for both scenarios.",
+							"level": "Credit",
+							"name": "Evaluation of Customer Impact",
+							"points": 1
+						},
+						{
+							"id": "urn:uuid:a2a10468-a719-4dab-99e4-eda72edf70a6",
+							"type": [
+								"RubricCriterionLevel"
+							],
+							"alignment": [
+								{
+									"type": [
+										"Alignment"
+									],
+									"targetCode": "MicroCredential",
+									"targetDescription": "Through interactive activities, learners will explore the significance of professionalism, develop personal motivation, and master communication strategies to foster a collaborative and respectful work environment.",
+									"targetName": "1. Recognize and value professionalism for career advancement. Create a positive customer service experience. Demonstrate a positive attitude and work ethic.",
+									"targetFramework": "Spero Career Readiness",
+									"targetType": "CFItem",
+									"targetUrl": "https://life-api.territorium.com/#/statement/public?uuid=a4e79b3c-51ac-4979-8a39-f81173ada58d"
+								}
+							],
+							"description": "The student suggests at least two relevant and practical improvements for the negative customer service scenario that could have turned it into a positive experience.",
+							"level": "Credit",
+							"name": "Suggestions for improvement",
+							"points": 1
+						}
+					]
+				}
+			]
+		},
+		"result": [
+			{
+				"type": [
+					"Result"
+				],
+				"resultDescription": "urn:uuid:1d1beaa4-2704-4786-af9d-c7d66d37558c",
+				"value": "Completed"
+			}
+		]
+	},
+	"refreshService": {
+		"id": "https://life-api.territorium.com/credentials/87f1feda-9ffc-4de7-ada4-1c1c67ab0196",
+		"type": "1EdTechCredentialRefresh"
+	},
+	"credentialSchema": [
+		{
+			"id": "https://purl.imsglobal.org/spec/ob/v3p0/schema/json/ob_v3p0_achievementcredential_schema.json",
+			"type": "1EdTechJsonSchemaValidator2019"
+		},
+		{
+			"id": "https://purl.imsglobal.org/spec/ob-assessment/v3p0/schema/",
+			"type": "1EdTechJsonSchemaValidator2019"
+		},
+		{
+			"id": "http://purl.imsglobal.org/spec/ob-accred/v2p0/schema",
+			"type": "1EdTechJsonSchemaValidator2019"
+		}
+	],
+	"description": "Approved 1EdTech TrustEd Microcredential. This microcredential is based on an applied learning evaluation in a professional role-play scenario.",
+	"validFrom": "2024-12-05T01:12:38.649780Z",
+	"evidence": [
+		{
+			"id": "https://life-api.territorium.com/api/file/get/eyJpdiI6IitPSnIzTlU5Ui9hN0k2djYxQ1p3UHc9PSIsInZhbHVlIjoiV1AvU0tIdUhrM2NvUDlyNU5kblQ4Zz09IiwibWFjIjoiMTQ3OGQ2ODRkYzNlM2NhZmRiNmIzNDMzNjk3YTQ3Yzk0ZmJlNGVkNzZhMGE0Nzk5OWY0ZjkwOTgxMjRiN2ExNiIsInRhZyI6IiJ9",
+			"type": [
+				"Evidence"
+			],
+			"narrative": "narrative",
+			"name": "Evidence for spero career readiness one",
+			"description": "Answer for spero career readiness one",
+			"genre": "genre",
+			"audience": "audience"
+		}
+	],
+	"proof": [
+		{
+			"type": "DataIntegrityProof",
+			"created": "2024-12-05T12:34:34.112Z",
+			"verificationMethod": "did:key:z6Mkt6mmb9Ep83rxhmud5ubLBU8rTG2HVSzfGaSDuX2VUfLL#z6Mkt6mmb9Ep83rxhmud5ubLBU8rTG2HVSzfGaSDuX2VUfLL",
+			"cryptosuite": "ecdsa-sd-2023",
+			"proofPurpose": "assertionMethod",
+			"proofValue": "u2V0BhVhAu-gV_ffZsK-B4wekQp4_zvr1ICsvFCRVqWQQTGDyGauGNMhu8bMZ6ujeoG-L4CHQ4j1-wAkMzGWoA4OY1cotaVgjgCQC5DIC2Rsl6xNeRuuT3zsnij46y2rddbIaA6blO4TDm0WYQlhAm6Nb3v8ktzHAd9Mno9HBsG0pmzvN-MHvMtzHFAk4zg4kYkNjbnnJD_i_SkF8h3p-ObLHWKMZx6iIPWmc1m1HJlhA4kNnk6StWzyGR8yG3d9SHLUvCJxiyUF7FpMshfcVu0ER7BUh59ZlpGPc8WOfHpddYruzhAuyt0D7aHhM_LB-E1hAQlDmaHKl_5yZdBbDbVZzCHC2tVo-3M3uVrR50gIcfDHATrN7EvG1ookD0jgzJI2tscWhDv4VVO6FVoYjR-_5eVhAvkL_cUzCDMQbMZV82wDlURDMniuouF7jA9kyKxu2L8k1xBLnviPKNVqt7rt1ckHGG-TU06BVIEzSDPTWUvi2tVhAFjLZDnT6YxxxvPIaM2VegcK4Zpox4BMiXRNWX8XRQ9SJbGuzyzl1aXqQXmmAmiSgBUxu3Rc4bMwCN3-xEG5mQFhAWLs-qtJMNaz6m1AW0F-mP3q98qBayGkNvO8YyXr7jVjC9iXSoq-IG2Q0d9F2Q-rG15ytxI7LFvVwq79S9X3DE1hAnYtXzLlMYTK9wwgFweL9xEe_QdwwzKnFbNS-Bhd2pFG-A552fHx_8iNppG5fHOoywfNy19Vn2yPNXmQjxaDFx1hAJWZQFaIJiWUREEFGB-TTTRjm4JhrsTlTz8N4BsSfgVdO0R0JcaoVBsIJ6-EQDKm5k7X8EjZi--ueR0YVAcYHOFhAPyvPP666KP7RI9fOltzzQwf1aYSZRPwuuk1HKxStkIpxMDzZFvzA2rAcIgtR7ufmko0OTgvrBCZCoNe_Py3fQ1hAxaqAq9xZi6ECVVecUFFGwqVCmAaHTP_tillJpFae-GhpNgn3-pIHpKOAprGQ_4CZoUUUylszkGitaKXrgI9V61hALHN8mMYDGBCOf1aAjuEVJn_h8sHFdMF91ZQX8qXqct4VrWsjVRfsRRLFDBQZI1o18lTWSGKNIzGmPS_dvIGpbFhAIM7OMDlc4QrWegBEtJL5CC-f7Ad2SLU9uFVz7nZf4PAA_QBmtQEb7dAB9weTtp7uJSA93h19nRR87QLI1Vty8VhAyy5SGZs7L0U-0XyBq9w1yYfMmLftDJbIhMR8GUw5mnbvd-iWwZVmOocEewjfCz2t03y2K7LgyWyJbz5pQWKkm1hAbfp-bGbnZ3vkiDERKzbqNrqASA0VMI_jqJWcvUdSWjJx5QdegcLdjnN0m-eSxS_QYae4bthedOyX3O-M5Ed8E1hAqEIUZY7MXjBU7nChqx5hhFf_Z09P_zRatkwl4fryvqu8bnD685RhR31WkjqJQwC92-ud92O4FGx160FFBXLZrVhAuggO0ap7mecEg944tqP3xcehBrWSxTsN_svVdmciudFYSFkfWUDPL-Uf7jiE-m3dJVnP4zP-iGpGXFQXW4vcqFhAjLsSJ5KEDtmDZkKvekan3s1813cpESnDIPD8-zSMT3vC7vf_JAaFNh9lZpCNxABgmBiUvopHj-MgGwbS43PXBlhAilWce2AptKWlmdXK1LxdcgSUG6WBvQWyTV4q3vJ5d78b0SP--2hygswaCvZd8Uu6WgNB-zi89pLRlh6oBOB0MlhAaV0A1lsBYZvqqDQ9ypJM5DZSFotdZWw2UT5AIdqo4YveWGLMnsBsLTAYT1RuPAY6eYqUN0xI5oXDYadLRpuDM1hAhWceMKGoG31YpiweyRBbWj74XEcYE5x08gEHstMLOLYAWTjMIL-WHOOYGJzpJRidHRoktH_WsxadfdXLq7cj6FhAaE_LO_GC9y_tmFqwSuF27y0lnHHFFIol6FftpxY5H-wPq2XTrUMMvfVVf8XNfJgLs1vYR1P2cgMZ84JgInPbPFhA6I2ki33-B5xYB3PQSvM8kJzQzgWkV3CZ4nuIkbyYONJroHkFu6T6W7SRK0G4ULt14hPbVfYYgm2slrWaEzUZ8VhARYKyMR1Y95APlO7zxpMCFhYRkWNswsQINFhyJbybGQOU4WzALHoYtmox7rEtVcVBS5S9AjJerf0vVrbMAUiG1VhAocDq5qqHtZ6WfrTkxO2KGNMjwn_lF58IoLsbELeVWPm6flcAiVLvGV6UqIES6qndEdWpB_7aE3Ha69SuR4mRbVhAgjjS08qElQFO8HQvGa_K82w9x3Bx5Rp5_hF_UbGcQlG7pc1zqB-bpZJBvLSouTVpKUCHDPknv1tr3d3ab6uwxlhA3Q1MC-ky3c-NVbVE0dgQIeyoC_E7T3o4-WnvqyTGLlDB3B3I23Q0bcjmTEywza8uMm9Wna22HoNkXqQyIJX8aFhAaMsk58K0O2zasVs-WLzKTcmBCpR8uZPRGIuZEFMEhBKn84GeCU_EEeExillnmFlI0uTHmTDMqBE2tQJeHgo6fFhAbn4kCBpg9rKRDU-o5MUxYn5yN_na8y1vNWBtbllN0dInv1upGonKoJ3DfNscUi9J8Tvb_vFl--uxwzXlPXB4C1hAZ0T-N_7JbKQ3-EXIfcqv0tnH0E91IVzudOU8_Ld0UiOvg-NJIAuneFEmnqVVaCCfV-9qMvlEDiuRIjpsBAPlgVhAaUGksnCHLfizIYvp-ZcUM87yCNX4wHfIy-hgkAer8xwB2I8b1mlu3Pg8gXAAIjWg_um7-WrbquzEbt6Kcf3ZCVhAfk1h9qoswIDJGP923jyUNgMpbhgwRG7gUeQeAVhOzXUCRCtNnuqW2Bjx3IEAazUBtuRqMrcZwFGvwyn9ljWAK1hAOsRkSmKFzQxy0t8NwS4mTQoPzyoG_D3UmAtBhYJosHEAcYDhVRyA7CCisXocivNh71hkl4fFbmzqtYAJCNgCBlhA-ZhbTOjOwjD0UxbtKAvUVY2muNysuZktsLT8SJBHueR3gRIdjBSaFN1frwPwrzgZIHiGqQSUW675JaFZjyhWj1hAgVgBQGIYPUvEZQFwJqdIXBlQVKyoXoaIOyIbcgm5AsRou_b2ER1b9GfuoiOwq4YB3kRKoIKiuKYyRP3EaWOqPFhAELeNAXacYB5Zz9Hr3zFXn2vsmTILrWItbwnppNpD6aJoFBF5wWsmFlrze6gyFPNzOhw8Oyw01aK6c1SiVijhFFhAmLpvznLfbFp0l_Z909MojPZWFWddc5ugiazaUgNQmzjLNn2MlbqNA-mwChbZHf0MdxIDR7kNoGFzmopwx6ZSE1hAGqem4eEG2S7KkOIA-InXxguwuTSgt0sMEMdLcZTIIIrhN7UF5rpaKCX2CSxR1uOJY4UbGa-vB67q61rXyuvVlFhAoFr0ehgC_trB_Wlok9XI-E6RqiLLKMxi4quT7KB373v-5DmDAfFu_nibTtY077LW3A4u-FI2WRO_kSof-CLjolhAS0D1Y_-do8t6u6a-NPp11533FV3TbxiGbf9W5rLZi5mB6s5QlI16oIOEkcV5TEoFJuBjdU4b5EoSNPjVA-EfQFhADhFUCiASz1RyVGLGBPzYZbsyiS6UZOnXwCtlThg2BdvSYK0gnufHNgnykyDy16588fexu8u8Mzj7fRPnq2pVq1hAheZOJJk8Tx9s1UdUFnwb36f7BdPVx0bDBIcg-3oHah459_97YMVEuhzMkFmT4d_iK5Bym8QBVvs0-z0jWz3oY1hADORmX4o4ou2WvkWd-DkdImk3B_TOf0T_VkJWnAHk9WUOVB6NAMLgvkfYaHQlesFTW6Q0x0UMuTXSqpg-iBnCJVhAM16jT5ncA7WDw3ZyKH20DBiZfZXxgCZ7spRiDKheB0VVjmQcL5HVxYhQOTRO41RAtLFuyvkzdDASK62UE-dcn1hAtIG2_hWJ3k9YhGfbG2W8qUdgpyfRaAPmA7fx3ah1Xmcry2sRG8ZXtrF1nVpYqY2DOoMi5yoIxO1AvCHvgSpGI1hAFVsQu5OCuKWxR9moIfWTWJwfRZtZmbQOTcuURYykrAHR4CzU5otKNcPXd2TjN1cfM7vZ6qsI6t4z_uVdY6TdBlhAgWNCoXck8OfCznoK8-24ze_dZt2260lFnuZgJa905ZS79Mhh8BgEuBE1kkxMTcUDpRpLTFs7AdKFRi-32az02VhA8SkRQTTQ9iwGEAzVfkLyKcWGA_IpOM2KHBFTgDe3DNoHGVsnuXropTu8NDB3RRJZq1C_3Hb3SczJEjdSp8vW8VhAn0oa0fgLsOC0cL76zOrsNr09asu4lfRVLoKnoaAh6XssjGInFtaWrWJkLjte64NAUFu5i_E9I4J3xgW-eVFM3VhA7ntiOYdyiC73pxGaYytUGF8I9L_f74nbNznmS3GuiyjBtjaZ4gCAh7JbGO6cRJslC370FFIzHGZxHhF6do85QFhADQ8d-AgwBI9eQgxUuo9nVcIBT1WV7TXfL0sIE0NcjHMI68_SjarU0I6qlUGg9F7OwMhlj7N3L_Zs3rTrlVyxVVhAEChPJYDRkjmjfURAjR7R_zAlql4HdLeBt7LbIIpDp0x0K1QigWYOrnapdyItUuyGv4qSHCpdl70RbDRoHQwoUlhArjlUmRV5uyVLX-huwMNaNZkniY5_fCegyMNBbRpSa9WB0a4iSmTXvpFQVuu1TEMpdfi9fPeEnarRk5EZWHFj51hACfXK_JPOiSXs5NsvjKa5Q5cLre2N2MXp3lU4iYbzWPLN8-19_uvXVL-l_3Om_X_gDkn1X6-vB_9xR2hjCk485VhAGP6vYK3Kp6dfE5IfLao4EqL4Pyu4GLZDH_jE18_UdeE09Tyu7z4qS1tQczAPuMvqpjbtozLk5xC3QFydpJ3hXFhANxfuboaeNx7jZU0EDEq-ccM3El2OPH5EY6xjohXCsNQilANOarVbyQ0w5GGFCetreWNcKKWB4vsqdkJmNbyw7lhASJ6cnrhDRLFCql0kT_dEdvPJYxUG8V32O1XjIsBqOHnQJ-2uvDTW0z6S-85d6-mkO3rntdRLxBfVuTss_ULWsFhASJDepwN1JWwUaGAF6wGIA9dFkEymYjtYLZcNpd7a0QlmCIYAThXP_gKORRxLAf375rC5TYdIFxrF9evhHmDTVVhAugN6QPXQL5mp7rUYAYUOKTpfWlsrby-5RSrS3ufBOPdUWEoK_iuh07o_McG5nzz-h1SxQOSJ8dvnkRjHNfpSClhAErxdtXf599vopHhOziivwpK0cs0Chb4kVD3cyNbKSOXMrQ3OtQDeJ-26bHct7wCKKdqnWGNSy5qKmRcLQeFQxVhA02uyvFK71-xm7nfkhtwTEVhFc6TRuQ9RHRt4tj8xjcIeA59Zk827awxWTzzY-jBdLJp-QQvI_aBhDoXZ5iaSFlhANR4BC5xFgfiunNGAOaF9AhjEso66OaAa4lQKJbgVP4x4oevQKQclbmJLJk5GTP_yUrD3PeGJPfN9SThwEmcBM1hAGRGdbtzA4UNY-TClZb9wip-BUyblwiRSDcO69ZkuAyKYnxrV4meqdSh9jpUqiaLKS5ddushrq2y7PSA9shaxTFhAUv2l2lwSJSHerP5vAgmwfqNs1F6chYVz9QkW5Ozfcx-E1rteIkGWF3CecYMjHferIEXVe7zRubYpxWVgb5R8mVhArfjNo3U9_zzPRifN7YvcrRdKE9zaHVfjMOB7npwTHwfhe6faRtCr-eAjiuB4xM-0OOB9Rh6d0pvNMdd5AvyhM1hAFsXmooOmpA3Dsj379RvZFITDDrge2-87NTEa-z9kLcQ3ojnL9xjENA9Jbe30d4G56a4TeWz7Y4hGrDmxo5ZLVFhAK-WjfwdeVcXrjDB4R9fkFoK3G-0NaUX_LVgO2Pf239M82SaYlf4f-riUbmIcJCnnTbshychcwnhcD_pbBFH1qrYAWCAYer20KwxELo22AoHyXTCs5yyT-E3WBU2jKG9qau1eRwFYIOSPA7mRlE7jWDQ13qbhmcJG5I8RI7W7ftmLb43TgiDRAlggCaYl4YhS3PbVuD5rdlf8jmNwi70Rzjivo7_RAjjMUqIDWCAlGwtq2qsLWMNWqNdxNEnPDv5mHa3e3s3JfNPiarGeaQRYICWsB-pmZ_KcSCnogoN_G_Ce2ApD0Hz5SXAL97IPqEBaBVggqbQzOFRMvsANbhfqv9YY0QSpI4WaWUnzEQOFoRhRlXoGWCBIRkMqfmWzI12-OLKF10pOD6YoWN4GnU0MRnrVRJEJYwdYIGlqmSx8jTkkU_OLF0N0v111srfNZiW9MxhVXjiBr0cvCFggrHTxAvb8sudKwJwV0fY60gguhmjVYon0v9Tzakwpe9EJWCB1QbSp9ziZkhaikRR70TZcij6bYxtA_XHd1scHclg_3gpYIObdalmLLXRw0cnC1cq9QPGk-fkHTjMEP2Bw1yw2BosQC1ggR2WbhXO_ygEW96oYXPZkmLG4POGkXJpBQLtimY3gTtsMWCAgo7v9PplH1NLGEAegq2e5Hqx07LEunqNN-62k8xjVWw1YIHIbkJ_ka06soInxtmO6VJX98p4ghywYKSttL9Dr1a1CDlgga8QyZhrsdjCrjJFlaejUaBVOVnEX03_DuvTs0qB2tEUPWCDc_fzbebo0Oc1to78rnAHxowiZyIklO-WY8kDNKuj1BBBYICS-AOE4KkaiLe3jMBUPBUV2Bu5V0I8oSgorVmNHJQtIEVgguugNF7XqFUA5HKTF9Ja6RGPWd3RWVsmmx3REqNtPC20SWCC7YR2HR05CVVHkXVndAQwTKb0Enqe9PoPvDQK8z2HodhNYIByKeu4AOi1lwvQ5t_TV_lVkBe5J8DvY_nFs4R830o_fFFggkflaPfuM_xM6FwcfRDOIzofaXjCDK7WV9j5Zh_L0hbsVWCBOMmp-xSq7IABZ74qyC5HxhcOGECCo3G7u2PDKY84h8pimAAECAwQGBwgJChESExQVFhcYGBgZGBoYGxgcGB0YHhgfGCEYIhgjGCQYJRgmGCcYKBgpGCoYKxgsGC0YLhgvGDAYPxhAGEEYQhhDGEQYRRhGGEcYSBhJGEoYSxhNGE4YTxhjGGQYZRhmGGcYaBhpGGoYaxhsGG0YbhhvGHAYcRhyGHMYdBh1GHYYdxh4GHkYehh7GHwYfRh-GH8YgBiBGIkYihiLGIwYjRiOGI8YkBiRGJIYkxiUGJUYlhiXGJgYmRiaGJsYnBidGJ4YnxigGKEYohijGKQYpRimGKcYqBipGKoYqxisGK0YrhivGLcYuBi5GLoYuxi8GL0Yvhi_GMAYwRjCGMMYxBjFGMYYxxjIGMkYyhjSGNMY1BjVGNYY2hjbGNwY3RjeGN8Y4BjhGOIY4xjkGOUY5hjn"
+		}
+	]
 }
