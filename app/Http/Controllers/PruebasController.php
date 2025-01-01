@@ -94,6 +94,7 @@ class PruebasController extends Controller
         info(json_encode($request->all()));
     }
 
+    //Para hacer limpieza de las imágenes que no se están usando
     function cleanUpUnusedImages()
     {
         $imagesInDatabase = DB::table('images')->pluck('url')->toArray();
