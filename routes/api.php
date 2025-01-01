@@ -79,3 +79,4 @@ Route::group(['prefix' => 'v3'], function () {
 
 Route::post('ejemploDescargar', 'Migraciones\DigitalOceanHostigerController@migrarImagenes');
 Route::post('prueba', 'PruebasController@velocity');
+Route::post('cleanUpUnusedImages', 'PruebasController@cleanUpUnusedImages');

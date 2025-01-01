@@ -7,6 +7,8 @@ use App\Models\Image as ModelsImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class PruebasController extends Controller
 {
@@ -87,7 +89,37 @@ class PruebasController extends Controller
         return $extension;
     }
 
-    public function velocity(Request $request){
+    public function velocity(Request $request)
+    {
         info(json_encode($request->all()));
+    }
+
+    function cleanUpUnusedImages()
+    {
+        $imagesInDatabase = DB::table('images')->pluck('url')->toArray();
+        $thumbnailsInDatabase = DB::table('images')->pluck('thumbnail')->toArray();
+
+        $imagesInServer = File::allFiles(public_path('images'));
+        $thumbnailsInServer = File::allFiles(public_path('thumbnails'));
+
+        $imagePathsInServer = array_map(function ($file) {
+            return str_replace(public_path(), '', $file->getRealPath());
+        }, $imagesInServer);
+
+        $thumbnailPathsInServer = array_map(function ($file) {
+            return str_replace(public_path(), '', $file->getRealPath());
+        }, $thumbnailsInServer);
+
+        foreach ($imagePathsInServer as $path) {
+            if (!in_array($path, $imagesInDatabase)) {
+                File::delete(public_path($path));
+            }
+        }
+
+        foreach ($thumbnailPathsInServer as $path) {
+            if (!in_array($path, $thumbnailsInDatabase)) {
+                File::delete(public_path($path));
+            }
+        }
     }
 }
