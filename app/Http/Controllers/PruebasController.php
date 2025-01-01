@@ -98,24 +98,19 @@ class PruebasController extends Controller
     {
         $imagesInDatabase = DB::table('images')->pluck('url')->toArray();
         $thumbnailsInDatabase = DB::table('images')->pluck('thumbnail')->toArray();
-
         $imagesInServer = File::allFiles(public_path('images'));
         $thumbnailsInServer = File::allFiles(public_path('thumbnails'));
-
         $imagePathsInServer = array_map(function ($file) {
-            return str_replace(public_path(), '', $file->getRealPath());
+            return 'images/' . $file->getFilename();
         }, $imagesInServer);
-
         $thumbnailPathsInServer = array_map(function ($file) {
-            return str_replace(public_path(), '', $file->getRealPath());
+            return 'thumbnails/' . $file->getFilename();
         }, $thumbnailsInServer);
-
         foreach ($imagePathsInServer as $path) {
             if (!in_array($path, $imagesInDatabase)) {
                 File::delete(public_path($path));
             }
         }
-
         foreach ($thumbnailPathsInServer as $path) {
             if (!in_array($path, $thumbnailsInDatabase)) {
                 File::delete(public_path($path));
