@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="icon" type="image/x-icon" href="{{ env('APP_URL') . '/' . $company->logo->url }}">
+    <link rel="icon" type="image/x-icon" href="{{ env('APP_URL') . '/' . @$company->logo->url }}">
 
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
