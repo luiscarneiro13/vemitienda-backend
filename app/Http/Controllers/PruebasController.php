@@ -98,8 +98,8 @@ class PruebasController extends Controller
     //Para hacer limpieza de las imágenes que no se están usando
     function cleanUpUnusedImages()
     {
-        $this->deleteStep1();
-        $this->deleteStep2();
+        $this->deleteStep1(); // Borrar las imagenes que están en el server y no en la tabla images
+        $this->deleteStep2(); // Borrar imagenes de productos que no existen
     }
 
     public function deleteStep1()
