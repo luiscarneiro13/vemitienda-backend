@@ -21,6 +21,9 @@ class ShareController extends Controller
             $cat = request()->cat;
         }
         $company = Company::with('logo', 'user')->where('slug', $slug)->first();
+        if(!$company){
+            return redirect('https://vemitienda.com.ve');
+        }
         $id_usuario = $company->user_id;
         $data = [
             "slug" => $slug,
