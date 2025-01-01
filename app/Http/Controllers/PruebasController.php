@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use App\Models\Product;
 
 class PruebasController extends Controller
 {
@@ -97,6 +98,12 @@ class PruebasController extends Controller
     //Para hacer limpieza de las imágenes que no se están usando
     function cleanUpUnusedImages()
     {
+        $this->deleteStep1();
+        $this->deleteStep2();
+    }
+
+    public function deleteStep1()
+    {
         $imagesInDatabase = DB::table('images')->pluck('url')->toArray();
         $thumbnailsInDatabase = DB::table('images')->pluck('thumbnail')->toArray();
         $imagesInServer = File::allFiles(public_path('images'));
@@ -115,6 +122,32 @@ class PruebasController extends Controller
         foreach ($thumbnailPathsInServer as $path) {
             if (!in_array($path, $thumbnailsInDatabase)) {
                 File::delete(public_path($path));
+            }
+        }
+    }
+
+    public function deleteStep2()
+    {
+        $images = DB::table('images')->where('imageable_type', 'App\Models\Product')->get();
+
+        foreach ($images as $image) {
+            $productExists = Product::find($image->imageable_id);
+
+            if (!$productExists) {
+                // Eliminar la imagen de la tabla 'images'
+                DB::table('images')->where('id', $image->id)->delete();
+
+                // Eliminar la imagen del servidor
+                $imagePath = public_path($image->url);
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+                }
+
+                // Eliminar la miniatura del servidor
+                $thumbnailPath = public_path($image->thumbnail);
+                if (File::exists($thumbnailPath)) {
+                    File::delete($thumbnailPath);
+                }
             }
         }
     }
