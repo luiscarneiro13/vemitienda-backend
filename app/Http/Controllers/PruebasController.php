@@ -100,6 +100,7 @@ class PruebasController extends Controller
     {
         $this->deleteStep1(); // Borrar las imagenes que están en el server y no en la tabla images
         $this->deleteStep2(); // Borrar imagenes de productos que no existen
+        $this->deleteStep3(); // Borrar los productos que no tienen imagen
     }
 
     public function deleteStep1()
@@ -148,6 +149,17 @@ class PruebasController extends Controller
                 if (File::exists($thumbnailPath)) {
                     File::delete($thumbnailPath);
                 }
+            }
+        }
+    }
+
+    public function deleteStep3()
+    {
+        $products = Product::all();
+        foreach ($products as $product) {
+            $imageCount = DB::table('images')->where('imageable_type', 'App\Models\Product')->where('imageable_id', $product->id)->count();
+            if ($imageCount === 0) {
+                $product->delete();
             }
         }
     }
