@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Recluta Online</title>
+    <title>Ve mi Tienda</title>
 
     <link rel="icon" sizes="192x192" href="{{ asset('img/favicon.png') }}">
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/png" />
@@ -19,7 +19,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <span class="h1"><b>Recluta Online</b></span>
+                <span class="h1"><b>Ve mi Tienda</b></span>
             </div>
             <div class="card-body">
                 <x-alerts />
