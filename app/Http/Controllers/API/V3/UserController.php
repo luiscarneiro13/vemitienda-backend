@@ -130,7 +130,7 @@ class UserController extends Controller
     public function login(LoginRequest $request)
     {
         try {
-            $user = User::with('planUser')->where('email', request()->email)->first();
+            $user = User::with('planUser','company')->where('email', request()->email)->first();
             if (is_object($user)) {
                 if ($user->email_verified_at) {
                     if (Hash::check(request()->password, $user->password)) {
