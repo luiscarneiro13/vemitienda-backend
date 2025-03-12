@@ -14,6 +14,7 @@ class RecuperarCuenta implements SendEmailInterface
         try {
             Mail::to($data['destinatario'])->send(new MailRecuperarCuenta($data));
         } catch (Exception $th) {
+            info($th->getMessage());
             return null;
         }
     }
