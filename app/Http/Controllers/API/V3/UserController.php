@@ -130,7 +130,7 @@ class UserController extends Controller
     public function login(LoginRequest $request)
     {
         try {
-            $user = User::with('planUser','company')->where('email', request()->email)->first();
+            $user = User::with('planUser', 'company')->where('email', request()->email)->first();
             if (is_object($user)) {
                 if ($user->email_verified_at) {
                     if (Hash::check(request()->password, $user->password)) {
@@ -188,7 +188,7 @@ class UserController extends Controller
     public function logout()
     {
         /** @var \App\Models\User $user */
-        
+
         $user = Auth::user()->token();
         $user->revoke();
         return $this->successResponse();
@@ -333,7 +333,7 @@ class UserController extends Controller
         $user_id = Crypt::encrypt(request()->user_id);
         $user = User::find(request()->user_id);
         /* 2.- Se envía correo */
-        $parametros['name'] = $user->name;
+        $parametros['name'] = $user->name ?? 'Usuario';
         $parametros['destinatario'] = $user->email;
         $parametros['url'] = url('reset2/' . $user_id);
         $parametros['type'] = 'RecuperarCuenta';
