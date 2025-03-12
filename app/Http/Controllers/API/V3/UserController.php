@@ -187,6 +187,8 @@ class UserController extends Controller
      */
     public function logout()
     {
+        /** @var \App\Models\User $user */
+        
         $user = Auth::user()->token();
         $user->revoke();
         return $this->successResponse();
