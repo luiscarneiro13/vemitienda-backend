@@ -177,7 +177,7 @@ class PruebasController extends Controller
                     ],
                     "credentialSubject" => (object)[
                         " @context" => [
-                            "https://www.w3.org/2018/credentials/v1",
+                            "https://www.w3.org/2018/credentials/v2",
                             $context1,
                         ],
                         "vendorUserId" => request()->vendorUserId,
