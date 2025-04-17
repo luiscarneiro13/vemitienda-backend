@@ -214,5 +214,8 @@ class PruebasController extends Controller
                 ]
             ]
         ];
+
+        return response()->json($response);
+
     }
 }
