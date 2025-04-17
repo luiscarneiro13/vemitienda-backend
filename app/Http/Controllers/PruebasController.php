@@ -166,11 +166,11 @@ class PruebasController extends Controller
 
     public function offer(Request $request)
     {
-        return [
+        $response = [
             "status" => 200,
             "message" => "ok",
             "data" => (object)[
-                "offers" => (object)[
+                "offers" => [
                     (object)[
                         "type" => [
                             "OpenBadgeCredential"
