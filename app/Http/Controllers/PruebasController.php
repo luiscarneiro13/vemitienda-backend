@@ -194,14 +194,6 @@ class PruebasController extends Controller
                                 "id" => "https://territorio.s3.amazonaws.com/converted/e3635b8c-1b37-11f0-ad73-0242ac150002.png",
                                 "type" => "Image"
                             ]
-                        ],
-                        "identifier" => [
-                            (object)[
-                                "type" => "IdentityObject",
-                                "hashed" => false,
-                                "identityHash" => "Elsahzapata92@gmail.com",
-                                "identityType" => "userName"
-                            ]
                         ]
                     ],
                     "offerId" => "09224cda-c550-45f8-a895-8de8615a6392",
