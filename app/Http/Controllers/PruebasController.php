@@ -167,56 +167,50 @@ class PruebasController extends Controller
     public function offer(Request $request)
     {
         $response = [
-            "status" => 200,
-            "message" => "ok",
-            "data" => (object)[
-                "data" => (object)[
-                    "offers" => [
-                        (object)[
-                            "type" => [
-                                "OpenBadgeCredential"
+            "offers" => [
+                (object)[
+                    "type" => [
+                        "OpenBadgeCredential"
+                    ],
+                    "credentialSubject" => (object)[
+                        " @context" => [
+                            "https://www.w3.org/2018/credentials/v1",
+                            "https://purl.imsglobal.org/spec/ob/v3p0/context/ob_v3p0.jsonld"
+                        ],
+                        "vendorUserId" => request()->vendorUserId,
+                        "type" => [
+                            "AchievementSubject"
+                        ],
+                        "achievement" => (object)[
+                            "id" => "https://life.territorium.com/issuedBadge?id=09224cda-c550-45f8-a895-8de8615a6391",
+                            "type" => "Achievement",
+                            "achievementType" => "Course",
+                            "name" => "DEMO-Velocity: GVSU Undergraduate Course Credential",
+                            "description" => "This is the course achievement description.",
+                            "criteria" => (object)[
+                                "type" => "Criteria",
+                                "narrative" => "Successful Course Completion"
                             ],
-                            "credentialSubject" => (object)[
-                                " @context" => [
-                                    "https://www.w3.org/2018/credentials/v1",
-                                    "https://purl.imsglobal.org/spec/ob/v3p0/context/ob_v3p0.jsonld"
-                                ],
-                                "vendorUserId" => request()->vendorUserId,
-                                "type" => [
-                                    "AchievementSubject"
-                                ],
-                                "achievement" => (object)[
-                                    "id" => "https://life.territorium.com/issuedBadge?id=09224cda-c550-45f8-a895-8de8615a6391",
-                                    "type" => "Achievement",
-                                    "achievementType" => "Course",
-                                    "name" => "DEMO-Velocity: GVSU Undergraduate Course Credential",
-                                    "description" => "This is the course achievement description.",
-                                    "criteria" => (object)[
-                                        "type" => "Criteria",
-                                        "narrative" => "Successful Course Completion"
-                                    ],
-                                    "image" => (object)[
-                                        "id" => "https://territorio.s3.amazonaws.com/converted/e3635b8c-1b37-11f0-ad73-0242ac150002.png",
-                                        "type" => "Image"
-                                    ]
-                                ],
-                                "identifier" => [
-                                    (object)[
-                                        "type" => "IdentityObject",
-                                        "hashed" => false,
-                                        "identityHash" => "Elsahzapata92@gmail.com",
-                                        "identityType" => "userName"
-                                    ]
-                                ]
-                            ],
-                            "offerId" => "09224cda-c550-45f8-a895-8de8615a6392",
-                            "exchangeId" => request()->exchangeId,
+                            "image" => (object)[
+                                "id" => "https://territorio.s3.amazonaws.com/converted/e3635b8c-1b37-11f0-ad73-0242ac150002.png",
+                                "type" => "Image"
+                            ]
+                        ],
+                        "identifier" => [
+                            (object)[
+                                "type" => "IdentityObject",
+                                "hashed" => false,
+                                "identityHash" => "Elsahzapata92@gmail.com",
+                                "identityType" => "userName"
+                            ]
                         ]
-                    ]
+                    ],
+                    "offerId" => "09224cda-c550-45f8-a895-8de8615a6392",
+                    "exchangeId" => request()->exchangeId,
                 ]
             ]
         ];
 
-        return response()->json($response);
+        return response()->json($response, 200);
     }
 }
