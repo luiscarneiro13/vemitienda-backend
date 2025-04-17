@@ -183,7 +183,7 @@ class PruebasController extends Controller
                         "achievement" => (object)[
                             "id" => "https://life.territorium.com/issuedBadge?id=09224cda-c550-45f8-a895-8de8615a6391",
                             "type" => "Achievement",
-                            "achievementType" => "Course",
+                            "achievementType" => "Achievement",
                             "name" => "DEMO-Velocity: GVSU Undergraduate Course Credential",
                             "description" => "This is the course achievement description.",
                             "criteria" => (object)[
