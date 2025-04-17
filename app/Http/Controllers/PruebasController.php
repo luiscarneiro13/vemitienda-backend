@@ -166,6 +166,9 @@ class PruebasController extends Controller
 
     public function offer(Request $request)
     {
+        $context1="https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json";
+        $context2="https://purl.imsglobal.org/spec/ob/v3p0/context/ob_v3p0.jsonld";
+
         $response = [
             "offers" => [
                 (object)[
@@ -175,7 +178,7 @@ class PruebasController extends Controller
                     "credentialSubject" => (object)[
                         " @context" => [
                             "https://www.w3.org/2018/credentials/v1",
-                            "https://purl.imsglobal.org/spec/ob/v3p0/context/ob_v3p0.jsonld"
+                            $context1,
                         ],
                         "vendorUserId" => request()->vendorUserId,
                         "type" => [
