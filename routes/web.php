@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 // Auth::routes();
 Route::get('/', 'NewHomeController@index')->name('home');
 Route::get('/pruebas', 'PruebasController@index')->name('pruebas');
-Route::get('/pruebas/offer', 'PruebasController@offer')->name('pruebasOffer');
+Route::post('/pruebas/offer', 'PruebasController@offer')->name('pruebasOffer');
 Route::get('/changeFormat', 'PruebasController@changeFormat')->name('changeFormat');
 Route::get('politica', function () {
     return view('politica');
