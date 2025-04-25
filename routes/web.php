@@ -1,11 +1,24 @@
 <?php
 
+use App\Http\Controllers\Admin\LoginController;
+
+use App\Http\Controllers\Admin\UsersController as AdminUsersController;
+use App\Http\Controllers\Admin\PostsController as AdminPostsController;
+use App\Http\Controllers\Admin\PlansController as AdminPlansController;
+use App\Http\Controllers\Admin\VersionsController as AdminVersionsController;
+use App\Http\Controllers\Admin\TagsController as AdminTagsController;
+use App\Http\Controllers\Admin\PostCategoryController as AdminPostCategoryController;
+use App\Http\Controllers\Admin\PlanUsersController as AdminPlanUsersController;
+use App\Http\Controllers\Admin\PaymentMethodsController as AdminPaymentMethodsController;
+use App\Http\Controllers\Admin\PaymentsController as AdminPaymentsController;
+
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DownloaderController;
 use App\Http\Controllers\WEB\V3\CartController as CartController3;
 use App\Http\Controllers\WEB\V3\OrderController as OrderController3;
 use App\Http\Controllers\WEB\V3\ProductController as ProductController3;
-use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,15 +55,15 @@ Route::get('blog', [BlogController::class, 'index'])->name('blog');
 Route::get('blog/{slug}', [BlogController::class, 'show'])->name('blog');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::resource('usuarios', Admin\UsersController::class);
-    Route::resource('blog', Admin\PostsController::class);
-    Route::resource('plans', Admin\PlansController::class);
-    Route::resource('versions', Admin\VersionsController::class);
-    Route::resource('tags', Admin\TagsController::class);
-    Route::resource('postcategory', Admin\PostCategoryController::class);
-    Route::resource('planusers', Admin\PlanUsersController::class);
-    Route::resource('paymentmethods', Admin\PaymentMethodsController::class);
-    Route::resource('payments', Admin\PaymentsController::class);
+    Route::resource('usuarios', AdminUsersController::class);
+    Route::resource('blog', AdminPostsController::class);
+    Route::resource('plans', AdminPlansController::class);
+    Route::resource('versions', AdminVersionsController::class);
+    Route::resource('tags', AdminTagsController::class);
+    Route::resource('postcategory', AdminPostCategoryController::class);
+    Route::resource('planusers', AdminPlanUsersController::class);
+    Route::resource('paymentmethods', AdminPaymentMethodsController::class);
+    Route::resource('payments', AdminPaymentsController::class);
     // Agregar imágenes al crear posts desde el admin
     Route::post('storeImagePost', 'API\V3\ImagesController@storeImagePost')->name("upload");
 });
@@ -80,3 +93,10 @@ Route::post('order', [OrderController3::class, 'index'])->name('order.store');
 
 
 
+
+Route::group(['prefix' => 'videos', 'middleware' => 'auth'], function () {
+    Route::get('/', [DownloaderController::class, 'index'])->name('home');
+    Route::post('prepare', [DownloaderController::class, 'prepare'])->name('prepare');
+    Route::get('status/{video}', [DownloaderController::class, 'status'])->name('status');  // Cambiado a GET
+    Route::get('download/{video}', [DownloaderController::class, 'download'])->name('download');  // Cambiado a GET
+});
