@@ -94,7 +94,7 @@ Route::post('order', [OrderController3::class, 'index'])->name('order.store');
 
 
 
-Route::group(['prefix' => 'videos', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'videos'], function () {
     Route::get('/', [DownloaderController::class, 'index'])->name('home');
     Route::post('prepare', [DownloaderController::class, 'prepare'])->name('prepare');
     Route::get('status/{video}', [DownloaderController::class, 'status'])->name('status');  // Cambiado a GET
