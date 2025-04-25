@@ -1,4 +1,4 @@
-@extends('videos.base')
+{{-- @extends('videos.base') --}}
 @section('title', 'Video Downloader')
 
 @section('content')
