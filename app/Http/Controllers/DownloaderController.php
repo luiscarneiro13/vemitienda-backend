@@ -46,7 +46,7 @@ class DownloaderController extends Controller
 
     public function status(Video $video)
     {
-        return view('status', ['video' => $video]);
+        return view('videos.status', ['video' => $video]);
     }
 
     public function download(Video $video)
