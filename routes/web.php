@@ -47,6 +47,14 @@ Route::get('ejemplo', function () {
 });
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
+
+Route::prefix('descargar/videos')->group(function () {
+    Route::get('/', [DownloaderController::class, 'index'])->name('home');
+    Route::post('/prepare', [DownloaderController::class, 'prepare'])->name('prepare');
+    Route::get('/status/{video}', [DownloaderController::class, 'status'])->name('status');
+    Route::get('/download/{video}', [DownloaderController::class, 'download'])->name('download');
+});
+
 // BACK OFFICE
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/loguear', [LoginController::class, 'loguear'])->name('loguear');
@@ -90,13 +98,3 @@ Route::post('update-cart', [CartController3::class, 'updateCart'])->name('cart.u
 Route::post('remove', [CartController3::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [CartController3::class, 'clearAllCart'])->name('cart.clear');
 Route::post('order', [OrderController3::class, 'index'])->name('order.store');
-
-
-
-
-Route::group(['prefix' => 'videos'], function () {
-    Route::get('/', [DownloaderController::class, 'index'])->name('home');
-    Route::post('prepare', [DownloaderController::class, 'prepare'])->name('prepare');
-    Route::get('status/{video}', [DownloaderController::class, 'status'])->name('status');  // Cambiado a GET
-    Route::get('download/{video}', [DownloaderController::class, 'download'])->name('download');  // Cambiado a GET
-});
