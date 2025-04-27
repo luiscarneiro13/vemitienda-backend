@@ -1,7 +1,7 @@
-# Imagen oficial PHP con extensiones requeridas
-FROM php:8.2-fpm
+# Etapa 1: Build de dependencias
+FROM php:8.2-fpm AS builder
 
-# Instalar dependencias de sistema y extensiones PHP
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -12,29 +12,62 @@ RUN apt-get update && apt-get install -y \
     unzip \
     nodejs \
     npm \
+    default-mysql-client \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip pdo pdo_mysql
+    && docker-php-ext-install gd zip pdo pdo_mysql \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Instalar Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Instalar Composer manualmente
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
 
-# Setear el directorio de trabajo
+# Directorio de trabajo
 WORKDIR /var/www
 
-# Copiar composer.json y package.json
-COPY composer.json package.json ./
-COPY package-lock.json ./
-COPY webpack.mix.js ./
+# Copiar archivos para dependencias
+COPY composer.json  package.json  webpack.mix.js ./
 
-# Instalar dependencias
-RUN composer install
+# Instalar dependencias backend (PHP)
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+# Instalar dependencias frontend (Node)
 RUN npm install
 
-# Copiar todo el código (pero lo sobreescribimos por volumen en docker-compose para dev)
+# Copiar todo el proyecto
 COPY . .
 
-# Establecer permisos (opcional)
-RUN chown -R www-data:www-data /var/www
+# Etapa 2: Imagen final (runtime)
+FROM php:8.2-fpm
+
+# Instalar dependencias mínimas para producción
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    unzip \
+    nodejs \
+    npm \
+    default-mysql-client \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd zip pdo pdo_mysql \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Instalar Composer manualmente en producción también
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
+
+# Directorio de trabajo
+WORKDIR /var/www
+
+# Copiar solo lo necesario del builder
+COPY --from=builder /var/www /var/www
+
+# Establecer permisos correctos
+RUN chown -R www-data:www-data storage bootstrap/cache
 
 EXPOSE 9000
+
 CMD ["php-fpm"]
