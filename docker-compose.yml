@@ -40,7 +40,7 @@ services:
     image: nginx:latest
     container_name: vemitiendabackend-nginx
     ports:
-      - "9010:80"  # 👈 Este expone el puerto para que puedas acceder desde Windows en localhost:9010
+      - "8010:80"  # 👈 Este expone el puerto para que puedas acceder desde Windows en localhost:9010
     volumes:
       - .:/var/www  # 👈 Necesita acceder al código fuente también
       - ./nginx.conf:/etc/nginx/conf.d/default.conf  # 👈 Le vamos a pasar un nginx.conf especial
