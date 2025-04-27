@@ -19,16 +19,24 @@ REM =========================
 REM Acciones
 REM =========================
 
-echo Deteniendo contenedores existentes...
-for %%a in (%CONTAINERS%) do (
-    for /f "tokens=*" %%b in ('docker ps -a -q -f name=%%a') do (
-        if not "%%b"=="" (
-            echo Deteniendo %%a
-            docker stop %%a
-            echo Removiendo %%a
-            docker rm %%a
-        )
-    )
+echo Deteniendo contenedor vemitiendabackend-app...
+
+docker ps --filter "name=vemitiendabackend-app" --format "{{.Names}}" | findstr /C:"vemitiendabackend-app" >nul 2>&1
+if %errorlevel% == 0 (
+    echo >> Deteniendo el contenedor vemitiendabackend-app...
+    docker compose down react-native
+) else (
+    echo >> El contenedor vemitiendabackend-app no está en ejecución.
+)
+
+echo Deteniendo contenedor vemitiendabackend-nginx...
+
+docker ps --filter "name=vemitiendabackend-nginx" --format "{{.Names}}" | findstr /C:"vemitiendabackend-nginx" >nul 2>&1
+if %errorlevel% == 0 (
+    echo >> Deteniendo el contenedor vemitiendabackend-nginx...
+    docker compose down react-native
+) else (
+    echo >> El contenedor vemitiendabackend-nginx no está en ejecución.
 )
 
 echo.
