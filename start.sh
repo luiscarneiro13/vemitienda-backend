@@ -80,9 +80,9 @@ docker compose build
 progress_bar "Levantando servicios (docker compose up -d)..."
 docker compose up -d
 
-progress_bar "Configurando 'host.docker.internal' dentro del contenedor..."
-WINDOWS_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
-docker exec -it ${APP_CONTAINER} bash -c "echo '${WINDOWS_IP} host.docker.internal' >> /etc/hosts"
+ progress_bar "Configurando 'host.docker.internal' dentro del contenedor..."
+# WINDOWS_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+# docker exec -it ${APP_CONTAINER} bash -c "echo '${WINDOWS_IP} host.docker.internal' >> /etc/hosts"
 
 sleep 5
 

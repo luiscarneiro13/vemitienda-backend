@@ -37,9 +37,6 @@ RUN npm install
 # Copiar el resto del proyecto
 COPY . .
 
-# Copiar el .env (por si acaso)
-RUN cp .env.example .env
-
 # Etapa 2: Imagen final (runtime)
 FROM php:8.2-fpm
 
@@ -72,7 +69,7 @@ COPY --from=builder /var/www /var/www
 # Establecer permisos correctos
 RUN mkdir -p storage bootstrap/cache && \
     chown -R www-data:www-data storage bootstrap/cache && \
-    chmod -R 775 storage bootstrap/cache
+    chmod -R 777 storage bootstrap/cache
 
 # Configurar usuario para correr el contenedor
 USER www-data
