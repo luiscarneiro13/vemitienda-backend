@@ -24,8 +24,9 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 # Directorio de trabajo
 WORKDIR /var/www
 
-# Copiar archivos para dependencias
-COPY composer.json  package.json  webpack.mix.js ./
+# Copiar solo archivos necesarios
+COPY .env.example .env
+COPY composer.json composer.lock package.json package-lock.json webpack.mix.js ./
 
 # Instalar dependencias backend (PHP)
 RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
@@ -33,8 +34,11 @@ RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoload
 # Instalar dependencias frontend (Node)
 RUN npm install
 
-# Copiar todo el proyecto
+# Copiar el resto del proyecto
 COPY . .
+
+# Copiar el .env (por si acaso)
+RUN cp .env.example .env
 
 # Etapa 2: Imagen final (runtime)
 FROM php:8.2-fpm
@@ -55,19 +59,24 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd zip pdo pdo_mysql \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Instalar Composer manualmente en producción también
+# Instalar Composer manualmente
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
 # Directorio de trabajo
 WORKDIR /var/www
 
-# Copiar solo lo necesario del builder
+# Copiar proyecto ya construido
 COPY --from=builder /var/www /var/www
 
 # Establecer permisos correctos
-RUN chown -R www-data:www-data storage bootstrap/cache
+RUN mkdir -p storage bootstrap/cache && \
+    chown -R www-data:www-data storage bootstrap/cache && \
+    chmod -R 775 storage bootstrap/cache
 
-EXPOSE 9000
+# Configurar usuario para correr el contenedor
+USER www-data
+
+EXPOSE 9010
 
 CMD ["php-fpm"]

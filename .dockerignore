@@ -1,7 +1,38 @@
+# Node
 node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Composer
 vendor
-storage/*.key
+composer.lock
+
+# Laravel
 .env
+.env.*
+storage/*.key
+storage/app/*
+storage/framework/*
+storage/logs/*
+
+# Git
 .git
 .gitignore
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Otros
 *.log
+.idea
+.vscode
+*.swp
+*.swo
+*.bak
+*.tmp
+*.DS_Store
+*.sass-cache
+*.eslintcache

@@ -3,38 +3,51 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ventiendabackend-app
-    image: ventiendabackend-app
+    container_name: vemitiendabackend-app
+    image: vemitiendabackend-app
     working_dir: /var/www
     volumes:
       - .:/var/www
-    ports:
-      - "9000:9000"
+    expose:
+      - "9000"  # 👈 Cambié ports -> expose porque solo es interno
     environment:
-      APP_NAME: "Ve mi Tienda"
-      APP_ENV: "local"
-      APP_URL: "http://localhost:9000"
+      APP_NAME: ${APP_NAME}
+      APP_ENV: ${APP_ENV}
+      APP_URL: ${APP_URL}
 
-      DB_CONNECTION: "mysql"
-      DB_HOST: "host.docker.internal"  # 👈 Ahora dinámico
-      DB_PORT: "3306"
-      DB_DATABASE: "vemitienda_backend_docker"
-      DB_USERNAME: "docker"
-      DB_PASSWORD: "dockeruser"
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
 
-      MAIL_MAILER: "smtp"
-      MAIL_HOST: "smtp.hostinger.com"
-      MAIL_PORT: "587"
-      MAIL_USERNAME: "info@vemitienda.com"
-      MAIL_PASSWORD: "Admintecnologia2@.."
-      MAIL_ENCRYPTION: ""
-      MAIL_FROM_ADDRESS: "info@vemitienda.com"
+      MAIL_MAILER: ${MAIL_MAILER}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_ENCRYPTION: ${MAIL_ENCRYPTION}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
 
     extra_hosts:
-      - "host.docker.internal:host-gateway"  # 👈 Esto hace que funcione en WSL2 y tome la ip de la pc anfitriona dinámicamente
+      - "host.docker.internal:host-gateway"
     networks:
       - app-network
     command: php-fpm
+
+  nginx:
+    image: nginx:latest
+    container_name: vemitiendabackend-nginx
+    ports:
+      - "9010:80"  # 👈 Este expone el puerto para que puedas acceder desde Windows en localhost:9010
+    volumes:
+      - .:/var/www  # 👈 Necesita acceder al código fuente también
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf  # 👈 Le vamos a pasar un nginx.conf especial
+    depends_on:
+      - app
+    networks:
+      - app-network
 
 networks:
   app-network:
