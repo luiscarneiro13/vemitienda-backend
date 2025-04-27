@@ -26,7 +26,7 @@ WORKDIR /var/www
 
 # Copiar solo archivos necesarios
 COPY .env.example .env
-COPY composer.json package.json package-lock.json webpack.mix.js ./
+COPY composer.json composer.lock package.json package-lock.json webpack.mix.js ./
 
 # Instalar dependencias backend (PHP)
 RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
