@@ -19,7 +19,7 @@ Se debe tener docker y (docker-compose 1.27.0 o sup)
 
   **Instalar el entorno:**
   
-  <code>docker-compose up -d --build</code>
+  <code>docker compose up -d --build</code>
 
   **Dirigirse a la carpeta src**
   
@@ -29,9 +29,9 @@ Se debe tener docker y (docker-compose 1.27.0 o sup)
 
   **Instalar el proyecto**
 
-  <code>docker-compose run --rm composer-vemitienda install</code>
+  <code>docker compose run --rm composer-vemitienda install</code>
   
-  <code>docker-compose run --rm artisan-vemitienda migrate --seed</code>
+  <code>docker compose run --rm artisan-vemitienda migrate --seed</code>
 
   Si sale el siguiente error, se debe tomar la dirección que está despues del @ y colocarla en la variable DB_HOST del .env (En este caso quedaría así: DB_HOST=172.18.0.3):
 

@@ -4,7 +4,7 @@ networks:
   laravel:
 
 services:
-  nginx:
+  nginx-vemitienda:
     image: nginx:stable-alpine
     container_name: nginx-vemitienda
     ports:
@@ -18,7 +18,7 @@ services:
     networks:
       - laravel
 
-  mysql:
+  mysql-vemitienda:
     image: mysql:8.0.30
     container_name: mysql-vemitienda
     restart: unless-stopped
@@ -35,7 +35,7 @@ services:
     networks:
       - laravel
 
-  php:
+  php-vemitienda:
     build:
       context: .
       dockerfile: Dockerfile
@@ -47,7 +47,7 @@ services:
     networks:
       - laravel
 
-  composer:
+  composer-vemitienda:
     image: composer:2.7
     container_name: composer-vemitienda
     volumes:
@@ -58,7 +58,7 @@ services:
     networks:
       - laravel
 
-  npm:
+  npm-vemitienda:
     image: node:20.11
     container_name: npm-vemitienda
     volumes:
@@ -66,7 +66,7 @@ services:
     working_dir: /var/www/html
     entrypoint: ['npm']
 
-  artisan:
+  artisan-vemitienda:
     build:
       context: .
       dockerfile: Dockerfile
