@@ -1,78 +1,129 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# CRM-WEB
+Este es un repositorio con la configuración inicial para dockerizar un laravel 7. Se crean 3 contenedores y estos se manejan dentro de la misma subred
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+  **1.- Contenedor nginx**
+  **2.- Contenedor php**
+  **3.- Contenedor mysql**
 
-## About Laravel
+Se debe tener docker y (docker-compose 1.27.0 o sup)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Instalación en Entorno local
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  **Clonar el repositorio: **
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  <code>git clone https://github.com/luiscarneiro13/crm-web.git</code>
 
-## Learning Laravel
+  **Dirigirse a la carpeta del proyecto:**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+  <code>cd crm-web</code>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+  **Instalar el entorno:**
+  
+  <code>docker-compose up -d --build</code>
 
-## Laravel Sponsors
+  **Dirigirse a la carpeta src**
+  
+  <code>cd src</code>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+  **Crear archivo .env con las siguientes variables**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+  <code>DB_CONNECTION=mysql</code>
 
-## Contributing
+  <code>DB_HOST=mysql</code>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  <code>DB_PORT=3306</code>
+  <code>DB_DATABASE=homestead</code>
 
-## Code of Conduct
+  <code>DB_USERNAME=homestead</code>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+  <code>DB_PASSWORD=nn#~y}&D%4/[;/J:2yJA</code>
 
-## Security Vulnerabilities
+  **Instalar el proyecto**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  <code>docker-compose run --rm composer install</code>
+  
+  <code>docker-compose run --rm artisan migrate --seed</code>
 
-## License
+  Si sale el siguiente error, se debe tomar la dirección que está despues del @ y colocarla en la variable DB_HOST del .env (En este caso quedaría así: DB_HOST=172.18.0.3):
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+  SQLSTATE[HY000] [1045] Access denied for user 'crm-web'@'172.18.0.3' (using password: YES)
+  
+
+# Instalación en entorno de Producción
+
+  Crear droplet digitaocean con ubuntu 18.04. Este es un droplet que no trae LAMP no LEMP ni  nada, es un droplet vacío.
+
+  **Acceder al droplet por ssh y ejecutar:**
+
+  <code>apt-get update</code>
+
+  **Instalación de Docker**
+
+  <code>sudo apt install apt-transport-https ca-certificates curl software-properties-common</code>
+
+  <code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code>
+
+  <code>sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"</code>
+
+  <code>sudo apt update</code>
+
+  <code>apt-cache policy docker-ce</code>
+
+  <code>sudo apt install docker-ce</code>
+
+  <code>sudo systemctl status docker</code>
+
+  <code>sudo usermod -aG docker ${USER}</code>
+
+  <code>sudo apt-get update</code>
+
+  **Instalación de Doker Compose**
+
+  $ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+  <code>sudo chmod +x /usr/local/bin/docker-compose</code>
+
+  <code>docker-compose --version</code>
+
+  **Clonar el repositorio:**
+
+  <code>git clone https://github.com/luiscarneiro13/crm-web.git</code>
+
+  **Dirigirse a la carpeta del proyecto:**
+
+  <code>cd crm-web</code>
+
+  **Instalar el entorno de docker para producción:**
+  
+  <code>docker-compose -f docker-compose.prod.yml up -d --build</code>
+
+  **Dar permiso a Carpetas:**
+
+  <code>cd src</code>
+  
+  <code>sudo chmod 777 -R storage</code>
+
+  **Crear archivo .env con las siguientes variables**
+  
+  <code>DB_CONNECTION=mysql</code>
+
+  <code>DB_HOST=mysql</code>
+
+  <code>DB_PORT=3306</code>
+
+  <code>DB_DATABASE=homestead</code>
+
+  <code>DB_USERNAME=homestead</code>
+
+  <code>DB_PASSWORD=nn#~y}&D%4/[;/J:2yJA</code>
+
+  **Instalar el proyecto**
+
+  <code>docker-compose run --rm composer install</code>
+  
+  <code>docker-compose run --rm artisan migrate --seed</code>
+
+  Si sale el siguiente error, se debe tomar la dirección que está despues del @ y colocarla en la variable DB_HOST del .env (En este caso quedaría así: DB_HOST=172.18.0.3):
+
+  SQLSTATE[HY000] [1045] Access denied for user 'crm-web'@'172.18.0.3' (using password: YES)
+  
