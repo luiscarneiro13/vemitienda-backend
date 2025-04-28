@@ -29,7 +29,7 @@ Se debe tener docker y (docker-compose 1.27.0 o sup)
 
   **Instalar el proyecto**
 
-  <code>docker compose run --rm composer install</code>
+  <code>docker compose exec php composer install</code>
   
   <code>docker compose run --rm artisan migrate --seed</code>
 

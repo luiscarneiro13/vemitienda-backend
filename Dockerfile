@@ -1,10 +1,20 @@
-FROM php:8.2-cli-alpine
+FROM php:8.2-fpm-alpine
 
-WORKDIR /app
+WORKDIR /var/www/html
 
-RUN apk add --no-cache zlib-dev libpng-dev \
-    && docker-php-ext-install pdo pdo_mysql gd
+# Instalar dependencias
+RUN apk add --no-cache \
+    libpng libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    oniguruma-dev \
+    libzip-dev \
+    zip \
+    zlib-dev \
+    bash \
+    curl \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_mysql gd zip
 
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-
-ENTRYPOINT ["composer"]
+# Instalar Composer
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer

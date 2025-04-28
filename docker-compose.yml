@@ -47,20 +47,20 @@ services:
     networks:
       - laravel
 
-  composer:
-    image: composer:2.7
-    container_name: composer
-    volumes:
-      - .:/var/www/html
-    working_dir: /var/www/html
-    depends_on:
-      - php
-    networks:
-      - laravel
+  # composer:
+  #   image: composer:2.2
+  #   container_name: composer-vemitienda
+  #   volumes:
+  #     - .:/var/www/html
+  #   working_dir: /var/www/html
+  #   depends_on:
+  #     - php
+  #   networks:
+  #     - laravel
 
   npm:
-    image: node:20.11
-    container_name: npm
+    image: node:20.11.1
+    container_name: npm-vemitienda
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html
@@ -70,7 +70,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: artisan
+    container_name: artisan-vemitienda
     volumes:
       - .:/var/www/html
     depends_on:
