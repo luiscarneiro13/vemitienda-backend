@@ -9,29 +9,25 @@ Se debe tener docker y (docker-compose 1.27.0 o sup)
 
 # Instalación en Entorno local
 
-  **Clonar el repositorio: **
 
-  <code>git clone https://github.com/luiscarneiro13/crm-web.git</code>
-
-  **Dirigirse a la carpeta del proyecto:**
-
-  <code>cd crm-web</code>
-
-  **Instalar el entorno:**
+    **Instalar el entorno:**
   
-  <code>docker compose up -d --build</code>
+        
+        docker compose up -d --build 
 
-  **Dirigirse a la carpeta src**
+
+    **Crear archivo .env**
+
+
+
+    **Instalar el proyecto**
+
+   
+        docker compose exec php composer install
+
   
-  <code>cd src</code>
-
-  **Crear archivo .env**
-
-  **Instalar el proyecto**
-
-  <code>docker compose exec php composer install</code>
-  
-  <code>docker compose run --rm artisan migrate --seed</code>
+        docker compose run --rm artisan migrate --seed
+        
 
   Si sale el siguiente error, se debe tomar la dirección que está despues del @ y colocarla en la variable DB_HOST del .env (En este caso quedaría así: DB_HOST=172.18.0.3):
 
@@ -44,73 +40,73 @@ Se debe tener docker y (docker-compose 1.27.0 o sup)
 
   **Acceder al droplet por ssh y ejecutar:**
 
-  <code>apt-get update</code>
+  apt-get update
 
   **Instalación de Docker**
 
-  <code>sudo apt install apt-transport-https ca-certificates curl software-properties-common</code>
+  sudo apt install apt-transport-https ca-certificates curl software-properties-common
 
-  <code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code>
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-  <code>sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"</code>
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 
-  <code>sudo apt update</code>
+  sudo apt update
 
-  <code>apt-cache policy docker-ce</code>
+  apt-cache policy docker-ce
 
-  <code>sudo apt install docker-ce</code>
+  sudo apt install docker-ce
 
-  <code>sudo systemctl status docker</code>
+  sudo systemctl status docker
 
-  <code>sudo usermod -aG docker ${USER}</code>
+  sudo usermod -aG docker ${USER}
 
-  <code>sudo apt-get update</code>
+  sudo apt-get update
 
   **Instalación de Doker Compose**
 
   $ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
-  <code>sudo chmod +x /usr/local/bin/docker-compose</code>
+  sudo chmod +x /usr/local/bin/docker-compose
 
-  <code>docker-compose --version</code>
+  docker-compose --version
 
   **Clonar el repositorio:**
 
-  <code>git clone https://github.com/luiscarneiro13/crm-web.git</code>
+  git clone https://github.com/luiscarneiro13/crm-web.git
 
   **Dirigirse a la carpeta del proyecto:**
 
-  <code>cd crm-web</code>
+  cd crm-web
 
   **Instalar el entorno de docker para producción:**
   
-  <code>docker-compose -f docker-compose.prod.yml up -d --build</code>
+  docker-compose -f docker-compose.prod.yml up -d --build
 
   **Dar permiso a Carpetas:**
 
-  <code>cd src</code>
+  cd src
   
-  <code>sudo chmod 777 -R storage</code>
+  sudo chmod 777 -R storage
 
   **Crear archivo .env con las siguientes variables**
   
-  <code>DB_CONNECTION=mysql</code>
+  DB_CONNECTION=mysql
 
-  <code>DB_HOST=mysql</code>
+  DB_HOST=mysql
 
-  <code>DB_PORT=3306</code>
+  DB_PORT=3306
 
-  <code>DB_DATABASE=homestead</code>
+  DB_DATABASE=homestead
 
-  <code>DB_USERNAME=homestead</code>
+  DB_USERNAME=homestead
 
-  <code>DB_PASSWORD=nn#~y}&D%4/[;/J:2yJA</code>
+  DB_PASSWORD=nn#~y}&D%4/[;/J:2yJA
 
   **Instalar el proyecto**
 
-  <code>docker-compose run --rm composer install</code>
+  docker-compose run --rm composer install
   
-  <code>docker-compose run --rm artisan migrate --seed</code>
+  docker-compose run --rm artisan migrate --seed
 
   Si sale el siguiente error, se debe tomar la dirección que está despues del @ y colocarla en la variable DB_HOST del .env (En este caso quedaría así: DB_HOST=172.18.0.3):
 
