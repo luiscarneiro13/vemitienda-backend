@@ -7,7 +7,7 @@ networks:
 services:
   nginx:
     image: nginx:stable-alpine
-    container_name: nginx
+    container_name: nginx-vemitienda
     ports:
       - "8080:80"
     volumes:
@@ -21,7 +21,7 @@ services:
 
   mysql:
     image: mysql:8.0.30
-    container_name: mysql
+    container_name: mysql-vemitienda
     restart: unless-stopped
     tty: true
     ports:
@@ -40,7 +40,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php
+    container_name: php-vemitienda
     volumes:
       - .:/var/www/html
     ports:
@@ -50,7 +50,7 @@ services:
 
   composer:
     image: composer:2.7
-    container_name: composer
+    container_name: composer-vemitienda
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html
@@ -61,7 +61,7 @@ services:
 
   npm:
     image: node:20.11
-    container_name: npm
+    container_name: npm-vemitienda
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html
@@ -71,7 +71,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: artisan
+    container_name: artisan-vemitienda
     volumes:
       - .:/var/www/html
     depends_on:

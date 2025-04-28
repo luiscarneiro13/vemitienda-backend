@@ -25,24 +25,13 @@ Se debe tener docker y (docker-compose 1.27.0 o sup)
   
   <code>cd src</code>
 
-  **Crear archivo .env con las siguientes variables**
-
-  <code>DB_CONNECTION=mysql</code>
-
-  <code>DB_HOST=mysql</code>
-
-  <code>DB_PORT=3306</code>
-  <code>DB_DATABASE=homestead</code>
-
-  <code>DB_USERNAME=homestead</code>
-
-  <code>DB_PASSWORD=nn#~y}&D%4/[;/J:2yJA</code>
+  **Crear archivo .env**
 
   **Instalar el proyecto**
 
-  <code>docker-compose run --rm composer install</code>
+  <code>docker-compose run --rm composer-vemitienda install</code>
   
-  <code>docker-compose run --rm artisan migrate --seed</code>
+  <code>docker-compose run --rm artisan-vemitienda migrate --seed</code>
 
   Si sale el siguiente error, se debe tomar la dirección que está despues del @ y colocarla en la variable DB_HOST del .env (En este caso quedaría así: DB_HOST=172.18.0.3):
 
