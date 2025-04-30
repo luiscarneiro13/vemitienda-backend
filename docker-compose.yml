@@ -47,17 +47,6 @@ services:
     networks:
       - laravel
 
-  # composer:
-  #   image: composer:2.2
-  #   container_name: composer-vemitienda
-  #   volumes:
-  #     - .:/var/www/html
-  #   working_dir: /var/www/html
-  #   depends_on:
-  #     - php
-  #   networks:
-  #     - laravel
-
   npm:
     image: node:20.11.1
     container_name: npm-vemitienda
@@ -79,3 +68,18 @@ services:
     entrypoint: ['php', '/var/www/html/artisan']
     networks:
       - laravel
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: queue-vemitienda
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    entrypoint: ['php', 'artisan', 'queue:work']
+    networks:
+      - laravel
+

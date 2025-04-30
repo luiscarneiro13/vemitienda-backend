@@ -40,4 +40,33 @@
             <button class="btn btn-lg btn-primary">Descargar</button>
         </div>
     </form>
+
+
+    <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
+
+    <script>
+        // Conéctate a Ably con una API key RESTRINGIDA solo para "subscribe"
+        const ably = new Ably.Realtime(
+            'T4up8w.Jqabrg:b9hXo2goM6TrI8Ra5edvfGYTD1Pp2badcw7z-C6-PHI'); // reemplaza con tu clave
+
+        // Escucha si la conexión fue exitosa
+        ably.connection.on('connected', function() {
+            console.log("✅ Conectado a Ably correctamente");
+        });
+
+        // Escucha errores de conexión
+        ably.connection.on('failed', function(stateChange) {
+            console.error("❌ Error de conexión con Ably:", stateChange);
+        });
+
+        // Suscribirse al canal público "canal-chat". Ably agrega el prefijo public cuando se emite el evento del backend
+        const channel = ably.channels.get('public:canal-chat');
+
+        // Escuchar el evento personalizado "mensaje.nuevo"
+        channel.subscribe('mensaje.nuevo', function(message) {
+            console.log("📦 Evento recibido:", message.data); // inspecciona estructura
+        });
+
+    </script>
+
 @endsection

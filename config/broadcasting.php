@@ -41,6 +41,13 @@ return [
             ],
         ],
 
+        'ably' => [
+            'driver' => 'ably',
+            'key' => env('ABLY_KEY'),
+            'disable_public_channels' => env('ABLY_DISABLE_PUBLIC_CHANNELS', false),
+            'token_expiry' => env('ABLY_TOKEN_EXPIRY', 3600)
+        ],
+
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
