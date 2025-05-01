@@ -12,7 +12,8 @@ RUN chmod +x /docker-entrypoint.sh
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Exponer puertos HTTP y HTTPS
-EXPOSE 80 443
+# EXPOSE 80 443
+EXPOSE 80
 
 # Usa nuestro script de entrada como ENTRYPOINT
 # Esto lo habia hecho para instalar certificados autogenerados
