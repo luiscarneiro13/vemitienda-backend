@@ -2,14 +2,16 @@
 
 namespace App\Jobs;
 
+use App\Events\DescargaExitosa;
+use App\Events\DescargaFallida;
 use App\Models\Video;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+
 use Illuminate\Queue\SerializesModels;
 use Symfony\Component\Process\Process;
-
 use Throwable;
 
 class DownloadWavPROD implements ShouldQueue
@@ -61,14 +63,17 @@ class DownloadWavPROD implements ShouldQueue
             $output = json_decode($process->getOutput(), true);
 
             if (json_last_error() !== JSON_ERROR_NONE) {
+                event(new DescargaFallida("Error"));
                 $this->video->status = 'failed';
             } else {
+                event(new DescargaExitosa("Error"));
                 $this->video->status = 'completed';
                 $this->video->info = $output;
 
                 $this->video->save();
             }
         } catch (Throwable $exception) {
+            event(new DescargaFallida("Error"));
             $this->video->status = 'failed';
             $this->video->save();
             logger(sprintf('Could not download video id %d with url %s', $this->video->id, $this->video->url));

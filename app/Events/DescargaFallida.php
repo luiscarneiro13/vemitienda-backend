@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class DescargaExitosa implements ShouldBroadcast
+class DescargaFallida implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -38,7 +38,7 @@ class DescargaExitosa implements ShouldBroadcast
      */
     public function broadcastAs()
     {
-        return 'descarga.exitosa'; // Nombre personalizado
+        return 'descarga.fallida'; // Nombre personalizado
     }
 
     public function broadcastWith()
