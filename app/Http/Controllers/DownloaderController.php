@@ -21,9 +21,6 @@ class DownloaderController extends Controller
 
     public function prepare(Request $request)
     {
-        $this->validate($request, [
-            'url' => 'required|url',
-        ]);
 
         $format = $request->input('format');
 
