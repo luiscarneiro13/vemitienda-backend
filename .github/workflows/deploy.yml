@@ -1,39 +1,28 @@
-
-name: Deploy
+name: Deploy to Droplet
 
 on:
   push:
     branches:
-      - main  # O la rama que uses para desplegar
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Filter for Dockerfile/Compose/Config changes
-        id: filter
-        uses: dorny/paths-filter@v2
-        with:
-          filters: |
-            dockerfiles:
-              - 'Dockerfile'
-              - 'docker-compose.prod.yml'
-              - 'nginx/default.conf'
-
-      - name: Deploy to Droplet via SSH
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.8
         with:
-          host: ${{ secrets.DEPLOY_HOST }}          # IP o dominio de tu droplet
-          username: ${{ secrets.DEPLOY_USER }}        # Por ejemplo: "root"
-          key: ${{ secrets.DEPLOY_KEY }}              # Tu clave privada almacenada como secreto
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          # Si usas un puerto distinto a 22, descomenta la siguiente línea:
+          # port: ${{ secrets.DEPLOY_PORT }}
           script: |
-            cd /root/vemitienda-backend  # Ajusta esta ruta al directorio donde está tu aplicación en el droplet
-            if [ "${{ steps.filter.outputs.dockerfiles }}" = "true" ]; then
-              echo "Se detectaron cambios en Dockerfile, docker-compose.prod.yml o nginx/default.conf. Reconstruyendo contenedores sin cache..."
-              docker compose -f docker-compose.prod.yml build --no-cache
-            fi
-            echo "Iniciando (o actualizando) contenedores..."
+            cd /ruta/a/tu/app
+            git pull
+            docker compose down
+            docker compose -f docker-compose.prod.yml build --no-cache
             docker compose -f docker-compose.prod.yml up -d
