@@ -24,5 +24,22 @@ jobs:
             cd /root/vemitienda-backend
             git pull
             docker compose down
-            docker compose -f docker-compose.prod.yml build --no-cache
-            docker compose -f docker-compose.prod.yml up -d
+            docker compose -f docker-compose.prod.yml up -d --build
+          # script: |
+          #   cd /root/vemitienda-backend
+          #   git pull
+          #   docker compose down
+          #   docker compose -f docker-compose.prod.yml build --no-cache
+          #   docker compose -f docker-compose.prod.yml up -d
+
+      # - name: Send Notification Email
+      #   uses: dawidd6/action-send-mail@v3
+      #   with:
+      #     server_address: smtp.gmail.com
+      #     server_port: 465
+      #     username: ${{ secrets.EMAIL_USERNAME }}
+      #     password: ${{ secrets.EMAIL_PASSWORD }}
+      #     subject: "Deploy Terminado en Droplet"
+      #     body: "El despliegue se completó exitosamente en el Droplet."
+      #     to: "tucorreo@example.com"
+      #     from: "Notificaciones <notificaciones@example.com>"

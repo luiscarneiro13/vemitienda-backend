@@ -5,7 +5,7 @@ FROM php:8.2-fpm-alpine
 WORKDIR /var/www/html
 
 # Copia el archivo .env.example al contenedor (asegúrate de que esté en el contexto de construcción)
-COPY .env.example .env.example
+COPY .env.example .env
 
 # Instala dependencias del sistema y extensiones PHP necesarias para Laravel 10
 RUN apk add --no-cache \
@@ -25,8 +25,7 @@ COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
 # Crea los directorios que Laravel requiere y ajusta permisos:
 RUN mkdir -p storage bootstrap/cache storage/logs && \
-    cp .env.example .env && \
-    chown -R www-data:www-data storage bootstrap/cache storage/logs && \
+     chown -R www-data:www-data storage bootstrap/cache storage/logs && \
     chmod -R 775 storage bootstrap/cache storage/logs && \
     touch storage/logs/laravel.log && \
     chown www-data:www-data storage/logs/laravel.log
