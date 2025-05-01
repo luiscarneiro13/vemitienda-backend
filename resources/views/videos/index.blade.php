@@ -55,6 +55,7 @@
         });
 
         channel.subscribe("inicio.descarga", function () {
+            console.log(message.data)
             document.getElementById("buttonContainer").innerHTML = `
             <button class="btn btn-lg btn-primary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -64,11 +65,13 @@
         });
 
         channel.subscribe("descarga.exitosa", function (message) {
+            console.log(message.data)
             document.getElementById("downloadMessage").innerHTML =
                 `<a href="${message.data}" target="_blank">Descargar archivo</a>`;
         });
 
         channel.subscribe("descarga.fallida", function (message) {
+            console.log(message.data)
             document.getElementById("downloadMessage").innerHTML =
                 `<span class="text-danger">${message.data}</span>`;
 
