@@ -57,7 +57,7 @@ class DownloadVideoPROD implements ShouldQueue
             'yt-dlp',
             $this->video->url,
             '-o',
-            storage_path('app/public/videos/%(title)s.%(ext)s'),
+            storage_path('app/public/videos-yt/%(title)s.%(ext)s'),
             '--print-json',
             '--merge-output-format',
             'mp4',

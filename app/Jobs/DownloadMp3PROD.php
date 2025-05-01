@@ -57,7 +57,7 @@ class DownloadMp3PROD implements ShouldQueue
             'yt-dlp',
             $this->video->url,
             '-o',
-            storage_path('app/public/videos/%(title)s.%(ext)s'),
+            storage_path('app/public/videos-yt/%(title)s.%(ext)s'),
             '--print-json',
             '-x',
             '--extract-audio',
