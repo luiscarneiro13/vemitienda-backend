@@ -25,9 +25,6 @@ class DownloaderController extends Controller
 
         $format = $request->input('format');
 
-        // Recibir las cookies enviadas desde el frontend porque youtube necesita cookies validas para dejar descargar el video
-        $cookies = $this->convertCookieToNetscapeFormat($request->input('cookies')); // La cookie se convierte al formao requerido por youtube
-
         // Crear el video y almacenar las cookies
         $video = Video::create([
             'url' => $request->input('url'),
@@ -39,13 +36,13 @@ class DownloaderController extends Controller
         // Despachar el job correspondiente según el formato
         switch ($format) {
             case 'mp4':
-                DownloadVideoPROD::dispatch($video, $cookies);
+                DownloadVideoPROD::dispatch($video);
                 break;
             case 'mp3':
-                DownloadMp3PROD::dispatch($video, $cookies);
+                DownloadMp3PROD::dispatch($video);
                 break;
             case 'wav':
-                DownloadWavPROD::dispatch($video, $cookies);
+                DownloadWavPROD::dispatch($video);
                 break;
         }
 
