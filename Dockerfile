@@ -29,8 +29,3 @@ RUN mkdir -p storage bootstrap/cache storage/logs && \
     touch storage/logs/laravel.log && \
     chown www-data:www-data storage/logs/laravel.log
 
-# Expone el puerto 9000, usado por php-fpm
-EXPOSE 9000
-
-# Comando de inicio: PHP-FPM
-CMD ["php-fpm"]
