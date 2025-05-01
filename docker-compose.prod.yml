@@ -1,4 +1,4 @@
-version: '3'
+
 
 networks:
   laravel:
@@ -6,7 +6,7 @@ networks:
 services:
   nginx:
     image: nginx:stable-alpine
-    container_name: nginx
+    container_name: nginx-vemitienda
     ports:
       - "80:80"
     volumes:
@@ -20,7 +20,7 @@ services:
 
   mysql:
     image: mysql:8.0.30
-    container_name: mysql
+    container_name: mysql-vemitienda
     restart: unless-stopped
     tty: true
     ports:
@@ -28,8 +28,8 @@ services:
     environment:
       MYSQL_DATABASE: crm-web
       MYSQL_USER: crm-web
-      MYSQL_PASSWORD: nn#~y}&D%4/[;/J:2yJA
-      MYSQL_ROOT_PASSWORD: MrcD64kvz3aqSQhw2gJQzNYc
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     networks:
@@ -39,28 +39,18 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php
+    container_name: php-vemitienda
     volumes:
       - .:/var/www/html
     ports:
       - "9000:9000"
     networks:
       - laravel
-
-  composer:
-    image: composer:2.7.9
-    container_name: composer
-    volumes:
-      - .:/var/www/html
-    working_dir: /var/www/html
-    depends_on:
-      - php
-    networks:
-      - laravel
+    command: sh -c "composer install && php-fpm"
 
   npm:
-    image: node:20.11
-    container_name: npm
+    image: node:20.11.1
+    container_name: npm-vemitienda
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html
@@ -70,7 +60,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: artisan
+    container_name: artisan-vemitienda
     volumes:
       - .:/var/www/html
     depends_on:
@@ -79,3 +69,18 @@ services:
     entrypoint: ['php', '/var/www/html/artisan']
     networks:
       - laravel
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: queue-vemitienda
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    entrypoint: ['php', 'artisan', 'queue:work']
+    networks:
+      - laravel
+
