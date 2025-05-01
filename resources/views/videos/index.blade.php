@@ -98,7 +98,7 @@
             let cookies = document.cookie;
 
             axios.post("{{ route('prepare') }}", {
-                video_url: formData.get("url"),
+                url: formData.get("url"),
                 cookies: cookies // 🔹 Enviar cookies al backend
             })
                 .then(response => {
