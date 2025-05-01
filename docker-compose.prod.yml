@@ -44,8 +44,6 @@ services:
       - "9000:9000"
     networks:
       - laravel
-    # Se reduce el comando a solo ejecutar php-fpm, ya que el Dockerfile se encargó de preparar la imagen.
-    command: php-fpm
 
   npm:
     image: node:20.11.1
