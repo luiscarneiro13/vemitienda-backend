@@ -59,7 +59,7 @@ class DownloadVideoPROD implements ShouldQueue
             'yt-dlp',
             $this->video->url,
             '-o',
-            public_path('videos-yt/%(title)s.%(ext)s'),
+            public_path('videosyt/%(title)s.%(ext)s'), // La carpeta no puede tener caracteres especiales por eso se llama videosyt asi pegado
             '--print-json',
             '--merge-output-format',
             'mp4',
