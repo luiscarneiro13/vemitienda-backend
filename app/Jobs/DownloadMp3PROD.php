@@ -64,13 +64,14 @@ class DownloadMp3PROD implements ShouldQueue
             'yt-dlp',
             $this->video->url,
             '-o',
-            public_path('videos-yt/%(title)s.%(ext)s'),
+            '"' . public_path('videos-yt/%(title)s.%(ext)s'). '"',
             '--print-json',
             '-x',
             '--extract-audio',
             '--audio-format',
             'mp3',
         ];
+
         event(new InicioDescarga("5.- cookiesPath"));
 
         // Si hay cookies, agregar la opción --cookies
