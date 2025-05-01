@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\DownloadMp3;
+use App\Jobs\DownloadMp3PROD;
 use App\Jobs\DownloadVideo;
+use App\Jobs\DownloadVideoPROD;
 use App\Jobs\DownloadWav;
+use App\Jobs\DownloadWavPROD;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
@@ -31,13 +34,16 @@ class DownloaderController extends Controller
 
         switch ($format) {
             case 'mp4':
-                DownloadVideo::dispatch($video);
+                DownloadVideo::dispatch($video); // En local
+                DownloadVideoPROD::dispatch($video); // En el hosting
                 break;
             case 'mp3':
-                DownloadMp3::dispatch($video);
+                DownloadMp3::dispatch($video); // En local
+                DownloadMp3PROD::dispatch($video);// En el hosting
                 break;
             case 'wav':
-                DownloadWav::dispatch($video);
+                DownloadWav::dispatch($video); // En local
+                DownloadWavPROD::dispatch($video);// En el hosting
                 break;
         }
 
