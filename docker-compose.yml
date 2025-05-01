@@ -46,6 +46,7 @@ services:
       - "9000:9000"
     networks:
       - laravel
+    command: sh -c "composer install && php-fpm"
 
   npm:
     image: node:20.11.1
