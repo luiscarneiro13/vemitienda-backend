@@ -47,15 +47,15 @@
 
         const channel = ably.channels.get('public:canal-chat');
 
-        ably.connection.on('connected', function () {
+        ably.connection.on('connected', function() {
             console.log("✅ Conectado a Ably correctamente");
         });
 
-        ably.connection.on('failed', function (stateChange) {
+        ably.connection.on('failed', function(stateChange) {
             console.error("❌ Error de conexión con Ably:", stateChange);
         });
 
-        channel.subscribe("inicio.descarga", function (message) {
+        channel.subscribe("inicio.descarga", function(message) {
             console.log(message.data)
             document.getElementById("buttonContainer").innerHTML = `
             <button class="btn btn-lg btn-primary" type="button" disabled>
@@ -65,13 +65,13 @@
         `;
         });
 
-        channel.subscribe("descarga.exitosa", function (message) {
+        channel.subscribe("descarga.exitosa", function(message) {
             console.log(message.data)
             document.getElementById("downloadMessage").innerHTML =
                 `<a href="${message.data}" target="_blank">Descargar archivo</a>`;
         });
 
-        channel.subscribe("descarga.fallida", function (message) {
+        channel.subscribe("descarga.fallida", function(message) {
             console.log(message.data)
             document.getElementById("downloadMessage").innerHTML =
                 `<span class="text-danger">${message.data}</span>`;
@@ -101,10 +101,15 @@
             // 🔹 Capturar las cookies del navegador
             let cookies = document.cookie;
 
+            // 🔹 Obtener el formato seleccionado del radio button
+            let format = document.querySelector('input[name="format"]:checked').value;
+
+
             axios.post("{{ route('prepare') }}", {
-                url: formData.get("url"),
-                cookies: cookies // 🔹 Enviar cookies al backend
-            })
+                    url: formData.get("url"),
+                    cookies: cookies, // 🔹 Enviar cookies al backend
+                    format: format
+                })
                 .then(response => {
                     messageContainer.innerHTML = `<a href="${response.data}" target="_blank">Descargar archivo</a>`;
                 })
