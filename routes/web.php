@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\InicioDescarga;
 use App\Http\Controllers\Admin\LoginController;
 
 use App\Http\Controllers\Admin\UsersController as AdminUsersController;
@@ -96,7 +97,7 @@ Route::get('delete-account', 'ContactoController@deleteAccount')->name('deleteAc
 
 Route::get('/enviar', function () {
     info("Luis: se va a emitir el evento");
-    event(new MensajeNuevo("Hola desde Laravel + Ably!"));
+    event(new InicioDescarga("Hola desde Laravel + Ably!"));
     return "Mensaje enviado";
 });
 
