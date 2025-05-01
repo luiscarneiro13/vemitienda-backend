@@ -15,7 +15,9 @@ RUN rm /etc/nginx/conf.d/default.conf
 EXPOSE 80 443
 
 # Usa nuestro script de entrada como ENTRYPOINT
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# Esto lo habia hecho para instalar certificados autogenerados
+#Pero me decidí por instalar cerbot directo en ubuntu, fuera de docker
+# ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Comando por defecto para arrancar Nginx en primer plano
 CMD ["nginx", "-g", "daemon off;"]
