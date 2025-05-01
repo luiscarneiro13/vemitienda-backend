@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\InicioDescarga;
 use App\Jobs\DownloadMp3;
 use App\Jobs\DownloadMp3PROD;
 use App\Jobs\DownloadVideo;
@@ -32,6 +33,8 @@ class DownloaderController extends Controller
             'url' => $request->input('url'),
             'format' => $format,
         ]);
+
+        event(new InicioDescarga("Inicio de descarga"));
 
         // Despachar el job correspondiente según el formato
         switch ($format) {
