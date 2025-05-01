@@ -24,7 +24,6 @@ class DownloadWavPROD implements ShouldQueue
      * @var Video
      */
     private $video;
-    private $cookies;
 
     /**
      * Create a new job instance.
@@ -32,10 +31,9 @@ class DownloadWavPROD implements ShouldQueue
      * @param Video $video
      * @param string $cookies
      */
-    public function __construct(Video $video, $cookies)
+    public function __construct(Video $video)
     {
         $this->video = $video;
-        $this->cookies = $cookies;
     }
 
     /**
@@ -46,11 +44,6 @@ class DownloadWavPROD implements ShouldQueue
      */
     public function handle()
     {
-        $cookiesPath = public_path('cookies.txt'); // Ruta temporal para cookies
-        // Guardar cookies en un archivo si existen
-        if (!empty($this->cookies)) {
-            file_put_contents($cookiesPath, $this->cookies);
-        }
 
         // Construir el comando yt-dlp
         $command = [
@@ -64,11 +57,6 @@ class DownloadWavPROD implements ShouldQueue
             '--audio-format',
             'wav',
         ];
-
-        // Si hay cookies, agregar la opción --cookies
-        if (file_exists($cookiesPath)) {
-            array_splice($command, 1, 0, ['--cookies', $cookiesPath]);
-        }
 
         $process = new Process($command);
 
@@ -84,11 +72,6 @@ class DownloadWavPROD implements ShouldQueue
                 $this->video->status = 'completed';
                 $this->video->info = $output;
                 $this->video->save();
-            }
-
-            // Eliminar el archivo de cookies después de su uso
-            if (file_exists($cookiesPath)) {
-                unlink($cookiesPath);
             }
         } catch (Throwable $exception) {
             event(new DescargaFallida("Error"));

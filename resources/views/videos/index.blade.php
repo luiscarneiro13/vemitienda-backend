@@ -3,7 +3,8 @@
 
 @section('content')
     <form id="downloadForm">
-        @csrf
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <div class="form-group">
             <input name="url" type="text" required class="form-control @error('url') is-invalid @enderror" id="url"
@@ -43,6 +44,11 @@
     <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
 
     <script>
+        /*Para que envíe las cookies*/
+        axios.defaults.withCredentials = true;
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute(
+            'content');
+
         const ably = new Ably.Realtime('T4up8w.Jqabrg:b9hXo2goM6TrI8Ra5edvfGYTD1Pp2badcw7z-C6-PHI');
 
         const channel = ably.channels.get('public:canal-chat');
@@ -107,8 +113,9 @@
 
             axios.post("{{ route('prepare') }}", {
                     url: formData.get("url"),
-                    cookies: cookies, // 🔹 Enviar cookies al backend
                     format: format
+                }, {
+                    withCredentials: true // Esto se asegura de que se envíen las cookies del navegador
                 })
                 .then(response => {
                     messageContainer.innerHTML = `<a href="${response.data}" target="_blank">Descargar archivo</a>`;
