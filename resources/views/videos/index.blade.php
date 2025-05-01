@@ -46,15 +46,15 @@
         const ably = new Ably.Realtime('T4up8w.Jqabrg:b9hXo2goM6TrI8Ra5edvfGYTD1Pp2badcw7z-C6-PHI');
         const channel = ably.channels.get('public:canal-chat');
 
-        ably.connection.on('connected', function() {
+        ably.connection.on('connected', function () {
             console.log("✅ Conectado a Ably correctamente");
         });
 
-        ably.connection.on('failed', function(stateChange) {
+        ably.connection.on('failed', function (stateChange) {
             console.error("❌ Error de conexión con Ably:", stateChange);
         });
 
-        channel.subscribe("inicio.descarga", function() {
+        channel.subscribe("inicio.descarga", function () {
             document.getElementById("buttonContainer").innerHTML = `
             <button class="btn btn-lg btn-primary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -63,12 +63,12 @@
         `;
         });
 
-        channel.subscribe("descarga.exitosa", function(message) {
+        channel.subscribe("descarga.exitosa", function (message) {
             document.getElementById("downloadMessage").innerHTML =
                 `<a href="${message.data}" target="_blank">Descargar archivo</a>`;
         });
 
-        channel.subscribe("descarga.fallida", function(message) {
+        channel.subscribe("descarga.fallida", function (message) {
             document.getElementById("downloadMessage").innerHTML =
                 `<span class="text-danger">${message.data}</span>`;
 
@@ -94,7 +94,13 @@
 
             let formData = new FormData(document.getElementById("downloadForm"));
 
-            axios.post("{{ route('prepare') }}", formData)
+            // 🔹 Capturar las cookies del navegador
+            let cookies = document.cookie;
+
+            axios.post("{{ route('prepare') }}", {
+                video_url: formData.get("url"),
+                cookies: cookies // 🔹 Enviar cookies al backend
+            })
                 .then(response => {
                     messageContainer.innerHTML = `<a href="${response.data}" target="_blank">Descargar archivo</a>`;
                 })
