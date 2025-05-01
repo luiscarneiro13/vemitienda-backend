@@ -1,20 +1,36 @@
+# Usa como base PHP 8.2 con FPM sobre Alpine Linux
 FROM php:8.2-fpm-alpine
 
+# Establece el directorio de trabajo
 WORKDIR /var/www/html
 
-# Instalar dependencias
+# Instala dependencias del sistema y extensiones PHP necesarias para Laravel 10
 RUN apk add --no-cache \
-    libpng libpng-dev \
-    libjpeg-turbo-dev \
-    freetype-dev \
-    oniguruma-dev \
-    libzip-dev \
-    zip \
-    zlib-dev \
-    bash \
-    curl \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo pdo_mysql gd zip
+      bash \
+      curl \
+      libpng-dev \
+      libjpeg-turbo-dev \
+      freetype-dev \
+      libzip-dev \
+      oniguruma-dev \
+      icu-dev && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd intl zip
 
-# Instalar Composer
+# Instala Composer (copiándolo desde la imagen oficial de Composer)
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+
+# Crea los directorios que Laravel requiere y ajusta permisos:
+# - Crea "storage", "bootstrap/cache" y "storage/logs"
+# - Ajusta permisos para que el usuario web (www-data) pueda escribir en ellos
+RUN mkdir -p storage bootstrap/cache storage/logs && \
+    chown -R www-data:www-data storage bootstrap/cache storage/logs && \
+    chmod -R 775 storage bootstrap/cache storage/logs && \
+    touch storage/logs/laravel.log && \
+    chown www-data:www-data storage/logs/laravel.log
+
+# Expone el puerto 9000, usado por php-fpm
+EXPOSE 9000
+
+# Comando de inicio: PHP-FPM
+CMD ["php-fpm"]
