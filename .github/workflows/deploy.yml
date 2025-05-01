@@ -21,7 +21,7 @@ jobs:
           # Si usas un puerto distinto a 22, descomenta la siguiente línea:
           # port: ${{ secrets.DEPLOY_PORT }}
           script: |
-            cd /ruta/a/tu/app
+            cd /root/vemitienda-backend
             git pull
             docker compose down
             docker compose -f docker-compose.prod.yml build --no-cache
