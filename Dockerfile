@@ -24,8 +24,8 @@ COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 # - Crea "storage", "bootstrap/cache" y "storage/logs"
 # - Ajusta permisos para que el usuario web (www-data) pueda escribir en ellos
 RUN mkdir -p storage bootstrap/cache storage/logs && \
+    cp .env.example .env && \
     chown -R www-data:www-data storage bootstrap/cache storage/logs && \
     chmod -R 775 storage bootstrap/cache storage/logs && \
     touch storage/logs/laravel.log && \
     chown www-data:www-data storage/logs/laravel.log
-
