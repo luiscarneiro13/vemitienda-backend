@@ -46,9 +46,7 @@ class DownloadWavPROD implements ShouldQueue
      */
     public function handle()
     {
-        event(new InicioDescarga("WAV"));
         $cookiesPath = public_path('cookies.txt'); // Ruta temporal para cookies
-        event(new DescargaFallida($cookiesPath));
         // Guardar cookies en un archivo si existen
         if (!empty($this->cookies)) {
             file_put_contents($cookiesPath, $this->cookies);

@@ -46,7 +46,6 @@ class DownloadVideoPROD implements ShouldQueue
      */
     public function handle()
     {
-        event(new InicioDescarga("VIDEO"));
         $cookiesPath = public_path('cookies.txt'); // Ruta temporal para cookies
 
         // Guardar cookies en un archivo si existen

@@ -46,25 +46,19 @@ class DownloadMp3PROD implements ShouldQueue
      */
     public function handle()
     {
-        event(new InicioDescarga("MP3 -1"));
-        event(new InicioDescarga("1.- cookiesPath"));
         $cookiesPath = public_path('cookies/cookies.txt'); // Ruta temporal para cookies
-        event(new DescargaFallida($cookiesPath));
-        event(new InicioDescarga("2.- cookiesPath"));
 
         // Guardar las cookies en un archivo si existen
         if (!empty($this->cookies)) {
-            event(new InicioDescarga("3.- cookiesPath"));
             file_put_contents($cookiesPath, $this->cookies);
         }
 
-        event(new InicioDescarga("4.- cookiesPath"));
         // Construir el comando yt-dlp
         $command = [
             'yt-dlp',
             $this->video->url,
             '-o',
-            '"' . public_path('videosyt/%(title)s.%(ext)s'). '"', // La carpeta no puede tener caracteres especiales por eso se llama videosyt asi pegado
+            '"' . public_path('videosyt/%(title)s.%(ext)s') . '"', // La carpeta no puede tener caracteres especiales por eso se llama videosyt asi pegado
             '--print-json',
             '-x',
             '--extract-audio',
@@ -72,44 +66,33 @@ class DownloadMp3PROD implements ShouldQueue
             'mp3',
         ];
 
-        event(new InicioDescarga("5.- cookiesPath"));
 
         // Si hay cookies, agregar la opción --cookies
         if (file_exists($cookiesPath)) {
-            event(new InicioDescarga("6.- cookiesPath"));
             array_splice($command, 1, 0, ['--cookies', $cookiesPath]);
         }
 
-        event(new InicioDescarga("7.- cookiesPath"));
         $process = new Process($command);
-        event(new InicioDescarga("8.- cookiesPath"));
 
         try {
-            event(new InicioDescarga("9.- cookiesPath"));
             $process->mustRun();
-            event(new InicioDescarga("10.- cookiesPath"));
             $output = json_decode($process->getOutput(), true);
-            event(new InicioDescarga("11.- cookiesPath"));
 
             if (json_last_error() !== JSON_ERROR_NONE) {
-                event(new InicioDescarga("12.- cookiesPath"));
                 event(new DescargaFallida("Error"));
                 $this->video->status = 'failed';
             } else {
-                event(new InicioDescarga("13.- cookiesPath"));
                 event(new DescargaExitosa("Descarga completa"));
                 $this->video->status = 'completed';
                 $this->video->info = $output;
                 $this->video->save();
             }
-            event(new InicioDescarga("14.- cookiesPath"));
 
             // Eliminar el archivo de cookies después de su uso
             if (file_exists($cookiesPath)) {
                 unlink($cookiesPath);
             }
         } catch (Throwable $exception) {
-            event(new InicioDescarga("15.- cookiesPath"));
             event(new DescargaFallida("Error"));
             $this->video->status = 'failed';
             $this->video->save();
@@ -117,6 +100,5 @@ class DownloadMp3PROD implements ShouldQueue
 
             throw $exception;
         }
-        event(new InicioDescarga("16.- cookiesPath"));
     }
 }
