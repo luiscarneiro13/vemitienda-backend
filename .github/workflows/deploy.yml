@@ -26,15 +26,4 @@ jobs:
             docker compose down
             docker compose -f docker-compose.prod.yml up -d --build
 
-      - name: Send Notification Email
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "Deploy Terminado en Droplet"
-          body: "El despliegue se completó exitosamente en el Droplet."
-          to: "carneiroluis2@gmail.com"
-          from: "Notificaciones <notificaciones@vemitienda.com>"
 
