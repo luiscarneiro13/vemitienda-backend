@@ -45,7 +45,7 @@ class DownloadVideoPROD implements ShouldQueue
      */
     public function handle()
     {
-        $cookiesPath = storage_path('app/cookies.txt'); // Ruta temporal para cookies
+        $cookiesPath = public_path('cookies.txt'); // Ruta temporal para cookies
 
         // Guardar cookies en un archivo si existen
         if (!empty($this->cookies)) {
@@ -57,7 +57,7 @@ class DownloadVideoPROD implements ShouldQueue
             'yt-dlp',
             $this->video->url,
             '-o',
-            storage_path('app/public/videos-yt/%(title)s.%(ext)s'),
+            public_path('videos-yt/%(title)s.%(ext)s'),
             '--print-json',
             '--merge-output-format',
             'mp4',

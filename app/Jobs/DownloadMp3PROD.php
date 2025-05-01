@@ -47,7 +47,7 @@ class DownloadMp3PROD implements ShouldQueue
     public function handle()
     {
         event(new InicioDescarga("1.- cookiesPath"));
-        $cookiesPath = storage_path('app/cookies.txt'); // Ruta temporal para cookies
+        $cookiesPath = public_path('cookies/cookies.txt'); // Ruta temporal para cookies
         event(new InicioDescarga("2.- cookiesPath"));
 
         // Guardar las cookies en un archivo si existen
@@ -62,7 +62,7 @@ class DownloadMp3PROD implements ShouldQueue
             'yt-dlp',
             $this->video->url,
             '-o',
-            storage_path('app/public/videos-yt/%(title)s.%(ext)s'),
+            public_path('videos-yt/%(title)s.%(ext)s'),
             '--print-json',
             '-x',
             '--extract-audio',
