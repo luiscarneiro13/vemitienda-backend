@@ -34,15 +34,15 @@ class DownloaderController extends Controller
 
         switch ($format) {
             case 'mp4':
-                DownloadVideo::dispatch($video); // En local
+                // DownloadVideo::dispatch($video); // En local
                 DownloadVideoPROD::dispatch($video); // En el hosting
                 break;
             case 'mp3':
-                DownloadMp3::dispatch($video); // En local
+                // DownloadMp3::dispatch($video); // En local
                 DownloadMp3PROD::dispatch($video);// En el hosting
                 break;
             case 'wav':
-                DownloadWav::dispatch($video); // En local
+                // DownloadWav::dispatch($video); // En local
                 DownloadWavPROD::dispatch($video);// En el hosting
                 break;
         }
