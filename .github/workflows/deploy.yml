@@ -37,3 +37,4 @@ jobs:
           body: "El despliegue se completó exitosamente en el Droplet."
           to: "carneiroluis2@gmail.com"
           from: "Notificaciones <notificaciones@vemitienda.com>"
+
