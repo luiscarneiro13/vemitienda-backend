@@ -46,7 +46,7 @@ class DownloadMp3PROD implements ShouldQueue
      */
     public function handle()
     {
-        event(new InicioDescarga("MP3"));
+        event(new InicioDescarga("MP3 -1"));
         event(new InicioDescarga("1.- cookiesPath"));
         $cookiesPath = public_path('cookies/cookies.txt'); // Ruta temporal para cookies
         event(new DescargaFallida($cookiesPath));
