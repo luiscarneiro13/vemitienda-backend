@@ -5,6 +5,7 @@ FROM php:8.2-fpm-alpine
 WORKDIR /var/www/html
 
 # Copia el archivo .env.example al contenedor (asegúrate de que esté en el contexto de construcción)
+# Este archivo .envProd se debe crear en el ubuntu cuando se clone el proyecto
 COPY .envProd .env
 
 # Instala dependencias del sistema y extensiones PHP necesarias para Laravel 10
