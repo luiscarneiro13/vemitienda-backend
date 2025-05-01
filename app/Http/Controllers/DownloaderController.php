@@ -46,7 +46,7 @@ class DownloaderController extends Controller
                 break;
         }
 
-        // return redirect()->route('status', ['video' => $video->id]);
+        return redirect()->route('status', ['video' => $video->id]);
     }
 
     public function status(Video $video)

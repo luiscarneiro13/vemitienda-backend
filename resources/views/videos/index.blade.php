@@ -2,9 +2,10 @@
 @section('title', 'Video Downloader')
 
 @section('content')
-    <form id="downloadForm">
 
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    <form action="{{ route('prepare') }}" method="post">
+
+        @csrf
 
         <div class="form-group">
             <input name="url" type="text" required class="form-control @error('url') is-invalid @enderror" id="url"
@@ -31,7 +32,7 @@
 
         <div class="text-center">
             <div id="buttonContainer">
-                <button type="button" id="downloadButton" class="btn btn-lg btn-primary">Descargar</button>
+                <button type="submit" class="btn btn-lg btn-primary">Descargar</button>
             </div>
         </div>
 
@@ -40,99 +41,4 @@
         </div>
     </form>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
-    <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
-
-    <script>
-        /*Para que envíe las cookies*/
-        axios.defaults.withCredentials = true;
-        axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute(
-            'content');
-
-        const ably = new Ably.Realtime('T4up8w.Jqabrg:b9hXo2goM6TrI8Ra5edvfGYTD1Pp2badcw7z-C6-PHI');
-
-        const channel = ably.channels.get('public:canal-chat');
-
-        ably.connection.on('connected', function() {
-            console.log("✅ Conectado a Ably correctamente");
-        });
-
-        ably.connection.on('failed', function(stateChange) {
-            console.error("❌ Error de conexión con Ably:", stateChange);
-        });
-
-        channel.subscribe("inicio.descarga", function(message) {
-            console.log(message.data)
-            document.getElementById("buttonContainer").innerHTML = `
-            <button class="btn btn-lg btn-primary" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Descargando...
-            </button>
-        `;
-        });
-
-        channel.subscribe("descarga.exitosa", function(message) {
-            console.log(message.data)
-            document.getElementById("downloadMessage").innerHTML =
-                `<a href="${message.data}" target="_blank">Descargar archivo</a>`;
-        });
-
-        channel.subscribe("descarga.fallida", function(message) {
-            console.log(message.data)
-            document.getElementById("downloadMessage").innerHTML =
-                `<span class="text-danger">${message.data}</span>`;
-
-            // Restaurar el botón original si hay un error
-            document.getElementById("buttonContainer").innerHTML = `
-            <button type="button" id="downloadButton" class="btn btn-lg btn-primary">Descargar</button>
-        `;
-
-            document.getElementById("downloadButton").addEventListener("click", startDownload);
-        });
-
-        function startDownload() {
-            let buttonContainer = document.getElementById("buttonContainer");
-            let messageContainer = document.getElementById("downloadMessage");
-
-            // Reemplazar el botón por el spinner
-            buttonContainer.innerHTML = `
-            <button class="btn btn-lg btn-primary" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Descargando...
-            </button>
-        `;
-
-            let formData = new FormData(document.getElementById("downloadForm"));
-
-            // 🔹 Capturar las cookies del navegador
-            let cookies = document.cookie;
-
-            // 🔹 Obtener el formato seleccionado del radio button
-            let format = document.querySelector('input[name="format"]:checked').value;
-
-
-            axios.post("{{ route('prepare') }}", {
-                    url: formData.get("url"),
-                    format: format
-                }, {
-                    withCredentials: true // Esto se asegura de que se envíen las cookies del navegador
-                })
-                .then(response => {
-                    messageContainer.innerHTML = `<a href="${response.data}" target="_blank">Descargar archivo</a>`;
-                })
-                .catch(error => {
-                    messageContainer.innerHTML = `<span class="text-danger">Error en la descarga</span>`;
-                    console.error("❌ Error:", error);
-
-                    // Restaurar el botón original en caso de error
-                    buttonContainer.innerHTML = `
-                    <button type="button" id="downloadButton" class="btn btn-lg btn-primary">Descargar</button>
-                `;
-
-                    document.getElementById("downloadButton").addEventListener("click", startDownload);
-                });
-        }
-
-        document.getElementById("downloadButton").addEventListener("click", startDownload);
-    </script>
 @endsection
