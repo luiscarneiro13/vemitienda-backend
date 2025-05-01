@@ -5,7 +5,7 @@ FROM php:8.2-fpm-alpine
 WORKDIR /var/www/html
 
 # Copia el archivo .env.example al contenedor (asegúrate de que esté en el contexto de construcción)
-COPY .env.example .env
+COPY .envProd .env
 
 # Instala dependencias del sistema y extensiones PHP necesarias para Laravel 10
 RUN apk add --no-cache \
