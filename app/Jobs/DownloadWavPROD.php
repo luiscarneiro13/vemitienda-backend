@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Events\DescargaExitosa;
 use App\Events\DescargaFallida;
+use App\Events\InicioDescarga;
 use App\Models\Video;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -45,6 +46,7 @@ class DownloadWavPROD implements ShouldQueue
      */
     public function handle()
     {
+        event(new InicioDescarga("WAV"));
         $cookiesPath = public_path('cookies.txt'); // Ruta temporal para cookies
         event(new DescargaFallida($cookiesPath));
         // Guardar cookies en un archivo si existen
