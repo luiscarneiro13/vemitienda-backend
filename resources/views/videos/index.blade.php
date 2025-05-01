@@ -44,6 +44,7 @@
 
     <script>
         const ably = new Ably.Realtime('T4up8w.Jqabrg:b9hXo2goM6TrI8Ra5edvfGYTD1Pp2badcw7z-C6-PHI');
+
         const channel = ably.channels.get('public:canal-chat');
 
         ably.connection.on('connected', function () {
@@ -54,7 +55,7 @@
             console.error("❌ Error de conexión con Ably:", stateChange);
         });
 
-        channel.subscribe("inicio.descarga", function () {
+        channel.subscribe("inicio.descarga", function (message) {
             console.log(message.data)
             document.getElementById("buttonContainer").innerHTML = `
             <button class="btn btn-lg btn-primary" type="button" disabled>
