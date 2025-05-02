@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.2-fpm-alpine
 
 # Instalar dependencias
 RUN apt-get update && apt-get install -y \
@@ -34,4 +34,3 @@ RUN mkdir -p /var/www/storage/logs \
     && chmod -R 775 /var/www/storage \
     && cp .env.docker .env || true
 
-CMD ["php-fpm"]
