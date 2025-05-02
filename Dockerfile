@@ -9,9 +9,7 @@ COPY . .
 
 RUN apt-get update || apk update
 
-
 # OJOOOOOOOOOOOOOOOOOOOOOOO Este archivo .envProd se debe crear en el ubuntu cuando se clone el proyecto
-
 
 # Instala dependencias del sistema y extensiones PHP necesarias para Laravel 10
 RUN apk add --no-cache \
