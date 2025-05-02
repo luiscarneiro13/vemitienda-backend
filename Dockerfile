@@ -6,7 +6,6 @@ WORKDIR /var/www/html
 
 COPY . .
 
-
 RUN apt-get update || apk update
 
 # OJOOOOOOOOOOOOOOOOOOOOOOO Este archivo .envProd se debe crear en el ubuntu cuando se clone el proyecto
