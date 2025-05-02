@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     unzip \
     nodejs \
-    npm \
     && docker-php-ext-configure gd --with-jpeg --with-webp \
     && docker-php-ext-install -j$(nproc) \
     pdo pdo_mysql mbstring exif pcntl bcmath gd zip
@@ -23,8 +22,6 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Instalar dependencias
 COPY composer.json composer.lock package.json package-lock.json ./
 RUN composer install --no-dev --no-scripts --no-autoloader \
-    && npm install --omit=dev \
-    && npm run build \
     && composer dump-autoload --optimize
 
 # Copiar aplicación

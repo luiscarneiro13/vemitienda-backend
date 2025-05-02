@@ -28,7 +28,7 @@
 
 ## Construir y ejecutar:
 
-    docker-compose up -d --build
+    docker compose up -d --build
     
 ## Flujo completo automatizado:
 
@@ -54,16 +54,16 @@
 
 
 ## Ejecutar tests
-    docker-compose exec app php artisan test
+    docker compose exec app php artisan test
 
 ## Instalar nueva dependencia PHP
-    docker-compose exec app composer require vendor/package
+    docker compose exec app composer require vendor/package
 
 ## Instalar nueva dependencia NPM
-    docker-compose exec app npm install package-name
+    docker compose exec app npm install package-name
 
 ## Ver logs de la aplicación
-    docker-compose logs -f app
+    docker compose logs -f app
 
 ## Acceder a MySQL
-    docker-compose exec mysql mysql -u root -p
+    docker compose exec mysql mysql -u root -p
