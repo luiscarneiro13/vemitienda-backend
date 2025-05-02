@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.2-fpm
 
 # Instalar dependencias
 RUN apt-get update && apt-get install -y \
