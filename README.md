@@ -1,50 +1,63 @@
-Para usar el sistema:
+# Esta configuración incluye:
 
-Configuración inicial:
+- Optimización de imágenes Docker
 
-bash
-chmod +x docker-entrypoint.sh
-cp .env.docker .env
-Construir y ejecutar:
+- Configuración de seguridad para Nginx
 
-bash
-docker-compose up -d --build
-Flujo completo automatizado:
+- Redis para cache y colas
 
-Construye la imagen PHP con todas las dependencias
+- Cron para tareas programadas
 
-Configura MySQL con persistencia de datos
+- Supervisión de procesos
 
-Instala dependencias de Composer y NPM
+- Manejo adecuado de permisos
 
-Compila assets frontend
+- Variables de entorno separadas
 
-Ejecuta migraciones y seeds
+- Sistema de caché para builds rápidos
 
-Inicia PHP-FPM, Nginx, Queue Worker y Scheduler
+- Configuraciones de performance (OPcache, PHP-FPM, Nginx)
 
-Configura cron para tareas programadas
 
-Habilita Redis para cache y colas
+## Para usar el sistema:
 
-Configura opcache para mejor performance
+    Configuración inicial:
 
-Comandos útiles adicionales:
+        chmod +x docker-entrypoint.sh
+        cp .env.docker .env
 
-bash
+## Construir y ejecutar:
+
+    docker-compose up -d --build
+    
+## Flujo completo automatizado:
+
+- Construye la imagen PHP con todas las dependencias
+
+- Configura MySQL con persistencia de datos
+
+- Instala dependencias de Composer y NPM
+
+- Compila assets frontend
+
+- Ejecuta migraciones y seeds
+
+- Inicia PHP-FPM, Nginx, Queue Worker y Scheduler
+
+- Configura cron para tareas programadas
+
+- Habilita Redis para cache y colas
+
+- Configura opcache para mejor performance
+
+- Comandos útiles adicionales:
+
+
 ## Ejecutar tests
-
-
     docker-compose exec app php artisan test
 
-
-
 ## Instalar nueva dependencia PHP
-
-
     docker-compose exec app composer require vendor/package
-
-    
 
 ## Instalar nueva dependencia NPM
     docker-compose exec app npm install package-name
@@ -54,22 +67,3 @@ bash
 
 ## Acceder a MySQL
     docker-compose exec mysql mysql -u root -p
-Esta configuración incluye:
-
-Optimización de imágenes Docker
-
-Configuración de seguridad para Nginx
-
-Redis para cache y colas
-
-Cron para tareas programadas
-
-Supervisión de procesos
-
-Manejo adecuado de permisos
-
-Variables de entorno separadas
-
-Sistema de caché para builds rápidos
-
-Configuraciones de performance (OPcache, PHP-FPM, Nginx)

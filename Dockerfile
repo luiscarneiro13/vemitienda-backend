@@ -43,7 +43,6 @@ COPY . .
 # Stage 5: Configuración final
 RUN chown -R www-data:www-data /var/www/storage \
     && chmod -R 775 /var/www/storage \
-    && cp .env.docker .env \
-    && php artisan key:generate
+    && cp .env.docker .env
 
 CMD ["php-fpm"]
