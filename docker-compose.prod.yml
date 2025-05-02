@@ -26,8 +26,8 @@ services:
     environment:
       MYSQL_DATABASE: crm-web
       MYSQL_USER: crm-web
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: nn#~y}&D%4/[;/J:2yJA
+      MYSQL_ROOT_PASSWORD: MrcD64kvz3aqSQhw2gJQzNYc
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
