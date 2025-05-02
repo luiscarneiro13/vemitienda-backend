@@ -25,6 +25,20 @@ services:
         limits:
           memory: 512M
 
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: queue-vemitienda
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    entrypoint: ["php", "artisan", "queue:work"]
+    networks:
+      - laravel
+
   php:
     build:
       context: .
@@ -35,28 +49,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock # Permite ejecutar comandos Docker desde este contenedor
     depends_on:
       - mysql
+      - queue
     ports:
       - "9000:9000"
     networks:
       - laravel
     entrypoint: ["sh", "-c"]
     # Se agrega el llamado al contenedor queue: después de instalar las dependencias, se ejecuta en el contenedor "queue"
-    command: "docker exec queue-vemitienda php artisan queue:work"
-
-  queue:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: queue-vemitienda
-    volumes:
-      - .:/var/www/html
-    depends_on:
-      - mysql
-      - php
-    working_dir: /var/www/html
-    entrypoint: ["php", "artisan", "queue:work"]
-    networks:
-      - laravel
+    command: "composer install && docker exec queue-vemitienda php artisan queue:work"
 
   artisan:
     build:
