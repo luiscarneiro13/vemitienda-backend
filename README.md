@@ -21,10 +21,6 @@ Se debe tener docker y (docker-compose 1.27.0 o sup)
 
 
     **Instalar el proyecto**
-
-   
-        docker compose exec php composer install
-
   
         docker compose run --rm artisan migrate --seed
         
