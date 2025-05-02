@@ -27,9 +27,10 @@ RUN composer install --no-dev --no-scripts --no-autoloader \
 # Copiar aplicación
 COPY . .
 
-# Configurar permisos
-RUN chown -R www-data:www-data /var/www/storage \
+# Configurar permisos (se asegura que el directorio storage exista)
+RUN mkdir -p /var/www/storage \
+    && chown -R www-data:www-data /var/www/storage \
     && chmod -R 775 /var/www/storage \
-    && cp .env.docker .env
+    && cp .env.docker .env || true
 
 CMD ["php-fpm"]
