@@ -44,7 +44,7 @@ services:
       dockerfile: Dockerfile
     container_name: artisan
     volumes:
-      - ./src:/var/www/html
+      - .:/var/www/html
     depends_on:
       - mysql
     working_dir: /var/www/html
