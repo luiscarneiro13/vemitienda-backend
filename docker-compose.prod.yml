@@ -31,7 +31,6 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    command: "composer install"
     environment:
       - DB_HOST=mysql
       - DB_DATABASE=${DB_DATABASE}

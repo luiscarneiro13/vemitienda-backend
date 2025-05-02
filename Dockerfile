@@ -31,3 +31,6 @@ RUN mkdir -p /var/www/storage/logs \
     && chown -R www-data:www-data /var/www/storage bootstrap/cache \
     && chmod -R 775 /var/www/storage bootstrap/cache \
     && cp .env.docker .env || true
+
+RUN cd /var/www/html \
+    && composer install
