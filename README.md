@@ -32,20 +32,28 @@ Configura opcache para mejor performance
 Comandos útiles adicionales:
 
 bash
-# Ejecutar tests
-docker-compose exec app php artisan test
+## Ejecutar tests
 
-# Instalar nueva dependencia PHP
-docker-compose exec app composer require vendor/package
 
-# Instalar nueva dependencia NPM
-docker-compose exec app npm install package-name
+    docker-compose exec app php artisan test
 
-# Ver logs de la aplicación
-docker-compose logs -f app
 
-# Acceder a MySQL
-docker-compose exec mysql mysql -u root -p
+
+## Instalar nueva dependencia PHP
+
+
+    docker-compose exec app composer require vendor/package
+
+    
+
+## Instalar nueva dependencia NPM
+    docker-compose exec app npm install package-name
+
+## Ver logs de la aplicación
+    docker-compose logs -f app
+
+## Acceder a MySQL
+    docker-compose exec mysql mysql -u root -p
 Esta configuración incluye:
 
 Optimización de imágenes Docker

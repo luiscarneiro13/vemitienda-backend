@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     unzip \
     nodejs \
-    npm \
     cron \
     supervisor \
     && docker-php-ext-configure gd --with-jpeg --with-webp \
@@ -36,9 +35,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock package.json package-lock.json /var/www/
 WORKDIR /var/www
 RUN composer install --no-dev --no-scripts --no-autoloader \
-    && npm install --production \
-    && composer dump-autoload --optimize \
-    && npm run build
+    && composer dump-autoload --optimize
 
 # Stage 4: Copia de la aplicación
 COPY . .
