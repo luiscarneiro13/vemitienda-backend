@@ -12,26 +12,28 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
-      # - mysql
+      - mysql
     networks:
       - laravel
 
-  # mysql:
-  #   image: mysql:8.0.30
-  #   container_name: mysql-vemitienda
-  #   restart: unless-stopped
-  #   tty: true
-  #   ports:
-  #     - "3306:3306"
-  #   environment:
-  #     MYSQL_DATABASE: crm-web
-  #     MYSQL_USER: crm-web
-  #     MYSQL_PASSWORD: secret
-  #     MYSQL_ROOT_PASSWORD: secret
-  #     SERVICE_TAGS: dev
-  #     SERVICE_NAME: mysql
-  #   networks:
-  #     - laravel
+  mysql:
+    image: mysql:8.0.30
+    container_name: mysql-vemitienda
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: crm-web
+      MYSQL_USER: crm-web
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - laravel
 
   php:
     build:
@@ -40,10 +42,15 @@ services:
     container_name: php-vemitienda
     volumes:
       - .:/var/www/html
+    depends_on:
+      - mysql
     ports:
       - "9000:9000"
     networks:
       - laravel
+    entrypoint: ["sh", "-c"]
+    command: "docker compose exec php composer install && docker compose run --rm artisan migrate"
+
 
   npm:
     image: node:20.11.1
@@ -60,8 +67,8 @@ services:
     container_name: artisan-vemitienda
     volumes:
       - .:/var/www/html
-    # depends_on:
-    #   - mysql
+    depends_on:
+      - mysql
     working_dir: /var/www/html
     entrypoint: ["php", "/var/www/html/artisan"]
     networks:
@@ -74,8 +81,8 @@ services:
     container_name: queue-vemitienda
     volumes:
       - .:/var/www/html
-    # depends_on:
-    #   - mysql
+    depends_on:
+      - mysql
     working_dir: /var/www/html
     entrypoint: ["php", "artisan", "queue:work"]
     networks:

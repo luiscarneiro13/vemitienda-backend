@@ -16,7 +16,7 @@ Se debe tener docker y (docker-compose 1.27.0 o sup)
         docker compose up -d --build 
 
 
-    **Crear archivo .env**
+    **Crear archivo .env dentro de ubuntu, no en el container**
 
 
 

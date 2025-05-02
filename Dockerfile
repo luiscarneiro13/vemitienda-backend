@@ -4,9 +4,14 @@ FROM php:8.2-fpm-alpine
 # Establece el directorio de trabajo
 WORKDIR /var/www/html
 
-# Copia el archivo .env.example al contenedor (asegúrate de que esté en el contexto de construcción)
-# Este archivo .envProd se debe crear en el ubuntu cuando se clone el proyecto
-COPY .envProd .env
+COPY . .
+
+
+RUN apt-get update || apk update
+
+
+# OJOOOOOOOOOOOOOOOOOOOOOOO Este archivo .envProd se debe crear en el ubuntu cuando se clone el proyecto
+
 
 # Instala dependencias del sistema y extensiones PHP necesarias para Laravel 10
 RUN apk add --no-cache \
