@@ -1,14 +1,14 @@
-FROM php:8.2-fpm
+FROM php:8.2-fpm-alpine
 
 # Instalar dependencias
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     git \
     curl \
     libpng-dev \
-    libjpeg-dev \
+    libjpeg-turbo-dev \
     libwebp-dev \
     libzip-dev \
-    libonig-dev \
+    oniguruma-dev \
     libxml2-dev \
     unzip \
     nodejs \
@@ -34,3 +34,4 @@ RUN mkdir -p /var/www/storage/logs \
     && chmod -R 775 /var/www/storage \
     && cp .env.docker .env || true
 
+CMD ["php-fpm", "-D"]
