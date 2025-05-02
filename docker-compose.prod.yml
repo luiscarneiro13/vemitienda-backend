@@ -23,6 +23,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: app
     container_name: app
     volumes:
       - .:/var/www
