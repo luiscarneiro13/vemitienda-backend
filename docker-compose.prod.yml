@@ -33,7 +33,7 @@ services:
       mysql:
         condition: service_healthy
     environment:
-      - DB_HOST=vemitienda-backend_laravel-network #nombre de la red
+      - DB_HOST=${DB_HOST} #nombre de la red. Para saberlo: docker network ls
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
