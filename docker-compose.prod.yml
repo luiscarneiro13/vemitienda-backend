@@ -31,7 +31,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    command: /bin/sh -c "composer install --no-dev --optimize-autoloader && php-fpm"
+    command: "composer install"
     environment:
       - DB_HOST=mysql
       - DB_DATABASE=${DB_DATABASE}
