@@ -41,7 +41,6 @@ services:
       - laravel
     entrypoint: ["sh", "-c"]
     # Se agrega el llamado al contenedor queue: después de instalar las dependencias, se ejecuta en el contenedor "queue"
-    command: "docker exec queue-vemitienda php artisan queue:work"
 
   queue:
     build:
