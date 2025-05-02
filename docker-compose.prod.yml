@@ -3,7 +3,7 @@ services:
     image: mysql:8.0.30
     container_name: mysql
     volumes:
-      - /root/mysql_data:/var/lib/mysql
+      - /mnt/mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
