@@ -34,14 +34,6 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    environment:
-      - DB_HOST=${DB_HOST} #nombre de la red. Para saberlo: docker network ls
-      - DB_DATABASE=${DB_DATABASE}
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - APP_ENV=${APP_ENV}
-      - APP_KEY=${APP_KEY}
-      - APP_DEBUG=${APP_DEBUG}
     networks:
       - laravel-network
 
