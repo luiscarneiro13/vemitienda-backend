@@ -11,20 +11,16 @@ Se debe tener docker y (docker-compose 1.27.0 o sup)
 
 
     **Instalar el entorno:**
-  
-        
-        docker compose up -d --build 
-
-
-    **Crear archivo .env**
-
-
+        - git clone https://github.com/luiscarneiro13/vemitienda-backend.git && cd vemitienda-backend && nano .env
+        Local:
+            - docker compose up -d --build  
+        Produccion:
+            - docker compose -f docker-compose.prod.yml up -d --build 
 
     **Instalar el proyecto**
-  
-        docker compose run --rm artisan migrate --seed
+        - docker compose exec php composer install
+        - docker compose run --rm artisan migrate --seed
         
-
   Si sale el siguiente error, se debe tomar la dirección que está despues del @ y colocarla en la variable DB_HOST del .env (En este caso quedaría así: DB_HOST=172.18.0.3):
 
   SQLSTATE[HY000] [1045] Access denied for user 'crm-web'@'172.18.0.3' (using password: YES)
