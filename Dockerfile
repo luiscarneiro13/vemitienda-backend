@@ -36,6 +36,3 @@ RUN mkdir -p /var/www/storage/logs \
 RUN cd /var/www/html \
     && composer install
 
-RUN cd /var/www/html \
-    && php artisan migrate --force
-
