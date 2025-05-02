@@ -34,4 +34,4 @@ RUN mkdir -p storage bootstrap/cache storage/logs && \
     chown www-data:www-data storage/logs/laravel.log
 
 # Ejecuta Composer install para instalar las dependencias del proyecto
-# RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader

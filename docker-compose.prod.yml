@@ -56,7 +56,6 @@ services:
       - laravel
     entrypoint: ["sh", "-c"]
     # Se agrega el llamado al contenedor queue: después de instalar las dependencias, se ejecuta en el contenedor "queue"
-    command: "composer install && docker exec queue-vemitienda php artisan queue:work"
 
   artisan:
     build:
@@ -67,7 +66,6 @@ services:
       - .:/var/www/html
     depends_on:
       - mysql
-      - php
     working_dir: /var/www/html
     entrypoint: ["php", "/var/www/html/artisan"]
     networks:
@@ -80,7 +78,6 @@ services:
       - .:/var/www/html
     depends_on:
       - mysql
-      - php
     working_dir: /var/www/html
     entrypoint: ["npm"]
 
