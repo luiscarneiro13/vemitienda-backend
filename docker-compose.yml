@@ -14,7 +14,7 @@ services:
       - laravel
 
   mysql:
-    image: mysql:5.7# imagen de docker hub
+    image: mysql:8.0.30
     container_name: mysql # nombre de referencia del servicio
     restart: unless-stopped # si tiene algun problema, reinicialo
     tty: true
