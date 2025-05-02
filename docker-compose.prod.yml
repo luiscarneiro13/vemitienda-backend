@@ -1,3 +1,7 @@
+
+networks:
+  laravel:
+
 services:
   mysql:
     image: mysql:8.0.30
@@ -18,7 +22,7 @@ services:
       timeout: 20s
       retries: 3
     networks:
-      - laravel-network
+      - laravel
 
   app:
     build:
@@ -35,7 +39,7 @@ services:
       mysql:
         condition: service_healthy
     networks:
-      - laravel-network
+      - laravel
 
   nginx:
     image: nginx:alpine
@@ -48,11 +52,7 @@ services:
     depends_on:
       - app
     networks:
-      - laravel-network
+      - laravel
 
 volumes:
   mysql_data:
-
-networks:
-  laravel-network:
-    driver: bridge
