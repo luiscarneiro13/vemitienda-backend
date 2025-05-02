@@ -1,22 +1,17 @@
 #!/bin/sh
 
 # Esperar a MySQL
-until mysqladmin ping -h"mysql" -u"${DB_USERNAME}" -p"${DB_PASSWORD}" --silent; do
-  echo "Esperando a MySQL..."
-  sleep 2
+while ! mysqladmin ping -h"mysql" -u"${DB_USERNAME}" -p"${DB_PASSWORD}" --silent; do
+  sleep 1
 done
 
-# Ejecutar migraciones y seeds
-php artisan migrate --force
-php artisan db:seed --force
+# Configurar permisos dinámicos
+chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
-# Optimizar la aplicación
+# Migraciones y optimización
+php artisan migrate --force
 php artisan optimize:clear
 php artisan optimize
-php artisan storage:link
 
-# Iniciar cron
-service cron start
-
-# Mantener el contenedor en ejecución
-exec "$@"
+exec php-fpm

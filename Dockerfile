@@ -1,6 +1,6 @@
 FROM php:8.2-fpm
 
-# Stage 1: Instalación de dependencias
+# Instalar dependencias
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -10,37 +10,27 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libonig-dev \
     libxml2-dev \
-    libpq-dev \
     unzip \
     nodejs \
-    cron \
-    supervisor \
+    npm \
     && docker-php-ext-configure gd --with-jpeg --with-webp \
     && docker-php-ext-install -j$(nproc) \
-    pdo \
-    pdo_mysql \
-    mbstring \
-    exif \
-    pcntl \
-    bcmath \
-    gd \
-    zip \
-    && pecl install redis \
-    && docker-php-ext-enable redis
+    pdo pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Stage 2: Configuración de Composer
+# Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Stage 3: Optimización de dependencias
-COPY composer.json composer.lock package.json package-lock.json /var/www/
-WORKDIR /var/www
+# Instalar dependencias
+COPY composer.json composer.lock package.json package-lock.json ./
 RUN composer install --no-dev --no-scripts --no-autoloader \
+    && npm install --omit=dev \
+    && npm run build \
     && composer dump-autoload --optimize
 
-# Stage 4: Copia de la aplicación
+# Copiar aplicación
 COPY . .
 
-# Stage 5: Configuración final
+# Configurar permisos
 RUN chown -R www-data:www-data /var/www/storage \
     && chmod -R 775 /var/www/storage \
     && cp .env.docker .env
