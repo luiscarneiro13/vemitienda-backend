@@ -19,18 +19,19 @@ RUN apk update && apk add --no-cache \
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Instalar dependencias
+# Copiar archivos antes de instalar dependencias
 COPY composer.json composer.lock package.json package-lock.json ./
-RUN composer install --no-dev --no-scripts --no-autoloader \
+
+# Instalar dependencias correctamente
+RUN composer install --no-dev --optimize-autoloader \
     && composer dump-autoload --optimize
 
-# Copiar aplicación
+# Copiar el código de la aplicación
 COPY . .
 
-# Configurar permisos (se asegura que el directorio storage exista)
+# Configurar permisos y estructura necesaria
 RUN mkdir -p /var/www/storage/logs \
     && touch /var/www/storage/logs/laravel.log \
-    && chown -R www-data:www-data /var/www/storage \
-    && chmod -R 775 /var/www/storage \
+    && chown -R www-data:www-data /var/www/storage bootstrap/cache \
+    && chmod -R 775 /var/www/storage bootstrap/cache \
     && cp .env.docker .env || true
-
