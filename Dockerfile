@@ -25,8 +25,6 @@ COPY composer.json composer.lock package.json package-lock.json ./
 # Copiar el código de la aplicación
 COPY . .
 
-COPY .env.docker .env
-
 # Configurar permisos y estructura necesaria
 RUN mkdir -p /var/www/storage/logs \
     && touch /var/www/storage/logs/laravel.log \

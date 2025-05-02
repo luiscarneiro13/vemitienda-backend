@@ -38,6 +38,19 @@ services:
     networks:
       - laravel
 
+  artisan:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: artisan
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    entrypoint: ['php', '/var/www/html/artisan']
+    networks:
+      - laravel
   nginx:
     image: nginx:alpine
     container_name: nginx
@@ -50,6 +63,7 @@ services:
       - app
     networks:
       - laravel
+
 
 volumes:
   mysql_data:

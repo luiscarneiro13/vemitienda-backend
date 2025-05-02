@@ -1,69 +1,114 @@
-# Esta configuración incluye:
+# CRM-WEB
+Este es un repositorio con la configuración inicial para dockerizar un laravel 7. Se crean 3 contenedores y estos se manejan dentro de la misma subred
 
-- Optimización de imágenes Docker
+  **1.- Contenedor nginx**
+  **2.- Contenedor php**
+  **3.- Contenedor mysql**
 
-- Configuración de seguridad para Nginx
+Se debe tener docker y (docker-compose 1.27.0 o sup)
 
-- Redis para cache y colas
-
-- Cron para tareas programadas
-
-- Supervisión de procesos
-
-- Manejo adecuado de permisos
-
-- Variables de entorno separadas
-
-- Sistema de caché para builds rápidos
-
-- Configuraciones de performance (OPcache, PHP-FPM, Nginx)
+# Instalación en Entorno local
 
 
-## Para usar el sistema:
-
-    Configuración inicial:
-
-        chmod +x docker-entrypoint.sh
-        cp .env.docker .env
-
-## Construir y ejecutar:
-
-    docker compose up -d --build
-    
-## Flujo completo automatizado:
-
-- Construye la imagen PHP con todas las dependencias
-
-- Configura MySQL con persistencia de datos
-
-- Instala dependencias de Composer y NPM
-
-- Compila assets frontend
-
-- Ejecuta migraciones y seeds
-
-- Inicia PHP-FPM, Nginx, Queue Worker y Scheduler
-
-- Configura cron para tareas programadas
-
-- Habilita Redis para cache y colas
-
-- Configura opcache para mejor performance
-
-- Comandos útiles adicionales:
+    **Instalar el entorno:**
+  
+        
+        docker compose up -d --build 
 
 
-## Ejecutar tests
-    docker compose exec app php artisan test
+    **Crear archivo .env**
 
-## Instalar nueva dependencia PHP
-    docker compose exec app composer require vendor/package
 
-## Instalar nueva dependencia NPM
-    docker compose exec app npm install package-name
 
-## Ver logs de la aplicación
-    docker compose logs -f app
+    **Instalar el proyecto**
 
-## Acceder a MySQL
-    docker compose exec mysql mysql -u root -p
+   
+        docker compose exec php composer install
+
+  
+        docker compose run --rm artisan migrate --seed
+        
+
+  Si sale el siguiente error, se debe tomar la dirección que está despues del @ y colocarla en la variable DB_HOST del .env (En este caso quedaría así: DB_HOST=172.18.0.3):
+
+  SQLSTATE[HY000] [1045] Access denied for user 'crm-web'@'172.18.0.3' (using password: YES)
+  
+
+# Instalación en entorno de Producción
+
+  Crear droplet digitaocean con ubuntu 18.04. Este es un droplet que no trae LAMP no LEMP ni  nada, es un droplet vacío.
+
+  **Acceder al droplet por ssh y ejecutar:**
+
+  apt-get update
+
+  **Instalación de Docker**
+
+  sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+  sudo apt update
+
+  apt-cache policy docker-ce
+
+  sudo apt install docker-ce
+
+  sudo systemctl status docker
+
+  sudo usermod -aG docker ${USER}
+
+  sudo apt-get update
+
+  **Instalación de Doker Compose**
+
+  $ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+  sudo chmod +x /usr/local/bin/docker-compose
+
+  docker-compose --version
+
+  **Clonar el repositorio:**
+
+  git clone https://github.com/luiscarneiro13/crm-web.git
+
+  **Dirigirse a la carpeta del proyecto:**
+
+  cd crm-web
+
+  **Instalar el entorno de docker para producción:**
+  
+  docker-compose -f docker-compose.prod.yml up -d --build
+
+  **Dar permiso a Carpetas:**
+
+  cd src
+  
+  sudo chmod 777 -R storage
+
+  **Crear archivo .env con las siguientes variables**
+  
+  DB_CONNECTION=mysql
+
+  DB_HOST=mysql
+
+  DB_PORT=3306
+
+  DB_DATABASE=homestead
+
+  DB_USERNAME=homestead
+
+  DB_PASSWORD=nn#~y}&D%4/[;/J:2yJA
+
+  **Instalar el proyecto**
+
+  docker-compose run --rm composer install
+  
+  docker-compose run --rm artisan migrate --seed
+
+  Si sale el siguiente error, se debe tomar la dirección que está despues del @ y colocarla en la variable DB_HOST del .env (En este caso quedaría así: DB_HOST=172.18.0.3):
+
+  SQLSTATE[HY000] [1045] Access denied for user 'crm-web'@'172.18.0.3' (using password: YES)
+  
