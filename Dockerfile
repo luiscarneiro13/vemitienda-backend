@@ -28,7 +28,8 @@ RUN composer install --no-dev --no-scripts --no-autoloader \
 COPY . .
 
 # Configurar permisos (se asegura que el directorio storage exista)
-RUN mkdir -p /var/www/storage \
+RUN mkdir -p /var/www/storage/logs \
+    && touch /var/www/storage/logs/laravel.log \
     && chown -R www-data:www-data /var/www/storage \
     && chmod -R 775 /var/www/storage \
     && cp .env.docker .env || true
