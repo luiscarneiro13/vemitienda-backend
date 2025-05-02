@@ -2,6 +2,19 @@ networks:
   laravel:
 
 services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx-vemitienda
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - laravel
   mysql:
     image: mysql:8.0.30
     container_name: mysql-vemitienda
@@ -20,42 +33,25 @@ services:
       - /root/mysql-data:/var/lib/mysql # Esta carpeta mysql_data se crea en un directorio afuera del proyecto en Ubuntu
     networks:
       - laravel
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-
-  queue:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: queue-vemitienda
-    volumes:
-      - .:/var/www/html
-    depends_on:
-      - mysql
-    working_dir: /var/www/html
-    entrypoint: ["php", "artisan", "queue:work"]
-    networks:
-      - laravel
-
   php:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php-vemitienda
+    container_name: php
     volumes:
       - .:/var/www/html
-      - /var/run/docker.sock:/var/run/docker.sock # Permite ejecutar comandos Docker desde este contenedor
-    depends_on:
-      - mysql
-      - queue
     ports:
       - "9000:9000"
     networks:
       - laravel
-    entrypoint: ["sh", "-c"]
-    # Se agrega el llamado al contenedor queue: después de instalar las dependencias, se ejecuta en el contenedor "queue"
+
+  npm:
+    image: node:20.11.1
+    container_name: npm-vemitienda
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ["npm"]
 
   artisan:
     build:
@@ -70,27 +66,18 @@ services:
     entrypoint: ["php", "/var/www/html/artisan"]
     networks:
       - laravel
-
-  npm:
-    image: node:20.11.1
-    container_name: npm-vemitienda
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: queue-vemitienda
     volumes:
       - .:/var/www/html
     depends_on:
       - mysql
     working_dir: /var/www/html
-    entrypoint: ["npm"]
-
-  nginx:
-    image: nginx:stable-alpine
-    container_name: nginx-vemitienda
-    ports:
-      - "80:80"
-    volumes:
-      - .:/var/www/html
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - php
-      - mysql
+    entrypoint: ["php", "artisan", "queue:work"]
     networks:
       - laravel
+
+
