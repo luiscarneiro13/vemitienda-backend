@@ -32,5 +32,8 @@ RUN mkdir -p /var/www/storage/logs \
     && chmod -R 775 /var/www/storage bootstrap/cache \
     && cp .env.docker .env || true
 
+# Instalar dependencias y ejecutar migraciones
 RUN cd /var/www/html \
-    && composer install
+    && composer install \
+    && php artisan migrate --force
+
