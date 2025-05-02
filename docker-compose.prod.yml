@@ -31,7 +31,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    entrypoint: ["/bin/sh", "-c", "composer install --no-dev --optimize-autoloader && exec php-fpm"]
+    command: /bin/sh -c "composer install --no-dev --optimize-autoloader && php-fpm"
     environment:
       - DB_HOST=mysql
       - DB_DATABASE=${DB_DATABASE}
