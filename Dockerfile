@@ -22,10 +22,6 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Copiar archivos antes de instalar dependencias
 COPY composer.json composer.lock package.json package-lock.json ./
 
-# Instalar dependencias correctamente
-RUN composer install --no-dev --optimize-autoloader \
-    && composer dump-autoload --optimize
-
 # Copiar el código de la aplicación
 COPY . .
 
