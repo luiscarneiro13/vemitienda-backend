@@ -16,6 +16,7 @@ services:
     networks:
       - laravel
 
+
   mysql:
     image: mysql:8.0.30
     container_name: mysql-vemitienda
