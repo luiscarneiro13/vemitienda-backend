@@ -1,2 +1,8 @@
-node_modules
-vendor
+.git
+docker-compose.yml
+docker/
+.env
+node_modules/
+vendor/
+storage/logs/*
+!.env.docker

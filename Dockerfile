@@ -1,35 +1,52 @@
-# Usa como base PHP 8.2 con FPM sobre Alpine Linux
-FROM php:8.2-fpm-alpine
+FROM php:8.2-fpm
 
-# Establece el directorio de trabajo
-WORKDIR /var/www/html
+# Stage 1: Instalación de dependencias
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libjpeg-dev \
+    libwebp-dev \
+    libzip-dev \
+    libonig-dev \
+    libxml2-dev \
+    libpq-dev \
+    unzip \
+    nodejs \
+    npm \
+    cron \
+    supervisor \
+    && docker-php-ext-configure gd --with-jpeg --with-webp \
+    && docker-php-ext-install -j$(nproc) \
+    pdo \
+    pdo_mysql \
+    mbstring \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    zip \
+    && pecl install redis \
+    && docker-php-ext-enable redis
 
+# Stage 2: Configuración de Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Stage 3: Optimización de dependencias
+COPY composer.json composer.lock package.json package-lock.json /var/www/
+WORKDIR /var/www
+RUN composer install --no-dev --no-scripts --no-autoloader \
+    && npm install --production \
+    && composer dump-autoload --optimize \
+    && npm run build
+
+# Stage 4: Copia de la aplicación
 COPY . .
 
-RUN apt-get update || apk update
+# Stage 5: Configuración final
+RUN chown -R www-data:www-data /var/www/storage \
+    && chmod -R 775 /var/www/storage \
+    && cp .env.docker .env \
+    && php artisan key:generate
 
-# OJOOOOOOOOOOOOOOOOOOOOOOO Este archivo .envProd se debe crear en el ubuntu cuando se clone el proyecto
-
-# Instala dependencias del sistema y extensiones PHP necesarias para Laravel 10
-RUN apk add --no-cache \
-      bash \
-      curl \
-      libpng-dev \
-      libjpeg-turbo-dev \
-      freetype-dev \
-      libzip-dev \
-      oniguruma-dev \
-      icu-dev && \
-    docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd intl zip
-
-# Instala Composer (copiándolo desde la imagen oficial de Composer)
-COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
-
-# Crea los directorios que Laravel requiere y ajusta permisos:
-RUN mkdir -p storage bootstrap/cache storage/logs && \
-     chown -R www-data:www-data storage bootstrap/cache storage/logs && \
-    chmod -R 775 storage bootstrap/cache storage/logs && \
-    touch storage/logs/laravel.log && \
-    chown www-data:www-data storage/logs/laravel.log
-
+CMD ["php-fpm"]
