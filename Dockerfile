@@ -34,4 +34,3 @@ RUN mkdir -p /var/www/storage/logs \
     && chmod -R 775 /var/www/storage \
     && cp .env.docker .env || true
 
-CMD ["php-fpm", "-D"]

@@ -31,7 +31,6 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    entrypoint: ["sh", "/var/www/docker-entrypoint.sh"]
     environment:
       - DB_HOST=mysql
       - DB_DATABASE=${DB_DATABASE}
