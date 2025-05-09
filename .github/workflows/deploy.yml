@@ -12,8 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Moverse a la carpeta vemitiendabackend
+        run: cd vemitiendabackend
+
       - name: Hacer el script ejecutable
-        run: chmod +x start.sh
+        run: chmod +x vemitiendabackend/start.sh
 
       - name: Ejecutar el script
-        run: ./start.sh
+        run: ./vemitiendabackend/start.sh
