@@ -17,8 +17,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script:
-            cd /home/vemitiendabackend && \
-            git pull && \
-            chmod +x start.sh && \
+            cd /home/vemitiendabackend &&
+            git pull &&
+            chmod +x start.sh &&
             ./start.sh
 
