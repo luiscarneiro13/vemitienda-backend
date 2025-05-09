@@ -22,7 +22,7 @@ class ShareController extends Controller
         }
         $company = Company::with('logo', 'user')->where('slug', $slug)->first();
         if(!$company){
-            return redirect('https://vemitienda.com.ve');
+            // return redirect('https://vemitienda.com.ve');
         }
         $id_usuario = $company->user_id;
         $data = [
