@@ -84,10 +84,6 @@ echo ">> Generando Certificado SSL con Let's Encrypt..."
 docker exec "$NGINX_CONTAINER" certbot --nginx --non-interactive --agree-tos --email "$EMAIL" -d vemitienda.com.ve -d www.vemitienda.com.ve
 
 echo ""
-echo ">> Configurando renovación automática del certificado..."
-docker exec "$NGINX_CONTAINER" bash -c "echo '0 3 * * * certbot renew --quiet' | crontab -"
-
-echo ""
 echo ">> Reiniciando Nginx para aplicar certificados..."
 docker exec "$NGINX_CONTAINER" systemctl restart nginx
 
