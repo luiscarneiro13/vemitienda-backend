@@ -69,10 +69,13 @@ sleep 5
 echo ""
 echo ">> Instalando dependencias Composer y NPM..."
 
-docker exec -it vemitiendabackend-php cp .env.docker .env
 docker exec -it "$APP_CONTAINER" git config --global --add safe.directory /var/www
 docker exec -it "$APP_CONTAINER" composer install --ignore-platform-req=ext-gd
 docker exec -it "$APP_CONTAINER" npm install
+
+echo ""
+echo ">> Copiando .env"
+docker exec -it "$APP_CONTAINER" cp .env.docker .env
 
 echo ""
 echo ">> Ejecutando migraciones..."
