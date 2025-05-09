@@ -682,6 +682,7 @@
                         Copyright © 2023 <a href="https://vemitienda.online">Ve mi Tienda</a> - Todos los derechos
                         reservados
                     </p>
+                    <p>Version 2.0</p>
                 </div>
                 <!-- end of col -->
             </div>

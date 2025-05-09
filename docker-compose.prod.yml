@@ -18,7 +18,7 @@ services:
       - 80:80
     volumes:
       - .:/var/www # carpeta local/ vincula a carpeta de nginx
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf # archivo local / reflejado en archivo de la imagen
+      - ./nginx/default.prod.conf:/etc/nginx/conf.d/default.conf # archivo local / reflejado en archivo de la imagen
     depends_on:
       - php
     networks:
