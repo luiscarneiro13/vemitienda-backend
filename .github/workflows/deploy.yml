@@ -23,5 +23,5 @@ jobs:
             git pull &&
             chmod +x start.sh &&
             ./start.sh &&
-            php artisan storage:link
+            artisan storage:link
 

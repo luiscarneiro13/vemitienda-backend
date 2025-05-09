@@ -50,6 +50,7 @@ Route::get('ejemplo', function () {
 });
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
+Route::get('catalogo/{slug}', 'WEB\V3\ShareController@index');
 
 Route::prefix('descargar/videos')->group(function () {
     Route::get('/', [DownloaderController::class, 'index'])->name('home');
@@ -66,22 +67,21 @@ Route::get('blog', [BlogController::class, 'index'])->name('blog');
 Route::get('blog/{slug}', [BlogController::class, 'show'])->name('blog');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::resource('usuarios', AdminUsersController::class);
-    Route::resource('blog', AdminPostsController::class);
-    Route::resource('plans', AdminPlansController::class);
-    Route::resource('versions', AdminVersionsController::class);
-    Route::resource('tags', AdminTagsController::class);
-    Route::resource('postcategory', AdminPostCategoryController::class);
-    Route::resource('planusers', AdminPlanUsersController::class);
-    Route::resource('paymentmethods', AdminPaymentMethodsController::class);
-    Route::resource('payments', AdminPaymentsController::class);
+    Route::resource('usuarios', Admin\UsersController::class);
+    Route::resource('blog', Admin\PostsController::class);
+    Route::resource('plans', Admin\PlansController::class);
+    Route::resource('versions', Admin\VersionsController::class);
+    Route::resource('tags', Admin\TagsController::class);
+    Route::resource('postcategory', Admin\PostCategoryController::class);
+    Route::resource('planusers', Admin\PlanUsersController::class);
+    Route::resource('paymentmethods', Admin\PaymentMethodsController::class);
+    Route::resource('payments', Admin\PaymentsController::class);
     // Agregar imágenes al crear posts desde el admin
     Route::post('storeImagePost', 'API\V3\ImagesController@storeImagePost')->name("upload");
 });
 
 Route::get('init/{id_usuario}', 'API\V3\ShareController@init');
 Route::get('share/{id_encriptado}', 'API\V3\ShareController@share');
-Route::get('catalogo/{slug}', 'WEB\V3\ShareController@index');
 Route::get('confirmationuser/{id_encriptado}', 'API\V3\UserController@confirmationuser');
 Route::get('message', 'API\V3\UserController@message')->name('message');
 
