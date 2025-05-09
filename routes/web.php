@@ -50,9 +50,9 @@ Route::get('ejemplo', function () {
 });
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('catalogo/{slug}', 'WEB\V3\ShareController@index');
+Route::get('/catalogo/{slug}', 'WEB\V3\ShareController@index');
 
-Route::prefix('descargar/videos')->group(function () {
+Route::prefix('/descargar/videos')->group(function () {
     Route::get('/', [DownloaderController::class, 'index'])->name('home');
     Route::post('/prepare', [DownloaderController::class, 'prepare'])->name('prepare');
     Route::get('/status/{video}', [DownloaderController::class, 'status'])->name('status');
