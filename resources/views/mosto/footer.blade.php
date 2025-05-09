@@ -48,7 +48,7 @@
         </div>
         <div class="copyright">
             <p>
-                Copyright © 2023. All Rights Reserved By <a href="#0">Ve mi Tienda</a>
+                Copyright © 2023. All Rights Reserved By <a href="#0">Ve mi Tienda. v2.0</a>
             </p>
         </div>
     </div>
