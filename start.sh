@@ -69,6 +69,14 @@ sleep 5
 echo ""
 echo ">> Instalando dependencias Composer y NPM..."
 
+docker exec -it "$APP_CONTAINER" chown -R www-data:www-data /var/www
+
+
+# Configura permisos correctos para Laravel y Nginx
+docker exec -it "$APP_CONTAINER" chmod -R 775 /var/www/storage/logs
+docker exec -it "$APP_CONTAINER" chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+
+docker exec -d "$APP_CONTAINER" php artisan optimize:clear
 docker exec -it "$APP_CONTAINER" git config --global --add safe.directory /var/www
 docker exec -it "$APP_CONTAINER" composer install --ignore-platform-req=ext-gd
 docker exec -it "$APP_CONTAINER" npm install

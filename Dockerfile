@@ -20,9 +20,5 @@ WORKDIR /var/www
 
 COPY . .
 
-# Configura permisos correctos para Laravel y Nginx
-RUN chown -R www-data:www-data /var/www && \
-    chmod -R 775 /var/www/storage /var/www/bootstrap/cache
-
 # Expone el puerto necesario
 EXPOSE 9000
