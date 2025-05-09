@@ -23,6 +23,7 @@ use App\Events\MensajeNuevo;
 
 // Rutas públicas
 Route::get('/', 'NewHomeController@index')->name('home');
+Route::get('/catalogo/{slug}', 'WEB\V3\ShareController@index');
 Route::get('/pruebas', 'PruebasController@index')->name('pruebas');
 Route::get('/changeFormat', 'PruebasController@changeFormat')->name('changeFormat');
 Route::get('politica', fn () => view('politica'));
@@ -31,7 +32,7 @@ Route::get('ejemplo', fn () => view('ejemplo'));
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 // Rutas de catálogo y productos
-Route::get('/catalogo/{slug}', 'WEB\V3\ShareController@index');
+
 Route::get('/{slug}', [ProductController3::class, 'productList'])->name('products.list');
 Route::get('/{slug}/cart', [CartController3::class, 'cartList'])->name('cart.list');
 Route::post('cart', [CartController3::class, 'addToCart'])->name('cart.store');
