@@ -6,35 +6,48 @@ echo "================================="
 echo ""
 
 # =========================
-# Variables (Set defaults as if all "yes" were selected)
+# Variables
 # =========================
 OPTION=2
 START_QUEUE_WORK=yes
 ENTER_CONTAINER=no
-CONTAINERS=("vemitienda-backend-php" "vemitienda-backend-nginx")
-APP_CONTAINER="vemitienda-backend-php"
+CONTAINERS=("vemitiendabackend-php" "vemitiendabackend-nginx")
+APP_CONTAINER="vemitiendabackend-php"
+
+# =========================
+# Función para esperar a que el contenedor esté listo
+# =========================
+wait_for_container() {
+    local container_name=$1
+    echo ">> Esperando a que el contenedor $container_name esté listo..."
+
+    while ! docker ps --filter "name=$container_name" --format "{{.Names}}" | grep -q "$container_name"; do
+        sleep 2
+    done
+
+    echo ">> Contenedor $container_name está en ejecución."
+}
+
+# =========================
+# Función para detener y eliminar contenedores existentes
+# =========================
+stop_and_remove_container() {
+    local container_name=$1
+    if docker ps -a --filter "name=$container_name" --format "{{.Names}}" | grep -q "$container_name"; then
+        echo ">> Deteniendo y eliminando el contenedor $container_name..."
+        docker stop "$container_name" && docker rm "$container_name"
+    else
+        echo ">> El contenedor $container_name no existe o no está en ejecución."
+    fi
+}
 
 # =========================
 # Acciones
 # =========================
 
-echo ">> Deteniendo contenedor vemitienda-backend-php..."
-
-if docker ps --filter "name=vemitienda-backend-php" --format "{{.Names}}" | grep -q "vemitienda-backend-php"; then
-    echo ">> Deteniendo el contenedor vemitienda-backend-php..."
-    docker compose down react-native
-else
-    echo ">> El contenedor vemitienda-backend-php no está en ejecución."
-fi
-
-echo ">> Deteniendo contenedor vemitienda-backend-nginx..."
-
-if docker ps --filter "name=vemitienda-backend-nginx" --format "{{.Names}}" | grep -q "vemitienda-backend-nginx"; then
-    echo ">> Deteniendo el contenedor vemitienda-backend-nginx..."
-    docker compose down react-native
-else
-    echo ">> El contenedor vemitienda-backend-nginx no está en ejecución."
-fi
+echo ">> Deteniendo y eliminando contenedores existentes..."
+stop_and_remove_container "vemitiendabackend-php"
+stop_and_remove_container "vemitiendabackend-nginx"
 
 echo ""
 echo ">> Reconstruyendo contenedores (docker compose build)..."
@@ -44,6 +57,9 @@ echo ""
 echo ">> Levantando servicios (docker compose up -d)..."
 docker compose up -d
 
+# Esperar a que los contenedores se levanten antes de ejecutar comandos sobre ellos
+wait_for_container "$APP_CONTAINER"
+
 echo ""
 echo ">> Configurando 'host.docker.internal' dentro del contenedor..."
 sleep 5
@@ -51,7 +67,7 @@ sleep 5
 echo ""
 echo ">> Instalando dependencias Composer y NPM..."
 docker exec -it "$APP_CONTAINER" git config --global --add safe.directory /var/www
-docker exec -it "$APP_CONTAINER" composer install
+docker exec -it "$APP_CONTAINER" composer install --ignore-platform-req=ext-gd
 docker exec -it "$APP_CONTAINER" npm install
 
 echo ""
@@ -68,9 +84,3 @@ echo "=========================================="
 echo "Proyecto listo para trabajar!"
 echo "Desarrollado por Luis Carneiro"
 echo "=========================================="
-
-# if docker exec -it "$APP_CONTAINER" test -f /var/www/artisan; then
-#     echo "Accede a tu proyecto Laravel en: http://localhost:9010"
-# else
-#     echo "Proyecto desplegado en contenedor '$APP_CONTAINER'"
-# fi
