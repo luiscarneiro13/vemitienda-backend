@@ -1,37 +1,4 @@
 services:
-  nginx:
-    image: nginx:stable-alpine # imagen de docker hub que vamos a usar
-    container_name: vemitiendabackend-nginx # nombre para referirse al servicio
-    ports:
-      - 8000:80
-    volumes:
-      - .:/var/www # carpeta local/ vincula a carpeta de nginx
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf # archivo local / reflejado en archivo de la imagen
-    depends_on:
-      - php
-      - mysql
-    networks:
-      - vemitienda
-
-  mysql:
-    image: mysql:8.0.30
-    container_name: vemitiendabackend-mysql # nombre de referencia del servicio
-    restart: unless-stopped # si tiene algun problema, reinicialo
-    tty: true
-    ports:
-      - 3306:3306
-    volumes:
-      - ./mysql:/var/lib/mysql # carpeta local:carpeta de config de mysql
-    environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: "nn#~y}&D%4/[;/J:2yJA"
-      MYSQL_ROOT_PASSWORD: MrcD64kvz3aqSQhw2gJQzNYc
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    networks:
-      - vemitienda # red
-
   php:
     build:
       context: . # ruta de referencia ./
@@ -43,6 +10,19 @@ services:
       - 9000:80
     networks:
       - vemitienda # red
+
+  nginx:
+    image: nginx:stable-alpine # imagen de docker hub que vamos a usar
+    container_name: vemitiendabackend-nginx # nombre para referirse al servicio
+    ports:
+      - 8000:80
+    volumes:
+      - .:/var/www # carpeta local/ vincula a carpeta de nginx
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf # archivo local / reflejado en archivo de la imagen
+    depends_on:
+      - php
+    networks:
+      - vemitienda
 
 networks:
   vemitienda:
