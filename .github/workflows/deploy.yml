@@ -19,6 +19,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script:
             cd /home/vemitiendabackend &&
+            git checkout . &&
             git pull &&
             chmod +x start.sh &&
             ./start.sh
