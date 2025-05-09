@@ -13,9 +13,11 @@ START_QUEUE_WORK=yes
 ENTER_CONTAINER=no
 CONTAINERS=("vemitiendabackend-php" "vemitiendabackend-nginx")
 APP_CONTAINER="vemitiendabackend-php"
+NGINX_CONTAINER="vemitiendabackend-nginx"
+EMAIL="carneiroluis2@gmail.com"
 
 # =========================
-# Función para detener y eliminar contenedores existentes
+# Detener y eliminar contenedores existentes
 # =========================
 stop_and_remove_container() {
     local container_name=$1
@@ -27,17 +29,16 @@ stop_and_remove_container() {
     fi
 }
 
-# =========================
-# Acciones
-# =========================
-
 echo ">> Deteniendo y eliminando contenedores existentes..."
-stop_and_remove_container "vemitiendabackend-php"
-stop_and_remove_container "vemitiendabackend-nginx"
+stop_and_remove_container "$APP_CONTAINER"
+stop_and_remove_container "$NGINX_CONTAINER"
 
+echo ""
+echo ">> Reconstruyendo contenedores y levantando servicios (docker compose up -d)..."
+docker compose -f docker-compose.prod.yml up -d --build
 
 # =========================
-# Función para esperar a que el contenedor esté listo
+# Esperar a que los contenedores se levanten antes de ejecutar comandos
 # =========================
 wait_for_container() {
     local container_name=$1
@@ -50,30 +51,15 @@ wait_for_container() {
     echo ">> Contenedor $container_name está en ejecución."
 }
 
-echo ""
-echo ">> Reconstruyendo contenedores y levantando servicios (docker compose up -d)..."
-docker compose -f docker-compose.prod.yml up -d --build
-
-
-# Esperar a que los contenedores se levanten antes de ejecutar comandos sobre ellos
 wait_for_container "$APP_CONTAINER"
-
-echo ""
-echo ">> ..."
-sleep 5
+wait_for_container "$NGINX_CONTAINER"
 
 echo ""
 echo ">> Instalando dependencias Composer y NPM..."
-
 docker exec --tty=false "$APP_CONTAINER" chown -R www-data:www-data /var/www
-
-
-# Configura permisos correctos para Laravel y Nginx
 docker exec --tty=false "$APP_CONTAINER" chmod -R 775 /var/www/storage/logs
 docker exec --tty=false "$APP_CONTAINER" chmod -R 775 /var/www/storage /var/www/bootstrap/cache
-
-docker exec -d "$APP_CONTAINER" php artisan optimize:clear
-docker exec --tty=false "$APP_CONTAINER" git config --global --add safe.directory /var/www
+docker exec --tty=false "$APP_CONTAINER" php artisan optimize:clear
 docker exec --tty=false "$APP_CONTAINER" composer install --ignore-platform-req=ext-gd
 docker exec --tty=false "$APP_CONTAINER" npm install
 
@@ -85,9 +71,26 @@ echo ""
 echo ">> Iniciando queue:work..."
 docker exec -d "$APP_CONTAINER" php artisan queue:work
 
+# =========================
+# Instalar Certbot dentro del contenedor Nginx
+# =========================
 echo ""
-echo ">> Listo. Contenedor $APP_CONTAINER corriendo."
+echo ">> Instalando Certbot en Nginx..."
+docker exec "$NGINX_CONTAINER" apt update
+docker exec "$NGINX_CONTAINER" apt install -y certbot python3-certbot-nginx
+
+echo ""
+echo ">> Generando Certificado SSL con Let's Encrypt..."
+docker exec "$NGINX_CONTAINER" certbot --nginx --non-interactive --agree-tos --email "$EMAIL" -d vemitienda.com.ve -d www.vemitienda.com.ve
+
+echo ""
+echo ">> Configurando renovación automática del certificado..."
+docker exec "$NGINX_CONTAINER" bash -c "echo '0 3 * * * certbot renew --quiet' | crontab -"
+
+echo ""
+echo ">> Reiniciando Nginx para aplicar certificados..."
+docker exec "$NGINX_CONTAINER" systemctl restart nginx
+
 echo "=========================================="
-echo "Proyecto listo para trabajar!"
-echo "Desarrollado por Luis Carneiro"
+echo "¡Proyecto listo con Certbot instalado! 🔒🚀"
 echo "=========================================="
