@@ -5,4 +5,3 @@ docker/
 node_modules/
 vendor/
 storage/logs/*
-!.env.docker

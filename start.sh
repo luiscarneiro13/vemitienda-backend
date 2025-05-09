@@ -15,20 +15,6 @@ CONTAINERS=("vemitiendabackend-php" "vemitiendabackend-nginx")
 APP_CONTAINER="vemitiendabackend-php"
 
 # =========================
-# Función para esperar a que el contenedor esté listo
-# =========================
-wait_for_container() {
-    local container_name=$1
-    echo ">> Esperando a que el contenedor $container_name esté listo..."
-
-    while ! docker ps --filter "name=$container_name" --format "{{.Names}}" | grep -q "$container_name"; do
-        sleep 2
-    done
-
-    echo ">> Contenedor $container_name está en ejecución."
-}
-
-# =========================
 # Función para detener y eliminar contenedores existentes
 # =========================
 stop_and_remove_container() {
@@ -49,6 +35,22 @@ echo ">> Deteniendo y eliminando contenedores existentes..."
 stop_and_remove_container "vemitiendabackend-php"
 stop_and_remove_container "vemitiendabackend-nginx"
 
+
+# =========================
+# Función para esperar a que el contenedor esté listo
+# =========================
+wait_for_container() {
+    local container_name=$1
+    echo ">> Esperando a que el contenedor $container_name esté listo..."
+
+    while ! docker ps --filter "name=$container_name" --format "{{.Names}}" | grep -q "$container_name"; do
+        sleep 2
+    done
+
+    echo ">> Contenedor $container_name está en ejecución."
+}
+
+
 echo ""
 echo ">> Reconstruyendo contenedores (docker compose build)..."
 docker compose build
@@ -66,6 +68,8 @@ sleep 5
 
 echo ""
 echo ">> Instalando dependencias Composer y NPM..."
+
+docker exec -it vemitiendabackend-php cp .env.docker .env
 docker exec -it "$APP_CONTAINER" git config --global --add safe.directory /var/www
 docker exec -it "$APP_CONTAINER" composer install --ignore-platform-req=ext-gd
 docker exec -it "$APP_CONTAINER" npm install
