@@ -11,14 +11,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets-SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script:
+            cd /home/vemitiendabackend
+            git pull
+            chmod +x start.sh
+            ./start.sh
 
-      - name: Moverse a la carpeta vemitiendabackend
-        run: cd /home/vemitiendabackend
-
-      - name: Hacer el script ejecutable
-        run: chmod +x start.sh
-
-      - name: Ejecutar el script
-        run: ./start.sh
