@@ -16,6 +16,7 @@ services:
     container_name: vemitiendabackend-nginx # nombre para referirse al servicio
     ports:
       - 80:80
+      - 443:443
     volumes:
       - .:/var/www # carpeta local/ vincula a carpeta de nginx
       - ./nginx/default.prod.conf:/etc/nginx/conf.d/default.conf # archivo local / reflejado en archivo de la imagen
