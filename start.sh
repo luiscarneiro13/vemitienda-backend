@@ -52,12 +52,9 @@ wait_for_container() {
 
 
 echo ""
-echo ">> Reconstruyendo contenedores (docker compose build)..."
-docker compose build
+echo ">> Reconstruyendo contenedores y levantando servicios (docker compose up -d)..."
+docker compose -f docker-compose.prod.yml up -d --build
 
-echo ""
-echo ">> Levantando servicios (docker compose up -d)..."
-docker compose up -d
 
 # Esperar a que los contenedores se levanten antes de ejecutar comandos sobre ellos
 wait_for_container "$APP_CONTAINER"
