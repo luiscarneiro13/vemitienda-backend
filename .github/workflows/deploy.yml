@@ -13,10 +13,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Moverse a la carpeta vemitiendabackend
-        run: sudo cd /root/vemitiendabackend
+        run: cd /home/vemitiendabackend
 
       - name: Hacer el script ejecutable
-        run: sudo chmod +x start.sh
+        run: chmod +x start.sh
 
       - name: Ejecutar el script
-        run: sudo ./start.sh
+        run: ./start.sh
