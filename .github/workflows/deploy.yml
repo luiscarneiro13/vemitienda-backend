@@ -1,7 +1,6 @@
 name: Deploy to Droplet
 
 
-
 on:
   push:
     branches:
