@@ -22,6 +22,5 @@ jobs:
             git checkout . &&
             git pull &&
             chmod +x start.sh &&
-            ./start.sh &&
-            artisan storage:link
+            ./start.sh
 
