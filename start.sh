@@ -50,7 +50,6 @@ wait_for_container() {
     echo ">> Contenedor $container_name está en ejecución."
 }
 
-
 echo ""
 echo ">> Reconstruyendo contenedores y levantando servicios (docker compose up -d)..."
 docker compose -f docker-compose.prod.yml up -d --build
