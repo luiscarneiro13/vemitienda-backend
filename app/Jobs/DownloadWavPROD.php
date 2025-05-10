@@ -48,8 +48,8 @@ class DownloadWavPROD implements ShouldQueue
         // Construir el comando yt-dlp
         $command = [
             'yt-dlp',
-            '--username', env('YOUTUBE_USERNAME'), // Usuario de YouTube en el archivo .env
-            '--password', env('YOUTUBE_PASSWORD'), // Contraseña de YouTube en el archivo .env
+            '--cookies',
+            storage_path('cookies.txt'), // Cargar cookies guardadas
             $this->video->url,
             '-o',
             public_path('videosyt/%(title)s.%(ext)s'), // La carpeta no puede tener caracteres especiales por eso se llama videosyt asi pegado

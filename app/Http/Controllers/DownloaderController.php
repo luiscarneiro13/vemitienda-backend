@@ -12,6 +12,7 @@ use App\Jobs\DownloadWavPROD;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class DownloaderController extends Controller
 {
@@ -24,10 +25,30 @@ class DownloaderController extends Controller
     {
 
         $format = $request->input('format');
+        $url = $request->input('url');
+
+        $command = [
+            'yt-dlp',
+            '--cookies-from-browser',
+            'chrome', // Usa cookies del navegador (cambia 'chrome' por 'firefox' si usas Firefox)
+            '--dump-user-agent',
+            '--cookies'
+        ];
+
+
+        $process = new Process($command);
+
+        try {
+            $process->mustRun();
+            file_put_contents(storage_path('cookies.txt'), $process->getOutput()); // Guarda las cookies en storage/cookies.txt
+        } catch (ProcessFailedException $exception) {
+            logger("Error al guardar cookies: " . $exception->getMessage());
+        }
+
 
         // Crear el video y almacenar las cookies
         $video = Video::create([
-            'url' => $request->input('url'),
+            'url' => $url,
             'format' => $format,
         ]);
 
