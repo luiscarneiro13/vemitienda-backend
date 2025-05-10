@@ -5,7 +5,7 @@ FROM php:8.2-fpm-alpine
 RUN apk add --no-cache \
     bash mysql-client zip unzip git nodejs npm \
     libjpeg-turbo-dev libpng-dev freetype-dev icu icu-dev \
-    libzip-dev curl
+    libzip-dev curl yt-dlp
 
 # Instala extensiones de PHP recomendadas para Laravel, incluyendo zip y gd
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype && \
