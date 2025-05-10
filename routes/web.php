@@ -60,7 +60,7 @@ Route::prefix('descargar/videos')->group(function () {
 });
 
 // BACK OFFICE
-Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('/loguear', [LoginController::class, 'loguear'])->name('loguear');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('blog', [BlogController::class, 'index'])->name('blog');
