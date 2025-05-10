@@ -57,6 +57,8 @@ wait_for_container "$NGINX_CONTAINER"
 echo ""
 echo ">> Instalando dependencias Composer y NPM..."
 docker exec --tty=false "$APP_CONTAINER" chown -R www-data:www-data /var/www
+docker exec --tty=false "$APP_CONTAINER" mkdir -p /var/www/public/videosyt
+docker exec --tty=false "$APP_CONTAINER" chmod 775 /var/www/public/videosyt
 docker exec --tty=false "$APP_CONTAINER" chmod -R 775 /var/www/storage/logs
 docker exec --tty=false "$APP_CONTAINER" chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 docker exec --tty=false "$APP_CONTAINER" php artisan optimize:clear
