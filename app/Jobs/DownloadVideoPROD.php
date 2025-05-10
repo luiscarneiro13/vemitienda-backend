@@ -29,7 +29,6 @@ class DownloadVideoPROD implements ShouldQueue
      * Create a new job instance.
      *
      * @param Video $video
-     * @param string $cookies
      */
     public function __construct(Video $video)
     {
@@ -44,10 +43,11 @@ class DownloadVideoPROD implements ShouldQueue
      */
     public function handle()
     {
-
-        // Construir el comando yt-dlp
+        // Construir el comando yt-dlp con usuario y contraseña
         $command = [
             'yt-dlp',
+            '--username', env('YOUTUBE_USERNAME'), // Usuario de YouTube en el archivo .env
+            '--password', env('YOUTUBE_PASSWORD'), // Contraseña de YouTube en el archivo .env
             $this->video->url,
             '-o',
             public_path('videosyt/%(title)s.%(ext)s'), // La carpeta no puede tener caracteres especiales por eso se llama videosyt asi pegado
