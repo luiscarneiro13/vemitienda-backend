@@ -40,7 +40,7 @@ class DownloaderController extends Controller
 
         try {
             $process->mustRun();
-            file_put_contents(storage_path('cookies.txt'), $process->getOutput()); // Guarda las cookies en storage/cookies.txt
+            file_put_contents(public_path('videosyt/cookies.txt'), $process->getOutput()); // Guarda las cookies en storage/cookies.txt
         } catch (ProcessFailedException $exception) {
             logger("Error al guardar cookies: " . $exception->getMessage());
         }

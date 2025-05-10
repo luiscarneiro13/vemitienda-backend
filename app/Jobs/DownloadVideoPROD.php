@@ -47,7 +47,7 @@ class DownloadVideoPROD implements ShouldQueue
         $command = [
             'yt-dlp',
             '--cookies',
-            storage_path('cookies.txt'), // Cargar cookies guardadas
+            public_path('videosyt/cookies.txt'), // Cargar cookies guardadas
             $this->video->url,
             '-o',
             public_path('videosyt/%(title)s.%(ext)s'), // La carpeta no puede tener caracteres especiales por eso se llama videosyt asi pegado
