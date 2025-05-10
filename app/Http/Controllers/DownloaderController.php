@@ -27,33 +27,33 @@ class DownloaderController extends Controller
         $format = $request->input('format');
         $url = $request->input('url');
 
-        $command = [
-            'yt-dlp',
-            '--cookies-from-browser',
-            'chrome', // Usa cookies del navegador (cambia 'chrome' por 'firefox' si usas Firefox)
-            '--dump-user-agent',
-            '--cookies'
-        ];
+        // $command = [
+        //     'yt-dlp',
+        //     '--cookies-from-browser',
+        //     'chrome', // Usa cookies del navegador (cambia 'chrome' por 'firefox' si usas Firefox)
+        //     '--dump-user-agent',
+        //     '--cookies'
+        // ];
 
 
-        $process = new Process($command);
+        // $process = new Process($command);
 
-        try {
-            $process->mustRun();
+        // try {
+        //     $process->mustRun();
 
-            // Guarda las cookies en public/videosyt/cookies.txt
-            $cookieFile = public_path('videosyt/cookies.txt');
+        //     // Guarda las cookies en public/videosyt/cookies.txt
+        //     $cookieFile = public_path('videosyt/cookies.txt');
 
-            // Abre el archivo y fuerza los permisos al crearlo
-            $file = fopen($cookieFile, 'w');
-            fwrite($file, $process->getOutput());
-            fclose($file);
+        //     // Abre el archivo y fuerza los permisos al crearlo
+        //     $file = fopen($cookieFile, 'w');
+        //     fwrite($file, $process->getOutput());
+        //     fclose($file);
 
-            // Asegura permisos 775
-            chmod($cookieFile, 0775);
-        } catch (ProcessFailedException $exception) {
-            logger("Error al guardar cookies: " . $exception->getMessage());
-        }
+        //     // Asegura permisos 775
+        //     chmod($cookieFile, 0775);
+        // } catch (ProcessFailedException $exception) {
+        //     logger("Error al guardar cookies: " . $exception->getMessage());
+        // }
 
 
 
