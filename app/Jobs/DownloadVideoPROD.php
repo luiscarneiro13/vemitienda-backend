@@ -71,7 +71,7 @@ class DownloadVideoPROD implements ShouldQueue
     public function downloadVideo($url, $nombre)
     {
         // Comando para iniciar el contenedor con la URL y el nombre
-        $command = "docker compose --profile manual run --rm youtube_downloader -e VIDEO_URL=\"$url\" -e VIDEO_NAME=\"$nombre\"";
+        $command = "docker compose --profile manual run --rm downloader -e VIDEO_URL=\"$url\" -e VIDEO_NAME=\"$nombre\"";
 
         // Ejecutar el comando y capturar la salida
         $output = shell_exec($command);

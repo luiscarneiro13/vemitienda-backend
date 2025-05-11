@@ -26,11 +26,11 @@ services:
     networks:
       - vemitienda
 
-  youtube_downloader:
+  downloader:
     build:
       context: ./python
       dockerfile: Dockerfile #El que esta dentro de la carpeta python
-    container_name: vemitiendabackend-nginx # nombre para referirse al servicio
+    container_name: vemitiendabackend-downloader # nombre para referirse al servicio
     environment:
       - VIDEO_URL=https://www.youtube.com/watch?v=YKlf7YuVcsw
       - VIDEO_NAME=nombre_personalizado.mp4
@@ -38,7 +38,7 @@ services:
       - ./public/videosyt:/app/videos
       - ./python/cookies.txt:/app/cookies.txt
     depends_on:
-      - nginx
+      - php
     networks:
       - vemitienda
     profiles:
