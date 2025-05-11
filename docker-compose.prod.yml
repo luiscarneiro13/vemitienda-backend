@@ -28,8 +28,8 @@ services:
 
   youtube_downloader:
     build:
-      context: .
-      dockerfile: ./python/Dockerfile
+      context: ./python
+      dockerfile: Dockerfile #El que esta dentro de la carpeta python
     environment:
       - VIDEO_URL=https://www.youtube.com/watch?v=YKlf7YuVcsw
       - VIDEO_NAME=nombre_personalizado.mp4
