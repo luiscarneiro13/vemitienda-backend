@@ -41,7 +41,6 @@ services:
       - php
     networks:
       - vemitienda
-    restart: "no"  # Evita que se inicie automáticamente con `up -d`
 
 networks:
   vemitienda:
