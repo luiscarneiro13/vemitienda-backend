@@ -35,6 +35,7 @@ services:
       - VIDEO_NAME=nombre_personalizado.mp4
     volumes:
       - ./public/videosyt:/app/videos
+      - ./python/cookies.txt:/app/cookies.txt
     depends_on:
       - nginx
     networks:
