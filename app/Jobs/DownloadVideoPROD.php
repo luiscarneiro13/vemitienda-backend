@@ -50,7 +50,7 @@ class DownloadVideoPROD implements ShouldQueue
             $ruta_video = $this->downloadVideo($this->video->url, $nombre);
 
             if (!$ruta_video) {
-                event(new DescargaFallida("Error"));
+                event(new DescargaFallida("Error, no descargó el video"));
                 $this->video->status = 'failed';
             } else {
                 event(new DescargaExitosa("Descarga completa"));

@@ -3,7 +3,8 @@
 
 @section('content')
 
-    <p>Preparando descarga</p>
+    <p id="messageContainer">Preparando descarga</p>
+    <p id="downloadMessage"></p>
 
     <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
 
@@ -22,7 +23,7 @@
 
         channel.subscribe("inicio.descarga", function(message) {
             console.log(message.data)
-            document.getElementById("buttonContainer").innerHTML = `
+            document.getElementById("messageContainer").innerHTML = `
             <button class="btn btn-lg btn-primary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Descargando...
@@ -40,13 +41,6 @@
             console.log(message.data)
             document.getElementById("downloadMessage").innerHTML =
                 `<span class="text-danger">${message.data}</span>`;
-
-            // Restaurar el botón original si hay un error
-            document.getElementById("buttonContainer").innerHTML = `
-            <button type="button" id="downloadButton" class="btn btn-lg btn-primary">Descargar</button>
-        `;
-
-            document.getElementById("downloadButton").addEventListener("click", startDownload);
         });
     </script>
 @endsection
