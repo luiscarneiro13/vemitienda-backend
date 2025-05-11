@@ -46,8 +46,11 @@ class DownloadVideoPROD implements ShouldQueue
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         event(new InicioDescarga("Inicio de descarga"));
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
