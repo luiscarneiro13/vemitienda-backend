@@ -41,8 +41,7 @@ services:
       - php
     networks:
       - vemitienda
-    profiles:
-      - manual  # Solo se inicia cuando se llama explícitamente
+    restart: "no"  # Evita que se inicie automáticamente con `up -d`
 
 networks:
   vemitienda:
