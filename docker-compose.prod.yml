@@ -35,6 +35,8 @@ services:
       - VIDEO_NAME=nombre_personalizado
     volumes:
       - ./public/videosyt:/app/videos
+    depends_on:
+      - nginx
     networks:
       - vemitienda
     profiles:
