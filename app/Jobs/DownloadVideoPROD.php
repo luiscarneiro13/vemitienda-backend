@@ -43,8 +43,11 @@ class DownloadVideoPROD implements ShouldQueue
      */
     public function handle()
     {
+<<<<<<< Updated upstream
         event(new InicioDescarga("Inicio de descarga"));
 
+=======
+>>>>>>> Stashed changes
         try {
             $nombre = uniqid() . 'mp4';
             $ruta_video = $this->downloadVideo($this->video->url, $nombre);
