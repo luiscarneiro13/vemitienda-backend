@@ -11,11 +11,12 @@ if not url or not video_name:
 
 # Opciones de descarga
 ydl_opts = {
-    'outtmpl': f'/app/videos/{video_name}.mp4',  # Guardar con el nombre personalizado
-    'cookies': '/app/cookies.txt',
+    'outtmpl': f'/app/videos/{video_name}.mp4',
+    'cookies': '/app/cookies.txt',  # Usa el archivo de cookies
     'format': 'bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/best[ext=mp4]',
     'merge_output_format': 'mp4',
 }
+
 
 # Descargar el video
 try:
