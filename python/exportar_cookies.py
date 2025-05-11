@@ -21,3 +21,4 @@ with open("cookies.txt", "w") as f:
 
 print("Cookies exportadas exitosamente")
 driver.quit()
+
