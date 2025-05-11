@@ -63,8 +63,6 @@ class DownloaderController extends Controller
             'format' => $format,
         ]);
 
-        event(new InicioDescarga("Inicio de descarga"));
-
         // Despachar el job correspondiente según el formato
         switch ($format) {
             case 'mp4':
