@@ -30,6 +30,7 @@ services:
     build:
       context: ./python
       dockerfile: Dockerfile #El que esta dentro de la carpeta python
+    container_name: vemitiendabackend-youtube_downloader # nombre para referirse al servicio
     environment:
       - VIDEO_URL=https://www.youtube.com/watch?v=YKlf7YuVcsw
       - VIDEO_NAME=nombre_personalizado.mp4
