@@ -14,8 +14,8 @@ WORKDIR /app
 RUN mkdir -p /app/videos
 
 # Copiar el script y cookies
-COPY descargar_video.py /app/descargar_video.py
-COPY cookies.txt /app/cookies.txt
+COPY ./descargar_video.py /app/descargar_video.py
+COPY ./cookies.txt /app/cookies.txt
 
 # Definir el comando de ejecución
 ENTRYPOINT ["python", "/app/descargar_video.py"]
