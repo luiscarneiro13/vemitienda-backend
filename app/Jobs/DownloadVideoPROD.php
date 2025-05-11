@@ -44,8 +44,11 @@ class DownloadVideoPROD implements ShouldQueue
     public function handle()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         event(new InicioDescarga("Inicio de descarga"));
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         try {
