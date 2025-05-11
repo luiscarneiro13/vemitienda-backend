@@ -26,7 +26,7 @@ services:
     networks:
       - vemitienda
 
-  youtube_downloader:
+  yt_dl:
     build:
       context: ./python
       dockerfile: Dockerfile #El que esta dentro de la carpeta python
