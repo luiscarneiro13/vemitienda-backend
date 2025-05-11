@@ -26,6 +26,19 @@ services:
     networks:
       - vemitienda
 
+  youtube_downloader:
+    build:
+      context: .
+      dockerfile: ./python/Dockerfile
+    environment:
+      - VIDEO_URL=https://www.youtube.com/watch?v=VIDEO_ID
+      - VIDEO_NAME=nombre_personalizado
+    volumes:
+      - ./public/videosyt:/app/videos
+    networks:
+      - vemitienda
+    profiles:
+      - manual  # Solo se inicia cuando se llama explícitamente
 
 networks:
   vemitienda:
