@@ -5,10 +5,10 @@ FROM php:8.2-fpm-alpine
 RUN apk add --no-cache \
     bash mysql-client zip unzip git nodejs npm \
     libjpeg-turbo-dev libpng-dev freetype-dev icu icu-dev \
-    libzip-dev curl yt-dlp
+    libzip-dev curl yt-dlp libwebp-dev
 
 # Instala extensiones de PHP recomendadas para Laravel, incluyendo zip y gd
-RUN docker-php-ext-configure gd --with-jpeg --with-freetype && \
+RUN docker-php-ext-configure gd --with-jpeg --with-freetype --with-webp && \
     docker-php-ext-install pdo pdo_mysql bcmath intl zip gd
 
 # Instala Composer en la versión exacta (2.5.0)
