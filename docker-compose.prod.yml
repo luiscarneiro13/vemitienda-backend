@@ -26,21 +26,5 @@ services:
     networks:
       - vemitienda
 
-  downloader:
-    build:
-      context: ./python
-      dockerfile: Dockerfile
-    container_name: vemitiendabackend-downloader
-    environment:
-      - VIDEO_URL=https://www.youtube.com/watch?v=YKlf7YuVcsw
-      - VIDEO_NAME=nombre_personalizado.mp4
-    volumes:
-      - ./public/videosyt:/app/videos
-      - ./python/cookies.txt:/app/cookies.txt
-    depends_on:
-      - php
-    networks:
-      - vemitienda
-
 networks:
   vemitienda:

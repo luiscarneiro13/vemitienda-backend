@@ -41,14 +41,6 @@ Route::post('remove', [CartController3::class, 'removeCart'])->name('cart.remove
 Route::post('clear', [CartController3::class, 'clearAllCart'])->name('cart.clear');
 Route::post('order', [OrderController3::class, 'index'])->name('order.store');
 
-// Descarga de videos
-Route::prefix('descargar/videos')->group(function () {
-    Route::get('/', [DownloaderController::class, 'index'])->name('home');
-    Route::post('/prepare', [DownloaderController::class, 'prepare'])->name('prepare');
-    Route::get('/status/{video}', [DownloaderController::class, 'status'])->name('status');
-    Route::get('/download/{video}', [DownloaderController::class, 'download'])->name('download');
-});
-
 // Blog y mensajería
 Route::get('blog', [BlogController::class, 'index'])->name('blog');
 Route::get('blog/{slug}', [BlogController::class, 'show'])->name('blog');
