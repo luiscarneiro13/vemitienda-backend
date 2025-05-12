@@ -157,9 +157,12 @@ class ImagesController extends Controller
                 $image = $product->image()->create(['url' => $urlImage]);
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
-                return $this->errorResponse(['message' => $th]);
+                info("error al guardar imagen del producto");
+                info(json_encode($th->getMessage()));
+                return $this->errorResponse(['message' => $th->getMessage()]);
             }
         } else {
+            info('No existe el producto o no se envió imagen');
             return $this->errorResponse(['message' => 'No existe el producto o no se envió imagen']);
         }
     }
@@ -231,9 +234,12 @@ class ImagesController extends Controller
 
                 return $this->successResponse(['data' => $image]);
             } catch (Exception $th) {
-                return $this->errorResponse(['message' => $th]);
+                info("Error al actualizar producto");
+                info(json_encode($th->getMessage()));
+                return $this->errorResponse(['message' => $th->getMessage()]);
             }
         } else {
+            info('La imagen no existe o no se envió una');
             return $this->errorResponse(['message' => 'La imagen no existe o no se envió una']);
         }
     }
