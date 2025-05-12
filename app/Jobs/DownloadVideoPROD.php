@@ -43,32 +43,19 @@ class DownloadVideoPROD implements ShouldQueue
      */
     public function handle()
     {
-        // Construir el comando yt-dlp con usuario y contraseña
-        $command = [
-            'yt-dlp',
-            '--cookies',
-            public_path('videosyt/cookies.txt'), // Cargar cookies guardadas
-            $this->video->url,
-            '-o',
-            public_path('videosyt/%(title)s.%(ext)s'), // La carpeta no puede tener caracteres especiales por eso se llama videosyt asi pegado
-            '--print-json',
-            '--merge-output-format',
-            'mp4',
-        ];
-
-        $process = new Process($command);
+        event(new InicioDescarga("Inicio de descarga"));
 
         try {
-            $process->mustRun();
-            $output = json_decode($process->getOutput(), true);
+            $nombre = uniqid() . 'mp4';
+            $ruta_video = $this->downloadVideo($this->video->url, $nombre);
 
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                event(new DescargaFallida("Error"));
+            if (!$ruta_video) {
+                event(new DescargaFallida("Error, no descargó el video"));
                 $this->video->status = 'failed';
             } else {
                 event(new DescargaExitosa("Descarga completa"));
                 $this->video->status = 'completed';
-                $this->video->info = $output;
+                $this->video->info = $ruta_video;
                 $this->video->save();
             }
         } catch (Throwable $exception) {
@@ -79,5 +66,25 @@ class DownloadVideoPROD implements ShouldQueue
 
             throw $exception;
         }
+    }
+
+    public function downloadVideo($url, $nombre)
+    {
+        // Comando para iniciar y ejecutar el contenedor
+
+        $command = "
+            docker start vemitiendabackend-downloader &&
+            docker exec vemitiendabackend-downloader python /app/descargar_video.py \"$url\" \"$nombre\" &&
+            docker stop vemitiendabackend-downloader
+        ";
+
+        // Ejecutar el comando y capturar la salida
+        $output = shell_exec($command);
+
+        // Buscar la ruta del archivo descargado en la salida
+        preg_match('/Descarga completada: (.+\.mp4)/', $output, $matches);
+
+        // Retornar la ruta del archivo si fue descargado correctamente
+        return isset($matches[1]) ? $matches[1] : null;
     }
 }

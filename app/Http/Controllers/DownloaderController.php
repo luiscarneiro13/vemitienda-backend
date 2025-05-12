@@ -27,43 +27,11 @@ class DownloaderController extends Controller
         $format = $request->input('format');
         $url = $request->input('url');
 
-        // $command = [
-        //     'yt-dlp',
-        //     '--cookies-from-browser',
-        //     'chrome', // Usa cookies del navegador (cambia 'chrome' por 'firefox' si usas Firefox)
-        //     '--dump-user-agent',
-        //     '--cookies'
-        // ];
-
-
-        // $process = new Process($command);
-
-        // try {
-        //     $process->mustRun();
-
-        //     // Guarda las cookies en public/videosyt/cookies.txt
-        //     $cookieFile = public_path('videosyt/cookies.txt');
-
-        //     // Abre el archivo y fuerza los permisos al crearlo
-        //     $file = fopen($cookieFile, 'w');
-        //     fwrite($file, $process->getOutput());
-        //     fclose($file);
-
-        //     // Asegura permisos 775
-        //     chmod($cookieFile, 0775);
-        // } catch (ProcessFailedException $exception) {
-        //     logger("Error al guardar cookies: " . $exception->getMessage());
-        // }
-
-
-
         // Crear el video y almacenar las cookies
         $video = Video::create([
             'url' => $url,
             'format' => $format,
         ]);
-
-        event(new InicioDescarga("Inicio de descarga"));
 
         // Despachar el job correspondiente según el formato
         switch ($format) {
