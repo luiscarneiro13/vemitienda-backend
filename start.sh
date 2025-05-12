@@ -77,6 +77,10 @@ echo ""
 echo ">> Iniciando queue:work..."
 docker exec -d "$APP_CONTAINER" php artisan queue:work
 
+echo ""
+echo ">> Creando enlace simbólico..."
+docker exec -d "$APP_CONTAINER" php artisan storage:link
+
 echo "=========================================="
 echo "¡Proyecto listo con Certbot instalado! 🔒🚀"
 echo "=========================================="
