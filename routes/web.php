@@ -58,9 +58,9 @@ Route::get('reset2/{user_id}', 'API\V3\UserController@reset2')->name('reset2');
 Route::post('reset3', 'API\V3\UserController@reset3')->name('reset3');
 
 // Autenticación y administración
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/loguear', [LoginController::class, 'loguear'])->name('loguear');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::post('loguear', [LoginController::class, 'loguear'])->name('loguear');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('usuarios', AdminUsersController::class);

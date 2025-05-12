@@ -70,6 +70,10 @@ echo ">> Ejecutando migraciones..."
 docker exec --tty=false "$APP_CONTAINER" php artisan migrate
 
 echo ""
+echo ">> Instalando passport..."
+docker exec -d "$APP_CONTAINER" php artisan passport:install
+
+echo ""
 echo ">> Iniciando queue:work..."
 docker exec -d "$APP_CONTAINER" php artisan queue:work
 
