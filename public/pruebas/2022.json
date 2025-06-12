@@ -1,0 +1,153 @@
+{
+	"@context": [
+		"https://www.w3.org/ns/credentials/v2",
+		"https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json",
+		"https://purl.imsglobal.org/spec/ob/v3p0/extensions.json",
+		"https://purl.imsglobal.org/spec/ob-accred/v2p0/context/"
+	],
+	"id": "urn:uuid:79d4f766-233e-49b6-9c6a-2cf287df7a21",
+	"type": [
+		"VerifiableCredential",
+		"OpenBadgeCredential"
+	],
+	"name": "Badge Luis 2 08-05-2025",
+	"description": "Badge Luis 2 08-05-2025",
+	"image": {
+		"id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/EX8PdJHKlSOFH9uwjcAdHpoybh0vAvRSVGHKeYxU.png",
+		"type": "Image",
+		"caption": "Badge Luis 2 08-05-2025"
+	},
+	"issuer": {
+		"type": [
+			"Profile",
+			"IssuerAccreditationProfile"
+		],
+		"id": "did:key:z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av",
+		"name": "Chavón  Ambiente Pruebas",
+		"url": "https://territorium.com",
+		"image": {
+			"id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/yCyGBPcq9WTdlc4jNatll23WRGyUtSJxEA1Ry1f2.png",
+			"type": "Image",
+			"caption": "Chavón  Ambiente Pruebas"
+		},
+		"accreditations": [
+			{
+				"type": [
+					"Profile",
+					"AccreditationProfile"
+				],
+				"name": "Accreditor trans 123",
+				"description": "Descrip.....11 march test",
+				"contactInstructions": "trans",
+				"url": "www.facebook.com",
+				"areaServed": "qa tesst",
+				"logo": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/NckU9f6d117E5XSOXJV0NVeR96IkXYMUVEjatPIA.jpg",
+				"accreditationDate": "2205-04-22",
+				"address": {
+					"type": [
+						"Address"
+					],
+					"streetAddress": "Street 223",
+					"addressLocality": "Austin",
+					"addressRegion": "Colorado",
+					"postalCode": "567"
+				}
+			}
+		]
+	},
+	"validFrom": "2025-05-08T20:17:56.481978Z",
+	"credentialSubject": {
+		"id": "did:key:z6MkjD3DwDqr6oCTpcJruA5TY2PRBt1ruD3CVT8Y84tpFny8",
+		"type": [
+			"AchievementSubject"
+		],
+		"identifier": [
+			{
+				"type": "IdentityObject",
+				"identityHash": "did:key:z6MkjD3DwDqr6oCTpcJruA5TY2PRBt1ruD3CVT8Y84tpFny8",
+				"identityType": "identifier",
+				"hashed": false,
+				"salt": "not-used"
+			},
+			{
+				"type": "IdentityObject",
+				"identityHash": "Luis Carneiro Carneiro",
+				"identityType": "name",
+				"hashed": false,
+				"salt": "not-used"
+			},
+			{
+				"type": "IdentityObject",
+				"identityHash": "luis.carneiro@territorium.com",
+				"identityType": "emailAddress",
+				"hashed": false,
+				"salt": "not-used"
+			}
+		],
+		"achievement": {
+			"id": "https://life-staging.territorium.com/issuedBadge?id=79d4f766-233e-49b6-9c6a-2cf287df7a21",
+			"type": [
+				"Achievement"
+			],
+			"achievementType": "Course",
+			"creditsAvailable": null,
+			"name": "ACH Luis 2 05-05-2025",
+			"description": "ACH Luis 2 05-05-2025",
+			"fieldOfStudy": "ACH Luis 2 05-05-2025",
+			"tag": [],
+			"criteria": {
+				"narrative": "Badge Luis 2 08-05-2025"
+			},
+			"image": {
+				"id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/EX8PdJHKlSOFH9uwjcAdHpoybh0vAvRSVGHKeYxU.png",
+				"type": "Image",
+				"caption": "Badge Luis 2 08-05-2025"
+			},
+			"resultDescription": [
+				{
+					"id": "urn:uuid:9d0b6cba-6639-474d-b923-320db67d1ae3",
+					"type": [
+						"ResultDescription"
+					],
+					"name": "Achievement status",
+					"resultType": "Status",
+					"requiredValue": "Completed"
+				}
+			]
+		},
+		"result": [
+			{
+				"type": [
+					"Result"
+				],
+				"resultDescription": "urn:uuid:9d0b6cba-6639-474d-b923-320db67d1ae3",
+				"value": "Completed"
+			}
+		]
+	},
+	"refreshService": {
+		"id": "https://life-staging.territorium.com/credentials/79d4f766-233e-49b6-9c6a-2cf287df7a21",
+		"type": "1EdTechCredentialRefresh"
+	},
+	"evidence": [],
+	"credentialSchema": [
+		{
+			"id": "https://purl.imsglobal.org/spec/ob/v3p0/schema/json/ob_v3p0_achievementcredential_schema.json",
+			"type": "1EdTechJsonSchemaValidator2019"
+		},
+		{
+			"id": "http://purl.imsglobal.org/spec/ob-accred/v2p0/schema",
+			"type": "1EdTechJsonSchemaValidator2019"
+		}
+	],
+	"proof": [
+		{
+			"type": "DataIntegrityProof",
+			"created": "2025-06-12T18:41:13.284Z",
+			"verificationMethod": "did:key:z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av#z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av",
+			"cryptosuite": "eddsa-rdfc-2022",
+			"proofPurpose": "assertionMethod",
+			"proofValue": "z32VR9nSfciieRrmwEkUEkrFhLSbmE6yzVZEs8GbY6AwNnVcTQW8dECgwWogNxVJh7jaYWaftbqFxhe3kMDKquDTM"
+		}
+	]
+}
