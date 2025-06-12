@@ -90,7 +90,6 @@
 				"Achievement"
 			],
 			"achievementType": "Course",
-			"creditsAvailable": null,
 			"name": "ACH Luis 2 05-05-2025",
 			"description": "ACH Luis 2 05-05-2025",
 			"fieldOfStudy": "ACH Luis 2 05-05-2025",
@@ -143,11 +142,11 @@
 	"proof": [
 		{
 			"type": "DataIntegrityProof",
-			"created": "2025-06-12T18:50:44.608Z",
+			"created": "2025-06-12T19:04:34.828Z",
 			"verificationMethod": "did:key:z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av#z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av",
 			"cryptosuite": "eddsa-rdfc-2022",
 			"proofPurpose": "assertionMethod",
-			"proofValue": "z228nXuEp7MwmdrVcpfDxK4X21T9RBzzzRzrun8DsUxt1BaTwcGRFEXhyDr4v14vUJ34tGh7pbu8qohvNS5uHCxaa"
+			"proofValue": "z346MaZnzGcafZ86uLJ33NCaAfhTcTXPwX6HR51LEt997kouV1acgKmoTxbJyhi5dLDWMN5DuJyLEUB78xJsBSSur"
 		}
 	]
 }
