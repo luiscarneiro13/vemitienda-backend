@@ -126,7 +126,7 @@
 		]
 	},
 	"refreshService": {
-		"id": "https://life-staging.territorium.com/credentials/79d4f766-233e-49b6-9c6a-2cf287df7a21",
+		"id": "https://vemitienda.com.ve/pruebas/2022.json",
 		"type": "1EdTechCredentialRefresh"
 	},
 	"evidence": [],
@@ -143,11 +143,11 @@
 	"proof": [
 		{
 			"type": "DataIntegrityProof",
-			"created": "2025-06-12T18:41:13.284Z",
+			"created": "2025-06-12T18:50:44.608Z",
 			"verificationMethod": "did:key:z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av#z6MkhpUyKUqWP1wZAAUWaYNqhzYAvU19dhgM1UEpttPKQ9Av",
 			"cryptosuite": "eddsa-rdfc-2022",
 			"proofPurpose": "assertionMethod",
-			"proofValue": "z32VR9nSfciieRrmwEkUEkrFhLSbmE6yzVZEs8GbY6AwNnVcTQW8dECgwWogNxVJh7jaYWaftbqFxhe3kMDKquDTM"
+			"proofValue": "z228nXuEp7MwmdrVcpfDxK4X21T9RBzzzRzrun8DsUxt1BaTwcGRFEXhyDr4v14vUJ34tGh7pbu8qohvNS5uHCxaa"
 		}
 	]
 }
