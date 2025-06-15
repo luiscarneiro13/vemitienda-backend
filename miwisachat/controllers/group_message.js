@@ -1,6 +1,6 @@
 import { responseServerError } from "../constants.js"
 import { GroupMessage } from "../models/index.js"
-import { io, convertToWebp, uploadToMegaWebp } from "../utils/index.js"
+import { io } from "../utils/index.js"
 
 async function sendText(req, res) {
 

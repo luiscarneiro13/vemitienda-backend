@@ -1,6 +1,6 @@
 import { responseServerError } from "../constants.js"
 import { ChatMessage } from "../models/index.js"
-import { io, getFilePath, convertToWebp, uploadToMegaWebp } from "../utils/index.js"
+import { io, getFilePath } from "../utils/index.js"
 
 async function sendText(req, res) {
 
