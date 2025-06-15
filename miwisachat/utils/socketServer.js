@@ -6,6 +6,7 @@ export function inistSocketServer(server) {
     io = new SocketServer(server, {
         cors: {
             origin: "*"
-        }
+        },
+        path: "/api/miwisachat/socket.io"
     })
 }
