@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: vemitiendabackend-php
     volumes:
-      - .:/var/www
+      - ./vemitienda:/var/www
     ports:
       - 9000:80
     networks:
@@ -18,8 +18,8 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - .:/var/www
-      - ./nginx/default.prod.conf:/etc/nginx/conf.d/default.conf
+      - ./vemitienda:/var/www
+      - ./vemitienda/nginx/default.prod.conf:/etc/nginx/conf.d/default.conf
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - php
