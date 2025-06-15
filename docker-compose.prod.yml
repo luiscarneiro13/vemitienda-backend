@@ -23,9 +23,22 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - php
+      - miwisachat
     networks:
       - vemitienda
 
+  miwisachat:
+    build:
+      context: ./miwisachat
+      dockerfile: Dockerfile
+    container_name: miwisachat-node
+    volumes:
+      - ./miwisachat:/app
+    expose:
+      - 3000
+    networks:
+      - vemitienda
+    restart: always
+
 networks:
   vemitienda:
-  
