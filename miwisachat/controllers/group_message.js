@@ -34,19 +34,15 @@ async function sendImage(req, res) {
 
     try {
 
-        const { group_id, base64 } = req.body
+        const { group_id } = req.body
         const { user_id } = req.user
 
-        // const message = getFilePath(req.files.image)
-
-        const folderName = "MiWisaChat/uploads/group"
-        const webpPath = await convertToWebp(req.files.image)
-        const { url } = await uploadToMegaWebp({ filePath: webpPath, folderName })
+        const message = getFilePath(req.files.image)
 
         const group_message = new GroupMessage({
             group: group_id,
             user: user_id,
-            message: url,
+            message,
             type: "IMAGE"
         })
 
