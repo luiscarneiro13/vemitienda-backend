@@ -41,4 +41,5 @@ sudo supervisorctl start laravel-worker
 echo "✅ Estado del Worker Laravel:"
 sudo supervisorctl status laravel-worker
 
+
 echo "🚀 Instalación completa. ¡Las colas están corriendo!"

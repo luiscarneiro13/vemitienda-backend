@@ -22,3 +22,4 @@ COPY ./vemitienda .
 
 # Expone el puerto necesario
 EXPOSE 9000
+
