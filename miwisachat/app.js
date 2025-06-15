@@ -24,8 +24,10 @@ inistSocketServer(server)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+const PREFIX = "/api/miwisachat"
+
 //configure static folder
-app.use(express.static("uploads"))
+app.use(`${PREFIX}/uploads`, express.static("uploads"))
 
 app.use(express.json({ limit: "20mb" }))
 app.use(express.urlencoded({ extended: true, limit: "20mb" }))
@@ -36,7 +38,6 @@ app.use(cors())
 //Configure loguer http request
 app.use(morgan("dev"))
 
-const PREFIX = "/api/miwisachat"
 
 //Configure routing
 app.use(PREFIX, authRoutes)
