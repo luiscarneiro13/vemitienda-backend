@@ -6,17 +6,6 @@ echo "================================="
 echo ""
 
 # =========================
-# Limpieza del sistema Docker antes del despliegue
-# =========================
-read -p ">> ¿Deseás ejecutar 'docker system prune -a --volumes -f'? (y/n): " confirm
-if [[ "$confirm" == "y" ]]; then
-    echo ">> Ejecutando limpieza completa de Docker (imágenes, contenedores, redes y volúmenes)..."
-    docker system prune -a --volumes -f
-else
-    echo ">> Saltando limpieza de sistema Docker."
-fi
-
-# =========================
 # Variables
 # =========================
 APP_CONTAINER="vemitiendabackend-php"

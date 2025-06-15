@@ -17,10 +17,16 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script:
+          script: |
+            echo "🔻 Deteniendo contenedores del proyecto..."
+            docker stop vemitiendabackend-php vemitiendabackend-nginx miwisachat-node 2>/dev/null || true
+
+            echo "🧹 Ejecutando docker system prune..."
+            docker system prune -a --volumes -f
+
+            echo "📦 Posicionándose en el proyecto y desplegando"
             cd /home/vemitiendabackend &&
             git checkout . &&
             git pull &&
             chmod +x start.sh &&
             ./start.sh
-
