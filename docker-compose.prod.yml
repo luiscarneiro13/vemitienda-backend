@@ -34,6 +34,7 @@ services:
     container_name: miwisachat-node
     volumes:
       - ./miwisachat:/app
+      - /app/node_modules
     expose:
       - 3000
     networks:
