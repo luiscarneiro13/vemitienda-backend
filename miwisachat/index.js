@@ -13,10 +13,8 @@ const connectToMongo = async () => {
 
         console.log('MongoDB conectado exitosamente');
 
-        server.listen(PORT, () => {
-            console.log("####################")
-            console.log("##### API REST #####")
-            console.log("####################")
+        server.listen(PORT, '0.0.0.0', () => {
+
             console.log(`http://${IP_SERVER}:${PORT}/api`)
 
             io.sockets.on("connection", (socket) => {
