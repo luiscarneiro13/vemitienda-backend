@@ -2,7 +2,7 @@ services:
   php:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./vemitienda/Dockerfile
     container_name: vemitiendabackend-php
     volumes:
       - ./vemitienda:/var/www
