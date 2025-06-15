@@ -5,10 +5,11 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copiar package.json y package-lock.json
-COPY package*.json ./
+COPY package.json yarn.lock ./
+
 
 # Instalar dependencias
-RUN npm install
+RUN yarn install
 
 # Copiar el resto del código
 COPY . .
