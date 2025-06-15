@@ -14,6 +14,7 @@ ENTER_CONTAINER=no
 CONTAINERS=("vemitiendabackend-php" "vemitiendabackend-nginx")
 APP_CONTAINER="vemitiendabackend-php"
 NGINX_CONTAINER="vemitiendabackend-nginx"
+CHAT_CONTAINER="miwisachat-node"
 EMAIL="carneiroluis2@gmail.com"
 
 # =========================
@@ -32,6 +33,7 @@ stop_and_remove_container() {
 echo ">> Deteniendo y eliminando contenedores existentes..."
 stop_and_remove_container "$APP_CONTAINER"
 stop_and_remove_container "$NGINX_CONTAINER"
+stop_and_remove_container "$CHAT_CONTAINER"
 
 echo ""
 echo ">> Reconstruyendo contenedores y levantando servicios (docker compose up -d)..."
@@ -53,6 +55,7 @@ wait_for_container() {
 
 wait_for_container "$APP_CONTAINER"
 wait_for_container "$NGINX_CONTAINER"
+wait_for_container "$CHAT_CONTAINER"
 
 echo ""
 echo ">> Instalando dependencias Composer y NPM..."
