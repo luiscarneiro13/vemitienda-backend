@@ -81,3 +81,4 @@ Route::post('ejemploDescargar', 'Migraciones\DigitalOceanHostigerController@migr
 Route::post('prueba', 'PruebasController@velocity');
 Route::post('cleanUpUnusedImages', 'PruebasController@cleanUpUnusedImages');
 Route::post('/pruebas/offer', 'PruebasController@offer')->name('pruebasOffer');
+Route::post('upload_image_chat', 'API\V3\ImagesController@uploadImageChat');

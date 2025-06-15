@@ -323,4 +323,9 @@ class ImagesController extends Controller
         $image = $post->image()->create(['url' => $urlImage, 'thumbnail' => $urlImage]);
         return env('APP_URL') . '/' . $image->url;
     }
+
+    public function uploadImageChat(Request $request)
+    {
+        return  $this->image->uploadImage($request->file('image'), request()->path);
+    }
 }
