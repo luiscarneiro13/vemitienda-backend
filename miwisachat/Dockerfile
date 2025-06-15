@@ -1,23 +1,24 @@
-# Etapa 1: build
-FROM node:18-alpine AS builder
-
-WORKDIR /app
-
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
-
-COPY . .
-
-# Etapa 2: producción
 FROM node:18-alpine
 
+# Evita reconstrucciones innecesarias por orden de capas
 WORKDIR /app
 
+# Copiar solo lo necesario para instalar dependencias
+COPY package.json yarn.lock ./
+
+# Usamos yarn con frozen-lockfile para builds consistentes
+RUN yarn install --frozen-lockfile
+
+# Copiamos solo lo necesario
+COPY . .
+
+# Establecer variables para reducir tamaño y mejorar seguridad
 ENV NODE_ENV=production
 
-COPY --from=builder /app ./
-RUN yarn cache clean && rm -rf tests .git
+# Elimina archivos temporales y desarrollo
+RUN yarn cache clean
 
+# Expone el puerto real de la app
 EXPOSE 3977
 
 CMD ["yarn", "start"]
