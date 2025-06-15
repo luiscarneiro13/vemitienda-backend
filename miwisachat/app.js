@@ -36,12 +36,14 @@ app.use(cors())
 //Configure loguer http request
 app.use(morgan("dev"))
 
+const PREFIX = "/api/miwisachat"
+
 //Configure routing
-app.use("/api", authRoutes)
-app.use("/api", userRoutes)
-app.use("/api", chatRoutes)
-app.use("/api", chatMessageRoutes)
-app.use("/api", groupRoutes)
-app.use("/api", groupMessageRoutes)
+app.use(PREFIX, authRoutes)
+app.use(PREFIX, userRoutes)
+app.use(PREFIX, chatRoutes)
+app.use(PREFIX, chatMessageRoutes)
+app.use(PREFIX, groupRoutes)
+app.use(PREFIX, groupMessageRoutes)
 
 export { server }
