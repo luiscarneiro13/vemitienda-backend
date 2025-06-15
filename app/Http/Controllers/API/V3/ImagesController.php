@@ -326,6 +326,7 @@ class ImagesController extends Controller
 
     public function uploadImageChat(Request $request)
     {
-        return  $this->image->uploadImage($request->file('image'), request()->path);
+        $imagrUrl = $this->image->uploadImage($request->file('image'), request()->path);
+        return env('APP_URL') . '/' . $imagrUrl;
     }
 }
