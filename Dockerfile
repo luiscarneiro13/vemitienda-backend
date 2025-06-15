@@ -18,7 +18,7 @@ RUN curl -sS https://getcomposer.org/download/2.5.0/composer.phar -o /usr/local/
 # Define el directorio de trabajo
 WORKDIR /var/www
 
-COPY . .
+COPY ./vemitienda .
 
 # Expone el puerto necesario
 EXPOSE 9000
