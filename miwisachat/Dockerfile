@@ -1,21 +1,23 @@
-# Usamos una imagen base de Node.js
-FROM node:18-alpine
+# Etapa 1: build
+FROM node:18-alpine AS builder
 
-# Crear directorio de trabajo
 WORKDIR /app
 
-# Copiar package.json y package-lock.json
 COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-
-# Instalar dependencias
-RUN yarn install
-
-# Copiar el resto del código
 COPY . .
 
-# Exponer el puerto donde corre la app (ajústalo si es otro)
-EXPOSE 3000
+# Etapa 2: producción
+FROM node:18-alpine
 
-# Comando para iniciar la app
-CMD [ "yarn", "start" ]
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=builder /app ./
+RUN yarn cache clean && rm -rf tests .git
+
+EXPOSE 3977
+
+CMD ["yarn", "start"]
