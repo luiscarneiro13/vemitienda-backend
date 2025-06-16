@@ -1,5 +1,5 @@
 import { responseServerError } from "../constants.js"
-import { ChatMessage } from "../models/index.js"
+import { ChatMessage, User, Chat } from "../models/index.js"
 import { io, getFilePath, sendPushNotification } from "../utils/index.js"
 
 async function sendText(req, res) {
@@ -19,14 +19,19 @@ async function sendText(req, res) {
         const messageStorage = await chat_message.save()
         const data = await messageStorage.populate(["user"]);
 
+        const chat = await Chat.findOne({ _id: chat_id })
+        
         // Verifico si el usuario tiene un token de expo para enviarle notificación:
-        if (data.user.expo_token) {
+        const otherUserId = chat.participant_one === user_id ? chat.participant_two : chat.participant_one
+        const otherUser = await User.findOne({_id: otherUserId})
+
+        if (otherUser?.expo_token) {
             const notificaction = {
                 title: 'Nuevo mensaje',
                 body: 'Mensaje de texto...',
                 data: { chat_id } // Esto estárá disponible al tocar la notificación
             }
-            await sendPushNotification(data.user.expo_token, notificaction)
+            await sendPushNotification(otherUser.expo_token, notificaction)
         }
 
         //Para emitir el mensaje en los chats. Aquí se especifica sobre que chat se va a emitir
