@@ -25,7 +25,6 @@ async function register(req, res) {
         console.error(error)
         res.status(400).send({ msg: "Error al registrar el usuario" })
     }
-
 }
 
 async function login(req, res) {
