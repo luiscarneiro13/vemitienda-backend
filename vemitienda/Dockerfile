@@ -1,14 +1,4 @@
-FROM php:8.2-fpm-alpine AS base
-
-RUN apk add --no-cache \
-    bash zip unzip git mysql-client \
-    freetype-dev libjpeg-turbo-dev libpng-dev libwebp-dev \
-    icu-dev libzip-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install pdo pdo_mysql bcmath intl zip gd \
-    && rm -rf /var/cache/apk/*
-
-COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
+FROM carneiroluis2/laravel10:latest
 
 WORKDIR /var/www
 
