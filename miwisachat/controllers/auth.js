@@ -30,30 +30,36 @@ async function register(req, res) {
 
 async function login(req, res) {
     try {
-        const { email, password } = req.body
+        const { email, password, expo_token } = req.body;
+        const emailLowerCase = email.toLowerCase();
 
-        const emailLowerCase = email.toLowerCase()
-
-        const userStorage = await User.findOne({ email: emailLowerCase })
+        const userStorage = await User.findOne({ email: emailLowerCase });
 
         if (!userStorage) {
-            return res.status(404).send({ msg: "Usuario no encontrado" })
+            return res.status(404).send({ msg: "Usuario no encontrado" });
         }
 
-        const isValidPassword = await bcrypt.compare(password, userStorage.password)
+        const isValidPassword = await bcrypt.compare(password, userStorage.password);
 
         if (!isValidPassword) {
-            return res.status(400).send({ msg: "Usuario inválido" })
+            return res.status(400).send({ msg: "Usuario inválido" });
+        }
+
+        if (expo_token) {
+            userStorage.expo_token = expo_token;
+            userStorage.expo_token_updated_at = new Date();
+            await userStorage.save();
         }
 
         res.status(200).send({
             access: jwt.createAccessToken(userStorage),
             refresh: jwt.createRefreshToken(userStorage),
-        })
+        });
     } catch (error) {
-        responseServerError(res, error)
+        responseServerError(res, error);
     }
 }
+
 
 async function refreshAccesToken(req, res) {
     const { refreshToken } = req.body

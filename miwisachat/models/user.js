@@ -9,6 +9,8 @@ const userSchema = mongoose.Schema({
     lastname: String,
     password: String,
     avatar: String,
+    expo_token: String,
+    expo_token_updated_at: Date
 })
 
 export const User = mongoose.model("User", userSchema)
