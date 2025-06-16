@@ -5,12 +5,12 @@ on:
     branches:
       - main
 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: executing remote ssh commands using ssh key
+      - name: Executing remote SSH commands using ssh key
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -24,7 +24,27 @@ jobs:
             echo "🧹 Ejecutando docker system prune..."
             docker system prune -a --volumes -f
 
-            echo "📦 Posicionándose en el proyecto y desplegando"
+            echo "⏳ Esperando breve tiempo para liberar recursos..."
+            sleep 3
+
+            echo "📦 Verificando estado del sistema Docker..."
+
+            echo "📌 Imágenes colgantes:"
+            docker images -f "dangling=true" -q | grep . \
+              && echo "❗ Quedan imágenes colgantes" && exit 1 \
+              || echo "✅ Sin imágenes colgantes"
+
+            echo "📌 Contenedores detenidos:"
+            docker ps -a -q -f "status=exited" | grep . \
+              && echo "❗ Contenedores detenidos detectados" && exit 1 \
+              || echo "✅ Sin contenedores detenidos"
+
+            echo "📌 Volúmenes no utilizados:"
+            docker volume ls -qf dangling=true | grep . \
+              && echo "❗ Volúmenes huérfanos detectados" && exit 1 \
+              || echo "✅ Sin volúmenes huérfanos"
+
+            echo "📂 Posicionándose en el proyecto y desplegando..."
             cd /home/vemitiendabackend &&
             git checkout . &&
             git pull &&
