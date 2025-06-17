@@ -11,5 +11,6 @@ api.post("/chat/message/image", [mdAuth.asureAuth, mdUpload], ChatMessageControl
 api.get("/chat/message/:chat_id", [mdAuth.asureAuth], ChatMessageController.getAll)
 api.get("/chat/message/total/:chat_id", [mdAuth.asureAuth], ChatMessageController.getTotalMessages)
 api.get("/chat/message/last/:chat_id", [mdAuth.asureAuth], ChatMessageController.getLastMessage)
+api.get("/chat/message/markAllAsRead/:chat_id", [mdAuth.asureAuth], ChatMessageController.markAllAsRead)
 
 export const chatMessageRoutes = api

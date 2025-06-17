@@ -18,9 +18,9 @@ async function sendText(req, res) {
 
         const messageStorage = await chat_message.save()
         const data = await messageStorage.populate(["user"]);
-        
+
         const chat = await Chat.findOne({ _id: chat_id })
-        
+
         // Verifico si el usuario tiene un token de expo para enviarle notificación:
         const otherUserId = getOther(user_id, chat.participant_one, chat.participant_two)
 
@@ -106,7 +106,18 @@ async function getAll(req, res) {
 
         const { chat_id } = req.params
 
-        const messages = await ChatMessage.find({ chat: chat_id }).sort({ createdAt: 1 }).populate(["user"]);
+        const messages = await ChatMessage.find({ chat: chat_id }).sort({ createdAt: 1 }).populate([
+            {
+                path: "user"
+            },
+            {
+                path: "chat",
+                populate: [
+                    { path: "participant_one" },
+                    { path: "participant_two" }
+                ]
+            }
+        ])
 
         const total = await ChatMessage.countDocuments({ chat: chat_id });
 
@@ -150,10 +161,35 @@ async function getLastMessage(req, res) {
     }
 }
 
+async function markAllAsRead(req, res) {
+    try {
+        const { chat_id } = req.params
+        const { user_id } = req.user
+
+        // Marcar como leído solo los mensajes que aún NO tienen a este usuario en readBy
+        const result = await ChatMessage.updateMany(
+            {
+                chat: chat_id,
+                user: { $ne: user_id },        // solo mensajes de la otra persona
+                readBy: { $ne: user_id }       // y que aún no hayas leído
+            },
+            {
+                $push: { readBy: user_id }     // agregar tu ID al array
+            }
+        )
+
+        res.status(200).send({ updated: result.modifiedCount })
+    } catch (error) {
+        responseServerError(res, error)
+    }
+}
+
+
 export const ChatMessageController = {
     sendText,
     sendImage,
     getAll,
     getTotalMessages,
     getLastMessage,
+    markAllAsRead,
 }

@@ -1,7 +1,7 @@
 import { responseServerError } from "../constants.js"
 import { Group, GroupMessage } from "../models/index.js"
 import { getFilePath, io } from "../utils/index.js"
-import { getOtherParticipants } from "../utils/index.js"
+import { getOtherParticipants, sendPushNotification } from "../utils/index.js"
 
 async function sendText(req, res) {
 
@@ -20,13 +20,13 @@ async function sendText(req, res) {
         const dataStorage = await group_message.save()
         await dataStorage.populate(["user"])
 
-        const group = await Group.find({ _id: group_id })
+        const group = await Group.findById({ _id: group_id }).populate(["creator", "participants"])
 
-        // Verifico si el usuario tiene un token de expo para enviarle notificación:
         const otherUsers = getOtherParticipants(user_id, group.participants)
 
         if (otherUsers) {
             for (const otherUser of otherUsers) {
+                
                 if (otherUser?.expo_token) {
                     const notification = {
                         title: 'Nuevo mensaje',
@@ -155,10 +155,31 @@ async function getLastMessage(req, res) {
     }
 }
 
+async function markAllAsRead(req, res) {
+    try {
+        const { group_id } = req.params
+        const { user_id } = req.user
+
+        const result = await GroupMessage.updateMany(
+            {
+                group: group_id,
+                user: { $ne: user_id },
+                readBy: { $ne: user_id }
+            },
+            { $push: { readBy: user_id } }
+        )
+
+        res.status(200).send({ updated: result.modifiedCount })
+    } catch (error) {
+        responseServerError(res, error)
+    }
+}
+
 export const GroupMessageController = {
     sendText,
     sendImage,
     getAll,
     getTotalMessages,
     getLastMessage,
+    markAllAsRead,
 }

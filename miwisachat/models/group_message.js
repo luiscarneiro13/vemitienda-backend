@@ -14,7 +14,9 @@ const GroupMessageSchema = mongoose.Schema(
         type: {
             type: "String",
             enum: ["TEXT", "IMAGE"]
-        }
+        },
+
+        readBy: [{ type: mongoose.Schema.ObjectId, ref: "User" }]
     },
     {
         timestamps: true
