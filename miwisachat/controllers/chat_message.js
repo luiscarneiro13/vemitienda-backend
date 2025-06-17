@@ -25,7 +25,7 @@ async function sendText(req, res) {
         const otherUserId = getOther(user_id, chat.participant_one, chat.participant_two)
 
         if (otherUserId) {
-            const otherUser = await User.findOne({ _id: otherUserId })
+            const otherUser = await User.findOne({ _id: otherUserId._id })
             if (otherUser?.expo_token) {
                 const notificaction = {
                     title: 'Nuevo mensaje',
