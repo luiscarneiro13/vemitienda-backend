@@ -24,15 +24,16 @@ async function sendText(req, res) {
         // Verifico si el usuario tiene un token de expo para enviarle notificación:
         const otherUserId = getOther(user_id, chat.participant_one, chat.participant_two)
 
-        const otherUser = await User.findOne({ _id: otherUserId })
-
-        if (otherUser?.expo_token) {
-            const notificaction = {
-                title: 'Nuevo mensaje',
-                body: 'Mensaje de texto...',
-                data: { chat_id } // Esto estárá disponible al tocar la notificación
+        if (otherUserId) {
+            const otherUser = await User.findOne({ _id: otherUserId })
+            if (otherUser?.expo_token) {
+                const notificaction = {
+                    title: 'Nuevo mensaje',
+                    body: 'Mensaje de texto...',
+                    data: { chat_id } // Esto estárá disponible al tocar la notificación
+                }
+                await sendPushNotification(otherUser.expo_token, notificaction)
             }
-            await sendPushNotification(otherUser.expo_token, notificaction)
         }
 
         //Para emitir el mensaje en los chats. Aquí se especifica sobre que chat se va a emitir
