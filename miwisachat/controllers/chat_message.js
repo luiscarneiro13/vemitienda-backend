@@ -1,6 +1,6 @@
 import { responseServerError } from "../constants.js"
 import { ChatMessage, User, Chat } from "../models/index.js"
-import { io, getFilePath, sendPushNotification } from "../utils/index.js"
+import { io, getFilePath, sendPushNotification, getOther } from "../utils/index.js"
 
 async function sendText(req, res) {
 
@@ -20,10 +20,11 @@ async function sendText(req, res) {
         const data = await messageStorage.populate(["user"]);
 
         const chat = await Chat.findOne({ _id: chat_id })
-        
+
         // Verifico si el usuario tiene un token de expo para enviarle notificación:
-        const otherUserId = chat.participant_one === user_id ? chat.participant_two : chat.participant_one
-        const otherUser = await User.findOne({_id: otherUserId})
+        const otherUserId = getOther(user_id, chat.participant_one, chat.participant_two)
+
+        const otherUser = await User.findOne({ _id: otherUserId })
 
         if (otherUser?.expo_token) {
             const notificaction = {

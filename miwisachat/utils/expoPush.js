@@ -25,3 +25,13 @@ export async function sendPushNotification(token, { title, body, data = {} }) {
     console.error('💥 Error al enviar notificación:', error);
   }
 }
+
+export function getOther(user_id, participant_one, participant_two) {
+  if (user_id === participant_one) {
+    return participant_two;
+  } else if (user_id === participant_two) {
+    return participant_one;
+  } else {
+    return null; // o podrías lanzar una excepción si prefieres
+  }
+}
