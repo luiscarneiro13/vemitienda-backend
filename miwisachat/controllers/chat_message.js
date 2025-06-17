@@ -18,9 +18,9 @@ async function sendText(req, res) {
 
         const messageStorage = await chat_message.save()
         const data = await messageStorage.populate(["user"]);
-
+        
         const chat = await Chat.findOne({ _id: chat_id })
-
+        
         // Verifico si el usuario tiene un token de expo para enviarle notificación:
         const otherUserId = getOther(user_id, chat.participant_one, chat.participant_two)
 
