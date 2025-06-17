@@ -26,12 +26,17 @@ export async function sendPushNotification(token, { title, body, data = {} }) {
   }
 }
 
-export function getOther(user_id, participant_one, participant_two) {
-  if (user_id === participant_one) {
+export function getOther(userId, participant_one, participant_two) {
+  if (userId === participant_one._id) {
     return participant_two;
-  } else if (user_id === participant_two) {
+  } else if (userId === participant_two._id) {
     return participant_one;
   } else {
     return null; // o podrías lanzar una excepción si prefieres
   }
+}
+
+export function getOtherParticipants(userId, participants) {
+  const others = participants.filter(participant => participant._id !== userId);
+  return others.length > 0 ? others : null;
 }

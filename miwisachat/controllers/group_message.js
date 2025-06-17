@@ -1,6 +1,7 @@
 import { responseServerError } from "../constants.js"
-import { GroupMessage } from "../models/index.js"
+import { Group, GroupMessage } from "../models/index.js"
 import { getFilePath, io } from "../utils/index.js"
+import { getOtherParticipants } from "../utils/index.js"
 
 async function sendText(req, res) {
 
@@ -18,6 +19,25 @@ async function sendText(req, res) {
 
         const dataStorage = await group_message.save()
         await dataStorage.populate(["user"])
+
+        const group = await Group.find({ _id: group_id })
+
+        // Verifico si el usuario tiene un token de expo para enviarle notificación:
+        const otherUsers = getOtherParticipants(user_id, group.participants)
+
+        if (otherUsers) {
+            for (const otherUser of otherUsers) {
+                if (otherUser?.expo_token) {
+                    const notification = {
+                        title: 'Nuevo mensaje',
+                        body: 'Mensaje de texto...',
+                        data: { group_id }, // Lo puedes acceder al tocar la notificación
+                    };
+
+                    await sendPushNotification(otherUser.expo_token, notification);
+                }
+            }
+        }
 
         io.sockets.in(group_id).emit("message", dataStorage)
         io.sockets.in(`${group_id}_notify`).emit("message_notify", dataStorage)
@@ -48,6 +68,25 @@ async function sendImage(req, res) {
 
         const messageStorage = await group_message.save()
         const data = await messageStorage.populate(["user", "group"]);
+
+        const group = await Group.find({ _id: group_id })
+
+        // Verifico si el usuario tiene un token de expo para enviarle notificación:
+        const otherUsers = getOtherParticipants(user_id, group.participants)
+
+        if (otherUsers) {
+            for (const otherUser of otherUsers) {
+                if (otherUser?.expo_token) {
+                    const notification = {
+                        title: 'Nuevo mensaje',
+                        body: 'Mensaje de texto...',
+                        data: { group_id }, // Lo puedes acceder al tocar la notificación
+                    };
+
+                    await sendPushNotification(otherUser.expo_token, notification);
+                }
+            }
+        }
 
         //Para emitir el mensaje en los chats. Aquí se especifica sobre que chat se va a emitir
         io.sockets.in(group_id).emit("message", data)
