@@ -131,20 +131,24 @@ async function getAll(req, res) {
 }
 
 async function getTotalMessages(req, res) {
-
     try {
+        const { chat_id } = req.params;
+        const { user_id } = req.user; // Usuario autenticado
 
-        const { chat_id } = req.params
+        // Contamos los mensajes del chat que no fueron enviados por el usuario
+        // y que además no han sido marcados como leídos por el usuario.
+        const total = await ChatMessage.countDocuments({
+            chat: chat_id,
+            user: { $ne: user_id },
+            readBy: { $ne: user_id }
+        });
 
-        const total = await ChatMessage.countDocuments({ chat: chat_id });
-
-        res.status(200).send(total);
-
+        res.status(200).send({ total });
     } catch (error) {
-        responseServerError(res, error)
+        responseServerError(res, error);
     }
-
 }
+
 
 async function getLastMessage(req, res) {
 
