@@ -30,15 +30,17 @@ async function register(req, res) {
 async function login(req, res) {
     try {
         const { email, password, expo_token } = req.body;
-        const emailLowerCase = email.toLowerCase();
 
-        const userStorage = await User.findOne({ email: emailLowerCase });
+        const emailTrimmed = email.trim().toLowerCase();
+        const passwordTrimmed = password.trim();
+
+        const userStorage = await User.findOne({ email: emailTrimmed });
 
         if (!userStorage) {
             return res.status(404).send({ msg: "Usuario no encontrado" });
         }
 
-        const isValidPassword = await bcrypt.compare(password, userStorage.password);
+        const isValidPassword = await bcrypt.compare(passwordTrimmed, userStorage.password);
 
         if (!isValidPassword) {
             return res.status(400).send({ msg: "Usuario inválido" });
