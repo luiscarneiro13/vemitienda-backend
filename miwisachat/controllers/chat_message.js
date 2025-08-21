@@ -143,9 +143,7 @@ async function getAll(req, res) {
         const totalPages = Math.max(Math.ceil(total / limit), 1)
 
         // 2) si no viene page o es inválido, usar la última
-        const page = (pageQuery >= 1 && pageQuery <= totalPages)
-            ? pageQuery
-            : totalPages
+        const page = (pageQuery >= 1 && pageQuery <= totalPages) ? pageQuery : totalPages
 
         const skip = (page - 1) * limit
 
