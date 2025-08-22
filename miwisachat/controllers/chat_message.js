@@ -100,34 +100,81 @@ async function sendImage(req, res) {
 
 }
 
+// async function getAll(req, res) {
+
+//     try {
+
+//         const { chat_id } = req.params
+
+//         const messages = await ChatMessage.find({ chat: chat_id }).sort({ createdAt: 1 }).populate([
+//             {
+//                 path: "user"
+//             },
+//             {
+//                 path: "chat",
+//                 populate: [
+//                     { path: "participant_one" },
+//                     { path: "participant_two" }
+//                 ]
+//             }
+//         ])
+
+//         const total = await ChatMessage.countDocuments({ chat: chat_id });
+
+//         res.status(200).send({ total, messages });
+
+//     } catch (error) {
+//         console.log(error)
+//         responseServerError(res, error)
+//     }
+
+// }
+
 async function getAll(req, res) {
 
     try {
 
         const { chat_id } = req.params
+        const pageQuery = parseInt(req.query.page, 10)
+        const limit = parseInt(req.query.limit, 10) || 20
 
-        const messages = await ChatMessage.find({ chat: chat_id }).sort({ createdAt: 1 }).populate([
-            {
-                path: "user"
-            },
-            {
-                path: "chat",
-                populate: [
-                    { path: "participant_one" },
-                    { path: "participant_two" }
-                ]
-            }
-        ])
+        // 1) total de mensajes y páginas
+        const total = await ChatMessage.countDocuments({ chat: chat_id })
+        const totalPages = Math.max(Math.ceil(total / limit), 1)
 
-        const total = await ChatMessage.countDocuments({ chat: chat_id });
+        // 2) si no viene page o es inválido, usar la última
+        const page = (pageQuery >= 1 && pageQuery <= totalPages) ? pageQuery : totalPages
 
-        res.status(200).send({ total, messages });
+        const skip = (page - 1) * limit
+
+        // 3) consulta paginada y poblada
+        const messages = await ChatMessage.find({ chat: chat_id })
+            .sort({ createdAt: 1 })
+            .skip(skip)
+            .limit(limit)
+            .populate([
+                { path: "user" },
+                {
+                    path: "chat",
+                    populate: [
+                        { path: "participant_one" },
+                        { path: "participant_two" }
+                    ]
+                }
+            ]);
+
+        // 4) devolver meta + datos
+        return res.status(200).send({
+            total,
+            totalPages,
+            page,
+            limit,
+            messages
+        })
 
     } catch (error) {
-        console.log(error)
         responseServerError(res, error)
     }
-
 }
 
 async function getTotalMessages(req, res) {
