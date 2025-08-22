@@ -149,7 +149,7 @@ async function getAll(req, res) {
 
         // 3) consulta paginada y poblada
         const messages = await ChatMessage.find({ chat: chat_id })
-            .sort({ createdAt: 1 })
+            .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit)
             .populate([
