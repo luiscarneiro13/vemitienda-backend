@@ -131,25 +131,27 @@ async function sendImage(req, res) {
 // }
 
 async function getAll(req, res) {
+    
     try {
-        const { chat_id } = req.params
-        const pageQuery = parseInt(req.query.page, 10)
-        const limit = parseInt(req.query.limit, 10) || 20
+        const { chat_id } = req.params;
+        const pageQuery = parseInt(req.query.page, 10) || 1;
+        const limitQuery = parseInt(req.query.limit, 10) || 20;
 
-        // 1) total de mensajes y páginas
-        const total = await ChatMessage.countDocuments({ chat: chat_id })
-        const totalPages = Math.max(Math.ceil(total / limit), 1)
+        // 1) total de mensajes y total de páginas
+        const total = await ChatMessage.countDocuments({ chat: chat_id });
+        const totalPages = Math.max(Math.ceil(total / limitQuery), 1);
 
-        // 2) si no viene page o es inválida, usar la última (page 1 = más recientes)
-        const page = (pageQuery >= 1 && pageQuery <= totalPages) ? pageQuery : 1
+        // 2) Validar que page esté dentro de rango
+        const page = (pageQuery >= 1 && pageQuery <= totalPages) ? pageQuery : totalPages;
 
-        const skip = (page - 1) * limit
+        // 3) Calcular el offset (skip) real
+        const skip = (page - 1) * limitQuery;
 
-        // 3) consulta paginada y poblada DESC
+        // 4) Consulta paginada DESC (más recientes primero)
         const messages = await ChatMessage.find({ chat: chat_id })
-            .sort({ createdAt: -1 }) // más recientes primero
+            .sort({ createdAt: -1 })
             .skip(skip)
-            .limit(limit)
+            .limit(limitQuery)
             .populate([
                 { path: "user" },
                 {
@@ -159,19 +161,19 @@ async function getAll(req, res) {
                         { path: "participant_two" }
                     ]
                 }
-            ])
+            ]);
 
-        // 4) devolver meta + datos
-        return res.status(200).send({
+        // 5) Responder con metadatos y datos
+        return res.status(200).json({
             total,
             totalPages,
             page,
-            limit,
+            limit: limitQuery,
             messages
-        })
+        });
 
     } catch (error) {
-        responseServerError(res, error)
+        responseServerError(res, error);
     }
 }
 
