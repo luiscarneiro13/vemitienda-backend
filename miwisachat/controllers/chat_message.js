@@ -130,11 +130,12 @@ async function sendImage(req, res) {
 
 // }
 
+// GET /chat/:chat_id/messages?limit=10&before=2025-01-01T00:02:01.000Z
 async function getAll(req, res) {
   try {
     const { chat_id } = req.params
     const limit = parseInt(req.query.limit, 10) || 20
-    const before = req.query.before // timestamp ISO o ID de Mongo
+    const before = req.query.before
 
     const query = { chat: chat_id }
     if (before) {
@@ -142,7 +143,7 @@ async function getAll(req, res) {
     }
 
     const messages = await ChatMessage.find(query)
-      .sort({ createdAt: -1 }) // más nuevos primero
+      .sort({ createdAt: -1 }) // más nuevo -> más antiguo
       .limit(limit)
       .populate([
         { path: "user" },
@@ -155,18 +156,14 @@ async function getAll(req, res) {
         }
       ])
 
-    const total = await ChatMessage.countDocuments({ chat: chat_id })
-
     res.status(200).send({
-      total,
-      hasMore: messages.length === limit,
-      messages
+      messages,
+      hasMore: messages.length === limit
     })
   } catch (error) {
     responseServerError(res, error)
   }
 }
-
 
 async function getTotalMessages(req, res) {
     try {
