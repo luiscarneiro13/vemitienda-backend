@@ -131,50 +131,47 @@ async function sendImage(req, res) {
 // }
 
 async function getAll(req, res) {
-    try {
-        const { chat_id } = req.params
-        const pageQuery = parseInt(req.query.page, 10)
-        const limit = parseInt(req.query.limit, 10) || 20
+  try {
+    const { chat_id } = req.params
+    const pageQuery = parseInt(req.query.page, 10)
+    const limit = parseInt(req.query.limit, 10) || 20
 
-        // total y páginas
-        const total = await ChatMessage.countDocuments({ chat: chat_id })
-        const totalPages = Math.max(Math.ceil(total / limit), 1)
+    const total = await ChatMessage.countDocuments({ chat: chat_id })
+    const totalPages = Math.max(Math.ceil(total / limit), 1)
 
-        // página solicitada o última
-        const page = (pageQuery >= 1 && pageQuery <= totalPages)
-            ? pageQuery
-            : totalPages
+    // Si no viene page, o es inválida, devolver la última página
+    const page = (pageQuery >= 1 && pageQuery <= totalPages)
+      ? pageQuery
+      : totalPages
 
-        const skip = (page - 1) * limit
+    const skip = (page - 1) * limit
 
-        const messages = await ChatMessage.find({ chat: chat_id })
-            .sort({ createdAt: 1 }) // más antiguos primero
-            .skip(skip)
-            .limit(limit)
-            .populate([
-                { path: "user" },
-                {
-                    path: "chat",
-                    populate: [
-                        { path: "participant_one" },
-                        { path: "participant_two" }
-                    ]
-                }
-            ])
+    const messages = await ChatMessage.find({ chat: chat_id })
+      .sort({ createdAt: 1 }) // más antiguos primero
+      .skip(skip)
+      .limit(limit)
+      .populate([
+        { path: "user" },
+        {
+          path: "chat",
+          populate: [
+            { path: "participant_one" },
+            { path: "participant_two" }
+          ]
+        }
+      ])
 
-        return res.status(200).send({
-            total,
-            totalPages,
-            page,
-            limit,
-            messages
-        })
-
-    } catch (error) {
-        responseServerError(res, error)
-    }
+    return res.status(200).send({
+      total,
+      totalPages,
+      page,
+      limit,
+      messages
+    })
+  } catch (error) {
+    responseServerError(res, error)
+  }
 }
-
 
 async function getTotalMessages(req, res) {
     try {
