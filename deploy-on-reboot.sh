@@ -19,4 +19,5 @@ cd /home/vemitiendabackend &&
 git checkout . &&
 git pull &&
 chmod +x start.sh &&
+chmod +x deploy-on-reboot.sh &&
 ./start.sh
