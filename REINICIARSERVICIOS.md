@@ -1,3 +1,10 @@
+
+
+PARA RENOVAR EL SSL, SE debe agregar el script renovar_cert.sh al crontab
+se le debe dar permisos chmod +x renovar_cert.sh
+
+
+
 Script Intermedio
 La mejor opción es crear un nuevo script que contenga todos los comandos que necesitas ejecutar antes de llamar a start.sh. Esto hace que el servicio de systemd sea más simple y menos propenso a errores.
 
