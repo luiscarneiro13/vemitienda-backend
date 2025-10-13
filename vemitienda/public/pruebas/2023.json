@@ -10,16 +10,17 @@
 		"OpenBadgeCredential"
 	],
 	"name": "Badge hijo 1",
+	"description": "Badge hijo 1. Pruebas",
 	"image": {
 		"id": "https://territorio.s3.amazonaws.com/CLRDEVELOPMENT/JFfRT6SdkUxXlqmlsOy0yy9SuBoGb4KHwSOtAk69.png",
 		"type": "Image",
 		"caption": "Badge hijo 1. Pruebas"
 	},
 	"issuer": {
-		"id": "did:key:z6MkuoMhgimCa3KYyJarGN2ZcCNio5dM4fh7x6eFMmUuTkTB",
 		"type": [
 			"Profile"
 		],
+		"id": "did:key:z6MkuoMhgimCa3KYyJarGN2ZcCNio5dM4fh7x6eFMmUuTkTB",
 		"name": "TerritoriumLife Test Venezuela",
 		"url": "https://territorium.com",
 		"image": {
@@ -28,6 +29,7 @@
 			"caption": "TerritoriumLife Test Venezuela"
 		}
 	},
+	"validFrom": "2025-08-25T16:40:10.163634Z",
 	"credentialSubject": {
 		"id": "did:key:z6MkrV3nAqSip6Dd9VMm9CiJDAh97UowswFQu2W9fm1KWTbU",
 		"type": [
@@ -62,6 +64,7 @@
 				"Achievement"
 			],
 			"achievementType": "Achievement",
+			"creditsAvailable": null,
 			"name": "Logro completed",
 			"description": "Logro completed",
 			"fieldOfStudy": "Logro completed",
@@ -104,23 +107,21 @@
 		"id": "https://life-staging.territorium.com/credentials/f5b49e2b-09a1-4633-a7e5-1746edc249d9",
 		"type": "1EdTechCredentialRefresh"
 	},
+	"evidence": [],
 	"credentialSchema": [
 		{
 			"id": "https://purl.imsglobal.org/spec/ob/v3p0/schema/json/ob_v3p0_achievementcredential_schema.json",
 			"type": "1EdTechJsonSchemaValidator2019"
 		}
 	],
-	"description": "Badge hijo 1. Pruebas",
-	"validFrom": "2025-08-25T16:40:10.163634Z",
-	"evidence": [],
 	"proof": [
 		{
-			"type": "DataIntegrityProof",
-			"created": "2025-10-10T20:16:27.737Z",
-			"verificationMethod": "did:key:z6MkuoMhgimCa3KYyJarGN2ZcCNio5dM4fh7x6eFMmUuTkTB#z6MkuoMhgimCa3KYyJarGN2ZcCNio5dM4fh7x6eFMmUuTkTB",
-			"cryptosuite": "ecdsa-sd-2023",
-			"proofPurpose": "assertionMethod",
-			"proofValue": "u2V0BhVhApGo0kBDBXCD4rkJRUOBr1yxUj5EE8WuIAQ9Lur5tU8aTd5o_zfb-pzIn1empBRQQZruEMqSeoD3knRsUoS_colgjgCQCBqdydTnrj5ImxQb9Whf8UWv0D589BS0QrLBBafSDjGOJWEAKPNYhw8E5J7ZcG0PXhp0h20Qp_sbebuc98zt94S2ntaTxYUBcKNx3Sdk00dfOPYLrGxVaAUc5Jbg1a63ZUMG0WECkez9VHuFNtuskirdUd8t0UcVF3tSHH-qOBddDOLe4XBjuZR0k42JTmZuNdFLaEbHIFHsdKoB8ZqDVDH-DXzQaWEAmvAae2EmfOK8A4vs5yTBCxXmRlxVfQgcwrAvg7teLOXx5i2efUH5bxFySYYGTOsDA3V8cYYQb_sUWOSEHw5I7WEAHnV29sEPj2QERjoI1c9_Fus_KwTdAtoO8TcPG5VaQkjJHqxzEhb_jH4DxvHcCbHBJ-rzT6ctCLTzUbe3nDhesWECJ8HOG0d_h_k_xhNfaqHQI3HIhVBBIOxp_pUri5sUts6q-hswgdIAxTfC4h51YfNIsvGWuDjLvazDLJEVlwhVtWEAq47pGcTJXEBBAihlE3inMDa2Hd4PLmeiOoYSz27_mYthY_GH5hrRLbyhTaf-Y6baBSnTFfv1POogWzgDtEAAqWEBlJw6UihXw49Y0QsqSBcIbORoJGAS7Uc6xVN05ulQZUle9ZSydgQNlY4anm8SOEOZf1BMx3mPUgX_tktbuc44bWEBkpylKD7ibqgFMysZFP7B2TDGeMGy0hGoqj1tn459NjPJimQaKO3ndufPJH0VP1CS338Uz7ZpT15gIiko7ELvmWECewwIj7ttGOvbDDSSHpq2y59hqRbA2dEnEY-Ysr6eH-02JyKioVrdrlckVHcDqSiRR-obwjqoX0NxR0J0jIe74pQBYIMymtcCe5CCOWB2pd493AJpY40pXZopNNDJqzUZmtUDQAVggmdeo1_jRMknuco8wrHwG3OYoqPq0v3Ck-N2o_OhduesCWCBJhIMJAcrzH2yu9Cd6VJxS8qnfN8lB1K517uqF_RIRLANYICogUjp9UZW-1GxLSAa16VGVX_uhwwpYayoclY5HzklxBFggrAFJzNMgz3jJYisxh4KM6KN5FN4DhtdmzeyGtEBYQUaYMwABAgMEBgcICQoLDA0ODxESExQVFhcYGBgZGBoYHxggGCEYIhgjGCQYJRgmGCcYKBgpGCoYKxgsGC0YLhgvGDAYMRgyGDMYNBg1GDYYNxg4"
-		}
+		"type": "DataIntegrityProof",
+		"created": "2025-10-13T21:18:55.821Z",
+		"verificationMethod": "did:key:z6MkuoMhgimCa3KYyJarGN2ZcCNio5dM4fh7x6eFMmUuTkTB#z6MkuoMhgimCa3KYyJarGN2ZcCNio5dM4fh7x6eFMmUuTkTB",
+		"cryptosuite": "ecdsa-sd-2023",
+		"proofPurpose": "assertionMethod",
+		"proofValue": "u2V0AhVhAAR4ZkMy7EOWDzZg7EiDlA7WgsMnJeXdqePjFx9CWGXiKksFSG-WGLhRQZYUs2mgeOG3VQBwgCULX1mKKSsBKqVgjgCQCVAVOftHQy19fifQNHJI4Jk7gpqRq4YmLh_GeVyYKOEFYIOvpEWevKdk9KoXKkJxpsMARhzF95pmF4zby8aqN6gNAiVhAByHkV6xQ7KvVWFrYLHkYmShwyweqg5ieotwsLddMl_eD4iHeMlcVPSXwuaxo7Zk8bPk5ehp-orRsSmhxM8eEfVhAivTkWNOJBG37Bwi1reAXCk1cu4E3kEvji3onmfe1JB8qhDvbhBbR-f753oob-sEye-72jOQDZAWDbmc4bfiGS1hAynl9pdqGvQNLY768ANKNgb9MR14Qlv0rKp0pVwGjGzv67CTxKHnouENJbtKgMUg-RsnGd_9KTd-rY5Fp5wopm1hAB2rk1zzcrao_p-xU0_y_QmHyZ6qQnfQepHLOcOzTPu2GkLRUa_sicjscmbTRtd0hOQZ3s99l_R7mbIhUGTMXx1hAq6ZVdA7WL0omciEmKWqdWBvBJEU299U0NV5Lr2Tfotr5Xiut6C2x7DCnwDj7KIDiG-aaV6DaXS5wtWPhpaR6qFhAswHSbmdW6Y_zQ2HLZpx_VpqPCTVCoVFmx1Z_PtYA0NtYiiJi7inCVcb-AC2X7wZ4V6XYpAfF5Nrwx3ImIoEynlhASzACk0ZTzADqKWH_AzAxHT4X2LXrpiuuDYXuUkAu1C8Y7DBBVVXjvGaCJC7PVO5_yCrpRHiAevvv4ZS-RKbLBlhAXYRQcRYUnIZekHt4gdD1oZEFB9DVKs8tBcf_PeCpdAS8h51JgySpZqWNe0Tl5NGhFsaMmkJFZwxlK7fjAEqz11hAhLyO8QgE-mqFCyvEOm8zZAOnFaLyQOO8LzJasFNxX0wTpYLyr5tlr6wjMvVLMvwgWdqBweA6hBToC5PcpJsAoY9lL25hbWVmL2ltYWdlZy9pc3N1ZXJ4HS9jcmVkZW50aWFsU3ViamVjdC9pZGVudGlmaWVyeC4vY3JlZGVudGlhbFN1YmplY3QvYWNoaWV2ZW1lbnQvYWNoaWV2ZW1lbnRUeXBleCMvY3JlZGVudGlhbFN1YmplY3QvYWNoaWV2ZW1lbnQvbmFtZXgqL2NyZWRlbnRpYWxTdWJqZWN0L2FjaGlldmVtZW50L2Rlc2NyaXB0aW9ueCsvY3JlZGVudGlhbFN1YmplY3QvYWNoaWV2ZW1lbnQvZmllbGRPZlN0dWR5eCIvY3JlZGVudGlhbFN1YmplY3QvYWNoaWV2ZW1lbnQvdGFneCcvY3JlZGVudGlhbFN1YmplY3QvYWNoaWV2ZW1lbnQvY3JpdGVyaWF4JC9jcmVkZW50aWFsU3ViamVjdC9hY2hpZXZlbWVudC9pbWFnZW8vcmVmcmVzaFNlcnZpY2VxL2NyZWRlbnRpYWxTY2hlbWFsL2Rlc2NyaXB0aW9uai92YWxpZEZyb20"
+	}
 	]
 }
