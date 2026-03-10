@@ -57,6 +57,9 @@
             action="
             https://life-api.territorium.com/saberes/redirect/share/credential/eyJpdiI6InZ0NTM2K1BBbllkRzNpQ2toTXJBWlE9PSIsInZhbHVlIjoiTzdyTGd5aEo1RDlHU3E5Nm5kdmtYQT09IiwibWFjIjoiNjZlOWMwYzJjNTdiZjdhNmFlYzYxODNjMTg1OTEwNjIxMzRkNGIzYTY2MjM1OTMzYjFhMjYyN2U5N2Y3NDkwMCIsInRhZyI6IiJ9/NDc5OTc=
             ">
+            <input type="hidden" name="_token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xpZmUtYXBpLnRlcnJpdG9yaXVtLmNvbSIsImlhdCI6MTc3MzE4MDY3MCwiZXhwIjoxNzczMjEzMDcwLCJuYmYiOjE3NzMxODA2NzAsImp0aSI6ImUyWjd5T1pPSnRpM0RKaTYiLCJzdWIiOiIxMTk5NjUiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZXMiOiJ1c2VyIiwiZW1wbG95ZXJfaWQiOm51bGwsInVzZXJfcm9sIjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbH0.Fgv_3hV9j8RvLbt19OsLfXKFV09M7v7Jq7bl6tf2wIk">
+            <input type="hidden" name="token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xpZmUtYXBpLnRlcnJpdG9yaXVtLmNvbSIsImlhdCI6MTc3MzE4MDY3MCwiZXhwIjoxNzczMjEzMDcwLCJuYmYiOjE3NzMxODA2NzAsImp0aSI6ImUyWjd5T1pPSnRpM0RKaTYiLCJzdWIiOiIxMTk5NjUiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZXMiOiJ1c2VyIiwiZW1wbG95ZXJfaWQiOm51bGwsInVzZXJfcm9sIjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbH0.Fgv_3hV9j8RvLbt19OsLfXKFV09M7v7Jq7bl6tf2wIk">
+            <input type="hidden" name="access_token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xpZmUtYXBpLnRlcnJpdG9yaXVtLmNvbSIsImlhdCI6MTc3MzE4MDY3MCwiZXhwIjoxNzczMjEzMDcwLCJuYmYiOjE3NzMxODA2NzAsImp0aSI6ImUyWjd5T1pPSnRpM0RKaTYiLCJzdWIiOiIxMTk5NjUiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZXMiOiJ1c2VyIiwiZW1wbG95ZXJfaWQiOm51bGwsInVzZXJfcm9sIjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbH0.Fgv_3hV9j8RvLbt19OsLfXKFV09M7v7Jq7bl6tf2wIk">
             <button type="submit">Enviar y Redirigir ahora mismo</button>
         </form>
     </div>
