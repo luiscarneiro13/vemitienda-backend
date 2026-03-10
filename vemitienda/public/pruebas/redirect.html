@@ -1,35 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Laravel Redirect Tester</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #ff2d20; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        button:disabled { background: #ccc; }
-        #status { margin-top: 15px; padding: 10px; border-radius: 5px; display: none; font-size: 0.9em; }
-        .error { background: #fee2e2; color: #b91c1c; display: block !important; }
-        .info { background: #e0f2fe; color: #0369a1; display: block !important; }
-    </style>
-</head>
-<body>
-
-<div class="card">
-    <h3>Probar Endpoint Laravel</h3>
-
-    <label>URL del Endpoint:</label>
-    <input type="text" id="url" placeholder="http://localhost/api/v1/validar?data=xyz...">
-
-    <label>Bearer Token (sin la palabra 'Bearer'):</label>
-    <input type="text" id="token" placeholder="Tu token aquí">
-
-    <button id="btnEnviar" onclick="enviar()">Enviar y Redirigir</button>
-
-    <div id="status"></div>
-</div>
-
 <script>
     async function enviar() {
         const btn = document.getElementById('btnEnviar');
@@ -37,30 +5,34 @@
         const url = document.getElementById('url').value;
         const token = document.getElementById('token').value;
 
-        if(!url || !token) return alert("Rellena los campos");
+        if (!url || !token) return alert("Rellena los campos");
 
         btn.disabled = true;
         status.className = "info";
-        status.innerHTML = "Enviando petición...";
+        status.innerHTML = "Validando credenciales...";
 
         try {
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' // Añadido para evitar problemas de parsing
                 }
             });
 
-            // CASO 1: Laravel redirige (302)
-            // fetch sigue la redirección automáticamente. response.url será la URL FINAL.
-            if (response.ok || response.redirected) {
-                status.innerHTML = "¡Éxito! Redirigiendo a: " + response.url;
-                setTimeout(() => {
-                    window.location.href = response.url;
-                }, 1000);
+            if (response.ok) {
+                const data = await response.json();
+
+                // Si el backend nos da la URL, redirigimos nosotros
+                if (data.redirect_url) {
+                    status.innerHTML = "¡Validado! Redirigiendo...";
+                    window.location.href = data.redirect_url;
+                } else {
+                    status.innerHTML = "Petición exitosa, pero no se recibió URL de retorno.";
+                }
             } else {
-                const errData = await response.json();
+                const errData = await response.json().catch(() => ({}));
                 status.className = "error";
                 status.innerHTML = `Error ${response.status}: ${errData.message || 'No autorizado'}`;
                 btn.disabled = false;
@@ -68,12 +40,9 @@
 
         } catch (error) {
             status.className = "error";
-            status.innerHTML = "Error de red o CORS. Revisa la consola (F12).";
+            status.innerHTML = "Error de red o CORS. Asegúrate que en App-B el archivo cors.php incluya 'saberes/*'.";
             btn.disabled = false;
             console.error(error);
         }
     }
 </script>
-
-</body>
-</html>
