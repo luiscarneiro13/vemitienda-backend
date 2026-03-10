@@ -25,6 +25,7 @@ use App\Events\MensajeNuevo;
 Route::get('/', 'NewHomeController@index')->name('home');
 Route::get('/catalogo/{slug}', 'WEB\V3\ShareController@index');
 Route::get('/pruebas', 'PruebasController@index')->name('pruebas');
+Route::get('/nuevas_pruebas', 'PruebasController@index')->name('nuevas_pruebas');
 Route::get('/changeFormat', 'PruebasController@changeFormat')->name('changeFormat');
 Route::get('politica', fn () => view('politica'));
 Route::get('privacidad', fn () => view('privacidad'));
