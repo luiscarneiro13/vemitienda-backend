@@ -18,8 +18,9 @@ class PruebasController extends Controller
 
     public function index()
     {
-        $images = new Images();
-        return $images->getFiles();
+        // $images = new Images();
+        // return $images->getFiles();
+        return view("pruebas");
     }
 
     public function changeFormat()
