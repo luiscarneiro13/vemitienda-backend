@@ -1,48 +1,30 @@
-<script>
-    async function enviar() {
-        const btn = document.getElementById('btnEnviar');
-        const status = document.getElementById('status');
-        const url = document.getElementById('url').value;
-        const token = document.getElementById('token').value;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Envío Directo a App-B</title>
+    <style>
+        body { font-family: sans-serif; padding: 50px; background: #f4f4f4; }
+        .container { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input { width: 100%; padding: 10px; margin: 10px 0; display: block; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: #e3342f; color: white; border: none; font-weight: bold; cursor: pointer; }
+        button:hover { background: #cc1f1a; }
+        label { font-weight: bold; }
+    </style>
+</head>
+<body>
 
-        if (!url || !token) return alert("Rellena los campos");
+<div class="container">
+    <h3>Enviar a App-B</h3>
 
-        btn.disabled = true;
-        status.className = "info";
-        status.innerHTML = "Validando credenciales...";
+    <form method="POST" action="https://life-api.territorium.com/saberes/redirect/share/credential/eyJpdiI6IllLdGFHL3J5U3lqUmswR3BqaFdFeGc9PSIsInZhbHVlIjoibnJtVWVkaDVHL2ViN1hack4wUUw3dz09IiwibWFjIjoiZjdhMDY3MjMxOWMxMDdjZDRiNjRkYTZjNmRmYzcwY2U5ZmYxYWFlOWExNjY4MTdkNWVhNDk3OTczNWZhZDIwMSIsInRhZyI6IiJ9/NDc5OTc=">
 
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json' // Añadido para evitar problemas de parsing
-                }
-            });
+        <label>Pega tu Token aquí:</label>
+        <input type="text" name="token" placeholder="Tu token..." required>
 
-            if (response.ok) {
-                const data = await response.json();
+        <button type="submit">Enviar y Redirigir ahora mismo</button>
+    </form>
+</div>
 
-                // Si el backend nos da la URL, redirigimos nosotros
-                if (data.redirect_url) {
-                    status.innerHTML = "¡Validado! Redirigiendo...";
-                    window.location.href = data.redirect_url;
-                } else {
-                    status.innerHTML = "Petición exitosa, pero no se recibió URL de retorno.";
-                }
-            } else {
-                const errData = await response.json().catch(() => ({}));
-                status.className = "error";
-                status.innerHTML = `Error ${response.status}: ${errData.message || 'No autorizado'}`;
-                btn.disabled = false;
-            }
-
-        } catch (error) {
-            status.className = "error";
-            status.innerHTML = "Error de red o CORS. Asegúrate que en App-B el archivo cors.php incluya 'saberes/*'.";
-            btn.disabled = false;
-            console.error(error);
-        }
-    }
-</script>
+</body>
+</html>
