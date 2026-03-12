@@ -51,15 +51,18 @@
 <body>
 
     <div class="container">
-        <h3>Enviar a App-B</h3>
-
-        <form method="POST"
-            action="
-            https://life-api.territorium.com/saberes/redirect/share/credential/eyJpdiI6InZ0NTM2K1BBbllkRzNpQ2toTXJBWlE9PSIsInZhbHVlIjoiTzdyTGd5aEo1RDlHU3E5Nm5kdmtYQT09IiwibWFjIjoiNjZlOWMwYzJjNTdiZjdhNmFlYzYxODNjMTg1OTEwNjIxMzRkNGIzYTY2MjM1OTMzYjFhMjYyN2U5N2Y3NDkwMCIsInRhZyI6IiJ9/NDc5OTc=
-            ">
-            <input type="hidden" name="_token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xpZmUtYXBpLnRlcnJpdG9yaXVtLmNvbSIsImlhdCI6MTc3MzE4MDY3MCwiZXhwIjoxNzczMjEzMDcwLCJuYmYiOjE3NzMxODA2NzAsImp0aSI6ImUyWjd5T1pPSnRpM0RKaTYiLCJzdWIiOiIxMTk5NjUiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZXMiOiJ1c2VyIiwiZW1wbG95ZXJfaWQiOm51bGwsInVzZXJfcm9sIjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbH0.Fgv_3hV9j8RvLbt19OsLfXKFV09M7v7Jq7bl6tf2wIk">
-            <input type="hidden" name="token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xpZmUtYXBpLnRlcnJpdG9yaXVtLmNvbSIsImlhdCI6MTc3MzE4MDY3MCwiZXhwIjoxNzczMjEzMDcwLCJuYmYiOjE3NzMxODA2NzAsImp0aSI6ImUyWjd5T1pPSnRpM0RKaTYiLCJzdWIiOiIxMTk5NjUiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZXMiOiJ1c2VyIiwiZW1wbG95ZXJfaWQiOm51bGwsInVzZXJfcm9sIjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbH0.Fgv_3hV9j8RvLbt19OsLfXKFV09M7v7Jq7bl6tf2wIk">
-            <input type="hidden" name="access_token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xpZmUtYXBpLnRlcnJpdG9yaXVtLmNvbSIsImlhdCI6MTc3MzE4MDY3MCwiZXhwIjoxNzczMjEzMDcwLCJuYmYiOjE3NzMxODA2NzAsImp0aSI6ImUyWjd5T1pPSnRpM0RKaTYiLCJzdWIiOiIxMTk5NjUiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZXMiOiJ1c2VyIiwiZW1wbG95ZXJfaWQiOm51bGwsInVzZXJfcm9sIjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbH0.Fgv_3hV9j8RvLbt19OsLfXKFV09M7v7Jq7bl6tf2wIk">
+        <h3>Enviar a wallet</h3>
+        <form method="POST" action="https://life-api.territorium.com/saberes/wallet">
+            <input type="text" name="encripted_user_id" placeholder="encripted_user_id"
+                value="eyJpdiI6IlpnQ0JOMGxSK1drOFltcmxjSFNIT0E9PSIsInZhbHVlIjoiaXVGSXppTXkzaHkzTWdob29xNXNzQT09IiwibWFjIjoiYjZhMjFkOTgwNzY1NzUxYzczNWUwNTdhMzg4Y2FmNjVhNjQwMDhjZWE1YzRiZmI2ZWI4YzRmOWY3NDAyZWRjOCIsInRhZyI6IiJ9">
+            <button type="submit">Enviar y Redirigir ahora mismo</button>
+        </form>
+        <br>
+        <h3>Enviar a share</h3>
+        <form method="POST" action="https://life-api.territorium.com/saberes/share-credential">
+            <input type="text" name="wallet_id_encripted" placeholder="wallet_id_encripted"
+                value="eyJpdiI6IkNTcXNBZHhjMGVUWWRoSjJMZVpMV3c9PSIsInZhbHVlIjoieWpVN1Q3eHh3U0RCNFRKRU83c3dkQT09IiwibWFjIjoiY2RhYjE0N2YyOWNmM2FhMjA1ZTk0NDZlOTBiMjFjMDAxM2ZlOTBlMDkzNTIwM2I5NTVhYmY4M2UzMTA5OWM3ZiIsInRhZyI6IiJ9">
+            <input type="text" name="external_id_base_64" placeholder="external_id_base_64" value="MTkzMTA0">
             <button type="submit">Enviar y Redirigir ahora mismo</button>
         </form>
     </div>
