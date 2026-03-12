@@ -1,31 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Envío Directo a App-B</title>
     <style>
-        body { font-family: sans-serif; padding: 50px; background: #f4f4f4; }
-        .container { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        input { width: 100%; padding: 10px; margin: 10px 0; display: block; box-sizing: border-box; }
-        button { width: 100%; padding: 15px; background: #e3342f; color: white; border: none; font-weight: bold; cursor: pointer; }
-        button:hover { background: #cc1f1a; }
-        label { font-weight: bold; }
+        body {
+            font-family: sans-serif;
+            padding: 50px;
+            background: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #e3342f;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #cc1f1a;
+        }
+
+        label {
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h3>Enviar a App-B</h3>
-
-    <form method="POST" action="https://life-api.territorium.com/saberes/redirect/share/credential/eyJpdiI6IllLdGFHL3J5U3lqUmswR3BqaFdFeGc9PSIsInZhbHVlIjoibnJtVWVkaDVHL2ViN1hack4wUUw3dz09IiwibWFjIjoiZjdhMDY3MjMxOWMxMDdjZDRiNjRkYTZjNmRmYzcwY2U5ZmYxYWFlOWExNjY4MTdkNWVhNDk3OTczNWZhZDIwMSIsInRhZyI6IiJ9/NDc5OTc=">
-
-        <label>Pega tu Token aquí:</label>
-        <input type="text" name="token" placeholder="Tu token..." required>
-        <input type="hidden" name="_token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xpZmUtYXBpLnRlcnJpdG9yaXVtLmNvbSIsImlhdCI6MTc3MzE1NzE2MSwiZXhwIjoxNzczMTg5NTYxLCJuYmYiOjE3NzMxNTcxNjEsImp0aSI6IldEdUNSVGpma0VlVGJyZWEiLCJzdWIiOiIxOTI5NzAiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZXMiOiJhZG1pbiIsImVtcGxveWVyX2lkIjpudWxsLCJ1c2VyX3JvbCI6bnVsbCwicGVybWlzc2lvbnMiOm51bGx9.fTIZ1ukxonre3gKu49W8l5upo5gZfuQ3J3bkORDcN7k">
-
-        <button type="submit">Enviar y Redirigir ahora mismo</button>
-    </form>
-</div>
+    <div class="container">
+        <h3>Enviar a wallet</h3>
+        <form method="POST" action="https://clrapi.tests/saberes/wallet">
+            <input type="text" name="encripted_user_id" placeholder="encripted_user_id"
+                value="eyJpdiI6IlpnQ0JOMGxSK1drOFltcmxjSFNIT0E9PSIsInZhbHVlIjoiaXVGSXppTXkzaHkzTWdob29xNXNzQT09IiwibWFjIjoiYjZhMjFkOTgwNzY1NzUxYzczNWUwNTdhMzg4Y2FmNjVhNjQwMDhjZWE1YzRiZmI2ZWI4YzRmOWY3NDAyZWRjOCIsInRhZyI6IiJ9">
+            <button type="submit">Enviar y Redirigir ahora mismo</button>
+        </form>
+        <br>
+        <h3>Enviar a share</h3>
+        <form method="POST" action="https://clrapi.tests/saberes/share-credential">
+            <input type="text" name="wallet_id_encripted" placeholder="wallet_id_encripted"
+                value="eyJpdiI6IkNTcXNBZHhjMGVUWWRoSjJMZVpMV3c9PSIsInZhbHVlIjoieWpVN1Q3eHh3U0RCNFRKRU83c3dkQT09IiwibWFjIjoiY2RhYjE0N2YyOWNmM2FhMjA1ZTk0NDZlOTBiMjFjMDAxM2ZlOTBlMDkzNTIwM2I5NTVhYmY4M2UzMTA5OWM3ZiIsInRhZyI6IiJ9">
+            <input type="text" name="external_id_base_64" placeholder="external_id_base_64" value="MTkzMTA0">
+            <button type="submit">Enviar y Redirigir ahora mismo</button>
+        </form>
+    </div>
 
 </body>
+
 </html>
