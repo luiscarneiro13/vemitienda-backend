@@ -52,14 +52,14 @@
 
     <div class="container">
         <h3>Enviar a wallet</h3>
-        <form method="POST" action="https://lifejourney.test.mx/saberes/wallet">
+        <form method="POST" action="https://lifejourney.tests.mx/saberes/wallet">
             <input type="text" name="encripted_user_id" placeholder="encripted_user_id"
                 value="eyJpdiI6IlpnQ0JOMGxSK1drOFltcmxjSFNIT0E9PSIsInZhbHVlIjoiaXVGSXppTXkzaHkzTWdob29xNXNzQT09IiwibWFjIjoiYjZhMjFkOTgwNzY1NzUxYzczNWUwNTdhMzg4Y2FmNjVhNjQwMDhjZWE1YzRiZmI2ZWI4YzRmOWY3NDAyZWRjOCIsInRhZyI6IiJ9">
             <button type="submit">Enviar y Redirigir ahora mismo</button>
         </form>
         <br>
         <h3>Enviar a share</h3>
-        <form method="POST" action="https://lifejourney.test.mx/saberes/share-credential">
+        <form method="POST" action="https://lifejourney.tests.mx/saberes/share-credential">
             <input type="text" name="wallet_id_encripted" placeholder="wallet_id_encripted"
                 value="eyJpdiI6IkNTcXNBZHhjMGVUWWRoSjJMZVpMV3c9PSIsInZhbHVlIjoieWpVN1Q3eHh3U0RCNFRKRU83c3dkQT09IiwibWFjIjoiY2RhYjE0N2YyOWNmM2FhMjA1ZTk0NDZlOTBiMjFjMDAxM2ZlOTBlMDkzNTIwM2I5NTVhYmY4M2UzMTA5OWM3ZiIsInRhZyI6IiJ9">
             <input type="text" name="external_id_base_64" placeholder="external_id_base_64" value="MTkzMTA0">
