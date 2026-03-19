@@ -51,6 +51,15 @@
 <body>
 
     <div class="container">
+        <h3>Post de Lucho</h3>
+        <form method="POST" action="https://lifejourney.tests.mx/saberes/wallet" target="_blank">
+            <input type="hidden"
+                value="eyJpdiI6IjZ1MXlvZlJsc01mSGFXczV1S1NjcWc9PSIsInZhbHVlIjoiNFYvd2tEQU83STYzRzgzN3pzODZ4Zz09IiwibWFjIjoiN2RkOTliOTMwY2Y5NDI4MDkwOWRlNjA3YmJjOWEzMTZjNTJjYjQyMzI5NjUzZGZlY2FiMDZjOTRlOTNkZWE3ZSIsInRhZyI6IiJ9"
+                name="encripted_user_id">
+
+            <button type="submit" class="pasaporte-btn-ver-mas">Ver más</button>
+        </form>
+
         <h3>Enviar a wallet</h3>
         <form method="POST" action="https://lifejourney.tests.mx/saberes/wallet">
             <input type="text" name="encripted_user_id" placeholder="encripted_user_id"
