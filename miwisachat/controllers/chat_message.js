@@ -34,8 +34,7 @@ async function sendText(req, res) {
                 const notificaction = {
                     title: senderName,
                     body: message,
-                    attachments: senderAvatar ? [{ url: senderAvatar }] : undefined,
-                    data: { chat_id } // Esto estárá disponible al tocar la notificación
+                    richContent: { image: senderAvatar }
                 }
                 await sendPushNotification(otherUser.expo_token, notificaction)
             }
@@ -89,8 +88,7 @@ async function sendImage(req, res) {
                 const notificaction = {
                     title: senderName,
                     body: '📷 Imagen',
-                    attachments: senderAvatar ? [{ url: senderAvatar }] : undefined,
-                    data: { chat_id } // Esto estárá disponible al tocar la notificación
+                    richContent: { image: senderAvatar }
                 }
                 await sendPushNotification(otherUser.expo_token, notificaction)
             }

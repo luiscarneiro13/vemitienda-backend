@@ -3,7 +3,7 @@ import { Expo } from 'expo-server-sdk';
 // Instancia del cliente Expo
 const expo = new Expo();
 
-export async function sendPushNotification(token, { title, body, data = {}, attachments }) {
+export async function sendPushNotification(token, { title, body, richContent }) {
   if (!Expo.isExpoPushToken(token)) {
     console.error('❌ Token Expo inválido:', token);
     return;
@@ -14,11 +14,7 @@ export async function sendPushNotification(token, { title, body, data = {}, atta
     title,
     body,
     sound: 'default',
-    ...(attachments ? { attachments } : {}),
-    data: {
-      ...data,
-      ...(attachments ? { attachments } : {}),
-    },
+    ...(richContent ? { richContent } : {}),
   };
 
   try {
