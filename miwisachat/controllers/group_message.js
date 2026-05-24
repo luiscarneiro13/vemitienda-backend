@@ -35,7 +35,7 @@ async function sendText(req, res) {
                     const notification = {
                         title: `${senderName} en ${group.name}`,
                         body: message,
-                        richContent: { image: senderAvatar },
+                        richContent: senderAvatar ? { image: senderAvatar } : undefined,
                     };
 
                     await sendPushNotification(otherUser.expo_token, notification);
@@ -88,7 +88,7 @@ async function sendImage(req, res) {
                     const notification = {
                         title: `${senderName} en ${group.name}`,
                         body: '📷 Imagen',
-                        richContent: { image: senderAvatar },
+                        richContent: senderAvatar ? { image: senderAvatar } : undefined,
                     };
 
                     await sendPushNotification(otherUser.expo_token, notification);
