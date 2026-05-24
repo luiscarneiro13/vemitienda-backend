@@ -1,6 +1,6 @@
 import { responseServerError } from "../constants.js"
 import { ChatMessage, User, Chat } from "../models/index.js"
-import { io, getFilePath, sendPushNotification, getOther } from "../utils/index.js"
+import { io, getFilePath, sendPushNotification, getOther, getPublicUrl } from "../utils/index.js"
 
 async function sendText(req, res) {
 
@@ -30,7 +30,7 @@ async function sendText(req, res) {
                 const senderName = data.user?.firstname
                     ? `${data.user.firstname} ${data.user.lastname}`
                     : data.user?.email
-                const senderAvatar = data.user?.avatar
+                const senderAvatar = getPublicUrl(data.user?.avatar)
                 const notificaction = {
                     title: senderName,
                     body: message,
@@ -86,7 +86,7 @@ async function sendImage(req, res) {
                 const senderName = data.user?.firstname
                     ? `${data.user.firstname} ${data.user.lastname}`
                     : data.user?.email
-                const senderAvatar = data.user?.avatar
+                const senderAvatar = getPublicUrl(data.user?.avatar)
                 const notificaction = {
                     title: senderName,
                     body: '📷 Imagen',

@@ -1,5 +1,6 @@
 
 export const IP_SERVER = "localhost"
+export const SERVER_URL = "https://vemitienda.com.ve"
 export const PORT = process.env.port || 3977
 
 //******* DATA BASE *************/

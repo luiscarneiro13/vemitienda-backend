@@ -1,6 +1,6 @@
 import { responseServerError } from "../constants.js"
 import { Group, GroupMessage } from "../models/index.js"
-import { getFilePath, io } from "../utils/index.js"
+import { getFilePath, io, getPublicUrl } from "../utils/index.js"
 import { getOtherParticipants, sendPushNotification } from "../utils/index.js"
 
 async function sendText(req, res) {
@@ -31,7 +31,7 @@ async function sendText(req, res) {
                     const senderName = dataStorage.user?.firstname
                         ? `${dataStorage.user.firstname} ${dataStorage.user.lastname}`
                         : dataStorage.user?.email
-                    const senderAvatar = dataStorage.user?.avatar
+                    const senderAvatar = getPublicUrl(dataStorage.user?.avatar)
                     const notification = {
                         title: `${senderName} en ${group.name}`,
                         body: message,
@@ -86,7 +86,7 @@ async function sendImage(req, res) {
                     const senderName = data.user?.firstname
                         ? `${data.user.firstname} ${data.user.lastname}`
                         : data.user?.email
-                    const senderAvatar = data.user?.avatar
+                    const senderAvatar = getPublicUrl(data.user?.avatar)
                     const notification = {
                         title: `${senderName} en ${group.name}`,
                         body: '📷 Imagen',
