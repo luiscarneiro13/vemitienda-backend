@@ -15,7 +15,10 @@ export async function sendPushNotification(token, { title, body, data = {}, atta
     body,
     sound: 'default',
     ...(attachments ? { attachments } : {}),
-    data,
+    data: {
+      ...data,
+      ...(attachments ? { attachments } : {}),
+    },
   };
 
   try {
