@@ -30,10 +30,12 @@ async function sendText(req, res) {
                 const senderName = data.user?.firstname
                     ? `${data.user.firstname} ${data.user.lastname}`
                     : data.user?.email
+                const senderAvatar = data.user?.avatar
                 const notificaction = {
                     title: senderName,
                     body: message,
-                    data: { chat_id } // Esto estárá disponible al tocar la notificación
+                    attachments: senderAvatar ? [{ url: senderAvatar }] : undefined,
+                    data: { chat_id, image: senderAvatar } // Esto estárá disponible al tocar la notificación
                 }
                 await sendPushNotification(otherUser.expo_token, notificaction)
             }
@@ -83,10 +85,12 @@ async function sendImage(req, res) {
                 const senderName = data.user?.firstname
                     ? `${data.user.firstname} ${data.user.lastname}`
                     : data.user?.email
+                const senderAvatar = data.user?.avatar
                 const notificaction = {
                     title: senderName,
                     body: '📷 Imagen',
-                    data: { chat_id } // Esto estárá disponible al tocar la notificación
+                    attachments: senderAvatar ? [{ url: senderAvatar }] : undefined,
+                    data: { chat_id, image: senderAvatar } // Esto estárá disponible al tocar la notificación
                 }
                 await sendPushNotification(otherUser.expo_token, notificaction)
             }
