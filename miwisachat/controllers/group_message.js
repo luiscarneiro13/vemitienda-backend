@@ -36,7 +36,6 @@ async function sendText(req, res) {
                         title: `${senderName} en ${group.name}`,
                         body: message,
                         attachments: senderAvatar ? [{ url: senderAvatar }] : undefined,
-                        imageUrl: senderAvatar,
                         data: { group_id, image: senderAvatar }, // Lo puedes acceder al tocar la notificación
                     };
 
@@ -91,7 +90,6 @@ async function sendImage(req, res) {
                         title: `${senderName} en ${group.name}`,
                         body: '📷 Imagen',
                         attachments: senderAvatar ? [{ url: senderAvatar }] : undefined,
-                        imageUrl: senderAvatar,
                         data: { group_id, image: senderAvatar }, // Lo puedes acceder al tocar la notificación
                     };
 
