@@ -28,9 +28,12 @@ async function sendText(req, res) {
             for (const otherUser of otherUsers) {
                 
                 if (otherUser?.expo_token) {
+                    const senderName = dataStorage.user?.firstname
+                        ? `${dataStorage.user.firstname} ${dataStorage.user.lastname}`
+                        : dataStorage.user?.email
                     const notification = {
-                        title: 'Nuevo mensaje',
-                        body: 'Mensaje de texto...',
+                        title: `${senderName} en ${group.name}`,
+                        body: message,
                         data: { group_id }, // Lo puedes acceder al tocar la notificación
                     };
 
@@ -69,7 +72,7 @@ async function sendImage(req, res) {
         const messageStorage = await group_message.save()
         const data = await messageStorage.populate(["user", "group"]);
 
-        const group = await Group.find({ _id: group_id })
+        const group = await Group.findOne({ _id: group_id }).populate(["creator", "participants"])
 
         // Verifico si el usuario tiene un token de expo para enviarle notificación:
         const otherUsers = getOtherParticipants(user_id, group.participants)
@@ -77,9 +80,12 @@ async function sendImage(req, res) {
         if (otherUsers) {
             for (const otherUser of otherUsers) {
                 if (otherUser?.expo_token) {
+                    const senderName = data.user?.firstname
+                        ? `${data.user.firstname} ${data.user.lastname}`
+                        : data.user?.email
                     const notification = {
-                        title: 'Nuevo mensaje',
-                        body: 'Mensaje de texto...',
+                        title: `${senderName} en ${group.name}`,
+                        body: '📷 Imagen',
                         data: { group_id }, // Lo puedes acceder al tocar la notificación
                     };
 

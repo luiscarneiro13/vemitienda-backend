@@ -27,9 +27,12 @@ async function sendText(req, res) {
         if (otherUserId) {
             const otherUser = await User.findOne({ _id: otherUserId._id })
             if (otherUser?.expo_token) {
+                const senderName = data.user?.firstname
+                    ? `${data.user.firstname} ${data.user.lastname}`
+                    : data.user?.email
                 const notificaction = {
-                    title: 'Nuevo mensaje',
-                    body: 'Mensaje de texto...',
+                    title: senderName,
+                    body: message,
                     data: { chat_id } // Esto estárá disponible al tocar la notificación
                 }
                 await sendPushNotification(otherUser.expo_token, notificaction)
@@ -77,9 +80,12 @@ async function sendImage(req, res) {
         if (otherUserId) {
             const otherUser = await User.findOne({ _id: otherUserId })
             if (otherUser?.expo_token) {
+                const senderName = data.user?.firstname
+                    ? `${data.user.firstname} ${data.user.lastname}`
+                    : data.user?.email
                 const notificaction = {
-                    title: 'Nuevo mensaje',
-                    body: 'Mensaje de texto...',
+                    title: senderName,
+                    body: '📷 Imagen',
                     data: { chat_id } // Esto estárá disponible al tocar la notificación
                 }
                 await sendPushNotification(otherUser.expo_token, notificaction)
