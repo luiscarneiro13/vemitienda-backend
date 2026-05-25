@@ -14,6 +14,7 @@ export async function sendPushNotification(token, { title, body, richContent }) 
     title,
     body,
     sound: 'default',
+    channelId: 'default',
     ...(richContent ? { richContent } : {}),
   };
 
