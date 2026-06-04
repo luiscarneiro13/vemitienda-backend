@@ -21,6 +21,7 @@ services:
       - ./vemitienda:/var/www
       - ./vemitienda/nginx/default.prod.conf:/etc/nginx/conf.d/default.conf
       - /etc/letsencrypt:/etc/letsencrypt:ro
+      - acme-challenge:/var/www/html
     depends_on:
       - php
       - miwisachat
@@ -40,6 +41,28 @@ services:
     networks:
       - vemitienda
     restart: always
+
+  certbot:
+    image: certbot/certbot
+    container_name: vemitiendabackend-certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - acme-challenge:/var/www/html
+    environment:
+      - TZ=America/Caracas
+    entrypoint: |
+      sh -c '
+        trap exit TERM
+        while true; do
+          certbot renew --webroot -w /var/www/html --quiet --noninteractive
+          sleep 43200
+        done
+      '
+    networks:
+      - vemitienda
+
+volumes:
+  acme-challenge:
 
 networks:
   vemitienda:
