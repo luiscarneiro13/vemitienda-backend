@@ -56,6 +56,10 @@ echo ""
 echo ">> Creando enlace simbólico..."
 docker exec -d "$APP_CONTAINER" php artisan storage:link
 
+echo ""
+echo ">> Limpiando imágenes huérfanas..."
+docker image prune -af
+
 echo "=========================================="
 echo "¡Proyecto listo con Certbot instalado! 🔒🚀"
 echo "=========================================="

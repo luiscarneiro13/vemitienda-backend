@@ -20,6 +20,7 @@ git checkout . &&
 git pull &&
 chmod +x start.sh &&
 chmod +x deploy-on-reboot.sh &&
-./start.sh
+./start.sh &&
+docker image prune -af &&
 chmod +x renovar_cert.sh &&
 ./renovar_cert.sh

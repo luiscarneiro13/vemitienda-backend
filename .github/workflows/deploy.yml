@@ -38,4 +38,5 @@ jobs:
             chmod +x start.sh &&
             chmod +x renovar_cert.sh &&
             chmod +x deploy-on-reboot.sh &&
-            ./start.sh
+            ./start.sh &&
+            docker image prune -af
