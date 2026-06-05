@@ -69,6 +69,7 @@ services:
     environment:
       - URL_PREFIX=/metube
       - TZ=America/Caracas
+      - YT_DLP_OPTIONS=-f best[height<=720][ext=mp4]
     expose:
       - 8081
     networks:
