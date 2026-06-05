@@ -18,7 +18,7 @@ async function ensureBotUser() {
       lastname: "",
       password: hash,
       isBot: true,
-      avatar: "bot.png"
+      avatar: "bot.webp"
     })
 
     await bot.save()
@@ -28,11 +28,19 @@ async function ensureBotUser() {
   return bot
 }
 
-async function findExistingChat(userId, botId) {
-  return Chat.findOne({
+async function ensureChatWithBot(userId, botId) {
+  let chat = await Chat.findOne({
     participant_one: { $in: [userId, botId] },
     participant_two: { $in: [userId, botId] }
   })
+
+  if (!chat) {
+    chat = new Chat({ participant_one: userId, participant_two: botId })
+    await chat.save()
+    console.log(`💬 Chat con bot creado para usuario ${userId}`)
+  }
+
+  return chat
 }
 
 async function sendBotMessage(chat, bot, title) {
@@ -68,11 +76,8 @@ async function checkReminders(bot) {
       reminder.notifiedOffsets.push(offset)
 
       try {
-        const chat = await findExistingChat(user._id, bot._id)
-
-        if (chat) {
-          await sendBotMessage(chat, bot, reminder.title)
-        }
+        const chat = await ensureChatWithBot(user._id, bot._id)
+        await sendBotMessage(chat, bot, reminder.title)
 
         if (user.expo_token) {
           await sendPushNotification(user.expo_token, {
@@ -91,11 +96,8 @@ async function checkReminders(bot) {
       reminder.dueNotified = true
 
       try {
-        const chat = await findExistingChat(user._id, bot._id)
-
-        if (chat) {
-          await sendBotMessage(chat, bot, reminder.title)
-        }
+        const chat = await ensureChatWithBot(user._id, bot._id)
+        await sendBotMessage(chat, bot, reminder.title)
 
         if (user.expo_token) {
           await sendPushNotification(user.expo_token, {
