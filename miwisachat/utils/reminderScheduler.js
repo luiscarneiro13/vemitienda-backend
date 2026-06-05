@@ -28,19 +28,26 @@ async function ensureBotUser() {
   return bot
 }
 
-async function ensureChatWithBot(userId, botId) {
-  let chat = await Chat.findOne({
+async function findExistingChat(userId, botId) {
+  return Chat.findOne({
     participant_one: { $in: [userId, botId] },
     participant_two: { $in: [userId, botId] }
   })
+}
 
-  if (!chat) {
-    chat = new Chat({ participant_one: userId, participant_two: botId })
-    await chat.save()
-    console.log(`💬 Chat con bot creado para usuario ${userId}`)
-  }
+async function sendBotMessage(chat, bot, title) {
+  const message = new ChatMessage({
+    chat: chat._id,
+    user: bot._id,
+    message: `⏰ Recordatorio: ${title}`,
+    type: "TEXT"
+  })
 
-  return chat
+  await message.save()
+  const data = await message.populate("user")
+
+  io.sockets.in(String(chat._id)).emit("message", data)
+  io.sockets.in(`${chat._id}_notify`).emit("message_notify", data)
 }
 
 async function checkReminders(bot) {
@@ -61,20 +68,11 @@ async function checkReminders(bot) {
       reminder.notifiedOffsets.push(offset)
 
       try {
-        const chat = await ensureChatWithBot(user._id, bot._id)
+        const chat = await findExistingChat(user._id, bot._id)
 
-        const message = new ChatMessage({
-          chat: chat._id,
-          user: bot._id,
-          message: `⏰ ${reminder.title}`,
-          type: "TEXT"
-        })
-
-        await message.save()
-        const data = await message.populate("user")
-
-        io.sockets.in(String(chat._id)).emit("message", data)
-        io.sockets.in(`${chat._id}_notify`).emit("message_notify", data)
+        if (chat) {
+          await sendBotMessage(chat, bot, reminder.title)
+        }
 
         if (user.expo_token) {
           await sendPushNotification(user.expo_token, {
@@ -89,18 +87,47 @@ async function checkReminders(bot) {
       }
     }
 
-    if (reminder.notifiedOffsets.length >= reminder.notifyBefore.length) {
+    if (!reminder.dueNotified && reminder.dueAt <= now) {
+      reminder.dueNotified = true
+
+      try {
+        const chat = await findExistingChat(user._id, bot._id)
+
+        if (chat) {
+          await sendBotMessage(chat, bot, reminder.title)
+        }
+
+        if (user.expo_token) {
+          await sendPushNotification(user.expo_token, {
+            title: "⏰ Recordatorio",
+            body: reminder.title
+          })
+        }
+
+        console.log(`✅ Recordatorio cumplido: "${reminder.title}"`)
+      } catch (err) {
+        console.error(`Error enviando mensaje de dueAt ${reminder._id}:`, err)
+      }
+    }
+
+    const allNotified = reminder.dueNotified &&
+      reminder.notifiedOffsets.length >= reminder.notifyBefore.length
+
+    if (allNotified) {
       if (reminder.recurringType === "daily") {
         reminder.dueAt = new Date(reminder.dueAt.getTime() + 86400000)
         reminder.notifiedOffsets = []
+        reminder.dueNotified = false
       } else if (reminder.recurringType === "weekly") {
         reminder.dueAt = new Date(reminder.dueAt.getTime() + 604800000)
         reminder.notifiedOffsets = []
+        reminder.dueNotified = false
       } else if (reminder.recurringType === "monthly") {
         const next = new Date(reminder.dueAt)
         next.setMonth(next.getMonth() + 1)
         reminder.dueAt = next
         reminder.notifiedOffsets = []
+        reminder.dueNotified = false
       } else {
         reminder.isActive = false
       }
