@@ -18,15 +18,15 @@ async function ensureBotUser() {
       lastname: "",
       password: hash,
       isBot: true,
-      avatar: "bot.webp"
+      avatar: "avatar/bot.webp"
     })
 
     await bot.save()
     console.log("✅ Bot de recordatorios creado")
-  } else if (bot.avatar !== "bot.webp") {
-    bot.avatar = "bot.webp"
+  } else if (bot.avatar !== "avatar/bot.webp") {
+    bot.avatar = "avatar/bot.webp"
     await bot.save()
-    console.log("🔄 Avatar del bot actualizado a bot.webp")
+    console.log("🔄 Avatar del bot actualizado a avatar/bot.webp")
   }
 
   return bot
