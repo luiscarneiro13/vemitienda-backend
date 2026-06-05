@@ -61,21 +61,6 @@ services:
     networks:
       - vemitienda
 
-  metube:
-    image: alexta69/metube
-    container_name: vemitiendabackend-metube
-    volumes:
-      - /home/vemitiendabackend/metube/downloads:/downloads
-    environment:
-      - URL_PREFIX=/metube
-      - TZ=America/Caracas
-      - YT_DLP_OPTIONS=--cookies /downloads/cookies.txt -f "best[height<=720][ext=mp4]/best[height<=720]/best"
-    expose:
-      - 8081
-    networks:
-      - vemitienda
-    restart: unless-stopped
-
 volumes:
   acme-challenge:
 
