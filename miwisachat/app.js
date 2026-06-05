@@ -12,6 +12,7 @@ import {
     chatMessageRoutes,
     groupRoutes,
     groupMessageRoutes,
+    reminderRoutes,
 } from "./routes/index.js"
 
 dotenv.config()
@@ -46,5 +47,6 @@ app.use(PREFIX, chatRoutes)
 app.use(PREFIX, chatMessageRoutes)
 app.use(PREFIX, groupRoutes)
 app.use(PREFIX, groupMessageRoutes)
+app.use(PREFIX, reminderRoutes)
 
 export { server }

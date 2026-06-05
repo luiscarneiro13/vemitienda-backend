@@ -2,6 +2,7 @@ import { server } from "./app.js"
 import { IP_SERVER, PORT, DB_USER, DB_PASSWORD, DB_HOST, DB_PARAMS } from "./constants.js"
 import { io } from "./utils/socketServer.js"
 import mongoose from "mongoose"
+import { startReminderScheduler } from "./utils/reminderScheduler.js"
 
 const mongoDbUrl = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/?${DB_PARAMS}`
 
@@ -12,6 +13,8 @@ const connectToMongo = async () => {
         await mongoose.connect(mongoDbUrl);
 
         console.log('MongoDB conectado exitosamente');
+
+        startReminderScheduler()
 
         server.listen(PORT, '0.0.0.0', () => {
 

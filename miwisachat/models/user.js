@@ -10,7 +10,8 @@ const userSchema = mongoose.Schema({
     password: String,
     avatar: String,
     expo_token: String,
-    expo_token_updated_at: Date
+    expo_token_updated_at: Date,
+    isBot: { type: Boolean, default: false }
 })
 
 export const User = mongoose.model("User", userSchema)
