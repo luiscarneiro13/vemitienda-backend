@@ -13,7 +13,11 @@ NGINX_CONTAINER="vemitiendabackend-nginx"
 CHAT_CONTAINER="miwisachat-node"
 
 echo ""
-echo ">> Reconstruyendo contenedores y levantando servicios (docker compose up -d)..."
+echo ">> Descargando imágenes externas (metube, certbot, nginx)..."
+docker compose -f docker-compose.prod.yml pull
+
+echo ""
+echo ">> Reconstruyendo contenedores y levantando servicios..."
 docker compose -f docker-compose.prod.yml up -d --build
 
 # =========================
@@ -21,9 +25,16 @@ docker compose -f docker-compose.prod.yml up -d --build
 # =========================
 wait_for_container() {
     local container_name=$1
+    local timeout=60
+    local elapsed=0
     echo ">> Esperando a que el contenedor $container_name esté listo..."
     while ! docker ps --filter "name=$container_name" --format "{{.Names}}" | grep -q "$container_name"; do
         sleep 2
+        elapsed=$((elapsed + 2))
+        if [ $elapsed -ge $timeout ]; then
+            echo "⚠️  Tiempo de espera agotado para $container_name. Continuando..."
+            return 1
+        fi
     done
     echo ">> Contenedor $container_name está en ejecución."
 }
