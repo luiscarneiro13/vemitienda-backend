@@ -23,6 +23,10 @@ async function ensureBotUser() {
 
     await bot.save()
     console.log("✅ Bot de recordatorios creado")
+  } else if (bot.avatar !== "bot.webp") {
+    bot.avatar = "bot.webp"
+    await bot.save()
+    console.log("🔄 Avatar del bot actualizado a bot.webp")
   }
 
   return bot
