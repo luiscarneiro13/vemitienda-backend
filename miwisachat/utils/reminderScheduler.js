@@ -77,8 +77,6 @@ async function checkReminders(bot) {
       const notifyAt = new Date(reminder.dueAt.getTime() - offset * 60000)
       if (notifyAt > now) continue
 
-      reminder.notifiedOffsets.push(offset)
-
       try {
         const chat = await ensureChatWithBot(user._id, bot._id)
         await sendBotMessage(chat, bot, reminder.title)
@@ -90,6 +88,7 @@ async function checkReminders(bot) {
           })
         }
 
+        reminder.notifiedOffsets.push(offset)
         console.log(`🔔 Notificado: "${reminder.title}" (offset -${offset}min)`)
       } catch (err) {
         console.error(`Error notificando recordatorio ${reminder._id}:`, err)
@@ -97,8 +96,6 @@ async function checkReminders(bot) {
     }
 
     if (!reminder.dueNotified && reminder.dueAt <= now) {
-      reminder.dueNotified = true
-
       try {
         const chat = await ensureChatWithBot(user._id, bot._id)
         await sendBotMessage(chat, bot, reminder.title)
@@ -110,6 +107,7 @@ async function checkReminders(bot) {
           })
         }
 
+        reminder.dueNotified = true
         console.log(`✅ Recordatorio cumplido: "${reminder.title}"`)
       } catch (err) {
         console.error(`Error enviando mensaje de dueAt ${reminder._id}:`, err)
