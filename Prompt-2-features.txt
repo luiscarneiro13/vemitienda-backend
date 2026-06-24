@@ -1,0 +1,279 @@
+Necesito que implementes soporte para dos nuevos features en el backend de MiWisaChat:
+
+## CONTEXTO TÉCNICO
+- Stack backend: Node.js + Express + MongoDB + Mongoose + Socket.IO
+- Autenticación: JWT en header "Authoritation" (este typo es intencional, respétalo)
+- Base URL: /api/miwisachat
+- Los archivos se sirven desde /api/miwisachat/uploads/
+- El cliente sube archivos usando FormData (multipart/form-data)
+- Los mensajes se emiten por Socket.IO al canal del chat/grupo tras guardarse
+
+---
+
+## FEATURE 1: COMPARTIR ENLACES CON PREVIEW
+
+### 1A. Nuevo endpoint: GET /api/miwisachat/link-preview
+
+**Descripción:** Hace scraping Open Graph de una URL externa y retorna los metadatos.
+
+**Headers requeridos:**
+- `Authoritation: Bearer <jwt_token>` (autenticación obligatoria)
+
+**Query params:**
+- `url` (string, requerido): URL a scrapear
+
+**Validaciones de seguridad OBLIGATORIAS (prevención de SSRF):**
+1. Validar que `url` sea una URL válida con protocolo http o https únicamente
+2. Resolver el hostname con `dns.lookup()` ANTES de hacer la petición HTTP
+3. Rechazar si la IP resuelta es RFC 1918 privada (10.x, 172.16-31.x, 192.168.x), loopback (127.x), link-local (169.254.x) o IPv6 privada
+4. Usar el paquete `ssrf-agent` como segunda capa de protección contra DNS rebinding
+5. Usar timeout de 5000ms para la petición HTTP de scraping
+6. Cachear el resultado en MongoDB por 24 horas (TTL index en campo `cachedAt`)
+
+**Librería recomendada para scraping:** `open-graph-scraper` (npm)
+
+**Respuesta exitosa (200):**
+```json
+{
+  "url": "https://example.com/article",
+  "title": "Título de la página",
+  "description": "Descripción meta og",
+  "image": "https://cdn.example.com/og-image.jpg",
+  "siteName": "NombreSitio",
+  "favicon": "https://example.com/favicon.ico"
+}
+Nota: Normalizar URLs de imagen relativas a absolutas antes de retornar.
+
+Errores:
+
+400: URL no proporcionada o inválida
+403: URL apunta a IP privada (SSRF bloqueado)
+422: No se pudo obtener preview (sitio sin OG tags)
+401: Token inválido
+Rate limiting: Máximo 20 requests por minuto por usuario.
+
+1B. Nuevo endpoint: POST /api/miwisachat/chat/message/link
+Descripción: Guarda un mensaje de tipo LINK en un chat 1-a-1.
+
+Headers:
+
+Content-Type: application/json
+Authoritation: Bearer <jwt_token>
+Body:
+
+
+{
+  "chat_id": "string (ObjectId, requerido)",
+  "message": "string (opcional, comentario del usuario)",
+  "linkPreview": {
+    "url": "string (requerido)",
+    "title": "string",
+    "description": "string",
+    "image": "string (URL absoluta)",
+    "siteName": "string",
+    "favicon": "string"
+  }
+}
+Validaciones:
+
+chat_id debe ser un ObjectId válido y el usuario debe ser participante del chat
+linkPreview.url es requerido y debe ser una URL http/https válida
+Sanitizar linkPreview.title y linkPreview.description con sanitize-html para prevenir XSS
+Lógica:
+
+Guardar mensaje con type: "LINK" en la colección ChatMessage
+Emitir por Socket.IO al canal chat_id con evento "message"
+Emitir por Socket.IO al canal {chat_id}_notify con evento "message_notify"
+Respuesta exitosa (201): Mensaje guardado completo con populate de user y chat
+
+1C. Nuevo endpoint: POST /api/miwisachat/group/message/link
+Descripción: Guarda un mensaje de tipo LINK en un grupo.
+
+Headers:
+
+Content-Type: application/json
+Authoritation: Bearer <jwt_token>
+Body:
+
+
+{
+  "group_id": "string (ObjectId, requerido)",
+  "message": "string (opcional)",
+  "linkPreview": {
+    "url": "string (requerido)",
+    "title": "string",
+    "description": "string",
+    "image": "string",
+    "siteName": "string",
+    "favicon": "string"
+  }
+}
+Respuesta exitosa (200): Mensaje guardado completo con populate de user
+
+FEATURE 2: ADJUNTAR VIDEOS Y ARCHIVOS
+2A. Nuevo endpoint: POST /api/miwisachat/chat/message/video
+Descripción: Sube un video y lo envía en un chat 1-a-1.
+
+Headers:
+
+Content-Type: multipart/form-data
+Authoritation: Bearer <jwt_token>
+FormData fields:
+
+chat_id (string, requerido)
+video (file, requerido): el archivo de video
+Validaciones de seguridad OBLIGATORIAS:
+
+Validar el "magic number" (primeros bytes del archivo) con el paquete file-type, NO confiar en el Content-Type del cliente
+Solo permitir: video/mp4, video/quicktime (MOV), video/x-msvideo (AVI), video/webm
+Rechazar explícitamente SVG
+Tamaño máximo: 50MB
+Generar nombre de archivo UUID v4 (nunca usar el nombre original del cliente)
+Sanitizar el nombre original (originalName) antes de guardarlo en DB: solo alphanumeric, puntos y guiones
+Rate limiting: 5 uploads de video por minuto por usuario
+Procesamiento:
+
+Validar tipo con file-type
+Guardar con nombre UUID: {uuid}.{extension}
+Generar thumbnail con fluent-ffmpeg extrayendo frame en segundo 1 → guardar como {uuid}_thumb.jpg
+Guardar mensaje en DB con type: "VIDEO"
+Emitir por Socket.IO al canal chat_id con evento "message" y al canal {chat_id}_notify con evento "message_notify"
+Respuesta exitosa (201):
+
+
+{
+  "_id": "...",
+  "type": "VIDEO",
+  "message": "{uuid}.mp4",
+  "attachment": {
+    "url": "{uuid}.mp4",
+    "mimeType": "video/mp4",
+    "thumbnail": "{uuid}_thumb.jpg",
+    "duration": 15.3,
+    "originalName": "nombre_sanitizado.mp4"
+  },
+  "user": { ... },
+  "chat": { ... },
+  "createdAt": "..."
+}
+2B. Nuevo endpoint: POST /api/miwisachat/group/message/video
+Idéntico a 2A pero con group_id en lugar de chat_id.
+
+Respuesta exitosa (200) (igual estructura que 2A, status 200 para ser consistente con el resto de endpoints de grupo)
+
+2C. Nuevo endpoint: POST /api/miwisachat/chat/message/file
+Descripción: Sube un documento/archivo y lo envía en un chat 1-a-1.
+
+Headers:
+
+Content-Type: multipart/form-data
+Authoritation: Bearer <jwt_token>
+FormData fields:
+
+chat_id (string, requerido)
+file (file, requerido)
+Validaciones de seguridad OBLIGATORIAS:
+
+Validar con file-type que el magic number coincida con el tipo declarado
+Whitelist de tipos permitidos:
+application/pdf
+application/msword
+application/vnd.openxmlformats-officedocument.wordprocessingml.document
+application/vnd.ms-excel
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+application/vnd.ms-powerpoint
+application/vnd.openxmlformats-officedocument.presentationml.presentation
+application/zip (verificar que no sea un zip bomb: ratio de compresión máximo 10:1)
+text/plain
+Tamaño máximo: 25MB
+Nombre de archivo: UUID v4 (nunca el nombre original)
+Rechazar archivos ejecutables: .exe, .sh, .bat, .php, .js, .py aunque digan tener otro MIME type
+Rate limiting: 10 uploads de archivo por minuto por usuario
+Respuesta exitosa (201):
+
+
+{
+  "_id": "...",
+  "type": "FILE",
+  "message": "{uuid}",
+  "attachment": {
+    "url": "{uuid}.pdf",
+    "mimeType": "application/pdf",
+    "originalName": "nombre_sanitizado.pdf",
+    "size": 204800
+  },
+  "user": { ... },
+  "chat": { ... },
+  "createdAt": "..."
+}
+2D. Nuevo endpoint: POST /api/miwisachat/group/message/file
+Idéntico a 2C pero con group_id. Respuesta (200).
+
+CAMBIOS EN LOS MODELOS DE DATOS (MongoDB/Mongoose)
+ChatMessage y GroupMessage — Schema actualizado (cambios aditivos, sin romper retrocompatibilidad):
+
+{
+  type: {
+    type: String,
+    enum: ["TEXT", "IMAGE", "LINK", "VIDEO", "FILE"],  // agregar LINK, VIDEO, FILE
+    required: true
+  },
+  message: {
+    type: String,
+    default: ""
+    // Quitar "required: true" si lo tenía — puede estar vacío en mensajes LINK
+  },
+  // CAMPO NUEVO: para mensajes tipo LINK
+  linkPreview: {
+    url: String,
+    title: String,
+    description: String,
+    image: String,
+    siteName: String,
+    favicon: String
+  },
+  // CAMPO NUEVO: para mensajes tipo VIDEO y FILE
+  attachment: {
+    url: String,           // nombre del archivo en uploads/
+    mimeType: String,
+    thumbnail: String,     // solo para VIDEO: nombre del thumbnail
+    duration: Number,      // solo para VIDEO: duración en segundos
+    originalName: String,  // nombre original sanitizado del archivo
+    size: Number           // tamaño en bytes
+  }
+  // Todos los demás campos existentes se mantienen sin cambios
+}
+Nueva colección: LinkPreviewCache
+
+{
+  url: { type: String, unique: true, index: true },
+  preview: {
+    url: String,
+    title: String,
+    description: String,
+    image: String,
+    siteName: String,
+    favicon: String
+  },
+  cachedAt: { type: Date, default: Date.now, expires: 86400 }  // TTL 24 horas
+}
+ACCESO A ARCHIVOS — SEGURIDAD CRÍTICA
+Los archivos de video y documentos NO deben ser accesibles por URLs públicas predecibles. Implementar un endpoint autenticado:
+
+GET /api/miwisachat/media/:filename
+
+Verificar JWT en header Authoritation
+Verificar que el usuario pertenece a algún chat o grupo que contiene un mensaje con ese archivo
+Solo entonces hacer pipe del archivo al response
+Las imágenes existentes (tipo IMAGE) pueden seguir siendo públicas para mantener retrocompatibilidad
+DEPENDENCIAS NPM A INSTALAR EN EL BACKEND
+
+npm install open-graph-scraper ssrf-agent validator sanitize-html \
+            express-rate-limit file-type uuid fluent-ffmpeg \
+            @ffmpeg-installer/ffmpeg
+NOTAS DE RETROCOMPATIBILIDAD IMPORTANTES
+Los endpoints existentes (POST /chat/message, POST /chat/message/image, etc.) NO deben modificarse bajo ningún concepto
+El campo message en los schemas existentes debe mantenerse — los mensajes de tipo IMAGE siguen usando message como nombre de archivo
+El nuevo campo attachment es puramente aditivo
+Los mensajes de tipo IMAGE existentes en producción no requieren migración
+El campo type en el schema ya existía con valores "TEXT" e "IMAGE" — solo agregar los nuevos valores al enum

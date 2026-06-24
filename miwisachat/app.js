@@ -13,6 +13,8 @@ import {
     groupRoutes,
     groupMessageRoutes,
     reminderRoutes,
+    linkPreviewRoutes,
+    mediaRoutes,
 } from "./routes/index.js"
 
 dotenv.config()
@@ -48,5 +50,7 @@ app.use(PREFIX, chatMessageRoutes)
 app.use(PREFIX, groupRoutes)
 app.use(PREFIX, groupMessageRoutes)
 app.use(PREFIX, reminderRoutes)
+app.use(PREFIX, linkPreviewRoutes)
+app.use(PREFIX, mediaRoutes)
 
 export { server }

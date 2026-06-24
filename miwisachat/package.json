@@ -11,6 +11,8 @@
     "dev": "nodemon ./index.js"
   },
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "adm-zip": "^0.5.17",
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "connect-multiparty": "^2.2.0",
@@ -18,14 +20,22 @@
     "dotenv": "^16.5.0",
     "expo-server-sdk": "^3.15.0",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.5.2",
+    "file-type": "^18.7.0",
+    "fluent-ffmpeg": "^2.1.3",
     "jsonwebtoken": "^9.0.2",
     "megajs": "^1.3.7",
     "mongoose": "^8.15.0",
     "morgan": "^1.10.0",
+    "multer": "^2.2.0",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
+    "sanitize-html": "^2.17.5",
     "sharp": "^0.34.2",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "ssrf-agent": "^1.0.5",
+    "uuid": "^14.0.1",
+    "validator": "^13.15.35"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
