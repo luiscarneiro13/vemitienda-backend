@@ -19,7 +19,6 @@ export const responseServerError = (res, errorDetail) => {
   console.log("error", errorDetail)
   return res.status(500).send({
     msg: SERVER_ERROR,
-    // Si deseas enviar información adicional del error, se incluye aquí
-    error: errorDetail,
+    error: errorDetail?.message || String(errorDetail),
   });
 };
