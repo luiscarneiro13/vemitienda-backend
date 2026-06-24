@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^2.1.2",
     "adm-zip": "^0.5.17",
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",

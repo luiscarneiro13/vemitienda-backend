@@ -1,7 +1,27 @@
 import ffmpeg from "fluent-ffmpeg"
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg"
+import ffprobeInstaller from "@ffprobe-installer/ffprobe"
+import { execSync } from "child_process"
 
-ffmpeg.setFfmpegPath(ffmpegInstaller.path)
+// En Alpine/Docker, usa el ffmpeg del sistema si está disponible; si no, el del instalador.
+function resolveFFmpegPath() {
+    try {
+        const syspath = execSync("which ffmpeg", { stdio: "pipe" }).toString().trim()
+        if (syspath) return syspath
+    } catch {}
+    return ffmpegInstaller.path
+}
+
+function resolveFFprobePath() {
+    try {
+        const syspath = execSync("which ffprobe", { stdio: "pipe" }).toString().trim()
+        if (syspath) return syspath
+    } catch {}
+    return ffprobeInstaller.path
+}
+
+ffmpeg.setFfmpegPath(resolveFFmpegPath())
+ffmpeg.setFfprobePath(resolveFFprobePath())
 
 export function getVideoDuration(filePath) {
     return new Promise((resolve, reject) => {

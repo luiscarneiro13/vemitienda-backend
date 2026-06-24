@@ -1,5 +1,8 @@
 FROM node:18-alpine
 
+# ffmpeg y ffprobe para procesamiento de video (incluye thumbnails)
+RUN apk add --no-cache ffmpeg
+
 # Evita reconstrucciones innecesarias por orden de capas
 WORKDIR /app
 
