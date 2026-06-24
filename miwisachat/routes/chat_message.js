@@ -1,8 +1,13 @@
 import express from "express"
 import multer from "multer"
+import fs from "fs"
 import { ChatMessageController, videoRateLimiter, fileRateLimiter } from "../controllers/index.js"
 import multiparty from "connect-multiparty"
 import { mdAuth } from "../middlewares/index.js"
+
+// Garantizar que los directorios existen antes de que multer intente usarlos
+fs.mkdirSync("uploads/videos", { recursive: true })
+fs.mkdirSync("uploads/files", { recursive: true })
 
 const mdUpload = multiparty({ uploadDir: "./uploads/images" })
 
@@ -25,11 +30,11 @@ const fileUpload = multer({
 function wrapMulter(upload, field) {
     return (req, res, next) => {
         upload.single(field)(req, res, (err) => {
-            if (err && err.code === "LIMIT_FILE_SIZE") {
+            if (!err) return next()
+            if (err.code === "LIMIT_FILE_SIZE") {
                 return res.status(400).json({ msg: "El archivo excede el tamaño máximo permitido" })
             }
-            if (err) return next(err)
-            next()
+            return res.status(400).json({ msg: err.message || "Error al procesar el archivo" })
         })
     }
 }
