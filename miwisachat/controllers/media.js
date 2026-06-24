@@ -54,7 +54,10 @@ async function serveMedia(req, res) {
             return res.status(404).json({ msg: "Archivo no encontrado en disco" })
         }
 
+        const originalName = message.attachment?.originalName || filename
         res.setHeader("Content-Type", mimeType || "application/octet-stream")
+        res.setHeader("Content-Disposition", `attachment; filename="${originalName}"`)
+        res.setHeader("Content-Length", fs.statSync(filePath).size)
         fs.createReadStream(filePath).pipe(res)
     } catch (error) {
         responseServerError(res, error)

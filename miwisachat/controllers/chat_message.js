@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import { v4 as uuidv4 } from "uuid"
+import { randomUUID as uuidv4 } from "crypto"
 import { fileTypeFromFile } from "file-type"
 import sanitizeHtml from "sanitize-html"
 import rateLimit, { ipKeyGenerator } from "express-rate-limit"
