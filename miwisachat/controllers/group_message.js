@@ -55,14 +55,15 @@ async function sendText(req, res) {
 
     try {
 
-        const { group_id, message } = req.body
+        const { group_id, message, replyTo } = req.body
         const { user_id } = req.user
 
         const group_message = new GroupMessage({
             group: group_id,
             user: user_id,
             message,
-            type: "TEXT"
+            type: "TEXT",
+            ...(replyTo && { replyTo }),
         })
 
         const dataStorage = await group_message.save()

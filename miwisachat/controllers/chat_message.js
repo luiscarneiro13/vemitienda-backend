@@ -75,14 +75,15 @@ async function sendText(req, res) {
 
     try {
 
-        const { chat_id, message } = req.body
+        const { chat_id, message, replyTo } = req.body
         const { user_id } = req.user
 
         const chat_message = new ChatMessage({
             chat: chat_id,
             user: user_id,
             message,
-            type: "TEXT"
+            type: "TEXT",
+            ...(replyTo && { replyTo }),
         })
 
         const messageStorage = await chat_message.save()

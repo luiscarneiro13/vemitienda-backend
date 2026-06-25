@@ -34,6 +34,15 @@ const GroupMessageSchema = mongoose.Schema(
             originalName: String,
             size: Number,
         },
+        replyTo: {
+            _id: mongoose.Schema.Types.ObjectId,
+            message: String,
+            type: String,
+            user: {
+                _id: mongoose.Schema.Types.ObjectId,
+                name: String,
+            },
+        },
         readBy: [{ type: mongoose.Schema.ObjectId, ref: "User" }]
     },
     {
