@@ -50,6 +50,7 @@ api.get("/chat/message/last/:chat_id", [mdAuth.asureAuth], ChatMessageController
 api.get("/chat/message/markAllAsRead/:chat_id", [mdAuth.asureAuth], ChatMessageController.markAllAsRead)
 
 // Nuevos endpoints
+api.delete("/chat/message/delete", [mdAuth.asureAuth], ChatMessageController.deleteMessages)
 api.post("/chat/message/link", [mdAuth.asureAuth], ChatMessageController.sendLink)
 api.post("/chat/message/video", [mdAuth.asureAuth, videoRateLimiter, wrapMulter(videoUpload, "video")], ChatMessageController.sendVideo)
 api.post("/chat/message/file", [mdAuth.asureAuth, fileRateLimiter, wrapMulter(fileUpload, "file")], ChatMessageController.sendFile)

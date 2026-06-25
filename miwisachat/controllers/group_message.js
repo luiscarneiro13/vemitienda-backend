@@ -419,12 +419,26 @@ async function sendFile(req, res) {
     }
 }
 
+async function deleteMessages(req, res) {
+    try {
+        const { ids } = req.body
+        if (!Array.isArray(ids) || ids.length === 0) {
+            return res.status(400).json({ msg: "ids debe ser un array con al menos un elemento" })
+        }
+        const result = await GroupMessage.deleteMany({ _id: { $in: ids } })
+        res.status(200).json({ deletedCount: result.deletedCount })
+    } catch (error) {
+        responseServerError(res, error)
+    }
+}
+
 export const GroupMessageController = {
     sendText,
     sendImage,
     sendLink,
     sendVideo,
     sendFile,
+    deleteMessages,
     getAll,
     getTotalMessages,
     getLastMessage,

@@ -49,6 +49,7 @@ api.get("/group/message/total/:group_id", [mdAuth.asureAuth], GroupMessageContro
 api.get("/group/message/last/:group_id", [mdAuth.asureAuth], GroupMessageController.getLastMessage)
 
 // Nuevos endpoints
+api.delete("/group/message/delete", [mdAuth.asureAuth], GroupMessageController.deleteMessages)
 api.post("/group/message/link", [mdAuth.asureAuth], GroupMessageController.sendLink)
 api.post("/group/message/video", [mdAuth.asureAuth, videoRateLimiter, wrapMulter(videoUpload, "video")], GroupMessageController.sendVideo)
 api.post("/group/message/file", [mdAuth.asureAuth, fileRateLimiter, wrapMulter(fileUpload, "file")], GroupMessageController.sendFile)
