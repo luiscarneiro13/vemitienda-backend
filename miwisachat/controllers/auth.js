@@ -2,6 +2,7 @@ import { User } from "../models/index.js"
 import bcrypt from "bcryptjs"
 import { jwt } from "../utils/index.js"
 import { responseServerError } from "../constants.js"
+import { createNotasChatForUser } from "../utils/seed.js"
 
 async function register(req, res) {
 
@@ -19,6 +20,7 @@ async function register(req, res) {
         user.password = hashPassword
 
         const userStorage = await user.save()
+        await createNotasChatForUser(userStorage._id)
         res.status(201).send(userStorage)
 
     } catch (error) {

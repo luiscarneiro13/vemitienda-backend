@@ -21,7 +21,7 @@ async function getUsers(req, res) {
 
     try {
         const { user_id } = req.user
-        const users = await User.find({ _id: { $ne: user_id } }).select(["-password"]) //Devuelve todos excepto el usuario logueado
+        const users = await User.find({ _id: { $ne: user_id }, isBot: { $ne: true } }).select(["-password"])
 
         if (!users) { res.status(400).send({ msg: "No se encontraron usuarios" }) }
         else { res.status(200).send(users) }

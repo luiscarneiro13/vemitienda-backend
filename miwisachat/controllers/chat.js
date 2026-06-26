@@ -46,22 +46,27 @@ async function getAll(req, res) {
     const search = [{ participant_one: user_id }, { participant_two: user_id }]
 
     try {
-        // Solo devuelve los chats en los que yo estoy participando
-        const chats = await Chat.find({ $or: search }).populate(["participant_one", "participant_two"]);
+        const chats = await Chat.find({ $or: search }).populate(["participant_one", "participant_two"])
 
         const arrayChats = []
 
         for await (const chat of chats) {
-
             const response = await ChatMessage.findOne({ chat: chat._id }).sort({ createdAt: -1 })
-
             arrayChats.push({
                 ...chat._doc,
                 last_message_date: response?.createdAt || null
             })
         }
 
-        res.status(200).send(arrayChats);
+        // Pinned primero, luego por fecha de último mensaje descendente
+        arrayChats.sort((a, b) => {
+            if (b.pinned !== a.pinned) return b.pinned ? 1 : -1
+            const dateA = a.last_message_date ? new Date(a.last_message_date) : new Date(0)
+            const dateB = b.last_message_date ? new Date(b.last_message_date) : new Date(0)
+            return dateB - dateA
+        })
+
+        res.status(200).send(arrayChats)
 
     } catch (error) {
         responseServerError(res, error)
@@ -74,7 +79,11 @@ async function deleteChat(req, res) {
     const chat_id = req.params.id
 
     try {
-        const chat = await Chat.findByIdAndDelete(chat_id)
+        const chat = await Chat.findById(chat_id)
+        if (!chat) return res.status(404).json({ msg: "Chat no encontrado" })
+        if (chat.pinned) return res.status(403).json({ msg: "No puedes eliminar este chat" })
+
+        await Chat.findByIdAndDelete(chat_id)
         res.status(200).send(chat)
     } catch (error) {
         responseServerError(res, error)

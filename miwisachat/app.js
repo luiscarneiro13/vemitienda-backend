@@ -31,6 +31,7 @@ const PREFIX = "/api/miwisachat"
 
 //configure static folder
 app.use(`${PREFIX}/uploads`, express.static("uploads"))
+app.use(`${PREFIX}/public`, express.static("public"))
 
 app.use(express.json({ limit: "20mb" }))
 app.use(express.urlencoded({ extended: true, limit: "20mb" }))

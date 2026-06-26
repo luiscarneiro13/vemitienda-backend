@@ -3,6 +3,7 @@ import { IP_SERVER, PORT, DB_USER, DB_PASSWORD, DB_HOST, DB_PARAMS } from "./con
 import { io } from "./utils/socketServer.js"
 import mongoose from "mongoose"
 import { startReminderScheduler } from "./utils/reminderScheduler.js"
+import { runSeed } from "./utils/seed.js"
 
 const mongoDbUrl = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/?${DB_PARAMS}`
 
@@ -15,6 +16,7 @@ const connectToMongo = async () => {
         console.log('MongoDB conectado exitosamente');
 
         startReminderScheduler()
+        await runSeed()
 
         server.listen(PORT, '0.0.0.0', () => {
 
