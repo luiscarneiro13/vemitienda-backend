@@ -512,6 +512,69 @@ async function sendFile(req, res) {
     }
 }
 
+async function forwardMessages(req, res) {
+    try {
+        const { messageIds, targetChatIds } = req.body
+        const { user_id } = req.user
+
+        if (!Array.isArray(messageIds) || messageIds.length === 0 ||
+            !Array.isArray(targetChatIds) || targetChatIds.length === 0) {
+            return res.status(400).json({ msg: "Se requieren messageIds y targetChatIds" })
+        }
+
+        // Buscar mensajes originales en orden
+        const originalMessages = await ChatMessage.find({ _id: { $in: messageIds } })
+            .populate("chat")
+
+        // Verificar que el usuario es participante de todos los chats origen
+        for (const msg of originalMessages) {
+            const chat = msg.chat
+            const isParticipant =
+                chat?.participant_one?.toString() === user_id.toString() ||
+                chat?.participant_two?.toString() === user_id.toString()
+            if (!isParticipant) {
+                return res.status(403).json({ msg: "No tienes acceso a uno o más mensajes" })
+            }
+        }
+
+        // Respetar el orden original de messageIds
+        const ordered = messageIds
+            .map(id => originalMessages.find(m => m._id.toString() === id))
+            .filter(Boolean)
+
+        // Construir todos los mensajes nuevos
+        const newMessages = []
+        for (const targetChatId of targetChatIds) {
+            for (const msg of ordered) {
+                newMessages.push({
+                    chat: targetChatId,
+                    user: user_id,
+                    message: msg.message,
+                    type: msg.type,
+                    ...(msg.attachment && { attachment: msg.attachment }),
+                    ...(msg.linkPreview && { linkPreview: msg.linkPreview }),
+                    forwarded: true,
+                })
+            }
+        }
+
+        const inserted = await ChatMessage.insertMany(newMessages)
+
+        // Emitir por socket a cada chat destino
+        for (const targetChatId of targetChatIds) {
+            const msgs = inserted.filter(m => m.chat.toString() === targetChatId.toString())
+            for (const m of msgs) {
+                io.sockets.in(targetChatId).emit("message", m)
+                io.sockets.in(`${targetChatId}_notify`).emit("message_notify", m)
+            }
+        }
+
+        res.status(201).json({ msg: "Mensajes reenviados correctamente", count: inserted.length })
+    } catch (error) {
+        responseServerError(res, error)
+    }
+}
+
 async function deleteMessages(req, res) {
     try {
         const { ids } = req.body
@@ -531,6 +594,7 @@ export const ChatMessageController = {
     sendLink,
     sendVideo,
     sendFile,
+    forwardMessages,
     deleteMessages,
     getAll,
     getTotalMessages,

@@ -38,6 +38,10 @@ const ChatMessageSchema = mongoose.Schema(
             type: mongoose.Schema.Types.Mixed,
             default: null,
         },
+        forwarded: {
+            type: Boolean,
+            default: false,
+        },
         readBy: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
