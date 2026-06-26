@@ -35,11 +35,11 @@ const GroupMessageSchema = mongoose.Schema(
             size: Number,
         },
         replyTo: {
-            _id: mongoose.Schema.Types.ObjectId,
+            _id: String,
             message: String,
             type: String,
             user: {
-                _id: mongoose.Schema.Types.ObjectId,
+                _id: String,
                 name: String,
             },
         },
