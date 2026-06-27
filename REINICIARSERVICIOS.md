@@ -76,3 +76,5 @@ Bash
 sudo systemctl daemon-reload
 sudo systemctl enable docker-startup.service
 Con esta configuración, el servicio de systemd ejecutará el script startup-sequence.sh que a su vez ejecutará todos los comandos que necesitas, incluyendo el start.sh, de una forma ordenada y robusta.
+
+...
