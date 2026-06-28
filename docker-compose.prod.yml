@@ -33,6 +33,8 @@ services:
       context: ./miwisachat
       dockerfile: Dockerfile
     container_name: miwisachat-node
+    env_file:
+      - ./miwisachat/.env
     volumes:
       - ./miwisachat:/app
       - /app/node_modules

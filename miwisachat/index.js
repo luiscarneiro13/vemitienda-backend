@@ -1,3 +1,4 @@
+import "dotenv/config"
 import { server } from "./app.js"
 import { IP_SERVER, PORT, DB_USER, DB_PASSWORD, DB_HOST, DB_PARAMS } from "./constants.js"
 import { io } from "./utils/socketServer.js"
