@@ -1,13 +1,13 @@
 import { jwt } from "../utils/index.js"
 
 function asureAuth(req, res, next) {
-    if (!req.headers.authoritation) {
+    if (!req.headers.authorization) {
         return res
             .status(406)
             .send({ msg: "La petición no tiene la cabecera de autenticación" })
     }
 
-    const token = req.headers.authoritation.replace("Bearer ", "")
+    const token = req.headers.authorization.replace("Bearer ", "")
 
     try {
         const hasExpired = jwt.hasExpiredToken(token)
