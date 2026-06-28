@@ -1,0 +1,9 @@
+node_modules
+uploads/videos/*
+uploads/files/*
+uploads/images/*
+uploads/group/*
+.env
+*.log
+yarn-error.log
+.git

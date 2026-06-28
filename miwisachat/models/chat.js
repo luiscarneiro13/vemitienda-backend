@@ -15,4 +15,8 @@ const ChatSchema = mongoose.Schema({
     }
 })
 
+ChatSchema.index({ participant_one: 1, participant_two: 1 })
+ChatSchema.index({ participant_two: 1, participant_one: 1 })
+ChatSchema.index({ pinned: -1, updatedAt: -1 })
+
 export const Chat = mongoose.model("Chat", ChatSchema)

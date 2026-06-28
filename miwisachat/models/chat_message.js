@@ -52,4 +52,8 @@ const ChatMessageSchema = mongoose.Schema(
     }
 )
 
+ChatMessageSchema.index({ chat: 1, createdAt: -1 })
+ChatMessageSchema.index({ chat: 1, user: 1 })
+ChatMessageSchema.index({ chat: 1, readBy: 1 })
+
 export const ChatMessage = mongoose.model("ChatMessage", ChatMessageSchema)

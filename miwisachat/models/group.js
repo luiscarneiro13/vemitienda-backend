@@ -17,4 +17,7 @@ const GroupSchema = mongoose.Schema(
     }
 )
 
+GroupSchema.index({ participants: 1 })
+GroupSchema.index({ creator: 1 })
+
 export const Group = mongoose.model("Group", GroupSchema)

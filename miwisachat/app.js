@@ -1,7 +1,6 @@
 import express from "express"
 import { inistSocketServer } from "./utils/index.js"
 import http from "http"
-import bodyParser from "body-parser"
 import cors from "cors"
 import morgan from "morgan"
 import dotenv from "dotenv"
@@ -23,14 +22,9 @@ const server = http.createServer(app)
 
 inistSocketServer(server)
 
-// Configure body parser
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-
 const PREFIX = "/api/miwisachat"
 
 //configure static folder
-app.use(`${PREFIX}/uploads`, express.static("uploads"))
 app.use(`${PREFIX}/public`, express.static("public"))
 
 app.use(express.json({ limit: "20mb" }))
@@ -40,7 +34,7 @@ app.use(express.urlencoded({ extended: true, limit: "20mb" }))
 app.use(cors())
 
 //Configure loguer http request
-app.use(morgan("dev"))
+app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"))
 
 
 //Configure routing

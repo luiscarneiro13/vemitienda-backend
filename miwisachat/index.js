@@ -19,23 +19,23 @@ const connectToMongo = async () => {
         await runSeed()
 
         server.listen(PORT, '0.0.0.0', () => {
-
             console.log(`http://${IP_SERVER}:${PORT}/api`)
+        })
 
-            io.sockets.on("connection", (socket) => {
-                console.log("Nuevo usuario conectado")
+        io.sockets.on("connection", (socket) => {
+            console.log("Nuevo usuario conectado")
 
-                socket.on("disconnet", () => {
-                    console.log("Usuario desconectado")
-                })
+            socket.on("disconnect", () => {
+                console.log("Usuario desconectado")
+            })
 
-                socket.on("subscribe", (room) => {
-                    socket.join(room)
-                })
+            socket.on("subscribe", (room) => {
+                if (!mongoose.Types.ObjectId.isValid(room)) return
+                socket.join(room)
+            })
 
-                socket.on("unsubscribe", (room) => {
-                    socket.leave(room)
-                })
+            socket.on("unsubscribe", (room) => {
+                socket.leave(room)
             })
         })
 

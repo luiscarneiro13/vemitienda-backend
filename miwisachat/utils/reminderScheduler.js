@@ -65,7 +65,14 @@ async function sendBotMessage(chat, bot, title) {
 async function checkReminders(bot) {
   const now = new Date()
 
-  const reminders = await Reminder.find({ isActive: true }).populate("userId")
+  const maxOffsetMs = 1440 * 60 * 1000  // 24 horas en ms
+  const reminders = await Reminder.find({
+    isActive: true,
+    dueAt: {
+      $gte: new Date(Date.now() - maxOffsetMs),
+      $lte: new Date(Date.now() + maxOffsetMs)
+    }
+  }).populate("userId")
 
   for (const reminder of reminders) {
     const user = reminder.userId

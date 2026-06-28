@@ -7,20 +7,16 @@ async function create(req, res) {
         const { participant_id_one, participant_id_two } = req.body
 
         // Busco primero a ver si los 2 usuarios ya tienen un chat activo
+        // Una sola query con $or cubre ambas combinaciones de participantes
 
-        // Busco en 2 combinaciones porque el usuario one y two pueden estar en participant_one o participant_two
-
-        const foundOne = await Chat.findOne({
-            participant_one: participant_id_one,
-            participant_two: participant_id_two
+        const found = await Chat.findOne({
+            $or: [
+                { participant_one: participant_id_one, participant_two: participant_id_two },
+                { participant_one: participant_id_two, participant_two: participant_id_one }
+            ]
         })
 
-        const foundTwo = await Chat.findOne({
-            participant_one: participant_id_two,
-            participant_two: participant_id_one
-        })
-
-        if (foundOne || foundTwo) {
+        if (found) {
             res.status(200).send({ msg: "Ya tienes un chat con este usuario" })
             return
         }
@@ -77,10 +73,14 @@ async function getAll(req, res) {
 async function deleteChat(req, res) {
 
     const chat_id = req.params.id
+    const { user_id } = req.user
 
     try {
-        const chat = await Chat.findById(chat_id)
-        if (!chat) return res.status(404).json({ msg: "Chat no encontrado" })
+        const chat = await Chat.findOne({
+            _id: chat_id,
+            $or: [{ participant_one: user_id }, { participant_two: user_id }]
+        })
+        if (!chat) return res.status(403).json({ msg: "Acceso denegado" })
         if (chat.pinned) return res.status(403).json({ msg: "No puedes eliminar este chat" })
 
         await Chat.findByIdAndDelete(chat_id)
@@ -94,12 +94,17 @@ async function deleteChat(req, res) {
 async function getChat(req, res) {
 
     const chat_id = req.params.id
+    const { user_id } = req.user
 
     try {
-        const chats = await Chat.findOne({ _id: chat_id }).populate(["participant_one", "participant_two"]);
-        res.status(200).send(chats);
+        const chat = await Chat.findOne({
+            _id: chat_id,
+            $or: [{ participant_one: user_id }, { participant_two: user_id }]
+        }).populate(["participant_one", "participant_two"])
+        if (!chat) return res.status(403).json({ msg: "Acceso denegado" })
+        res.status(200).send(chat);
     } catch (error) {
-        responseServerError(res)
+        responseServerError(res, error)
     }
 
 }

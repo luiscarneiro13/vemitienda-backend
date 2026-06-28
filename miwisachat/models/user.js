@@ -14,4 +14,6 @@ const userSchema = mongoose.Schema({
     isBot: { type: Boolean, default: false }
 })
 
+userSchema.index({ isBot: 1 })
+
 export const User = mongoose.model("User", userSchema)

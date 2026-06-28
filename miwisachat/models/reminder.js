@@ -38,4 +38,7 @@ const ReminderSchema = mongoose.Schema({
   }
 }, { timestamps: true })
 
+ReminderSchema.index({ userId: 1, isActive: 1 })
+ReminderSchema.index({ isActive: 1, dueAt: 1 })
+
 export const Reminder = mongoose.model("Reminder", ReminderSchema)

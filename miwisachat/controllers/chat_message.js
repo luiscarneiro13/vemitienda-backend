@@ -78,6 +78,12 @@ async function sendText(req, res) {
         const { chat_id, message, replyTo } = req.body
         const { user_id } = req.user
 
+        const chat = await Chat.findOne({
+            _id: chat_id,
+            $or: [{ participant_one: user_id }, { participant_two: user_id }]
+        })
+        if (!chat) return res.status(403).json({ msg: "No eres participante de este chat" })
+
         const chat_message = new ChatMessage({
             chat: chat_id,
             user: user_id,
@@ -88,8 +94,6 @@ async function sendText(req, res) {
 
         const messageStorage = await chat_message.save()
         const data = await messageStorage.populate(["user"]);
-
-        const chat = await Chat.findOne({ _id: chat_id })
 
         // Verifico si el usuario tiene un token de expo para enviarle notificación:
         const otherUserId = getOther(user_id, chat.participant_one, chat.participant_two)
@@ -133,6 +137,12 @@ async function sendImage(req, res) {
 
         const message = getFilePath(req.files.image)
 
+        const chat = await Chat.findOne({
+            _id: chat_id,
+            $or: [{ participant_one: user_id }, { participant_two: user_id }]
+        })
+        if (!chat) return res.status(403).json({ msg: "No eres participante de este chat" })
+
         const chat_message = new ChatMessage({
             chat: chat_id,
             user: user_id,
@@ -142,8 +152,6 @@ async function sendImage(req, res) {
 
         const messageStorage = await chat_message.save()
         const data = await messageStorage.populate(["user"]);
-
-        const chat = await Chat.findOne({ _id: chat_id })
 
         // Verifico si el usuario tiene un token de expo para enviarle notificación:
         const otherUserId = getOther(user_id, chat.participant_one, chat.participant_two)
@@ -398,14 +406,7 @@ async function sendVideo(req, res) {
 
         const duration = await getVideoDuration(finalPath).catch(() => 0)
 
-        let thumbName = null
-        try {
-            thumbName = `${uuid}_thumb.jpg`
-            await generateThumbnail(finalPath, "uploads/videos", thumbName)
-        } catch {
-            thumbName = null
-        }
-
+        const thumbName = `${uuid}_thumb.jpg`
         const originalName = sanitizeOriginalName(req.file.originalname)
 
         const chat_message = new ChatMessage({
@@ -416,7 +417,7 @@ async function sendVideo(req, res) {
             attachment: {
                 url: finalFilename,
                 mimeType: detected.mime,
-                thumbnail: thumbName,
+                thumbnail: null,
                 duration,
                 originalName,
                 size: req.file.size,
@@ -429,7 +430,21 @@ async function sendVideo(req, res) {
         io.sockets.in(chat_id).emit("message", data)
         io.sockets.in(`${chat_id}_notify`).emit("message_notify", data)
 
+        // Responder al cliente inmediatamente, sin esperar el thumbnail
         res.status(201).json(data)
+
+        // Generar thumbnail en background y notificar via socket cuando esté listo
+        generateThumbnail(finalPath, "uploads/videos", thumbName)
+            .then(async () => {
+                await ChatMessage.findByIdAndUpdate(messageStorage._id, {
+                    "attachment.thumbnail": thumbName
+                })
+                io.sockets.in(chat_id.toString()).emit("thumbnail_ready", {
+                    messageId: messageStorage._id.toString(),
+                    thumbnail: thumbName
+                })
+            })
+            .catch(() => {}) // ignorar errores de thumbnail silenciosamente
     } catch (error) {
         if (tempPath) fs.promises.unlink(tempPath).catch(() => {})
         responseServerError(res, error)
@@ -542,6 +557,15 @@ async function forwardMessages(req, res) {
             .map(id => originalMessages.find(m => m._id.toString() === id))
             .filter(Boolean)
 
+        // Verificar que el usuario es participante de cada chat destino
+        for (const targetChatId of targetChatIds) {
+            const targetChat = await Chat.findOne({
+                _id: targetChatId,
+                $or: [{ participant_one: user_id }, { participant_two: user_id }]
+            })
+            if (!targetChat) return res.status(403).json({ msg: `No eres participante del chat destino` })
+        }
+
         // Construir todos los mensajes nuevos
         const newMessages = []
         for (const targetChatId of targetChatIds) {
@@ -560,9 +584,14 @@ async function forwardMessages(req, res) {
 
         const inserted = await ChatMessage.insertMany(newMessages)
 
+        // Popular el campo user antes de emitir por socket
+        const populatedInserted = await ChatMessage.find({
+            _id: { $in: inserted.map(m => m._id) }
+        }).populate([{ path: "user", select: "firstname lastname avatar email" }])
+
         // Emitir por socket a cada chat destino
         for (const targetChatId of targetChatIds) {
-            const msgs = inserted.filter(m => m.chat.toString() === targetChatId.toString())
+            const msgs = populatedInserted.filter(m => m.chat.toString() === targetChatId.toString())
             for (const m of msgs) {
                 io.sockets.in(targetChatId).emit("message", m)
                 io.sockets.in(`${targetChatId}_notify`).emit("message_notify", m)
@@ -578,10 +607,11 @@ async function forwardMessages(req, res) {
 async function deleteMessages(req, res) {
     try {
         const { ids } = req.body
+        const { user_id } = req.user
         if (!Array.isArray(ids) || ids.length === 0) {
             return res.status(400).json({ msg: "ids debe ser un array con al menos un elemento" })
         }
-        const result = await ChatMessage.deleteMany({ _id: { $in: ids } })
+        const result = await ChatMessage.deleteMany({ _id: { $in: ids }, user: user_id })
         res.status(200).json({ deletedCount: result.deletedCount })
     } catch (error) {
         responseServerError(res, error)

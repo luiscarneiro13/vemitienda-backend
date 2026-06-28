@@ -8,8 +8,8 @@ function createAccessToken(user) {
     const payolad = {
         token_type: "access",
         user_id: user.id,
-        iat: Date.now(),
-        exp: expToken.getTime()
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(expToken.getTime() / 1000)
     }
 
     return jsonwebtoken.sign(payolad, JWT_SECRET_KEY)
@@ -22,26 +22,27 @@ function createRefreshToken(user) {
     const payolad = {
         token_type: "refresh",
         user_id: user.id,
-        iat: Date.now(),
-        exp: expToken.getTime()
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(expToken.getTime() / 1000)
     }
 
     return jsonwebtoken.sign(payolad, JWT_SECRET_KEY)
 }
 
+// Lanza excepción si el token es inválido o ha expirado
 function decoded(token) {
-    return jsonwebtoken.decode(token, JWT_SECRET_KEY, true)
+    return jsonwebtoken.verify(token, JWT_SECRET_KEY)
 }
 
+// Mantenida por compatibilidad; verify() ya lanza si expiró,
+// pero se puede usar como helper explícito
 function hasExpiredToken(token) {
-    const { exp } = decoded(token)
-    const currentDate = new Date().getTime()
-
-    if (exp <= currentDate) {
+    try {
+        jsonwebtoken.verify(token, JWT_SECRET_KEY)
+        return false
+    } catch {
         return true
     }
-
-    return false
 }
 
 export const jwt = {

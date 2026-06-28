@@ -9,6 +9,19 @@ async function register(req, res) {
     try {
         const { email, password } = req.body
 
+        if (!email || !password) {
+            return res.status(400).send({ msg: "Email y contraseña son requeridos" })
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!emailRegex.test(email)) {
+            return res.status(400).send({ msg: "El email no tiene un formato válido" })
+        }
+
+        if (password.length < 6) {
+            return res.status(400).send({ msg: "La contraseña debe tener al menos 6 caracteres" })
+        }
+
         const user = new User({
             email: email.toLowerCase(),
             password: password
@@ -27,12 +40,16 @@ async function register(req, res) {
         console.error(error)
         res.status(400).send({ msg: "Error al registrar el usuario" })
     }
-    
+
 }
 
 async function login(req, res) {
     try {
         const { email, password, expo_token } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).send({ msg: "Email y contraseña son requeridos" })
+        }
 
         const emailTrimmed = email.trim().toLowerCase();
         const passwordTrimmed = password.trim();
@@ -68,16 +85,23 @@ async function login(req, res) {
 async function refreshAccesToken(req, res) {
     const { refreshToken } = req.body
 
-    if (!refreshToken) { res.status(400).send({ msg: "Token requerido" }) }
+    if (!refreshToken) { return res.status(400).send({ msg: "Token requerido" }) }
 
-    const hasExpired = jwt.hasExpiredToken(refreshToken)
+    let payload
+    try {
+        payload = jwt.decoded(refreshToken)
+    } catch (error) {
+        return res.status(400).send({ msg: "Token inválido o expirado" })
+    }
 
-    if (hasExpired) { res.status(400).send({ msg: "Token expirado" }) }
+    if (payload.token_type !== "refresh") {
+        return res.status(400).send({ msg: "Tipo de token incorrecto" })
+    }
 
-    const { user_id } = jwt.decoded(refreshToken)
+    const { user_id } = payload
 
     try {
-        const userStorage = await User.findById(user_id); // Asegúrate de que user_id esté definido, por ejemplo, de req.params o req.body
+        const userStorage = await User.findById(user_id);
         const accessToken = jwt.createAccessToken(userStorage);
         res.status(200).send({ accessToken });
     } catch (error) {

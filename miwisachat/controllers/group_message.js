@@ -74,22 +74,19 @@ async function sendText(req, res) {
         const otherUsers = getOtherParticipants(user_id, group.participants)
 
         if (otherUsers) {
-            for (const otherUser of otherUsers) {
-                
-                if (otherUser?.expo_token) {
-                    const senderName = dataStorage.user?.firstname
-                        ? `${dataStorage.user.firstname} ${dataStorage.user.lastname}`
-                        : dataStorage.user?.email
-                    const senderAvatar = getPublicUrl(dataStorage.user?.avatar)
-                    const notification = {
-                        title: `${senderName} en ${group.name}`,
-                        body: message,
-                        richContent: senderAvatar ? { image: senderAvatar } : undefined,
-                    };
-
-                    await sendPushNotification(otherUser.expo_token, notification);
-                }
+            const senderName = dataStorage.user?.firstname
+                ? `${dataStorage.user.firstname} ${dataStorage.user.lastname}`
+                : dataStorage.user?.email
+            const senderAvatar = getPublicUrl(dataStorage.user?.avatar)
+            const notification = {
+                title: `${senderName} en ${group.name}`,
+                body: message,
+                richContent: senderAvatar ? { image: senderAvatar } : undefined,
             }
+            const notifPromises = otherUsers
+                .filter(u => u?.expo_token)
+                .map(u => sendPushNotification(u.expo_token, notification))
+            if (notifPromises.length > 0) await Promise.all(notifPromises)
         }
 
         io.sockets.in(group_id).emit("message", dataStorage)
@@ -128,21 +125,19 @@ async function sendImage(req, res) {
         const otherUsers = getOtherParticipants(user_id, group.participants)
 
         if (otherUsers) {
-            for (const otherUser of otherUsers) {
-                if (otherUser?.expo_token) {
-                    const senderName = data.user?.firstname
-                        ? `${data.user.firstname} ${data.user.lastname}`
-                        : data.user?.email
-                    const senderAvatar = getPublicUrl(data.user?.avatar)
-                    const notification = {
-                        title: `${senderName} en ${group.name}`,
-                        body: '📷 Imagen',
-                        richContent: senderAvatar ? { image: senderAvatar } : undefined,
-                    };
-
-                    await sendPushNotification(otherUser.expo_token, notification);
-                }
+            const senderName = data.user?.firstname
+                ? `${data.user.firstname} ${data.user.lastname}`
+                : data.user?.email
+            const senderAvatar = getPublicUrl(data.user?.avatar)
+            const notification = {
+                title: `${senderName} en ${group.name}`,
+                body: '📷 Imagen',
+                richContent: senderAvatar ? { image: senderAvatar } : undefined,
             }
+            const notifPromises = otherUsers
+                .filter(u => u?.expo_token)
+                .map(u => sendPushNotification(u.expo_token, notification))
+            if (notifPromises.length > 0) await Promise.all(notifPromises)
         }
 
         //Para emitir el mensaje en los chats. Aquí se especifica sobre que chat se va a emitir
@@ -164,12 +159,25 @@ async function getAll(req, res) {
     try {
 
         const { group_id } = req.params
+        const { user_id } = req.user
+        const page = parseInt(req.query.page, 10) || 1
+        const limit = Math.min(parseInt(req.query.limit, 10) || 20, 50)
 
-        const messages = await GroupMessage.find({ group: group_id }).sort({ createdAt: 1 }).populate(["user", "group"]);
+        const group = await Group.findOne({ _id: group_id, participants: user_id })
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
 
-        const total = await GroupMessage.countDocuments({ group: group_id });
+        const total = await GroupMessage.countDocuments({ group: group_id })
+        const totalPages = Math.max(Math.ceil(total / limit), 1)
+        const currentPage = Math.min(page, totalPages)
+        const skip = (currentPage - 1) * limit
 
-        res.status(200).send({ total, messages });
+        const messages = await GroupMessage.find({ group: group_id })
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit)
+            .populate([{ path: "user", select: "firstname lastname avatar email" }])
+
+        res.status(200).json({ total, totalPages, page: currentPage, limit, messages })
 
     } catch (error) {
         responseServerError(res, error)
@@ -216,6 +224,9 @@ async function markAllAsRead(req, res) {
     try {
         const { group_id } = req.params
         const { user_id } = req.user
+
+        const group = await Group.findOne({ _id: group_id, participants: user_id })
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
 
         const result = await GroupMessage.updateMany(
             {
@@ -309,14 +320,7 @@ async function sendVideo(req, res) {
 
         const duration = await getVideoDuration(finalPath).catch(() => 0)
 
-        let thumbName = null
-        try {
-            thumbName = `${uuid}_thumb.jpg`
-            await generateThumbnail(finalPath, "uploads/videos", thumbName)
-        } catch {
-            thumbName = null
-        }
-
+        const thumbName = `${uuid}_thumb.jpg`
         const originalName = sanitizeOriginalName(req.file.originalname)
 
         const group_message = new GroupMessage({
@@ -327,7 +331,7 @@ async function sendVideo(req, res) {
             attachment: {
                 url: finalFilename,
                 mimeType: detected.mime,
-                thumbnail: thumbName,
+                thumbnail: null,
                 duration,
                 originalName,
                 size: req.file.size,
@@ -340,7 +344,19 @@ async function sendVideo(req, res) {
         io.sockets.in(group_id).emit("message", data)
         io.sockets.in(`${group_id}_notify`).emit("message_notify", data)
 
-        res.status(200).json(data)
+        res.status(201).json(data)
+
+        generateThumbnail(finalPath, "uploads/videos", thumbName)
+            .then(async () => {
+                await GroupMessage.findByIdAndUpdate(messageStorage._id, {
+                    "attachment.thumbnail": thumbName
+                })
+                io.sockets.in(group_id.toString()).emit("thumbnail_ready", {
+                    messageId: messageStorage._id.toString(),
+                    thumbnail: thumbName
+                })
+            })
+            .catch(() => {})
     } catch (error) {
         if (tempPath) fs.promises.unlink(tempPath).catch(() => {})
         responseServerError(res, error)
@@ -423,10 +439,11 @@ async function sendFile(req, res) {
 async function deleteMessages(req, res) {
     try {
         const { ids } = req.body
+        const { user_id } = req.user
         if (!Array.isArray(ids) || ids.length === 0) {
             return res.status(400).json({ msg: "ids debe ser un array con al menos un elemento" })
         }
-        const result = await GroupMessage.deleteMany({ _id: { $in: ids } })
+        const result = await GroupMessage.deleteMany({ _id: { $in: ids }, user: user_id })
         res.status(200).json({ deletedCount: result.deletedCount })
     } catch (error) {
         responseServerError(res, error)

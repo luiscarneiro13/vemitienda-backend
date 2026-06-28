@@ -8,7 +8,7 @@ export async function runSeed() {
 }
 
 async function seedNotasUser() {
-    const randomPassword = bcrypt.hashSync(Math.random().toString(36), 10)
+    const randomPassword = await bcrypt.hash(Math.random().toString(36), 10)
 
     await User.findOneAndUpdate(
         { email: "notas@sistema.local" },
@@ -28,28 +28,26 @@ async function seedNotasChats() {
     const notasUser = await User.findOne({ email: "notas@sistema.local" })
     if (!notasUser) return
 
-    const realUsers = await User.find({ isBot: { $ne: true } })
+    const realUsers = await User.find({ isBot: { $ne: true } }, { _id: 1 })
+    if (realUsers.length === 0) return
 
-    for (const user of realUsers) {
-        const exists = await Chat.findOne({
-            $or: [
-                { participant_one: user._id, participant_two: notasUser._id },
-                { participant_one: notasUser._id, participant_two: user._id },
-            ],
-        })
-
-        if (exists) {
-            if (!exists.pinned) {
-                await Chat.findByIdAndUpdate(exists._id, { pinned: true })
-            }
-        } else {
-            await Chat.create({
-                participant_one: user._id,
-                participant_two: notasUser._id,
-                pinned: true,
-            })
+    const ops = realUsers.map(user => ({
+        updateOne: {
+            filter: {
+                $or: [
+                    { participant_one: user._id, participant_two: notasUser._id },
+                    { participant_one: notasUser._id, participant_two: user._id }
+                ]
+            },
+            update: {
+                $setOnInsert: { participant_one: user._id, participant_two: notasUser._id },
+                $set: { pinned: true }
+            },
+            upsert: true
         }
-    }
+    }))
+
+    await Chat.bulkWrite(ops, { ordered: false })
 }
 
 export async function createNotasChatForUser(userId) {

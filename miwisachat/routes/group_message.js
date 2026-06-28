@@ -1,6 +1,7 @@
 import express from "express"
 import multer from "multer"
 import fs from "fs"
+import { randomUUID } from "crypto"
 import { GroupMessageController, videoRateLimiter, fileRateLimiter } from "../controllers/index.js"
 import multiparty from "connect-multiparty"
 import { mdAuth } from "../middlewares/index.js"
@@ -14,7 +15,7 @@ const mdUpload = multiparty({ uploadDir: "./uploads/images" })
 const videoUpload = multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => cb(null, "uploads/videos/"),
-        filename: (req, file, cb) => cb(null, `tmp_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`),
+        filename: (req, file, cb) => cb(null, `tmp_${randomUUID()}`),
     }),
     limits: { fileSize: 50 * 1024 * 1024 },
 })
@@ -22,7 +23,7 @@ const videoUpload = multer({
 const fileUpload = multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => cb(null, "uploads/files/"),
-        filename: (req, file, cb) => cb(null, `tmp_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`),
+        filename: (req, file, cb) => cb(null, `tmp_${randomUUID()}`),
     }),
     limits: { fileSize: 25 * 1024 * 1024 },
 })

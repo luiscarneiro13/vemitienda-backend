@@ -63,15 +63,16 @@ async function getGroup(req, res) {
 
     try {
 
-        const group_id = req.params.id
+        const id = req.params.id
+        const { user_id } = req.user
 
-        const groupStorage = await Group.findOne({ _id: group_id }).populate(["creator", "participants"])
+        const group = await Group.findOne({ _id: id, participants: user_id }).populate(["creator", "participants"])
 
-        if (!groupStorage) {
-            res.status(400).send({ msg: "No se ha encontrado el grupo" })
-        } else {
-            res.status(200).send(groupStorage)
+        if (!group) {
+            return res.status(403).json({ msg: "Acceso denegado" })
         }
+
+        res.status(200).send(group)
 
     } catch (error) {
         responseServerError(res, error)
@@ -83,22 +84,24 @@ async function updateGroup(req, res) {
 
     try {
         const { id } = req.params
+        const { user_id } = req.user
         const { name } = req.body
 
-        const group = await Group.findById(id)
+        const group = await Group.findOne({ _id: id, participants: user_id })
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
+        if (group.creator.toString() !== user_id.toString()) return res.status(403).json({ msg: "Solo el creador puede modificar el grupo" })
 
-        if (name) { group.name = name }
+        const updateData = {}
+        if (name) updateData.name = name
 
         if (req.files.image) {
             const imagePath = getFilePath(req.files.image)
-            console.log("imagePath", imagePath)
-            group.image = imagePath
+            updateData.image = imagePath
         }
 
-        await Group.findByIdAndUpdate(id, group)
-        const groupStorage = await Group.findOne({ _id: id })
+        const updated = await Group.findByIdAndUpdate(id, updateData, { new: true })
 
-        res.status(200).send(groupStorage)
+        res.status(200).send(updated)
 
     } catch (error) {
         responseServerError(res, error)
@@ -113,7 +116,8 @@ async function exitGroup(req, res) {
         const { id } = req.params
         const { user_id } = req.user
 
-        const group = await Group.findById(id)
+        const group = await Group.findOne({ _id: id, participants: user_id })
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
 
         const newParticipants = group.participants.filter((participants) => {
             participants.toString() !== user_id
@@ -135,9 +139,12 @@ async function addParticipants(req, res) {
 
     try {
         const { id } = req.params
+        const { user_id } = req.user
         const { users_id } = req.body
 
-        const group = await Group.findById(id)
+        const group = await Group.findOne({ _id: id, participants: user_id })
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
+        if (group.creator.toString() !== user_id.toString()) return res.status(403).json({ msg: "Solo el creador puede agregar participantes" })
         const users = await User.find({ _id: users_id })
 
         const arrayObjectIds = []
@@ -165,12 +172,15 @@ async function banParticipant(req, res) {
 
     try {
 
-        const { group_id, user_id } = req.body
+        const { group_id, user_id: target_user_id } = req.body
+        const { user_id } = req.user
 
-        const group = await Group.findById(group_id)
+        const group = await Group.findOne({ _id: group_id, participants: user_id })
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
+        if (group.creator.toString() !== user_id.toString()) return res.status(403).json({ msg: "Solo el creador puede expulsar participantes" })
 
         const newParticipants = group.participants.filter((participant) => {
-            return participant.toString() !== user_id
+            return participant.toString() !== target_user_id
         })
 
         const newData = {

@@ -39,7 +39,7 @@ async function getUser(req, res) {
         if (!user) { res.status(400).send({ msg: "Usuario no encontrado" }) }
         else { res.status(200).send(user) }
     } catch (error) {
-        responseServerError(res)
+        responseServerError(res, error)
     }
 }
 
@@ -48,7 +48,10 @@ async function updateUser(req, res) {
     try {
 
         const { user_id } = req.user
-        const userData = req.body
+        const { firstname, lastname } = req.body
+        const userData = {}
+        if (firstname !== undefined) userData.firstname = firstname
+        if (lastname !== undefined) userData.lastname = lastname
 
         if (req.files.avatar) {
             const imagePath = getFilePath(req.files.avatar)

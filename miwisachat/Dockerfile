@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:22-alpine
 
 # ffmpeg y ffprobe para procesamiento de video (incluye thumbnails)
 RUN apk add --no-cache ffmpeg
@@ -24,4 +24,4 @@ RUN yarn cache clean
 # Expone el puerto real de la app
 EXPOSE 3977
 
-CMD ["yarn", "start"]
+CMD ["node", "--max-old-space-size=512", "index.js"]
