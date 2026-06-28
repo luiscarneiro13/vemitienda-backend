@@ -9,5 +9,6 @@ export function getFilePath(file) {
 
 export function getPublicUrl(relativePath) {
     if (!relativePath) return undefined
+    if (relativePath.startsWith("http")) return relativePath
     return `${SERVER_URL}/api/miwisachat/uploads/${relativePath}`
 }
