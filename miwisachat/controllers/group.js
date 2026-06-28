@@ -45,7 +45,7 @@ async function getAll(req, res) {
             const response = await GroupMessage.findOne({ group: group._id }).sort({ createdAt: -1 })
 
             arrayGroups.push({
-                ...group._doc,
+                ...group.toJSON(),
                 last_message_date: response?.createdAt || null
             })
 

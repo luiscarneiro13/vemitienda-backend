@@ -49,7 +49,7 @@ async function getAll(req, res) {
         for await (const chat of chats) {
             const response = await ChatMessage.findOne({ chat: chat._id }).sort({ createdAt: -1 })
             arrayChats.push({
-                ...chat._doc,
+                ...chat.toJSON(),
                 last_message_date: response?.createdAt || null
             })
         }
