@@ -58,6 +58,9 @@ async function sendText(req, res) {
         const { group_id, message, replyTo } = req.body
         const { user_id } = req.user
 
+        const group = await Group.findOne({ _id: group_id, participants: user_id }).populate(["creator", "participants"])
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
+
         const group_message = new GroupMessage({
             group: group_id,
             user: user_id,
@@ -68,8 +71,6 @@ async function sendText(req, res) {
 
         const dataStorage = await group_message.save()
         await dataStorage.populate(["user"])
-
-        const group = await Group.findById({ _id: group_id }).populate(["creator", "participants"])
 
         const otherUsers = getOtherParticipants(user_id, group.participants)
 
@@ -107,7 +108,10 @@ async function sendImage(req, res) {
         const { group_id } = req.body
         const { user_id } = req.user
 
-        const message = getFilePath(req.files.image)
+        const group = await Group.findOne({ _id: group_id, participants: user_id }).populate(["creator", "participants"])
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
+
+        const message = getFilePath(req.files.image[0])
 
         const group_message = new GroupMessage({
             group: group_id,
@@ -118,8 +122,6 @@ async function sendImage(req, res) {
 
         const messageStorage = await group_message.save()
         const data = await messageStorage.populate(["user", "group"]);
-
-        const group = await Group.findOne({ _id: group_id }).populate(["creator", "participants"])
 
         // Verifico si el usuario tiene un token de expo para enviarle notificación:
         const otherUsers = getOtherParticipants(user_id, group.participants)
@@ -190,6 +192,10 @@ async function getTotalMessages(req, res) {
     try {
 
         const { group_id } = req.params
+        const { user_id } = req.user
+
+        const group = await Group.findOne({ _id: group_id, participants: user_id })
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
 
         const total = await GroupMessage.countDocuments({ group: group_id });
 
@@ -206,6 +212,10 @@ async function getLastMessage(req, res) {
     try {
 
         const { group_id } = req.params
+        const { user_id } = req.user
+
+        const group = await Group.findOne({ _id: group_id, participants: user_id })
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
 
         const response = await GroupMessage.findOne({ group: group_id }).sort({ createdAt: -1 })
 
@@ -225,6 +235,10 @@ async function markAllAsRead(req, res) {
         const { group_id } = req.params
         const { user_id } = req.user
 
+        if (!mongoose.isValidObjectId(group_id)) {
+            return res.status(400).json({ msg: "group_id inválido" })
+        }
+
         const group = await Group.findOne({ _id: group_id, participants: user_id })
         if (!group) return res.status(403).json({ msg: "Acceso denegado" })
 
@@ -238,6 +252,30 @@ async function markAllAsRead(req, res) {
         )
 
         res.status(200).send({ updated: result.modifiedCount })
+    } catch (error) {
+        responseServerError(res, error)
+    }
+}
+
+async function getUnreadCount(req, res) {
+    try {
+        const { group_id } = req.params
+        const { user_id } = req.user
+
+        if (!mongoose.isValidObjectId(group_id)) {
+            return res.status(400).json({ msg: "group_id inválido" })
+        }
+
+        const group = await Group.findOne({ _id: group_id, participants: user_id })
+        if (!group) return res.status(403).json({ msg: "Acceso denegado" })
+
+        const count = await GroupMessage.countDocuments({
+            group: group_id,
+            user: { $ne: user_id },
+            readBy: { $ne: user_id }
+        })
+
+        res.status(200).send(count)
     } catch (error) {
         responseServerError(res, error)
     }
@@ -461,4 +499,5 @@ export const GroupMessageController = {
     getTotalMessages,
     getLastMessage,
     markAllAsRead,
+    getUnreadCount,
 }

@@ -54,5 +54,7 @@ api.delete("/group/message/delete", [mdAuth.asureAuth], GroupMessageController.d
 api.post("/group/message/link", [mdAuth.asureAuth], GroupMessageController.sendLink)
 api.post("/group/message/video", [mdAuth.asureAuth, videoRateLimiter, wrapMulter(videoUpload, "video")], GroupMessageController.sendVideo)
 api.post("/group/message/file", [mdAuth.asureAuth, fileRateLimiter, wrapMulter(fileUpload, "file")], GroupMessageController.sendFile)
+api.patch("/group/message/markAllAsRead/:group_id", [mdAuth.asureAuth], GroupMessageController.markAllAsRead)
+api.get("/group/message/unread/:group_id", [mdAuth.asureAuth], GroupMessageController.getUnreadCount)
 
 export const groupMessageRoutes = api

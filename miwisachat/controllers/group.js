@@ -15,8 +15,8 @@ async function create(req, res) {
             group.participants.push(user_id);
         }
 
-        if (req.files.image) {
-            const imagePath = getFilePath(req.files.image)
+        if (req.files?.image) {
+            const imagePath = getFilePath(req.files.image[0])
             group.image = imagePath
         }
 
@@ -94,8 +94,8 @@ async function updateGroup(req, res) {
         const updateData = {}
         if (name) updateData.name = name
 
-        if (req.files.image) {
-            const imagePath = getFilePath(req.files.image)
+        if (req.files?.image) {
+            const imagePath = getFilePath(req.files.image[0])
             updateData.image = imagePath
         }
 
@@ -119,8 +119,8 @@ async function exitGroup(req, res) {
         const group = await Group.findOne({ _id: id, participants: user_id })
         if (!group) return res.status(403).json({ msg: "Acceso denegado" })
 
-        const newParticipants = group.participants.filter((participants) => {
-            participants.toString() !== user_id
+        const newParticipants = group.participants.filter((participant) => {
+            return participant.toString() !== user_id
         })
 
         const newData = { ...group._doc, participants: newParticipants }
@@ -155,7 +155,7 @@ async function addParticipants(req, res) {
 
         const newData = {
             ...group._doc,
-            participants: [...group.participants, ...users_id]
+            participants: [...group.participants, ...arrayObjectIds]
         }
 
         const groupStorage = await Group.findByIdAndUpdate(id, newData)

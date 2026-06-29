@@ -51,6 +51,7 @@ const GroupMessageSchema = mongoose.Schema(
 
 GroupMessageSchema.index({ group: 1, createdAt: -1 })
 GroupMessageSchema.index({ group: 1, user: 1 })
+GroupMessageSchema.index({ group: 1, user: 1, readBy: 1 })
 
 GroupMessageSchema.set("toJSON", {
     transform: (doc, ret) => {

@@ -1,7 +1,4 @@
 import mongoose from "mongoose"
-import { SERVER_URL } from "../constants.js"
-
-const UPLOADS_BASE = `${SERVER_URL}/api/miwisachat/uploads`
 
 const GroupSchema = mongoose.Schema(
     {
@@ -25,9 +22,6 @@ GroupSchema.index({ creator: 1 })
 
 GroupSchema.set("toJSON", {
     transform: (doc, ret) => {
-        if (ret.image && !ret.image.startsWith("http")) {
-            ret.image = `${UPLOADS_BASE}/${ret.image}`
-        }
         delete ret.__v
         return ret
     }

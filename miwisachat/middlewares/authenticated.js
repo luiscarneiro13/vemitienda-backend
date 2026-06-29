@@ -15,6 +15,11 @@ function asureAuth(req, res, next) {
         if (hasExpired) { return res.status(400).send({ ms: "Token expirado" }) }
 
         const payload = jwt.decoded(token)
+
+        if (payload.token_type !== "access") {
+            return res.status(401).send({ msg: "Token inválido" })
+        }
+
         req.user = payload
 
         next()
