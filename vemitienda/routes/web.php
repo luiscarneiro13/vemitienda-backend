@@ -39,6 +39,12 @@ Route::get('/{slug}', 'WEB\V3\ProductController@productList')->name('products.li
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('usuarios', 'Admin\UsersController');
     Route::resource('blog', 'Admin\PostsController');
+    Route::post('blog-ai/generate', 'Admin\PostAiGenerationController@generate')->name('blog.ai.generate');
+    Route::get('blog-ai/status/{generation}', 'Admin\PostAiGenerationController@status')->name('blog.ai.status');
+    Route::get('blog-templates', 'Admin\PostTemplatesController@index')->name('blog.templates.index');
+    Route::post('blog-templates', 'Admin\PostTemplatesController@store')->name('blog.templates.store');
+    Route::put('blog-templates/{template}', 'Admin\PostTemplatesController@update')->name('blog.templates.update');
+    Route::delete('blog-templates/{template}', 'Admin\PostTemplatesController@destroy')->name('blog.templates.destroy');
     Route::resource('plans', 'Admin\PlansController');
     Route::resource('versions', 'Admin\VersionsController');
     Route::resource('tags', 'Admin\TagsController');

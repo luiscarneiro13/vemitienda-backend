@@ -99,7 +99,7 @@ GOOGLE_CLIENT_SECRET=...
 
 **Producción:** GitHub Actions (push a `main`) hace SSH al Droplet de DigitalOcean y ejecuta `./start.sh`. El script reconstruye imágenes Docker, migra, reinstala Passport y arranca workers.
 
-**Supervisor** gestiona `php artisan queue:work` en producción. Config en `/etc/supervisor/conf.d/laravel-worker.conf` (ver `script-correr-colas.txt`).
+**Worker de colas:** el servicio `queue-worker` de `docker-compose.prod.yml` (y `docker-compose.yml` en dev) corre `php artisan queue:work --tries=3 --sleep=3` con `restart: unless-stopped` — Docker lo reinicia solo si el proceso muere. (`script-correr-colas.txt` es un script standalone para instalar Supervisor a nivel de host; no se ejecuta desde `start.sh` ni desde el workflow de deploy — es un remanente de un setup previo a la dockerización).
 
 **docker-compose.prod.yml** incluye servicios adicionales: Certbot (SSL) y Metube (descarga de videos vía yt-dlp).
 

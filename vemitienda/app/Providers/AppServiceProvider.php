@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Pagination\Paginator;
+use App\Services\OpenAIService;
+use App\Services\ClaudeService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
         //     });
         // }
         $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
+
+        $this->app->singleton(OpenAIService::class);
+        $this->app->singleton(ClaudeService::class);
     }
 
     /**

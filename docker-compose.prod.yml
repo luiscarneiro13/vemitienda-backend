@@ -3,11 +3,26 @@ services:
     build:
       context: .
       dockerfile: ./vemitienda/Dockerfile
+    image: vemitienda-php
     container_name: vemitiendabackend-php
     volumes:
       - ./vemitienda:/var/www
     ports:
       - 9000:80
+    networks:
+      - vemitienda
+
+  queue-worker:
+    image: vemitienda-php
+    container_name: vemitiendabackend-queue-worker
+    volumes:
+      - ./vemitienda:/var/www
+    depends_on:
+      - php
+    command: >
+      sh -c "chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache &&
+             php artisan queue:work --tries=3 --sleep=3"
+    restart: unless-stopped
     networks:
       - vemitienda
 

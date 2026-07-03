@@ -18,7 +18,9 @@
 
     @include('layouts.adminlte.sidebar')
 
-    <div class="flex flex-col flex-1" style="margin-left:220px; min-height:100vh">
+    <div id="sidebar-overlay" onclick="toggleSidebar(false)" class="fixed inset-0 bg-black/50 z-10 hidden lg:hidden"></div>
+
+    <div class="flex flex-col flex-1 lg:ml-[220px]" style="min-height:100vh">
 
         @include('layouts.adminlte.navbar')
 

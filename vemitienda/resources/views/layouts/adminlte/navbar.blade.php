@@ -1,7 +1,7 @@
 @php
     $sections = [
         'usuarios'       => ['Usuarios',           'Panel de administración de cuentas'],
-        'blog'           => ['Blog',                'Gestiona los artículos del blog'],
+        'blog'           => ['Blog',                ''],
         'postcategory'   => ['Categorías de blog',  'Organiza el contenido por categorías'],
         'tags'           => ['Etiquetas',            'Administra las etiquetas de los artículos'],
         'plans'          => ['Planes',               'Gestiona los planes de suscripción'],
@@ -15,13 +15,20 @@
     $pageSub   = $sections[$seg][1] ?? 'Ve mi tienda';
 @endphp
 
-<header class="h-16 flex items-center justify-between px-8 bg-white border-b border-slate-200 sticky top-0 z-10">
+<header class="h-16 flex items-center justify-between px-4 lg:px-8 bg-white border-b border-slate-200 sticky top-0 z-10">
 
-    <div>
-        <div class="flex items-baseline gap-2">
-            <h2 class="text-sm font-bold text-slate-900 leading-tight">{{ $pageTitle }}</h2>
-            <span class="text-slate-300 text-xs">·</span>
-            <p class="text-[11px] text-slate-500">{{ $pageSub }}</p>
+    <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleSidebar()"
+            style="background:transparent;border:none;cursor:pointer"
+            class="lg:hidden text-slate-600 -ml-1 flex items-center justify-center w-8 h-8">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="flex items-center gap-2 h-8">
+            <h2 class="text-sm font-bold text-slate-900 leading-none">{{ $pageTitle }}</h2>
+            @if ($pageSub)
+                <span class="text-slate-300 text-xs">·</span>
+                <p class="text-[11px] text-slate-500">{{ $pageSub }}</p>
+            @endif
         </div>
     </div>
 

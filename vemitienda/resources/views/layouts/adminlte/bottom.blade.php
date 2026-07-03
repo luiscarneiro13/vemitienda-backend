@@ -1,5 +1,5 @@
 <script src="{{ asset('adminlte3/plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('adminlte3/js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('adminlte3/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 
 <script src="{{ asset('adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- DataTables  & Plugins -->
@@ -29,8 +29,6 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
 <script src="{{ asset('js/custom.js?v=' . $version) }}"></script>
-<script src="{{ asset('js/customDataTable.js?v=' . $version) }}"></script>
-<script src="{{ asset('js/image-profile.js?v=' . $version) }}"></script>
 
 {{-- TOASTR --}}
 <script>

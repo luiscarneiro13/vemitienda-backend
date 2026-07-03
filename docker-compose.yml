@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: ./vemitienda/Dockerfile
+    image: vemitienda-php
     container_name: vemitiendabackend-php
     volumes:
       - ./vemitienda:/var/www
@@ -15,6 +16,23 @@ services:
       sh -c "chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache &&
              chmod -R 775 /var/www/storage /var/www/bootstrap/cache &&
              php-fpm"
+    networks:
+      - vemitienda
+
+  queue-worker:
+    image: vemitienda-php
+    container_name: vemitiendabackend-queue-worker
+    volumes:
+      - ./vemitienda:/var/www
+    depends_on:
+      mysql:
+        condition: service_healthy
+      php:
+        condition: service_started
+    command: >
+      sh -c "chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache &&
+             php artisan queue:work --tries=3 --sleep=3"
+    restart: unless-stopped
     networks:
       - vemitienda
 

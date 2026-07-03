@@ -17,8 +17,8 @@
 <link rel="stylesheet" href="{{ asset('adminlte3/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('adminlte3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('adminlte3/css/adminlte.min.css') }}">
-<link rel="stylesheet" href="{{ asset('adminlte3/css/jquery-ui.min.css') }}">
-<link rel="stylesheet" href="{{ asset('adminlte3/css/jquery-ui.theme.min.css') }}">
+<link rel="stylesheet" href="{{ asset('adminlte3/plugins/jquery-ui/jquery-ui.min.css') }}">
+<link rel="stylesheet" href="{{ asset('adminlte3/plugins/jquery-ui/jquery-ui.theme.min.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
 <!-- Tailwind CSS (preflight desactivado para no conflictuar con Bootstrap) -->
@@ -29,14 +29,82 @@
         theme: {
             extend: {
                 colors: {
-                    primary: '#0052cc',
-                    'primary-dark': '#003d99',
-                    'surface-dark': '#0f172a',
-                    'surface-light': '#f8f9fb',
-                    'border-light': '#e2e8f0',
+                    "primary-container": "#0052cc",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#b4c8e3",
+                    "on-primary-fixed-variant": "#0040a2",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#d1bcff",
+                    "surface-variant": "#e1e2e4",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#191c1e",
+                    "surface-tint": "#0c56d0",
+                    "inverse-primary": "#b2c5ff",
+                    "secondary-fixed": "#d1e4ff",
+                    "on-secondary-container": "#51647c",
+                    "outline": "#737685",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#001848",
+                    "inverse-on-surface": "#f0f1f3",
+                    "surface-container-low": "#f3f4f6",
+                    "surface": "#f8f9fb",
+                    "on-tertiary-container": "#dccbff",
+                    "surface-container": "#edeef0",
+                    "on-tertiary-fixed-variant": "#5700c9",
+                    "inverse-surface": "#2e3132",
+                    "primary": "#003d9b",
+                    "primary-fixed": "#dae2ff",
+                    "on-surface-variant": "#434654",
+                    "tertiary-container": "#6f00fc",
+                    "on-tertiary-fixed": "#23005b",
+                    "surface-container-high": "#e7e8ea",
+                    "background": "#f8f9fb",
+                    "on-background": "#191c1e",
+                    "outline-variant": "#c3c6d6",
+                    "surface-dim": "#d9dadc",
+                    "secondary": "#4d6077",
+                    "surface-container-highest": "#e1e2e4",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "surface-bright": "#f8f9fb",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#e9ddff",
+                    "on-secondary-fixed-variant": "#35485e",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed": "#071d31",
+                    "secondary-container": "#cde1fd",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#c4d2ff",
+                    "tertiary": "#5300c1",
+                    "primary-dark": "#003d99",
+                    "surface-dark": "#0f172a",
+                    "surface-light": "#f8f9fb",
+                    "border-light": "#e2e8f0",
+                    "text-muted": "#64748b",
+                },
+                borderRadius: {
+                    DEFAULT: "0.25rem",
+                    lg: "0.5rem",
+                    xl: "0.75rem",
+                    full: "9999px",
+                    custom: "8px",
+                },
+                spacing: {
+                    "sidebar-width": "260px",
+                    "stack-spacing": "16px",
+                    "gutter": "24px",
+                    "container-padding": "32px",
                 },
                 fontFamily: {
-                    sans: ['Hanken Grotesk', 'sans-serif'],
+                    sans: ["Hanken Grotesk", "sans-serif"],
+                },
+                fontSize: {
+                    "display-title": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                    "label-sm": ["11px", { lineHeight: "16px", fontWeight: "500" }],
+                    "label-bold": ["13px", { lineHeight: "18px", fontWeight: "600" }],
+                    "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                    "headline-section": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+                    "button-text": ["14px", { lineHeight: "20px", fontWeight: "600" }],
                 },
             }
         }
@@ -50,6 +118,8 @@
     }
     .sidebar-custom::-webkit-scrollbar { width: 4px; }
     .sidebar-custom::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .nav-section-content { overflow: hidden; transition: max-height 0.25s ease; }
     .nav-section-content.collapsed { max-height: 0 !important; }
     .page-item.active .page-link {

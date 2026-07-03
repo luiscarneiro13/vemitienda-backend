@@ -14,10 +14,15 @@
         </a>';
 @endphp
 
-<aside class="sidebar-custom w-[220px] bg-[#0f172a] text-white flex flex-col h-screen fixed left-0 top-0 z-20 overflow-y-auto">
+<aside id="app-sidebar" class="sidebar-custom w-[220px] bg-[#0f172a] text-white flex flex-col h-screen fixed left-0 top-0 z-30 overflow-y-auto -translate-x-full lg:translate-x-0 transition-transform duration-300">
 
     {{-- Logo centrado --}}
-    <div class="flex flex-col items-center pt-3 px-3 pb-2 border-b border-white/10">
+    <div class="relative flex flex-col items-center pt-3 px-3 pb-2 border-b border-white/10">
+        <button type="button" onclick="toggleSidebar(false)"
+            style="background:transparent;border:none;cursor:pointer"
+            class="lg:hidden absolute right-2 top-2 text-slate-400 hover:text-white p-1">
+            <span class="material-symbols-outlined" style="font-size:18px">close</span>
+        </button>
         <img src="{{ asset('img/logo.png') }}" alt="Logo" class="w-7 h-7 object-contain rounded-lg mb-1">
         <h1 class="text-xs font-bold tracking-tight leading-none">Ve mi tienda</h1>
         <p class="text-[8px] text-blue-400 font-semibold uppercase tracking-widest mt-0.5">Admin Panel</p>
@@ -99,6 +104,14 @@
 </aside>
 
 <script>
+    function toggleSidebar(open) {
+        const sidebar = document.getElementById('app-sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const isOpen = open !== undefined ? open : sidebar.classList.contains('-translate-x-full');
+        sidebar.classList.toggle('-translate-x-full', !isOpen);
+        overlay.classList.toggle('hidden', !isOpen);
+    }
+
     function toggleSection(id, btn) {
         const panel = document.getElementById(id);
         const chevron = btn.querySelector('.section-chevron');

@@ -53,15 +53,14 @@ docker exec "$APP_CONTAINER" npm install
 
 echo ""
 echo ">> Ejecutando migraciones..."
-docker exec "$APP_CONTAINER" php artisan migrate
+docker exec "$APP_CONTAINER" php artisan migrate --force
 
 echo ""
 echo ">> Instalando passport..."
 docker exec -d "$APP_CONTAINER" php artisan passport:install
 
 echo ""
-echo ">> Iniciando queue:work..."
-docker exec -d "$APP_CONTAINER" php artisan queue:work
+echo ">> queue:work corre como servicio 'queue-worker' administrado por docker-compose (restart: unless-stopped), no requiere inicio manual."
 
 echo ""
 echo ">> Creando enlace simbólico..."
