@@ -24,6 +24,9 @@ Route::group(['prefix' => 'v3'], function () {
 
     Route::post('version', 'API\V3\VersionsController@index');
 
+    // Verifica si el worker de colas está procesando jobs
+    Route::get('health/queue', 'API\V3\HealthController@queueStatus');
+
     // Enviar correo de soporte a un usuario
     Route::post('soporte', 'API\V3\EmailsController@soporte');
 
