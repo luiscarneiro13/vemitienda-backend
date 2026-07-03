@@ -32,16 +32,6 @@ Route::get('privacidad', fn () => view('privacidad'));
 Route::get('ejemplo', fn () => view('ejemplo'));
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-// Rutas de catálogo y productos
-
-Route::get('/{slug}', [ProductController3::class, 'productList'])->name('products.list');
-Route::get('/{slug}/cart', [CartController3::class, 'cartList'])->name('cart.list');
-Route::post('cart', [CartController3::class, 'addToCart'])->name('cart.store');
-Route::post('update-cart', [CartController3::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [CartController3::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [CartController3::class, 'clearAllCart'])->name('cart.clear');
-Route::post('order', [OrderController3::class, 'index'])->name('order.store');
-
 // Blog y mensajería
 Route::get('blog', [BlogController::class, 'index'])->name('blog');
 Route::get('blog/{slug}', [BlogController::class, 'show'])->name('blog');
@@ -54,6 +44,15 @@ Route::post('reset3', 'API\V3\UserController@reset3')->name('reset3');
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('loguear', [LoginController::class, 'loguear'])->name('loguear');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+// Rutas de catálogo y productos (al final porque /{slug} es comodín)
+Route::post('cart', [CartController3::class, 'addToCart'])->name('cart.store');
+Route::post('update-cart', [CartController3::class, 'updateCart'])->name('cart.update');
+Route::post('remove', [CartController3::class, 'removeCart'])->name('cart.remove');
+Route::post('clear', [CartController3::class, 'clearAllCart'])->name('cart.clear');
+Route::post('order', [OrderController3::class, 'index'])->name('order.store');
+Route::get('/{slug}/cart', [CartController3::class, 'cartList'])->name('cart.list');
+Route::get('/{slug}', [ProductController3::class, 'productList'])->name('products.list');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('usuarios', AdminUsersController::class);

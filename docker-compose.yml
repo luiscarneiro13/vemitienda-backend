@@ -1,29 +1,58 @@
 services:
   php:
     build:
-      context: . # ruta de referencia ./
-      dockerfile: Dockerfile # nombre del archivo de configuracion de la imagen
-    container_name: vemitiendabackend-php #
+      context: .
+      dockerfile: ./vemitienda/Dockerfile
+    container_name: vemitiendabackend-php
     volumes:
       - ./vemitienda:/var/www
     ports:
       - 9000:80
+    depends_on:
+      mysql:
+        condition: service_healthy
+    command: >
+      sh -c "chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache &&
+             chmod -R 775 /var/www/storage /var/www/bootstrap/cache &&
+             php-fpm"
     networks:
-      - vemitienda # red
+      - vemitienda
 
   nginx:
-    image: nginx:stable-alpine # imagen de docker hub que vamos a usar
-    container_name: vemitiendabackend-nginx # nombre para referirse al servicio
+    image: nginx:stable-alpine
+    container_name: vemitiendabackend-nginx
     ports:
       - 8000:80
     volumes:
-      - ./vemitienda:/var/www # carpeta local/ vincula a carpeta de nginx
-      - ./vemitienda/nginx/default.conf:/etc/nginx/conf.d/default.conf # archivo local / reflejado en archivo de la imagen
+      - ./vemitienda:/var/www
+      - ./vemitienda/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
     networks:
       - vemitienda
 
+  mysql:
+    image: mysql:8.0
+    container_name: vemitiendabackend-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: vemitienda
+      MYSQL_ROOT_PASSWORD: Luis1984.
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pLuis1984."]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - vemitienda
+
+
+volumes:
+  mysql_data:
 
 networks:
   vemitienda:
