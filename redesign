@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ve mi tienda - Crear Contenido</title>
+<!-- Google Fonts: Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols for Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0052cc',
+            'primary-dark': '#003d99',
+            'surface-dark': '#0f172a', // Sidebar Dark
+            'surface-light': '#f8f9fb', // Main BG
+            'surface-card': '#ffffff',
+            'border-light': '#e2e8f0',
+            'text-muted': '#64748b'
+          },
+          fontFamily: {
+            sans: ['Hanken Grotesk', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '8px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="layout-styles">
+    body {
+      background-color: #f8f9fb;
+      font-family: 'Hanken Grotesk', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="flex min-h-screen">
+<!-- BEGIN: SideNavBar -->
+<aside class="w-[260px] bg-surface-dark text-white flex flex-col h-screen fixed left-0 top-0 z-20">
+<div class="p-6">
+<!-- Logo -->
+<div class="mb-8" data-purpose="brand-logo"><div class="flex items-center gap-3"><img alt="Ve mi tienda Logo" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK8D5LYFGDRuLLjNc0hICjCdRpsbf3t5XfYIisin_vPVn97C-AaRJo3XqqvdEOdwdNzwK-XLv0uhAVgR6BS0QLeUX9CkcXPI6fAlqtU1cfg5HYQI8sxk7HDjHvQCyxcHoRh7bTSlGrnfHlffSxPfe-fAG350mLXlG-D_foI4KFEJ5CiiLAawrD6VIPKICeIaKxsn36rakqq1qQ8UhCJcc5nOrRe4-f2EP1M8j4HYi35AUZU3To3gk55RM8It90OJ55fiOxIqojhLU"/><div class="flex flex-col"><h1 class="text-xl font-bold tracking-tight">Ve mi tienda</h1><p class="text-[10px] text-blue-400 font-semibold uppercase tracking-widest">ContentFlow</p></div></div></div>
+<!-- Profile -->
+<div class="bg-white/5 rounded-custom p-3 mb-6 flex items-center gap-3">
+<img alt="Luis Martínez Profile Picture" class="w-10 h-10 rounded-full border border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSEDnSnU0keshCce1iwMpdj2WdHjw-pqg4IJ9KDFF1Hg3tE-8T5LzeO_srAECICT4Lx9NHvekeXQaWyGm8g2BIPuibc46RF9kP6DgA9XpfCGJDaZPO-xr0q8k9tgdiRYE3s1-BUF1ZL5bLIhX8r9NerZI0rR59KJ7zaBp17chjiDPxABL7mN2dcLnSM0krffHM9vccKoEcl605xQEyaw7qEUwIPTAh2MQFJ3cbRkHuHpqmsbh3rxmAzV8tctGJg6vy-OPCRRHeRj0"/>
+<div class="overflow-hidden">
+<p class="text-sm font-semibold truncate">Luis Martínez</p>
+<p class="text-xs text-slate-400">Administrador</p>
+</div>
+<span class="material-symbols-outlined text-sm ml-auto">expand_more</span>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 space-y-1"><!-- Admin Blog Section -->
+<div class="space-y-1 mb-4">
+<div class="flex items-center justify-between px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom cursor-pointer transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">settings</span>
+      Admin Blog
+    </div>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<div class="pl-7 space-y-1"><a class="flex items-center gap-3 px-3 py-2 text-xs text-slate-400 hover:text-white hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">article</span> Blog
+    </a>
+<a class="flex items-center gap-3 px-3 py-2 text-xs text-slate-400 hover:text-white hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">category</span> Categorías
+    </a>
+<a class="flex items-center gap-3 px-3 py-2 text-xs text-slate-400 hover:text-white hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">label</span> Etiquetas
+    </a></div>
+</div>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm bg-primary text-white font-bold rounded-custom" href="#">
+<span class="material-symbols-outlined">add_circle</span> Crear Contenido
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span> Calendario
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined">article</span> Contenido
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined">perm_media</span> Biblioteca Multimedia
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors justify-between" href="#">
+<span class="flex items-center gap-3">
+<span class="material-symbols-outlined">auto_awesome</span> IA Asistente
+          </span>
+<span class="bg-indigo-600 text-[10px] px-1.5 py-0.5 rounded-full uppercase font-bold">Nuevo</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined">hub</span> Conexiones
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span> Configuración
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined">description</span> Plantillas
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined">label</span> Etiquetas
+        </a>
+<!-- Configuración Section -->
+<div class="space-y-1 mt-4">
+<div class="flex items-center justify-between px-3 py-2 text-sm text-slate-300 hover:bg-white/10 rounded-custom cursor-pointer transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">settings_suggest</span>
+      Configuración
+    </div>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<div class="pl-7 space-y-1"><a class="flex items-center gap-3 px-3 py-2 text-xs bg-white/10 text-white font-semibold rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">person</span> Usuarios
+    </a>
+<a class="flex items-center gap-3 px-3 py-2 text-xs text-slate-400 hover:text-white hover:bg-white/10 rounded-custom transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">android</span> Versiones Android
+    </a></div>
+</div></nav>
+</div>
+<!-- Footer Sidebar -->
+<div class="mt-auto p-6 space-y-4">
+<div class="bg-slate-800/50 rounded-custom p-4 text-xs">
+<p class="font-bold mb-1">Plan Profesional</p>
+<div class="flex justify-between mb-2">
+<span class="">Publicaciones este mes</span>
+<span class="">128 / 500</span>
+</div>
+<div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden mb-3">
+<div class="bg-primary h-full w-[25.6%]"></div>
+</div>
+<a class="text-primary font-semibold hover:underline" href="#">Ver detalles del plan</a>
+</div>
+<button class="flex items-center gap-3 px-3 py-2 text-sm text-white font-bold hover:bg-white/10 rounded-custom transition-colors w-full">
+<span class="material-symbols-outlined">logout</span> Logout
+</button>
+</div>
+</aside>
+<!-- END: SideNavBar -->
+<!-- Main Workspace -->
+<main class="ml-[260px] flex-1 min-h-screen flex flex-col">
+<!-- BEGIN: TopAppBar -->
+<header class="h-16 flex items-center justify-between px-8 bg-surface-light border-b border-border-light sticky top-0 z-10">
+<div>
+<h2 class="text-xl font-bold text-slate-900">Crear Nuevo Contenido</h2>
+<p class="text-xs text-text-muted">Crea, edita y programa tu contenido para redes sociales con ayuda de IA</p>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="text-slate-500 hover:text-primary transition-all relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full border-2 border-surface-light">3</span>
+</button>
+<button class="bg-primary text-white px-4 py-2 rounded-custom flex items-center gap-2 text-sm font-semibold hover:bg-primary-dark transition-colors">
+<span class="material-symbols-outlined text-lg">save</span>
+          Guardar Borrador
+        </button>
+</div>
+</header>
+<!-- END: TopAppBar -->
+<!-- Scrollable Content -->
+<div class="p-8 grid grid-cols-12 gap-6 overflow-y-auto custom-scrollbar"></div></main>
+</body></html>
