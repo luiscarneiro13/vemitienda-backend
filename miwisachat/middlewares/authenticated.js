@@ -1,6 +1,7 @@
 import { jwt } from "../utils/index.js"
+import { User } from "../models/index.js"
 
-function asureAuth(req, res, next) {
+async function asureAuth(req, res, next) {
     if (!req.headers.authorization) {
         return res
             .status(406)
@@ -18,6 +19,12 @@ function asureAuth(req, res, next) {
 
         if (payload.token_type !== "access") {
             return res.status(401).send({ msg: "Token inválido" })
+        }
+
+        const user = await User.findById(payload.user_id).select("tokenVersion")
+
+        if (!user || (payload.token_version ?? 0) !== (user.tokenVersion ?? 0)) {
+            return res.status(401).send({ msg: "Sesión cerrada. Inicia sesión nuevamente." })
         }
 
         req.user = payload

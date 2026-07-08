@@ -8,6 +8,7 @@ function createAccessToken(user) {
     const payolad = {
         token_type: "access",
         user_id: user.id,
+        token_version: user.tokenVersion ?? 0,
         iat: Math.floor(Date.now() / 1000),
         exp: Math.floor(expToken.getTime() / 1000)
     }
@@ -22,6 +23,7 @@ function createRefreshToken(user) {
     const payolad = {
         token_type: "refresh",
         user_id: user.id,
+        token_version: user.tokenVersion ?? 0,
         iat: Math.floor(Date.now() / 1000),
         exp: Math.floor(expToken.getTime() / 1000)
     }

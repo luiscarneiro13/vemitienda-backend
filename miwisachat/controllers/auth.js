@@ -102,8 +102,31 @@ async function refreshAccesToken(req, res) {
 
     try {
         const userStorage = await User.findById(user_id);
+
+        if (!userStorage || (payload.token_version ?? 0) !== (userStorage.tokenVersion ?? 0)) {
+            return res.status(401).send({ msg: "Sesión cerrada. Inicia sesión nuevamente." })
+        }
+
         const accessToken = jwt.createAccessToken(userStorage);
         res.status(200).send({ accessToken });
+    } catch (error) {
+        responseServerError(res, error)
+    }
+}
+
+async function logout(req, res) {
+    try {
+        const { user_id } = req.user
+
+        const userStorage = await User.findByIdAndUpdate(
+            user_id,
+            { $inc: { tokenVersion: 1 } },
+            { new: true }
+        )
+
+        if (!userStorage) { return res.status(404).send({ msg: "Usuario no encontrado" }) }
+
+        res.status(200).send({ msg: "Sesión cerrada en todos los dispositivos" })
     } catch (error) {
         responseServerError(res, error)
     }
@@ -112,6 +135,7 @@ async function refreshAccesToken(req, res) {
 export const AuthController = {
     register,
     login,
-    refreshAccesToken
+    refreshAccesToken,
+    logout
 }
 

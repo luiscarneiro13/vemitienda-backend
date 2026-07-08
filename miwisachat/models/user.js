@@ -14,7 +14,8 @@ const userSchema = mongoose.Schema({
     avatar: String,
     expo_token: String,
     expo_token_updated_at: Date,
-    isBot: { type: Boolean, default: false }
+    isBot: { type: Boolean, default: false },
+    tokenVersion: { type: Number, default: 0 }
 })
 
 userSchema.index({ isBot: 1 })
@@ -25,6 +26,7 @@ userSchema.set("toJSON", {
             ret.avatar = `${UPLOADS_BASE}/${ret.avatar}`
         }
         delete ret.password
+        delete ret.tokenVersion
         delete ret.__v
         return ret
     }

@@ -1,6 +1,7 @@
 import express from "express"
 import rateLimit, { ipKeyGenerator } from "express-rate-limit"
 import { AuthController } from "../controllers/index.js"
+import { mdAuth } from "../middlewares/index.js"
 
 const api = express.Router()
 
@@ -14,5 +15,6 @@ const authLimiter = rateLimit({
 api.post("/auth/register", authLimiter, AuthController.register)
 api.post("/auth/login", authLimiter, AuthController.login)
 api.post("/auth/refresh_access_token", AuthController.refreshAccesToken)
+api.post("/auth/logout", [mdAuth.asureAuth], AuthController.logout)
 
 export const authRoutes = api
