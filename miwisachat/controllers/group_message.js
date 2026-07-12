@@ -8,7 +8,7 @@ import validator from "validator"
 import mongoose from "mongoose"
 import { responseServerError } from "../constants.js"
 import { Group, GroupMessage } from "../models/index.js"
-import { getFilePath, io, getPublicUrl, getVideoDuration, generateThumbnail } from "../utils/index.js"
+import { getFilePath, io, getPublicUrl, getVideoDuration, generateThumbnail, deleteOrphanAttachments } from "../utils/index.js"
 import { getOtherParticipants, sendPushNotification } from "../utils/index.js"
 
 const ALLOWED_VIDEO_MIMES = ["video/mp4", "video/quicktime", "video/x-msvideo", "video/webm"]
@@ -481,7 +481,14 @@ async function deleteMessages(req, res) {
         if (!Array.isArray(ids) || ids.length === 0) {
             return res.status(400).json({ msg: "ids debe ser un array con al menos un elemento" })
         }
+        const messages = await GroupMessage.find({ _id: { $in: ids }, user: user_id })
+            .select("type message attachment")
+            .lean()
+
         const result = await GroupMessage.deleteMany({ _id: { $in: ids }, user: user_id })
+
+        await deleteOrphanAttachments(GroupMessage, messages, ids)
+
         res.status(200).json({ deletedCount: result.deletedCount })
     } catch (error) {
         responseServerError(res, error)
