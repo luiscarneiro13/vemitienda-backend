@@ -55,4 +55,25 @@ app.use(PREFIX, reminderRoutes)
 app.use(PREFIX, linkPreviewRoutes)
 app.use(PREFIX, mediaRoutes)
 
+//Servir build web de MiWisaChat (Expo Web) bajo /miwisachat
+//OJO: distinto de PREFIX ("/api/miwisachat"), no interfiere con las rutas de API
+const WEB_PREFIX = "/miwisachat"
+const publicWebDir = path.join(__dirname, "public-web")
+
+app.use(WEB_PREFIX, express.static(publicWebDir))
+
+//Fallback SPA: cualquier GET bajo /miwisachat/* que no matcheó un archivo estático
+//responde con index.html para que el ruteo del cliente (React Navigation) funcione
+//al refrescar la página en cualquier ruta
+app.get(`${WEB_PREFIX}/*splat`, (req, res) => {
+    const indexPath = path.join(publicWebDir, "index.html")
+    res.sendFile(indexPath, (err) => {
+        if (err) {
+            res.status(200).send(
+                "Build web no encontrado, ejecuta el build del cliente y cópialo aquí (miwisachat/public-web/)."
+            )
+        }
+    })
+})
+
 export { server }

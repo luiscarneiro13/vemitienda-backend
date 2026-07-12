@@ -110,3 +110,7 @@ Implementado con `darryldecode/cart` basado en sesión. Controlador: `app/Http/C
 ## Multi-tenancy
 
 Cada `User` tiene un `Company` con slug único. Las URLs públicas del catálogo son `/{slug}` y `/catalogo/{slug}` (legacy). El `Company` calcula `url_tienda` y `url_catalogo` como atributos computados.
+
+## MiWisaChat Web
+
+El backend Node de `miwisachat/` (independiente de Laravel, ver su propio `app.js`) sirve también la versión web de la app de chat bajo la ruta `/miwisachat` — distinta del prefijo de API `/api/miwisachat`. El build estático se genera en el repo separado del cliente (`MiWisaChat/cliente`) con `npx expo export -p web` y se copia manualmente a `miwisachat/public-web/` antes de desplegar. No hay CI para el repo del cliente: es un paso manual, similar a como `npm run production` compila los assets de Laravel en este repo. Nginx (`vemitienda/nginx/default.prod.conf`) hace proxy de `/miwisachat/` al contenedor `miwisachat-node`, igual que ya hace con `/api/miwisachat/`.
