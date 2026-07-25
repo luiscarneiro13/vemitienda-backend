@@ -92,7 +92,7 @@
             </table>
         </div>
         <div class="col-6">
-            <table class="ml-auto" style="font-size:12px; width:100%">
+            <table class="ml-auto" style="font-size:12px; width:60%">
                 <tr>
                     <td class="text-muted">Sub Total:</td>
                     <td class="text-right">{{ $monto($item['Funds To Send Amount'] ?? null, $item['Funds To Send Currency'] ?? null) }}</td>
@@ -117,6 +117,7 @@
     <div class="row no-gutters mt-5">
         <div class="col-6"></div>
         <div class="col-6 text-center">
+            <img src="{{ asset('img/firma-cropped.png') }}" alt="Firma" style="max-width:40%;max-height:35px;object-fit:contain">
             <div style="border-top:1px solid #333; width:70%; margin:0 auto; padding-top:4px; font-size:11px" class="text-muted">
                 Luis Carneiro
             </div>
