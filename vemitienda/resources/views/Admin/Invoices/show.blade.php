@@ -2,25 +2,13 @@
 @section('content')
 
 @php
-    $item = $data['item'];
-    $na = fn($v) => ($v !== null && trim((string) $v) !== '') ? $v : 'N/A';
-    $monto = function ($amount, $currency) {
-        $amount = trim((string) ($amount ?? ''));
-        if ($amount === '') {
-            return 'N/A';
-        }
-        $currency = trim((string) ($currency ?? ''));
-        if ($currency === 'USDC') {
-            return '$' . $amount;
-        }
-        return trim($amount . ' ' . $currency);
-    };
-
-    $peerName = ($item['Peer Full Name'] ?? '') !== '' ? $item['Peer Full Name'] : ($item['Peer'] ?? null);
+    $invoice = $data['item'];
+    $money = fn($v) => '$' . number_format((float) $v, 2);
 @endphp
 
 <div class="mb-3">
     <a href="{{ route('facturas.index') }}" class="btn btn-dark btn-xs"><i class="fa fa-arrow-left"></i> Volver</a>
+    <a href="{{ route('facturas.edit', $invoice->number) }}" class="btn btn-outline-dark btn-xs"><i class="fa fa-edit"></i> Editar</a>
     <button type="button" class="btn btn-outline-secondary btn-xs" onclick="window.print()"><i class="fa fa-print"></i> Imprimir</button>
 </div>
 
@@ -44,17 +32,17 @@
     <div class="row no-gutters mb-4">
         <div class="col-6">
             <div class="text-muted" style="font-size:11px; text-transform:uppercase">Invoice to:</div>
-            <div class="font-weight-bold" style="font-size:14px">{{ $na($peerName) }}</div>
+            <div class="font-weight-bold" style="font-size:14px">{{ $invoice->customer_name }}</div>
         </div>
         <div class="col-6 text-right">
             <table class="ml-auto" style="font-size:12px">
                 <tr>
                     <td class="text-muted pr-3">Invoice#</td>
-                    <td class="font-weight-bold">{{ $na($item['Transaction ID'] ?? null) }}</td>
+                    <td class="font-weight-bold">{{ $invoice->number }}</td>
                 </tr>
                 <tr>
                     <td class="text-muted pr-3">Date</td>
-                    <td class="font-weight-bold">{{ $na($item['Created At (UTC)'] ?? null) }}</td>
+                    <td class="font-weight-bold">{{ $invoice->issue_date->format('Y-m-d') }}</td>
                 </tr>
             </table>
         </div>
@@ -71,13 +59,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Web Design</td>
-                <td>{{ $monto($item['Funds To Send Amount'] ?? null, $item['Funds To Send Currency'] ?? null) }}</td>
-                <td>1</td>
-                <td>{{ $monto($item['Funds To Send Amount'] ?? null, $item['Funds To Send Currency'] ?? null) }}</td>
-            </tr>
+            @forelse ($invoice->items as $line)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $line['description'] ?? '' }}</td>
+                    <td>{{ $money($line['price'] ?? 0) }}</td>
+                    <td>{{ $line['quantity'] ?? 1 }}</td>
+                    <td>{{ $money($line['total'] ?? 0) }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="5" class="text-center">Sin ítems</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 
@@ -87,7 +81,7 @@
             <table style="font-size:12px">
                 <tr>
                     <td class="text-muted pr-3">Method:</td>
-                    <td>{{ $na($item['Payment Method'] ?? null) }}</td>
+                    <td>{{ $invoice->payment_method ?? 'N/A' }}</td>
                 </tr>
             </table>
         </div>
@@ -95,15 +89,15 @@
             <table class="ml-auto" style="font-size:12px; width:60%">
                 <tr>
                     <td class="text-muted">Sub Total:</td>
-                    <td class="text-right">{{ $monto($item['Funds To Send Amount'] ?? null, $item['Funds To Send Currency'] ?? null) }}</td>
+                    <td class="text-right">{{ $money($invoice->subtotal) }}</td>
                 </tr>
                 <tr>
                     <td class="text-muted">Tax:</td>
-                    <td class="text-right">{{ $monto('0', $item['Funds To Send Currency'] ?? null) }}</td>
+                    <td class="text-right">{{ $money($invoice->tax) }}</td>
                 </tr>
                 <tr style="border-top:2px solid #333">
                     <td class="font-weight-bold pt-2">Total:</td>
-                    <td class="text-right font-weight-bold pt-2">{{ $monto($item['Funds To Send Amount'] ?? null, $item['Funds To Send Currency'] ?? null) }}</td>
+                    <td class="text-right font-weight-bold pt-2">{{ $money($invoice->total) }}</td>
                 </tr>
             </table>
         </div>
@@ -111,7 +105,7 @@
 
     <div class="mt-4">
         <div class="font-weight-bold mb-1" style="font-size:12px">Terms & Conditions</div>
-        <div style="font-size:12px">Once payment has been made, the customer is entitled to up to 2 inspections</div>
+        <div style="font-size:12px">{{ $invoice->terms_and_conditions ?: 'Once payment has been made, the customer is entitled to up to 2 inspections' }}</div>
     </div>
 
     <div class="row no-gutters mt-5">

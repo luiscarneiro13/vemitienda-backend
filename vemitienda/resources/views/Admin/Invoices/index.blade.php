@@ -1,11 +1,23 @@
 @extends('layouts.adminlte.index')
 @section('content')
 
+@php
+    $statusBadge = [
+        'draft' => 'badge-secondary',
+        'sent' => 'badge-info',
+        'paid' => 'badge-success',
+        'cancelled' => 'badge-danger',
+    ];
+@endphp
+
 <div class="card card-outline card-primary">
     <div class="card-header">
         <div class="row">
             <div class="col-6">
                 <h5 class="text-default"><i class="fa fa-file-invoice-dollar"></i> Facturas</h5>
+            </div>
+            <div class="col-6 text-right">
+                <a href="{{ route('facturas.create') }}" class="btn btn-dark btn-xs"><i class="fa fa-plus-circle"></i> Nueva factura</a>
             </div>
         </div>
     </div>
@@ -36,44 +48,39 @@
         <table class="table table-striped table-bordered table-sm w-100" style="font-size:12px">
             <thead>
                 <tr>
-                    <th width="60"></th>
+                    <th width="90"></th>
                     <th>Fecha</th>
-                    <th>ID Transacción</th>
-                    <th>Tipo</th>
+                    <th>Número</th>
+                    <th>Cliente</th>
                     <th>Estado</th>
-                    <th>Monto enviado</th>
-                    <th>Monto recibido</th>
-                    <th>Peer</th>
                     <th>Método de pago</th>
-                    <th>Comisión</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($data['infoData'] as $item)
+                @forelse ($data['infoData'] as $invoice)
                     <tr>
                         <td class="text-center">
-                            <a href="{{ route('facturas.show', $item['Transaction ID']) }}" class="text-dark" title="Ver detalle"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('facturas.show', $invoice->number) }}" class="text-dark" title="Ver detalle"><i class="fa fa-eye"></i></a>
                             &nbsp;
-                            <a href="#" class="text-danger" title="Descargar PDF"><i class="fa fa-file-pdf"></i></a>
+                            <a href="{{ route('facturas.edit', $invoice->number) }}" class="text-dark" title="Editar"><i class="fa fa-edit"></i></a>
+                            &nbsp;
+                            <a href="{{ route('facturas.pdf', $invoice->number) }}" class="text-danger" title="Descargar PDF"><i class="fa fa-file-pdf"></i></a>
                         </td>
-                        <td>{{ $item['Created At (UTC)'] ?? '' }}</td>
-                        <td>{{ $item['Transaction ID'] ?? '' }}</td>
-                        <td>{{ $item['Type'] ?? '' }}</td>
+                        <td>{{ $invoice->issue_date->format('Y-m-d') }}</td>
+                        <td>{{ $invoice->number }}</td>
+                        <td>{{ $invoice->customer_name }}</td>
                         <td>
-                            @php $estado = $item['Status'] ?? ''; @endphp
-                            <span class="badge {{ $estado === 'Completada' ? 'badge-success' : 'badge-secondary' }}">
-                                {{ $estado }}
+                            <span class="badge {{ $statusBadge[$invoice->status] ?? 'badge-secondary' }}">
+                                {{ ucfirst($invoice->status) }}
                             </span>
                         </td>
-                        <td>{{ $item['Funds To Send Amount'] ?? '' }} {{ $item['Funds To Send Currency'] ?? '' }}</td>
-                        <td>{{ $item['Funds To Receive Amount'] ?? '' }} {{ $item['Funds To Receive Currency'] ?? '' }}</td>
-                        <td>{{ $item['Peer'] ?? '' }}</td>
-                        <td>{{ $item['Payment Method'] ?? '' }}</td>
-                        <td>{{ $item['Service Fee'] ?? '' }}</td>
+                        <td>{{ $invoice->payment_method ?? 'N/A' }}</td>
+                        <td>${{ number_format($invoice->total, 2) }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="10" class="text-center">No hay facturas disponibles</td>
+                        <td colspan="7" class="text-center">No hay facturas disponibles</td>
                     </tr>
                 @endforelse
             </tbody>

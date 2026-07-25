@@ -3,92 +3,160 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Invoice;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoicesController extends Controller
 {
-    /**
-     * Mockup: lista facturas leyendo el CSV de ejemplo en database/mock/activity-history.csv.
-     * Cuando exista el modelo real de facturación, esto debe reemplazarse por una consulta al repositorio.
-     */
     public function index()
     {
         $filtrar = request()->get('query');
         $paymentMethod = request()->get('payment_method');
 
-        $rows = $this->readCsv(database_path('mock/activity-history.csv'));
+        $invoices = Invoice::query()
+            ->when($filtrar, function ($q) use ($filtrar) {
+                $q->where(function ($q) use ($filtrar) {
+                    $q->where('number', 'like', "%{$filtrar}%")
+                        ->orWhere('customer_name', 'like', "%{$filtrar}%")
+                        ->orWhere('status', 'like', "%{$filtrar}%");
+                });
+            })
+            ->when($paymentMethod, fn ($q) => $q->where('payment_method', $paymentMethod))
+            ->orderBy('issue_date', 'desc')
+            ->orderBy('id', 'desc')
+            ->paginate(15)
+            ->withQueryString();
 
-        $paymentMethods = $rows->pluck('Payment Method')->filter()->unique()->sort()->values();
-
-        if ($filtrar) {
-            $rows = $rows->filter(function ($row) use ($filtrar) {
-                $filtrar = mb_strtolower($filtrar);
-                return str_contains(mb_strtolower($row['Transaction ID'] ?? ''), $filtrar)
-                    || str_contains(mb_strtolower($row['Peer'] ?? ''), $filtrar)
-                    || str_contains(mb_strtolower($row['Status'] ?? ''), $filtrar)
-                    || str_contains(mb_strtolower($row['Type'] ?? ''), $filtrar);
-            })->values();
-        }
-
-        if ($paymentMethod) {
-            $rows = $rows->filter(function ($row) use ($paymentMethod) {
-                return ($row['Payment Method'] ?? '') === $paymentMethod;
-            })->values();
-        }
-
-        $perPage = 15;
-        $page = (int) request()->get('page', 1);
-
-        $paginator = new LengthAwarePaginator(
-            $rows->slice(($page - 1) * $perPage, $perPage)->values(),
-            $rows->count(),
-            $perPage,
-            $page,
-            ['path' => request()->url(), 'query' => request()->query()]
-        );
-
-        $data['infoData'] = $paginator;
-        $data['paymentMethods'] = $paymentMethods;
+        $data['infoData'] = $invoices;
+        $data['paymentMethods'] = Invoice::PAYMENT_METHODS;
 
         return view('Admin.Invoices.index', ['data' => $data]);
     }
 
-    public function show(string $transaction)
+    public function show(string $number)
     {
-        $rows = $this->readCsv(database_path('mock/activity-history.csv'));
+        $invoice = Invoice::where('number', $number)->firstOrFail();
 
-        $item = $rows->first(fn ($row) => ($row['Transaction ID'] ?? '') === $transaction);
-
-        abort_if(!$item, 404);
-
-        $data['item'] = $item;
-
-        return view('Admin.Invoices.show', ['data' => $data]);
+        return view('Admin.Invoices.show', ['data' => ['item' => $invoice]]);
     }
 
-    private function readCsv(string $path)
+    public function create()
     {
-        $rows = collect();
+        $data['paymentMethods'] = Invoice::PAYMENT_METHODS;
 
-        if (!file_exists($path)) {
-            return $rows;
+        return view('Admin.Invoices.create', $data);
+    }
+
+    public function store()
+    {
+        $validated = request()->validate([
+            'customer_name' => 'required|string',
+            'customer_email' => 'nullable|email',
+            'payment_method' => 'nullable|in:' . implode(',', Invoice::PAYMENT_METHODS),
+            'issue_date' => 'required|date',
+            'terms_and_conditions' => 'nullable|string',
+            'items' => 'required|array|min:1',
+            'items.*.description' => 'required|string',
+            'items.*.price' => 'required|numeric',
+            'items.*.quantity' => 'required|integer|min:1',
+        ]);
+
+        $subtotal = 0;
+        $items = [];
+
+        foreach ($validated['items'] as $item) {
+            $total = round($item['price'] * $item['quantity'], 2);
+            $subtotal += $total;
+
+            $items[] = [
+                'description' => $item['description'],
+                'price' => $item['price'],
+                'quantity' => $item['quantity'],
+                'total' => $total,
+            ];
         }
 
-        $handle = fopen($path, 'r');
+        $subtotal = round($subtotal, 2);
+        $tax = 0;
+        $total = $subtotal + $tax;
 
-        // El CSV trae BOM UTF-8, que rompe el parseo de comillas del primer header si no se descarta antes.
-        if (fread($handle, 3) !== "\xEF\xBB\xBF") {
-            rewind($handle);
-        }
+        Invoice::create([
+            'number' => Invoice::generateNumber(),
+            'issue_date' => $validated['issue_date'],
+            'customer_name' => $validated['customer_name'],
+            'customer_email' => $validated['customer_email'] ?? null,
+            'payment_method' => $validated['payment_method'] ?? null,
+            'items' => $items,
+            'subtotal' => $subtotal,
+            'tax' => $tax,
+            'total' => $total,
+            'terms_and_conditions' => $validated['terms_and_conditions'] ?? null,
+        ]);
 
-        $headers = fgetcsv($handle);
+        return redirect()->route('facturas.index');
+    }
 
-        while (($row = fgetcsv($handle)) !== false) {
-            $rows->push(array_combine($headers, $row));
-        }
+    public function edit(string $number)
+    {
+        $invoice = Invoice::where('number', $number)->firstOrFail();
 
-        fclose($handle);
+        $data['invoice'] = $invoice;
+        $data['paymentMethods'] = Invoice::PAYMENT_METHODS;
 
-        return $rows;
+        return view('Admin.Invoices.edit', $data);
+    }
+
+    public function update(string $number)
+    {
+        $invoice = Invoice::where('number', $number)->firstOrFail();
+
+        $validated = request()->validate([
+            'customer_name' => 'required|string|max:255',
+            'customer_email' => 'nullable|email',
+            'payment_method' => 'nullable|in:' . implode(',', Invoice::PAYMENT_METHODS),
+            'issue_date' => 'required|date',
+            'terms_and_conditions' => 'nullable|string',
+            'items' => 'required|array|min:1',
+            'items.*.description' => 'required|string',
+            'items.*.price' => 'required|numeric',
+            'items.*.quantity' => 'required|integer|min:1',
+        ]);
+
+        $items = array_map(function ($line) {
+            $price = (float) $line['price'];
+            $quantity = (int) $line['quantity'];
+
+            return [
+                'description' => $line['description'],
+                'price' => $price,
+                'quantity' => $quantity,
+                'total' => round($price * $quantity, 2),
+            ];
+        }, $validated['items']);
+
+        $subtotal = round(array_sum(array_column($items, 'total')), 2);
+
+        $invoice->update([
+            'customer_name' => $validated['customer_name'],
+            'customer_email' => $validated['customer_email'] ?? null,
+            'payment_method' => $validated['payment_method'] ?? null,
+            'issue_date' => $validated['issue_date'],
+            'terms_and_conditions' => $validated['terms_and_conditions'] ?? null,
+            'items' => $items,
+            'subtotal' => $subtotal,
+            'tax' => 0,
+            'total' => $subtotal,
+        ]);
+
+        return redirect()->route('facturas.show', $invoice->number);
+    }
+
+    public function pdf(string $number)
+    {
+        $invoice = Invoice::where('number', $number)->firstOrFail();
+
+        $pdf = Pdf::loadView('Admin.Invoices.pdf', ['invoice' => $invoice]);
+
+        return $pdf->stream("factura-{$invoice->number}.pdf");
     }
 }

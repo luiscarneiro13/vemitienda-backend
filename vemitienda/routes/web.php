@@ -39,7 +39,12 @@ Route::get('/{slug}', 'WEB\V3\ProductController@productList')->name('products.li
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('usuarios', 'Admin\UsersController');
     Route::get('facturas', 'Admin\InvoicesController@index')->name('facturas.index');
-    Route::get('facturas/{transaction}', 'Admin\InvoicesController@show')->name('facturas.show');
+    Route::get('facturas/create', 'Admin\InvoicesController@create')->name('facturas.create');
+    Route::post('facturas', 'Admin\InvoicesController@store')->name('facturas.store');
+    Route::get('facturas/{number}/edit', 'Admin\InvoicesController@edit')->name('facturas.edit');
+    Route::put('facturas/{number}', 'Admin\InvoicesController@update')->name('facturas.update');
+    Route::get('facturas/{number}/pdf', 'Admin\InvoicesController@pdf')->name('facturas.pdf');
+    Route::get('facturas/{number}', 'Admin\InvoicesController@show')->name('facturas.show');
     Route::resource('blog', 'Admin\PostsController');
     Route::post('blog-ai/generate', 'Admin\PostAiGenerationController@generate')->name('blog.ai.generate');
     Route::get('blog-ai/status/{generation}', 'Admin\PostAiGenerationController@status')->name('blog.ai.status');

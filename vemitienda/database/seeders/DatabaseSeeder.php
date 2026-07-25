@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             // PaymentMethodsSeeder::class,
             // ThemesSeeder::class,
             // OrderStatusesSeeder::class,
+            // InvoiceSeeder::class,
         ]);
         // PostCategory::factory(4)->create();
         // Tag::factory(8)->create();
