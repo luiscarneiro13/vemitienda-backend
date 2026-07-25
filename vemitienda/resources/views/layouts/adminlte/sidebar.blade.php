@@ -40,6 +40,9 @@
                 Crear Contenido
             </a>
 
+            {{-- Facturas --}}
+            {!! $navLink('facturas.index', 'receipt_long', 'Facturas', 'facturas') !!}
+
             {{-- Admin Blog --}}
             <div>
                 <button
