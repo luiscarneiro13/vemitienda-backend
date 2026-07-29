@@ -47,8 +47,9 @@
 </div>
 
 <style>
-    /* Fila de la tabla correspondiente a la canción que está sonando actualmente. */
-    tr.metronome-row-playing > td {
+    /* Fila (tr o div) correspondiente a la canción que está sonando actualmente. */
+    tr.metronome-row-playing > td,
+    div.metronome-row-playing {
         background-color: rgba(0, 82, 204, 0.12) !important;
         box-shadow: inset 3px 0 0 0 #0052cc;
     }
