@@ -156,6 +156,9 @@ class InvoicesController extends Controller
         $invoice = Invoice::where('number', $number)->firstOrFail();
 
         $pdf = Pdf::loadView('Admin.Invoices.pdf', ['invoice' => $invoice]);
+        $pdf->getDomPDF()->add_info('Author', 'Luis Carneiro');
+        $pdf->getDomPDF()->add_info('Creator', 'Luis Carneiro - Web Design');
+        $pdf->getDomPDF()->add_info('Subject', "Factura {$invoice->number}");
 
         return $pdf->stream("factura-{$invoice->number}.pdf");
     }

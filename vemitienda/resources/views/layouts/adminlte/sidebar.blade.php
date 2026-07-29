@@ -1,6 +1,7 @@
 @php
     $seg2 = Request::segment(2);
     $blogOpen   = in_array($seg2, ['blog', 'postcategory', 'tags']);
+    $metronomeOpen = in_array($seg2, ['metronomos', 'playlists']);
     $configOpen = in_array($seg2, ['usuarios', 'versions', 'plans', 'planusers', 'paymentmethods', 'payments']);
 
     $navLink = fn($route, $icon, $label, $seg) =>
@@ -63,6 +64,28 @@
                     {!! $navLink('blog.index', 'newspaper', 'Blog', 'blog') !!}
                     {!! $navLink('postcategory.index', 'category', 'Categorías', 'postcategory') !!}
                     {!! $navLink('tags.index', 'label', 'Etiquetas', 'tags') !!}
+                </div>
+            </div>
+
+            {{-- Metrónomos --}}
+            <div>
+                <button
+                    onclick="toggleSection('metronome-section', this)"
+                    style="background:transparent;border:none;outline:none;width:100%"
+                    class="flex items-center justify-between px-3 py-1.5 text-xs text-slate-300 hover:bg-white/10 rounded-md cursor-pointer transition-colors">
+                    <span class="flex items-center gap-2">
+                        <span class="material-symbols-outlined" style="font-size:15px">timer</span>
+                        Metrónomos
+                    </span>
+                    <span class="material-symbols-outlined section-chevron transition-transform {{ $metronomeOpen ? 'rotate-180' : '' }}" style="font-size:14px">
+                        expand_more
+                    </span>
+                </button>
+                <div id="metronome-section"
+                    class="nav-section-content pl-3 space-y-0.5 mt-0.5 {{ $metronomeOpen ? '' : 'collapsed' }}"
+                    style="max-height:{{ $metronomeOpen ? '200px' : '0' }}">
+                    {!! $navLink('metronomos.index', 'music_note', 'Mis metrónomos', 'metronomos') !!}
+                    {!! $navLink('playlists.index', 'queue_music', 'Mis playlists', 'playlists') !!}
                 </div>
             </div>
 

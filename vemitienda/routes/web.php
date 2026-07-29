@@ -60,6 +60,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('paymentmethods', 'Admin\PaymentMethodsController');
     Route::resource('payments', 'Admin\PaymentsController');
     Route::post('storeImagePost', 'API\V3\ImagesController@storeImagePost')->name("upload");
+
+    Route::resource('metronomos', 'Admin\MetronomesController')->except(['show']);
+    Route::resource('playlists', 'Admin\PlaylistsController');
+    Route::post('playlists/{playlist}/metronomos/{metronome}', 'Admin\PlaylistsController@attach')->name('playlists.metronomos.attach');
+    Route::delete('playlists/{playlist}/metronomos/{metronome}', 'Admin\PlaylistsController@detach')->name('playlists.metronomos.detach');
 });
 
 // Otros servicios y eventos
