@@ -38,7 +38,7 @@
                                 $metronomeData = ['id' => $metronome->id, 'title' => $metronome->title, 'artist' => $metronome->artist, 'bpm' => $metronome->bpm];
                             @endphp
                             <button type="button" class="btn btn-sm btn-primary" title="Reproducir"
-                                onclick="MetronomePlayer.load(@json($metronomeData)); MetronomePlayer.play();">
+                                onclick='MetronomePlayer.load(@json($metronomeData)); MetronomePlayer.play();'>
                                 <i class="fa fa-play"></i>
                             </button>
                         </td>
