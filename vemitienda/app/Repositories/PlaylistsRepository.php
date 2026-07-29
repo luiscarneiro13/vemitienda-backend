@@ -44,7 +44,11 @@ class PlaylistsRepository
 
     static function attachMetronome(Playlist $playlist, Metronome $metronome)
     {
-        $playlist->metronomes()->syncWithoutDetaching([$metronome->id]);
+        $nextPosition = ($playlist->metronomes()->max('playlist_metronome.position') ?? 0) + 1;
+
+        $playlist->metronomes()->syncWithoutDetaching([
+            $metronome->id => ['position' => $nextPosition],
+        ]);
 
         return $playlist;
     }
@@ -52,6 +56,27 @@ class PlaylistsRepository
     static function detachMetronome(Playlist $playlist, Metronome $metronome)
     {
         $playlist->metronomes()->detach($metronome->id);
+
+        return $playlist;
+    }
+
+    /**
+     * Persiste el nuevo orden de canciones de la playlist.
+     * $orderedIds = ids de metrónomos en el orden deseado (de arriba hacia abajo).
+     */
+    static function reorderMetronomes(Playlist $playlist, array $orderedIds)
+    {
+        $ownIds = $playlist->metronomes()->pluck('metronomes.id')->map(fn ($id) => (int) $id)->all();
+
+        $position = 1;
+        foreach ($orderedIds as $metronomeId) {
+            if (!in_array((int) $metronomeId, $ownIds, true)) {
+                continue;
+            }
+
+            $playlist->metronomes()->updateExistingPivot($metronomeId, ['position' => $position]);
+            $position++;
+        }
 
         return $playlist;
     }

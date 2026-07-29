@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 @forelse ($data['infoData'] as $metronome)
-                    <tr>
+                    <tr id="metronome-row-{{ $metronome->id }}">
                         <td>
                             {{ $metronome->title }}
                             @if ($metronome->artist)

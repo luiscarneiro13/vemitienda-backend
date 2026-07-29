@@ -46,6 +46,14 @@
     </div>
 </div>
 
+<style>
+    /* Fila de la tabla correspondiente a la canción que está sonando actualmente. */
+    tr.metronome-row-playing > td {
+        background-color: rgba(0, 82, 204, 0.12) !important;
+        box-shadow: inset 3px 0 0 0 #0052cc;
+    }
+</style>
+
 <script>
     // Motor del metrónomo con Web Audio API. Sin archivos de audio: el click se genera
     // con un OscillatorNode + envolvente de GainNode. Scheduler basado en el patrón de
@@ -149,12 +157,32 @@
             if (icon) icon.textContent = engine.isRunning ? 'pause' : 'play_arrow';
         }
 
+        // Resalta con un background la fila (<tr id="metronome-row-{id}">) de la canción
+        // que está sonando en este momento, si esa fila existe en la página actual.
+        function syncRowHighlight() {
+            document.querySelectorAll('.metronome-row-playing').forEach(function (row) {
+                row.classList.remove('metronome-row-playing');
+            });
+
+            if (engine.isRunning && current) {
+                const row = document.getElementById('metronome-row-' + current.id);
+                if (row) row.classList.add('metronome-row-playing');
+            }
+        }
+
         window.MetronomePlayer = {
             /**
              * Carga una canción en el reproductor y muestra la barra.
+             * Si ya había otra canción sonando, detiene el motor para que el próximo
+             * play() arranque con el BPM correcto de la nueva canción.
              * song = { id, title, artist, bpm }
              */
             load(song) {
+                const isDifferentSong = !current || String(current.id) !== String(song.id);
+                if (isDifferentSong && engine.isRunning) {
+                    engine.stop();
+                }
+
                 current = song;
                 engine.setBpm(song.bpm);
 
@@ -169,10 +197,12 @@
                 if (!current) return;
                 engine.play();
                 syncToggleIcon();
+                syncRowHighlight();
             },
             pause() {
                 engine.pause();
                 syncToggleIcon();
+                syncRowHighlight();
             },
             toggle() {
                 if (engine.isRunning) {
@@ -184,6 +214,7 @@
             stop() {
                 engine.stop();
                 syncToggleIcon();
+                syncRowHighlight();
             },
             reset() {
                 engine.stop();
@@ -201,10 +232,11 @@
             },
             close() {
                 engine.stop();
+                current = null;
                 syncToggleIcon();
+                syncRowHighlight();
                 bar().classList.add('hidden');
                 document.body.classList.remove('pb-20');
-                current = null;
             },
         };
     })();

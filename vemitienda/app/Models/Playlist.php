@@ -19,6 +19,9 @@ class Playlist extends Model
 
     public function metronomes()
     {
-        return $this->belongsToMany(Metronome::class, 'playlist_metronome')->withTimestamps();
+        return $this->belongsToMany(Metronome::class, 'playlist_metronome')
+            ->withPivot('position')
+            ->withTimestamps()
+            ->orderBy('playlist_metronome.position');
     }
 }

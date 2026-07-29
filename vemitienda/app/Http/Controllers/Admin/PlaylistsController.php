@@ -7,6 +7,7 @@ use App\Http\Requests\WEB\PlaylistRequest;
 use App\Models\Metronome;
 use App\Models\Playlist;
 use App\Repositories\PlaylistsRepository;
+use Illuminate\Http\Request;
 
 class PlaylistsController extends Controller
 {
@@ -150,5 +151,27 @@ class PlaylistsController extends Controller
         PlaylistsRepository::detachMetronome($playlist, $metronome);
 
         return redirect()->route('playlists.show', $playlist->id);
+    }
+
+    /**
+     * Persiste el nuevo orden (drag & drop) de las canciones de la playlist.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function reorder(Request $request, $id)
+    {
+        $playlist = Playlist::findOrFail($id);
+        $this->authorize('update', $playlist);
+
+        $request->validate([
+            'order' => 'required|array',
+            'order.*' => 'integer',
+        ]);
+
+        PlaylistsRepository::reorderMetronomes($playlist, $request->order);
+
+        return response()->json(['success' => true]);
     }
 }

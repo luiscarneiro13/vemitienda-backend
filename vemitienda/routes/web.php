@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('playlists', 'Admin\PlaylistsController');
     Route::post('playlists/{playlist}/metronomos/{metronome}', 'Admin\PlaylistsController@attach')->name('playlists.metronomos.attach');
     Route::delete('playlists/{playlist}/metronomos/{metronome}', 'Admin\PlaylistsController@detach')->name('playlists.metronomos.detach');
+    Route::post('playlists/{playlist}/reorder', 'Admin\PlaylistsController@reorder')->name('playlists.reorder');
 });
 
 // Otros servicios y eventos

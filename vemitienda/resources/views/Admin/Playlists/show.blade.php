@@ -18,18 +18,25 @@
     </div>
 
     <div class="card-body table-responsive">
+        @if ($playlist->metronomes->count() > 1)
+            <p class="text-muted"><small><i class="fa fa-arrows-alt"></i> Arrastrá las canciones desde el ícono <i class="fa fa-grip-vertical"></i> para reordenar la playlist.</small></p>
+        @endif
         <table class="table table-striped table-bordered w-100">
             <thead>
                 <tr>
+                    <th width="30"></th>
                     <th>Canción</th>
                     <th width="100">BPM</th>
                     <th width="70">Play</th>
                     <th width="100"></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="playlist-songs-body">
                 @forelse ($playlist->metronomes as $metronome)
-                    <tr>
+                    <tr id="metronome-row-{{ $metronome->id }}" data-metronome-id="{{ $metronome->id }}">
+                        <td class="text-center drag-handle" style="cursor:move">
+                            <i class="fa fa-grip-vertical text-muted"></i>
+                        </td>
                         <td>
                             {{ $metronome->title }}
                             @if ($metronome->artist)
@@ -59,7 +66,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="text-center">Esta playlist todavía no tiene canciones</td>
+                        <td colspan="5" class="text-center">Esta playlist todavía no tiene canciones</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -89,4 +96,44 @@
 </div>
 
 <x-metronome-player />
+@endsection
+
+@section('js')
+<script>
+    // Reordenamiento drag & drop de las canciones de la playlist con jQuery UI Sortable
+    // (ya viene cargado globalmente en el layout admin, no requiere ninguna librería nueva).
+    $(function () {
+        $('#playlist-songs-body').sortable({
+            handle: '.drag-handle',
+            axis: 'y',
+            cursor: 'move',
+            placeholder: 'table-active',
+            helper: function (e, tr) {
+                // Mantiene el ancho de cada celda mientras se arrastra la fila.
+                var originals = tr.children();
+                var helper = tr.clone();
+                helper.children().each(function (index) {
+                    $(this).width(originals.eq(index).width());
+                });
+                return helper;
+            },
+            update: function () {
+                var order = $('#playlist-songs-body tr').map(function () {
+                    return $(this).data('metronome-id');
+                }).get();
+
+                $.ajax({
+                    url: '{{ route('playlists.reorder', $playlist->id) }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        order: order,
+                    },
+                }).fail(function () {
+                    toastr.error('No se pudo guardar el nuevo orden de la playlist');
+                });
+            },
+        });
+    });
+</script>
 @endsection
