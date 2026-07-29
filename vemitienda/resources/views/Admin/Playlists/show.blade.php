@@ -43,15 +43,25 @@
                                 <br><small class="text-muted">{{ $metronome->artist }}</small>
                             @endif
                         </td>
-                        <td>{{ $metronome->bpm }}</td>
+                        <td>
+                            @if ($metronome->has_metronome)
+                                {{ $metronome->bpm }}
+                            @else
+                                <span class="badge badge-secondary">Sin metrónomo</span>
+                            @endif
+                        </td>
                         <td class="text-center">
-                            @php
-                                $metronomeData = ['id' => $metronome->id, 'title' => $metronome->title, 'artist' => $metronome->artist, 'bpm' => $metronome->bpm];
-                            @endphp
-                            <button type="button" class="btn btn-sm btn-primary" title="Reproducir"
-                                onclick='MetronomePlayer.load(@json($metronomeData)); MetronomePlayer.play();'>
-                                <i class="fa fa-play"></i>
-                            </button>
+                            @if ($metronome->has_metronome)
+                                @php
+                                    $metronomeData = ['id' => $metronome->id, 'title' => $metronome->title, 'artist' => $metronome->artist, 'bpm' => $metronome->bpm];
+                                @endphp
+                                <button type="button" class="btn btn-sm btn-primary" title="Reproducir"
+                                    onclick='MetronomePlayer.load(@json($metronomeData)); MetronomePlayer.play();'>
+                                    <i class="fa fa-play"></i>
+                                </button>
+                            @else
+                                <span class="text-muted">—</span>
+                            @endif
                         </td>
                         <td>
                             <form action="{{ route('playlists.metronomos.detach', ['playlist' => $playlist->id, 'metronome' => $metronome->id]) }}" method="POST"

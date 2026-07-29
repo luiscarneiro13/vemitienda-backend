@@ -26,7 +26,8 @@ class MetronomeRequest extends FormRequest
         return [
             'title' => 'required|string|max:150',
             'artist' => 'nullable|string|max:150',
-            'bpm' => 'required|integer|min:20|max:300',
+            // BPM es opcional: hay canciones que solo se listan en una playlist sin metrónomo.
+            'bpm' => 'nullable|integer|min:20|max:300',
         ];
     }
 
@@ -36,7 +37,6 @@ class MetronomeRequest extends FormRequest
             'title.required' => 'El título de la canción es obligatorio',
             'title.max' => 'El título no debe superar los 150 caracteres',
             'artist.max' => 'El artista no debe superar los 150 caracteres',
-            'bpm.required' => 'El BPM es obligatorio',
             'bpm.integer' => 'El BPM debe ser un número entero',
             'bpm.min' => 'El BPM mínimo permitido es 20',
             'bpm.max' => 'El BPM máximo permitido es 300',

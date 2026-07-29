@@ -23,11 +23,25 @@
                         placeholder="Ej: Queen" value="{{ old('artist') }}" />
                 </div>
                 <div class="row">
-                    <x-text name="bpm" type="number" min="20" max="300" columns="4" label="BPM" required="true"
-                        placeholder="120" value="{{ old('bpm', 120) }}" />
+                    {{-- Input crudo (no <x-text>): ese componente fuerza value="0" para type=number
+                         cuando el valor es vacío, lo que rompería el "dejar vacío = sin metrónomo". --}}
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">BPM (opcional)</label>
+                            <input id="bpm" name="bpm" type="number" min="20" max="300"
+                                value="{{ old('bpm') }}" placeholder="120"
+                                class="form-control @error('bpm') is-invalid @enderror">
+                            @if (Session::has('errors') && Session::get('errors')->first('bpm'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ Session::get('errors')->first('bpm') }}</strong>
+                                </span>
+                            @endif
+                            <span class="text-muted"><small>Dejalo vacío si esta canción no lleva metrónomo: solo quedará listada en la playlist.</small></span>
+                        </div>
+                    </div>
                     <div class="col-md-3" style="margin-top:32px">
                         <button type="button" class="btn btn-sm btn-outline-primary"
-                            onclick="MetronomePlayer.load({id: 0, title: document.getElementById('title').value || 'Vista previa', artist: document.getElementById('artist').value, bpm: document.getElementById('bpm').value}); MetronomePlayer.play();">
+                            onclick="var bpmVal = document.getElementById('bpm').value; if (!bpmVal) { toastr.warning('Ingresá un BPM para escuchar la vista previa'); } else { MetronomePlayer.load({id: 0, title: document.getElementById('title').value || 'Vista previa', artist: document.getElementById('artist').value, bpm: bpmVal}); MetronomePlayer.play(); }">
                             <i class="fa fa-headphones"></i> Escuchar BPM
                         </button>
                     </div>
