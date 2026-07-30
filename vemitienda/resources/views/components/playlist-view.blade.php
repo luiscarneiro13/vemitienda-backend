@@ -68,67 +68,76 @@
 
     {{-- Listado de canciones --}}
     <div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
-        <div class="hidden md:grid grid-cols-12 px-4 py-3 bg-surface-container text-on-surface-variant text-label-bold uppercase tracking-wide">
-            <div class="col-span-6">Canción / Artista</div>
-            <div class="col-span-2 text-center">BPM</div>
-            <div class="col-span-2 text-center">Reproducir</div>
-            <div class="col-span-2"></div>
+        <div class="hidden md:flex items-center gap-3 px-4 py-3 bg-surface-container text-on-surface-variant text-label-bold uppercase tracking-wide">
+            <span class="w-6 shrink-0"></span>
+            <div class="flex-1 min-w-0">Canción / Artista</div>
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="text-right min-w-[44px]">BPM</div>
+                <div class="w-9 text-center">Reproducir</div>
+                @if ($editable)
+                    <span class="w-8"></span>
+                @endif
+            </div>
         </div>
 
         <div id="playlist-songs-body" class="divide-y divide-outline-variant">
             @forelse ($playlist->metronomes as $metronome)
                 <div id="metronome-row-{{ $metronome->id }}" data-metronome-id="{{ $metronome->id }}"
                     data-title="{{ strtolower($metronome->title) }}" data-artist="{{ strtolower($metronome->artist ?? '') }}" data-bpm="{{ $metronome->bpm ?? 0 }}"
-                    class="playlist-row grid grid-cols-12 items-center gap-2 px-4 py-2.5 odd:bg-surface-container-lowest even:bg-surface-container-low hover:bg-surface-container transition-colors group">
+                    class="playlist-row flex items-center gap-2 px-3 py-2.5 odd:bg-surface-container-lowest even:bg-surface-container-low hover:bg-surface-container transition-colors group">
 
-                    <div class="col-span-7 md:col-span-6 flex items-center gap-3 min-w-0">
-                        <span class="drag-handle material-symbols-outlined text-outline cursor-move shrink-0" title="Arrastrar para reordenar">drag_indicator</span>
-                        <div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary shrink-0">
-                            <span class="material-symbols-outlined text-lg">music_note</span>
-                        </div>
-                        <div class="min-w-0">
-                            <h4 class="text-body-md font-semibold text-on-surface truncate leading-tight">{{ $metronome->title }}</h4>
-                            @if ($metronome->artist)
-                                <p class="text-on-surface-variant text-label-sm truncate">{{ $metronome->artist }}</p>
+                    <span class="drag-handle material-symbols-outlined text-outline cursor-move shrink-0 w-6 text-center" title="Arrastrar para reordenar">drag_indicator</span>
+
+                    <div class="min-w-0 flex-1">
+                        {{-- m-0 explícito: sin este reset, el <h4>/<p> heredan el margen por defecto
+                             del navegador (Tailwind tiene preflight:false en esta página). --}}
+                        <h4 class="text-body-md font-semibold text-on-surface truncate leading-tight m-0">{{ $metronome->title }}</h4>
+                        @if ($metronome->artist)
+                            <p class="text-on-surface-variant text-label-sm truncate m-0 mt-0.5">{{ $metronome->artist }}</p>
+                        @endif
+                    </div>
+
+                    {{-- BPM + Play (+ quitar) agrupados y pegados al borde derecho, con separación
+                         chica entre ellos (gap-2) en vez de heredar el gap-3 del resto de la fila. --}}
+                    <div class="flex items-center gap-2 shrink-0">
+                        {{-- Sin min-w fijo: el número ocupa solo lo que necesita, dejando más
+                             espacio disponible para el título/artista antes de truncar. --}}
+                        <div class="text-right shrink-0">
+                            @if ($metronome->has_metronome)
+                                <div class="md:hidden text-label-sm text-outline leading-none">BPM</div>
+                                <span class="font-mono font-semibold text-on-surface tabular-nums">{{ $metronome->bpm }}</span>
+                            @else
+                                <span class="inline-block px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm whitespace-nowrap">Sin metrónomo</span>
                             @endif
                         </div>
-                    </div>
 
-                    <div class="col-span-2 text-center">
-                        @if ($metronome->has_metronome)
-                            <span class="md:hidden text-label-sm text-outline mr-1">BPM</span>
-                            <span class="font-mono font-semibold text-on-surface tabular-nums">{{ $metronome->bpm }}</span>
-                        @else
-                            <span class="inline-block px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm whitespace-nowrap">Sin metrónomo</span>
-                        @endif
-                    </div>
-
-                    <div class="col-span-1 md:col-span-2 flex justify-center">
-                        @if ($metronome->has_metronome)
-                            @php
-                                $metronomeData = ['id' => $metronome->id, 'title' => $metronome->title, 'artist' => $metronome->artist, 'bpm' => $metronome->bpm];
-                            @endphp
-                            <button type="button" title="Reproducir"
-                                onclick='MetronomePlayer.load(@json($metronomeData)); MetronomePlayer.play();'
-                                class="w-9 h-9 flex items-center justify-center rounded-full bg-primary text-on-primary hover:opacity-90 transition-opacity" style="border:none">
-                                <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">play_arrow</span>
-                            </button>
-                        @else
-                            <span class="text-outline">—</span>
-                        @endif
-                    </div>
-
-                    <div class="col-span-2 flex justify-end">
-                        @if ($editable)
-                            <form action="{{ route('playlists.metronomos.detach', ['playlist' => $playlist->id, 'metronome' => $metronome->id]) }}" method="POST"
-                                onsubmit="return confirm('¿Quitar esta canción de la playlist?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" title="Quitar de la playlist"
-                                    class="w-8 h-8 flex items-center justify-center rounded-full text-error hover:bg-error-container transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100" style="border:none;background:transparent">
-                                    <span class="material-symbols-outlined text-lg">close</span>
+                        <div class="w-9 shrink-0 flex justify-center">
+                            @if ($metronome->has_metronome)
+                                @php
+                                    $metronomeData = ['id' => $metronome->id, 'title' => $metronome->title, 'artist' => $metronome->artist, 'bpm' => $metronome->bpm];
+                                @endphp
+                                <button type="button" title="Reproducir"
+                                    onclick='MetronomePlayer.load(@json($metronomeData)); MetronomePlayer.play();'
+                                    class="w-9 h-9 flex items-center justify-center rounded-full bg-primary text-on-primary hover:opacity-90 transition-opacity" style="border:none">
+                                    <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">play_arrow</span>
                                 </button>
-                            </form>
+                            @else
+                                <span class="text-outline">—</span>
+                            @endif
+                        </div>
+
+                        @if ($editable)
+                            <div class="w-8 shrink-0 flex justify-center">
+                                <form action="{{ route('playlists.metronomos.detach', ['playlist' => $playlist->id, 'metronome' => $metronome->id]) }}" method="POST"
+                                    onsubmit="return confirm('¿Quitar esta canción de la playlist?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" title="Quitar de la playlist"
+                                        class="w-8 h-8 flex items-center justify-center rounded-full text-error hover:bg-error-container transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100" style="border:none;background:transparent">
+                                        <span class="material-symbols-outlined text-lg">close</span>
+                                    </button>
+                                </form>
+                            </div>
                         @endif
                     </div>
                 </div>

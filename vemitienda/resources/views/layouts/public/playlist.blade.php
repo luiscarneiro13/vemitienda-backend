@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>{{ $playlist->name ?? 'Playlist' }} - Ve mi Tienda</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -20,6 +20,13 @@
     @include('layouts.partials.tailwind-config')
 
     <style>
+        /* Esta página no carga Bootstrap y Tailwind tiene preflight:false (compartido con el
+           panel admin), así que no hay reset de box-sizing: los inputs con padding+borde+w-full
+           se pasaban del ancho del contenedor (content-box en vez de border-box). */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Hanken Grotesk', sans-serif;
             background-color: #f8f9fb;
@@ -29,7 +36,7 @@
 
 <body class="min-h-screen">
 
-    <div class="p-6">
+    <div class="px-[5px] py-6 md:px-6">
         <div class="container-fluid">
             @yield('content')
         </div>

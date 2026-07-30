@@ -57,6 +57,12 @@
         background-color: rgba(0, 82, 204, 0.12) !important;
         box-shadow: inset 3px 0 0 0 #0052cc;
     }
+
+    /* En celulares con gestos/nav bar del sistema, "bottom:0" puede quedar parcialmente
+       tapado por esa barra. El padding extra empuja los controles por encima de la zona segura. */
+    #metronome-player-bar {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
 </style>
 
 <script>
