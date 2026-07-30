@@ -39,8 +39,10 @@
                 $bpmRange = $metronome->has_metronome ? max(0, min(100, ($metronome->bpm - 20) / (300 - 20) * 100)) : 0;
             @endphp
             <article id="metronome-row-{{ $metronome->id }}" data-title="{{ strtolower($metronome->title) }}" data-artist="{{ strtolower($metronome->artist ?? '') }}"
-                class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm group">
-                <div class="h-1 bg-surface-container-high group-hover:bg-primary/20 transition-colors">
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm group">
+                {{-- overflow-hidden va solo acá (no en el <article>): si lo tuviera la tarjeta entera,
+                     recortaría el menú de opciones (que es absolute y sobresale del borde inferior). --}}
+                <div class="h-1 bg-surface-container-high group-hover:bg-primary/20 transition-colors rounded-t-xl overflow-hidden">
                     <div class="h-full bg-primary" style="width: {{ $bpmRange }}%"></div>
                 </div>
                 <div class="p-4 md:p-6 flex flex-col md:flex-row items-center gap-6">
