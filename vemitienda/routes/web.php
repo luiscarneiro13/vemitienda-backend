@@ -17,6 +17,10 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 // Blog y mensajería
 Route::get('blog', 'BlogController@index')->name('blog');
 Route::get('blog/{slug}', 'BlogController@show')->name('blog.show');
+
+// Playlist pública (solo lectura + reproducir + reordenar, sin login)
+Route::get('playlist/{slug}', 'PlaylistController@show')->name('playlist.public.show');
+Route::post('playlist/{slug}/reorder', 'PlaylistController@reorder')->name('playlist.public.reorder');
 Route::get('message', 'API\V3\UserController@message')->name('message');
 Route::get('confirmationuser/{id_encriptado}', 'API\V3\UserController@confirmationuser');
 Route::get('reset2/{user_id}', 'API\V3\UserController@reset2')->name('reset2');

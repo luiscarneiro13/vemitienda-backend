@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Metronome;
 use App\Models\Playlist;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PlaylistsRepository
 {
@@ -24,6 +25,7 @@ class PlaylistsRepository
         return Playlist::create([
             'user_id' => Auth::id(),
             'name' => request()->name,
+            'slug' => self::uniqueSlug(request()->name),
             'description' => request()->description,
         ]);
     }
@@ -31,10 +33,41 @@ class PlaylistsRepository
     static function updatePlaylist(Playlist $playlist)
     {
         $playlist->name = request()->name;
+        $playlist->slug = self::uniqueSlug(request()->name, $playlist->id);
         $playlist->description = request()->description;
         $playlist->save();
 
         return $playlist;
+    }
+
+    /**
+     * Genera un slug único (a nivel global, usado en la URL pública /playlist/{slug})
+     * a partir del nombre, agregando un sufijo numérico si ya existe.
+     */
+    static function uniqueSlug(string $name, $excludeId = null)
+    {
+        $base = Str::slug($name, '-') ?: 'playlist';
+        $slug = $base;
+        $i = 2;
+
+        while (
+            Playlist::where('slug', $slug)
+                ->when($excludeId, fn ($q) => $q->where('id', '!=', $excludeId))
+                ->exists()
+        ) {
+            $slug = $base . '-' . $i;
+            $i++;
+        }
+
+        return $slug;
+    }
+
+    /**
+     * Playlist pública (sin scope de usuario) buscada por su slug, usada en /playlist/{slug}.
+     */
+    static function getPublicPlaylistBySlug($slug)
+    {
+        return Playlist::with('metronomes')->where('slug', $slug)->firstOrFail();
     }
 
     static function deletePlaylist(Playlist $playlist)

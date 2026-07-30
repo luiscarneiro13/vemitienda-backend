@@ -1,5 +1,9 @@
-{{-- Barra flotante del reproductor de metrónomo. Se incluye una sola vez por página con <x-metronome-player />. --}}
-<div id="metronome-player-bar" class="hidden fixed bottom-0 left-0 lg:left-[220px] right-0 z-40 bg-surface-container-lowest border-t border-outline-variant shadow-lg">
+{{--
+    Barra flotante del reproductor de metrónomo. Se incluye una sola vez por página con <x-metronome-player />.
+    :offset-sidebar="true" (default) deja el hueco de 220px del sidebar admin; pasar false en páginas sin sidebar (ej. vista pública de playlist).
+--}}
+@props(['offsetSidebar' => true])
+<div id="metronome-player-bar" class="hidden fixed bottom-0 left-0 {{ $offsetSidebar ? 'lg:left-[220px]' : '' }} right-0 z-40 bg-surface-container-lowest border-t border-outline-variant shadow-lg">
     <div class="max-w-4xl mx-auto px-4 py-3 flex items-center gap-4 flex-wrap">
         <div class="flex items-center gap-3 min-w-0 flex-1">
             <span id="metronome-beat-dot" class="w-3 h-3 rounded-full bg-outline-variant flex-shrink-0 transition-colors duration-75"></span>
