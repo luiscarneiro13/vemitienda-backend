@@ -36,6 +36,9 @@
                             <a href="{{ route('playlists.show', $playlist->id) }}" class="btn btn-sm btn-primary">
                                 <i class="fa fa-folder-open"></i> Abrir
                             </a>
+                            <a href="{{ route('playlist.public.show', $playlist->slug) }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary" title="Ver vista pública">
+                                <i class="fa fa-external-link-alt"></i> Enlace público
+                            </a>
                             <div class="input-group" style="display:inline-block">
                                 <div class="input-group-prepend" style="display:inline-block">
                                     <a class="dropdown-toggle btn btn-sm btn-dark" data-toggle="dropdown">Opciones</a>
