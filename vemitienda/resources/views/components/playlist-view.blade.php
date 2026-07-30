@@ -116,9 +116,9 @@
                                 @php
                                     $metronomeData = ['id' => $metronome->id, 'title' => $metronome->title, 'artist' => $metronome->artist, 'bpm' => $metronome->bpm];
                                 @endphp
-                                <button type="button" title="Reproducir"
-                                    onclick='MetronomePlayer.load(@json($metronomeData)); MetronomePlayer.play();'
-                                    class="w-9 h-9 flex items-center justify-center rounded-full bg-primary text-on-primary hover:opacity-90 transition-opacity" style="border:none">
+                                <button type="button" title="Reproducir" data-metronome-id="{{ $metronome->id }}"
+                                    onclick='MetronomePlayer.toggleSong(@json($metronomeData))'
+                                    class="playlist-play-btn w-9 h-9 flex items-center justify-center rounded-full bg-primary text-on-primary hover:opacity-90 transition-opacity" style="border:none">
                                     <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">play_arrow</span>
                                 </button>
                             @else

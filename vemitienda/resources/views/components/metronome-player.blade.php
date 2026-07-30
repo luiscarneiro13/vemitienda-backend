@@ -169,15 +169,29 @@
         }
 
         // Resalta con un background la fila (<tr id="metronome-row-{id}">) de la canción
-        // que está sonando en este momento, si esa fila existe en la página actual.
+        // que está sonando en este momento, y alterna el ícono play/stop de su botón
+        // (.playlist-play-btn[data-metronome-id]), si esos elementos existen en la página actual.
         function syncRowHighlight() {
             document.querySelectorAll('.metronome-row-playing').forEach(function (row) {
                 row.classList.remove('metronome-row-playing');
             });
 
+            document.querySelectorAll('.playlist-play-btn').forEach(function (btn) {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (icon) icon.textContent = 'play_arrow';
+                btn.title = 'Reproducir';
+            });
+
             if (engine.isRunning && current) {
                 const row = document.getElementById('metronome-row-' + current.id);
                 if (row) row.classList.add('metronome-row-playing');
+
+                const btn = document.querySelector('.playlist-play-btn[data-metronome-id="' + current.id + '"]');
+                if (btn) {
+                    const icon = btn.querySelector('.material-symbols-outlined');
+                    if (icon) icon.textContent = 'stop';
+                    btn.title = 'Detener';
+                }
             }
         }
 
@@ -209,6 +223,19 @@
                 engine.play();
                 syncToggleIcon();
                 syncRowHighlight();
+            },
+            /**
+             * Para los botones de Play por fila (listado de playlist): si la canción
+             * ya está sonando, la detiene (stop); si no, la carga y arranca (play).
+             * song = { id, title, artist, bpm }
+             */
+            toggleSong(song) {
+                if (current && String(current.id) === String(song.id) && engine.isRunning) {
+                    this.stop();
+                } else {
+                    this.load(song);
+                    this.play();
+                }
             },
             pause() {
                 engine.pause();
