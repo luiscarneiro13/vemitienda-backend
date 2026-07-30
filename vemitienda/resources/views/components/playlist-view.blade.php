@@ -4,6 +4,7 @@
     'editable' => true,
     'reorderUrl',
     'backUrl' => null,
+    'showSort' => true,
 ])
 
 <div class="max-w-[1200px] mx-auto">
@@ -41,18 +42,20 @@
                     class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary transition-all"
                     style="outline:none">
             </div>
-            <div class="flex gap-2">
-                <button type="button" id="sort-name-btn" onclick="sortPlaylistRows('title', this)"
-                    class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-label-bold text-on-surface-variant hover:bg-surface-container-high transition-colors">
-                    <span class="material-symbols-outlined text-lg">sort_by_alpha</span>
-                    Nombre
-                </button>
-                <button type="button" id="sort-bpm-btn" onclick="sortPlaylistRows('bpm', this)"
-                    class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-label-bold text-on-surface-variant hover:bg-surface-container-high transition-colors">
-                    <span class="material-symbols-outlined text-lg">speed</span>
-                    BPM
-                </button>
-            </div>
+            @if ($showSort)
+                <div class="flex gap-2">
+                    <button type="button" id="sort-name-btn" onclick="sortPlaylistRows('title', this)"
+                        class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-label-bold text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                        <span class="material-symbols-outlined text-lg">sort_by_alpha</span>
+                        Nombre
+                    </button>
+                    <button type="button" id="sort-bpm-btn" onclick="sortPlaylistRows('bpm', this)"
+                        class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-label-bold text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                        <span class="material-symbols-outlined text-lg">speed</span>
+                        BPM
+                    </button>
+                </div>
+            @endif
         </div>
     </div>
 
