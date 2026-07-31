@@ -11,6 +11,8 @@ class Metronome extends Model
 
     protected $table = 'metronomes';
     protected $fillable = ['user_id', 'title', 'artist', 'bpm'];
+    // Sin este append, has_metronome (accessor) no viaja en el JSON que consume la app móvil.
+    protected $appends = ['has_metronome'];
 
     public function user()
     {

@@ -75,6 +75,12 @@ Route::group(['prefix' => 'v3'], function () {
 
         Route::get('orders', 'API\V3\OrdersController@index');
         Route::post('updateStatus', 'API\V3\OrdersController@updateStatus');
+
+        Route::apiResource('metronomes-user', 'API\V3\MetronomesController')->except(['show']);
+        Route::apiResource('playlists-user', 'API\V3\PlaylistsController');
+        Route::post('playlists-user/{playlist}/metronomes/{metronome}', 'API\V3\PlaylistsController@attach');
+        Route::delete('playlists-user/{playlist}/metronomes/{metronome}', 'API\V3\PlaylistsController@detach');
+        Route::post('playlists-user/{id}/reorder', 'API\V3\PlaylistsController@reorder');
     });
 
     Route::post('logs', 'API\V3\LogsController@index');
