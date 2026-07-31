@@ -11,7 +11,7 @@ class PlaylistsRepository
 {
     static function getPlaylistsUser($limit = 9)
     {
-        $datos = Playlist::withCount('metronomes')->where('user_id', Auth::id())->orderByDesc('id');
+        $datos = Playlist::withCount('metronomes')->where('user_id', Auth::id())->orderByDesc('updated_at');
 
         if ($limit == -1) {
             return $datos->get();
