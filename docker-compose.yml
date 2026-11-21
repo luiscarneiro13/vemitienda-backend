@@ -42,7 +42,7 @@ services:
       - 8000:80
     volumes:
       - ./delivery/services/laravel:/var/www
-      - ./vemitienda/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
     networks:
