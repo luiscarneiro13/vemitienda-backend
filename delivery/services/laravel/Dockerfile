@@ -59,7 +59,7 @@ RUN { \
 COPY . .
 COPY --from=node_builder /app/public/build ./public/build
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction \
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts \
     && chown -R www-data:www-data storage bootstrap/cache
 
 COPY docker/entrypoint.prod.sh /usr/local/bin/entrypoint.prod.sh
