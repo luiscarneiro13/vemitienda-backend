@@ -22,6 +22,7 @@ import {
 
 dotenv.config()
 const app = express()
+app.disable("x-powered-by")
 const server = http.createServer(app)
 
 inistSocketServer(server)
@@ -38,7 +39,17 @@ app.use(express.json({ limit: "20mb" }))
 app.use(express.urlencoded({ extended: true, limit: "20mb" }))
 
 //Configure header http cors
-app.use(cors())
+const allowedOrigins = ["https://vemitienda.com.ve", "https://www.vemitienda.com.ve"]
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            if (!origin || allowedOrigins.includes(origin)) {
+                return callback(null, true)
+            }
+            return callback(new Error("Not allowed by CORS"))
+        },
+    })
+)
 
 //Configure loguer http request
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"))
