@@ -1,6 +1,0 @@
-.git
-docker-compose.yml
-docker/
-node_modules/
-vendor/
-storage/logs/*
