@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-[#faf9fc] text-[#242034] font-sans antialiased selection:bg-[#eee8fb] selection:text-[#6135bc];
+    }
+}
+
+[x-cloak] { display: none !important; }

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelos de Logotipo - ChatPedido</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6135BC;
+            --primary-dark: #47228E;
+            --primary-light: #7B4FD4;
+            --green: #10B981;
+            --orange: #FF6B00;
+            --dark: #1A162B;
+            --gray: #665F74;
+            --bg: #F8F7FC;
+            --card-bg: #FFFFFF;
+            --border: #E8E4F2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            line-height: 1.5;
+            padding: 40px 20px 80px;
+        }
+
+        .header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 48px;
+        }
+
+        .badge-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #EEE8FB;
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.8px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            color: var(--gray);
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+            gap: 32px;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .model-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            border: 2px solid var(--border);
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(97, 53, 188, 0.05);
+            transition: all 0.25s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .model-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 16px 40px rgba(97, 53, 188, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .model-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+        }
+
+        .model-tag {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            background: #F3EEFD;
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+
+        .model-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .model-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* Showcase de iconos y logos */
+        .preview-grid {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .app-icon-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .app-icon {
+            width: 104px;
+            height: 104px;
+            border-radius: 24px;
+            box-shadow: 0 12px 24px rgba(97, 53, 188, 0.25);
+            transition: transform 0.2s ease;
+        }
+
+        .app-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .app-icon-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .variants-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .variant-box {
+            padding: 16px 20px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 72px;
+        }
+
+        .variant-box.light {
+            background: #FAF9FC;
+            border: 1px solid var(--border);
+        }
+
+        .variant-box.dark {
+            background: #1A162B;
+        }
+
+        .variant-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.6;
+        }
+
+        .variant-box.light .variant-label { color: var(--gray); }
+        .variant-box.dark .variant-label { color: #BBB3CC; }
+
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--dark);
+            background: #FDFCFE;
+            border: 1px dashed var(--border);
+            padding: 12px 16px;
+            border-radius: 12px;
+        }
+
+        .key-points li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-points li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .select-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .select-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 14px rgba(97, 53, 188, 0.35);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="badge-brand">Identidad Visual & Branding</div>
+        <h1>Elige el Logotipo de ChatPedido</h1>
+        <p class="subtitle">4 propuestas visuales diseñadas exclusivamente para reflejar <strong>pedidos en línea y pedidos directos por WhatsApp</strong> sin parecer un marketplace.</p>
+    </header>
+
+    <main class="container">
+
+        <!-- ==================== MODELO 1 ==================== -->
+        <article class="model-card">
+            <div class="model-header">
+                <div>
+                    <span class="model-tag">Opción 1</span>
+                    <h2 class="model-title" style="margin-top: 4px;">La Bolsa en el Chat</h2>
+                </div>
+                <span style="font-size: 24px;">🛍️ 💬</span>
+            </div>
+            <p class="model-desc">
+                <strong>Concepto:</strong> La burbuja de conversación de WhatsApp se fusiona en su parte superior con las asas de una bolsa de delivery (take-away), guardando en su interior el check verde de confirmación inmediata.
+            </p>
+
+            <div class="preview-grid">
+                <div class="app-icon-wrapper">
+                    <svg class="app-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="m1Grad" x1="10" y1="10" x2="110" y2="110" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#7B4FD4"/>
+                                <stop offset="100%" stop-color="#4F269C"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="120" height="120" rx="30" fill="url(#m1Grad)"/>
+                        <!-- Asa bolsa -->
+                        <path d="M48 38V30C48 23.37 53.37 18 60 18C66.63 18 72 23.37 72 30V38" stroke="white" stroke-width="7" stroke-linecap="round"/>
+                        <!-- Burbuja / Bolsa -->
+                        <path d="M30 46C30 40.48 34.48 36 40 36H80C85.52 36 90 40.48 90 46V72C90 77.52 85.52 82 80 82H58L40 95C37.5 96.8 34 95 34 91.8V82C31.8 80.5 30 78 30 75V46Z" fill="white"/>
+                        <!-- Check verde WhatsApp -->
+                        <path d="M46 59L55 68L74 49" stroke="#10B981" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Notificación naranja -->
+                        <circle cx="82" cy="42" r="6" fill="#FF6B00"/>
+                    </svg>
+                    <span class="app-icon-label">Icono App Móvil</span>
+                </div>
+
+                <div class="variants-col">
+                    <!-- Fondo Claro -->
+                    <div class="variant-box light">
+                        <svg viewBox="0 0 240 44" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="#6135BC"/>
+                            <path d="M16 12V9C16 6.8 17.8 5 20 5C22.2 5 24 6.8 24 9V12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M10 14C10 12.3 11.3 11 13 11H27C28.7 11 30 12.3 30 14V24C30 25.7 28.7 27 27 27H19L13 31.5C12.2 32.1 11 31.5 11 30.5V26.8C10.4 26.2 10 25.2 10 24V14Z" fill="white"/>
+                            <path d="M15 19L18 22L25 15" stroke="#10B981" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="28" cy="13" r="2.5" fill="#FF6B00"/>
+                            <!-- Texto -->
+                            <text x="52" y="28" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#1A162B" letter-spacing="-0.5">Chat<tspan fill="#6135BC">Pedido</tspan></text>
+                            <circle cx="184" y="26" r="3.5" fill="#10B981"/>
+                        </svg>
+                        <span class="variant-label">Fondo Claro</span>
+                    </div>
+
+                    <!-- Fondo Oscuro -->
+                    <div class="variant-box dark">
+                        <svg viewBox="0 0 240 44" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="#6135BC"/>
+                            <path d="M16 12V9C16 6.8 17.8 5 20 5C22.2 5 24 6.8 24 9V12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M10 14C10 12.3 11.3 11 13 11H27C28.7 11 30 12.3 30 14V24C30 25.7 28.7 27 27 27H19L13 31.5C12.2 32.1 11 31.5 11 30.5V26.8C10.4 26.2 10 25.2 10 24V14Z" fill="white"/>
+                            <path d="M15 19L18 22L25 15" stroke="#10B981" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="28" cy="13" r="2.5" fill="#FF6B00"/>
+                            <!-- Texto -->
+                            <text x="52" y="28" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#FFFFFF" letter-spacing="-0.5">Chat<tspan fill="#A78BFA">Pedido</tspan></text>
+                            <circle cx="184" y="26" r="3.5" fill="#10B981"/>
+                        </svg>
+                        <span class="variant-label">Fondo Oscuro</span>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="key-points">
+                <li>Ideal para puestos de hamburguesas, pizzas, sushi y comida para llevar.</li>
+                <li>Silueta icónica muy legible en tamaño pequeño (favicon y notificación móvil).</li>
+            </ul>
+        </article>
+
+        <!-- ==================== MODELO 2 ==================== -->
+        <article class="model-card">
+            <div class="model-header">
+                <div>
+                    <span class="model-tag">Opción 2</span>
+                    <h2 class="model-title" style="margin-top: 4px;">El Ticket / Comanda Express</h2>
+                </div>
+                <span style="font-size: 24px;">🧾 ⚡</span>
+            </div>
+            <p class="model-desc">
+                <strong>Concepto:</strong> Un bocadillo de chat donde la salida del mensaje se transforma en una comanda o ticket digital de restaurante con sus líneas de productos y un rayo de despacho rápido.
+            </p>
+
+            <div class="preview-grid">
+                <div class="app-icon-wrapper">
+                    <svg class="app-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="m2Grad" x1="10" y1="10" x2="110" y2="110" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#6135BC"/>
+                                <stop offset="100%" stop-color="#341A70"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="120" height="120" rx="30" fill="url(#m2Grad)"/>
+                        <!-- Burbuja grande de chat detrás -->
+                        <path d="M26 34C26 25.16 33.16 18 42 18H78C86.84 18 94 25.16 94 34V60C94 68.84 86.84 76 78 76H46L30 88C28.2 89.3 26 88 26 85.8V74C26 74 26 34 26 34Z" fill="#7C4DE8"/>
+                        <!-- Ticket comanda blanco saliendo al frente -->
+                        <rect x="42" y="34" width="48" height="64" rx="10" fill="white" transform="rotate(-6 42 34)"/>
+                        <!-- Líneas de items del ticket -->
+                        <rect x="52" y="44" width="28" height="4" rx="2" fill="#665F74" transform="rotate(-6 52 44)"/>
+                        <rect x="50" y="54" width="22" height="4" rx="2" fill="#A098B2" transform="rotate(-6 50 54)"/>
+                        <!-- Rayo / Check de éxito -->
+                        <path d="M56 70L66 70L60 84L76 68L66 68L70 56L56 70Z" fill="#10B981" transform="rotate(-6 66 70)"/>
+                    </svg>
+                    <span class="app-icon-label">Icono App Móvil</span>
+                </div>
+
+                <div class="variants-col">
+                    <!-- Fondo Claro -->
+                    <div class="variant-box light">
+                        <svg viewBox="0 0 240 44" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="#6135BC"/>
+                            <path d="M8 12C8 9.8 9.8 8 12 8H26C28.2 8 30 9.8 30 12V24C30 26.2 28.2 28 26 28H16L10 32.5V27.5C8.8 26.8 8 25.5 8 24V12Z" fill="#8054E8"/>
+                            <rect x="14" y="13" width="18" height="23" rx="4" fill="white" transform="rotate(-5 14 13)"/>
+                            <path d="M19 25L23 25L21 30L27 24L23 24L25 20L19 25Z" fill="#10B981" transform="rotate(-5 23 25)"/>
+                            <text x="48" y="28" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#1A162B" letter-spacing="-0.5">Chat<tspan fill="#6135BC">Pedido</tspan></text>
+                            <path d="M178 18L183 25L192 14" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="variant-label">Fondo Claro</span>
+                    </div>
+
+                    <!-- Fondo Oscuro -->
+                    <div class="variant-box dark">
+                        <svg viewBox="0 0 240 44" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="#6135BC"/>
+                            <path d="M8 12C8 9.8 9.8 8 12 8H26C28.2 8 30 9.8 30 12V24C30 26.2 28.2 28 26 28H16L10 32.5V27.5C8.8 26.8 8 25.5 8 24V12Z" fill="#8054E8"/>
+                            <rect x="14" y="13" width="18" height="23" rx="4" fill="white" transform="rotate(-5 14 13)"/>
+                            <path d="M19 25L23 25L21 30L27 24L23 24L25 20L19 25Z" fill="#10B981" transform="rotate(-5 23 25)"/>
+                            <text x="48" y="28" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#FFFFFF" letter-spacing="-0.5">Chat<tspan fill="#A78BFA">Pedido</tspan></text>
+                            <path d="M178 18L183 25L192 14" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="variant-label">Fondo Oscuro</span>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="key-points">
+                <li>Comunica orden, precisión de comanda y cero errores en cocina o almacén.</li>
+                <li>Muy potente para comercios que buscan control y rapidez en recepción de pedidos.</li>
+            </ul>
+        </article>
+
+        <!-- ==================== MODELO 3 ==================== -->
+        <article class="model-card">
+            <div class="model-header">
+                <div>
+                    <span class="model-tag">Opción 3</span>
+                    <h2 class="model-title" style="margin-top: 4px;">Rayo & Mensajes Duales</h2>
+                </div>
+                <span style="font-size: 24px;">💬 ⚡</span>
+            </div>
+            <p class="model-desc">
+                <strong>Concepto:</strong> Dos burbujas de diálogo que interactúan (Cliente y Tienda): una violeta y una verde WhatsApp, con un rayo energético que simboliza la inmediatez del pedido en línea.
+            </p>
+
+            <div class="preview-grid">
+                <div class="app-icon-wrapper">
+                    <svg class="app-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="m3Grad" x1="10" y1="10" x2="110" y2="110" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#552BAE"/>
+                                <stop offset="100%" stop-color="#3B187F"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="120" height="120" rx="30" fill="url(#m3Grad)"/>
+                        <!-- Burbuja izquierda blanca -->
+                        <path d="M24 38C24 28.06 32.06 20 42 20H68C77.94 20 86 28.06 86 38V54C86 63.94 77.94 72 68 72H46L30 84C27.8 85.6 24 84 24 81V70C24 70 24 38 24 38Z" fill="white"/>
+                        <!-- Burbuja frontal derecha verde WhatsApp -->
+                        <path d="M50 52C50 43.16 57.16 36 66 36H88C96.84 36 104 43.16 104 52V68C104 76.84 96.84 84 88 84H74L60 95C58 96.5 55 95 55 92.5V83C52.2 81.5 50 78 50 74V52Z" fill="#10B981"/>
+                        <!-- Rayo en la burbuja blanca -->
+                        <path d="M48 30L58 30L52 46L66 46L44 64L48 48L38 48L48 30Z" fill="#FF6B00"/>
+                        <!-- Check blanco en burbuja verde -->
+                        <path d="M70 60L77 67L88 54" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="app-icon-label">Icono App Móvil</span>
+                </div>
+
+                <div class="variants-col">
+                    <!-- Fondo Claro -->
+                    <div class="variant-box light">
+                        <svg viewBox="0 0 240 44" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="#6135BC"/>
+                            <path d="M8 14C8 10.7 10.7 8 14 8H24C27.3 8 30 10.7 30 14V22C30 25.3 27.3 28 24 28H17L11 32.5V27.5C9.2 26.8 8 25.2 8 23.5V14Z" fill="white"/>
+                            <path d="M18 19C18 16.2 20.2 14 23 14H29C31.8 14 34 16.2 34 19V25C34 27.8 31.8 30 29 30H24L20 33.5V30C18.8 29.2 18 28 18 26.8V19Z" fill="#10B981"/>
+                            <path d="M16 12L19 12L17 17L22 17L14 23L16 18L13 18L16 12Z" fill="#FF6B00"/>
+                            <text x="48" y="28" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#1A162B" letter-spacing="-0.5">Chat<tspan fill="#6135BC">Pedido</tspan></text>
+                            <circle cx="180" cy="26" r="3.5" fill="#FF6B00"/>
+                        </svg>
+                        <span class="variant-label">Fondo Claro</span>
+                    </div>
+
+                    <!-- Fondo Oscuro -->
+                    <div class="variant-box dark">
+                        <svg viewBox="0 0 240 44" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="#6135BC"/>
+                            <path d="M8 14C8 10.7 10.7 8 14 8H24C27.3 8 30 10.7 30 14V22C30 25.3 27.3 28 24 28H17L11 32.5V27.5C9.2 26.8 8 25.2 8 23.5V14Z" fill="white"/>
+                            <path d="M18 19C18 16.2 20.2 14 23 14H29C31.8 14 34 16.2 34 19V25C34 27.8 31.8 30 29 30H24L20 33.5V30C18.8 29.2 18 28 18 26.8V19Z" fill="#10B981"/>
+                            <path d="M16 12L19 12L17 17L22 17L14 23L16 18L13 18L16 12Z" fill="#FF6B00"/>
+                            <text x="48" y="28" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#FFFFFF" letter-spacing="-0.5">Chat<tspan fill="#A78BFA">Pedido</tspan></text>
+                            <circle cx="180" cy="26" r="3.5" fill="#FF6B00"/>
+                        </svg>
+                        <span class="variant-label">Fondo Oscuro</span>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="key-points">
+                <li>Estilo dinámico y moderno, conecta la conversación con la velocidad.</li>
+                <li>Gran impacto visual en redes sociales, historias y stickers de WhatsApp.</li>
+            </ul>
+        </article>
+
+        <!-- ==================== MODELO 4 ==================== -->
+        <article class="model-card">
+            <div class="model-header">
+                <div>
+                    <span class="model-tag">Opción 4</span>
+                    <h2 class="model-title" style="margin-top: 4px;">Monograma 'CP' Dinámico</h2>
+                </div>
+                <span style="font-size: 24px;">🔤 ✨</span>
+            </div>
+            <p class="model-desc">
+                <strong>Concepto:</strong> Las iniciales 'C' (burbuja de Chat redondeada) y 'P' (bolsa de Pedido con su asa y silueta) integradas en una sola marca geométrica minimalista estilo startup internacional.
+            </p>
+
+            <div class="preview-grid">
+                <div class="app-icon-wrapper">
+                    <svg class="app-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="m4Grad" x1="10" y1="10" x2="110" y2="110" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#6F3FCE"/>
+                                <stop offset="100%" stop-color="#461E8E"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="120" height="120" rx="30" fill="url(#m4Grad)"/>
+                        <!-- Arco C (Chat) exterior -->
+                        <path d="M68 28H44C32.95 28 24 36.95 24 48V68C24 79.05 32.95 88 44 88H48L38 98C36.8 99.2 38 101 39.5 100L56 88H68" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Letra P / Asa interior en Verde WhatsApp -->
+                        <path d="M56 40V80M56 40H74C82.8 40 88 45.2 88 54C88 62.8 82.8 68 74 68H56" stroke="#10B981" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Punto acento naranja -->
+                        <circle cx="72" cy="54" r="5" fill="#FF6B00"/>
+                    </svg>
+                    <span class="app-icon-label">Icono App Móvil</span>
+                </div>
+
+                <div class="variants-col">
+                    <!-- Fondo Claro -->
+                    <div class="variant-box light">
+                        <svg viewBox="0 0 240 44" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="#6135BC"/>
+                            <path d="M22 10H14C10.7 10 8 12.7 8 16V22C8 25.3 10.7 28 14 28H15L12 32C11.5 32.6 12 33.2 12.6 32.8L18 28H22" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18 14V26M18 14H24C27 14 29 15.8 29 18.5C29 21.2 27 23 24 23H18" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <text x="48" y="28" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#1A162B" letter-spacing="-0.5">Chat<tspan fill="#6135BC">Pedido</tspan></text>
+                            <circle cx="180" cy="26" r="3.5" fill="#10B981"/>
+                        </svg>
+                        <span class="variant-label">Fondo Claro</span>
+                    </div>
+
+                    <!-- Fondo Oscuro -->
+                    <div class="variant-box dark">
+                        <svg viewBox="0 0 240 44" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="#6135BC"/>
+                            <path d="M22 10H14C10.7 10 8 12.7 8 16V22C8 25.3 10.7 28 14 28H15L12 32C11.5 32.6 12 33.2 12.6 32.8L18 28H22" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18 14V26M18 14H24C27 14 29 15.8 29 18.5C29 21.2 27 23 24 23H18" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <text x="48" y="28" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#FFFFFF" letter-spacing="-0.5">Chat<tspan fill="#A78BFA">Pedido</tspan></text>
+                            <circle cx="180" cy="26" r="3.5" fill="#10B981"/>
+                        </svg>
+                        <span class="variant-label">Fondo Oscuro</span>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="key-points">
+                <li>Diseño limpio y tecnológico, con mucha presencia como isotipo de app independiente.</li>
+                <li>Fácilmente reproducible en bordados, uniformes de repartidores y bolsas térmicas.</li>
+            </ul>
+        </article>
+
+    </main>
+
+</body>
+</html>

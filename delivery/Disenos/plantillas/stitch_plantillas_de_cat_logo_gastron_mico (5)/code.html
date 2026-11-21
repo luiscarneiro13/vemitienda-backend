@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-fixed": "#261a00", "on-error": "#ffffff", "surface-variant": "#e5e2e1", "on-secondary-fixed": "#410002", "tertiary": "#785900", "outline": "#8e7164", "tertiary-fixed": "#ffdf9e", "tertiary-fixed-dim": "#fabd00", "secondary-container": "#db322f", "inverse-on-surface": "#f3f0ef", "on-surface": "#1c1b1b", "on-secondary": "#ffffff", "inverse-surface": "#313030", "outline-variant": "#e2bfb0", "surface": "#fcf9f8", "surface-container-lowest": "#ffffff", "primary": "#a04100", "on-primary": "#ffffff", "surface-container-high": "#eae7e7", "on-primary-fixed": "#351000", "on-secondary-fixed-variant": "#93000d", "on-tertiary-fixed-variant": "#5b4300", "on-tertiary": "#ffffff", "surface-dim": "#dcd9d9", "on-surface-variant": "#5a4136", "primary-fixed": "#ffdbcc", "surface-tint": "#a04100", "surface-container-highest": "#e5e2e1", "surface-container-low": "#f6f3f2", "tertiary-container": "#c19100", "surface-bright": "#fcf9f8", "on-primary-container": "#572000", "on-primary-fixed-variant": "#7a3000", "primary-fixed-dim": "#ffb693", "secondary-fixed": "#ffdad6", "on-tertiary-container": "#402e00", "inverse-primary": "#ffb693", "primary-container": "#ff6b00", "surface-container": "#f0eded", "secondary-fixed-dim": "#ffb4ac", "background": "#fcf9f8", "error-container": "#ffdad6", "on-error-container": "#93000a", "secondary": "#b7131a", "on-background": "#1c1b1b", "on-secondary-container": "#fffbff", "error": "#ba1a1a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-sm": "0.75rem", "space-xs": "0.25rem", "space-xl": "1.5rem", "space-3xl": "3rem", "space-lg": "1rem", "space-md": "0.75rem", "margin": "1rem", "space-sm": "0.5rem", "gutter": "1rem", "space-2xl": "2rem", "margin-tablet": "1.5rem" }, "fontFamily": { "display-lg": ["Space Grotesk"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Space Grotesk"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Space Grotesk"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "price-md": ["Space Grotesk"], "title-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-md": ["Space Grotesk"], "headline-lg": ["Space Grotesk"], "price-lg": ["Space Grotesk"] }, "fontSize": { "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}], "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700"}], "headline-sm": ["18px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}], "label-sm": ["10px", {"lineHeight": "12px", "letterSpacing": "0.04em", "fontWeight": "800"}], "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}], "display-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "label-lg": ["14px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "700"}], "price-md": ["16px", {"lineHeight": "20px", "fontWeight": "700"}], "title-md": ["16px", {"lineHeight": "22px", "fontWeight": "700"}], "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}], "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "price-lg": ["20px", {"lineHeight": "24px", "fontWeight": "700"}] } } } }</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs flex-1 min-w-0 pr-space-xs"><div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[20px]">fmd_good</span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-1 cursor-pointer"><span class="text-label-sm font-label-sm uppercase text-primary tracking-wide">Entregar en</span><span class="material-symbols-outlined text-[14px] text-primary">expand_more</span></div><span class="text-title-md font-title-md text-on-surface truncate leading-tight">Av. Insurgentes Sur 421</span></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Buscar" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">search</span></button><button aria-label="Notificaciones" class="relative w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full text-inverse-on-surface">
+<div class="relative w-full overflow-hidden bg-[#121212] px-margin pt-space-md pb-space-lg shadow-xl">
+<div class="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-primary-container/20 blur-3xl pointer-events-none"></div>
+<div class="absolute top-32 -left-12 w-48 h-48 rounded-full bg-secondary-container/15 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-space-md">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest/10 backdrop-blur-md shadow-[0_0_15px_rgba(255,107,0,0.35)]">
+<span class="text-sm">🌙</span>
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider">Abierto 24 Horas | Antojos Nocturnos</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/20 text-secondary-fixed shadow-[0_0_12px_rgba(219,50,47,0.3)]">
+<span class="material-symbols-outlined text-[14px] text-primary-container animate-pulse">bolt</span>
+<span class="font-label-sm text-label-sm font-bold">Entrega en 18 min</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline justify-between">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-inverse-on-surface tracking-tight">
+            Midnight <span class="text-primary-container drop-shadow-[0_0_18px_rgba(255,107,0,0.6)]">Craves</span>
+</h2>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high/40 text-tertiary-fixed">Turno Noche</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-variant">Sabor ardiente directo a tu puerta mientras la ciudad duerme.</p>
+</div>
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-primary to-secondary-container p-space-md shadow-[0_6px_24px_rgba(255,107,0,0.25)] flex items-center justify-between gap-space-sm">
+<div class="flex flex-col min-w-0 z-10">
+<div class="flex items-center gap-1.5 text-white/90">
+<span class="material-symbols-outlined text-[16px]">local_fire_department</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wide">Promo Especial Trasnoche</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-white font-extrabold truncate">20% OFF en todo el menú</span>
+<span class="font-body-sm text-body-sm text-white/80">Código: <span class="font-bold underline decoration-tertiary-fixed tracking-wider">NOCTURNO20</span></span>
+</div>
+<button class="shrink-0 px-3 py-2 rounded-full bg-inverse-surface/90 text-primary-fixed font-label-md text-label-md shadow-md active:scale-95 transition-all" id="copy-btn" onclick="navigator.clipboard?.writeText('NOCTURNO20'); this.innerText='¡Copiado!';">
+          Copiar
+        </button>
+</div>
+</div>
+</div>
+<div class="flex flex-col bg-[#121212] pt-space-lg pb-space-2xl">
+<div class="flex items-center justify-between px-margin mb-space-md">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_8px_#ff6b00]"></span>
+<h3 class="font-headline-md text-headline-md text-inverse-on-surface">Los más pedidos</h3>
+</div>
+<span class="font-label-sm text-label-sm text-surface-variant uppercase tracking-wider">Desliza • 4 combos</span>
+</div>
+<div class="flex gap-space-md overflow-x-auto px-margin no-scrollbar pb-space-sm snap-x snap-mandatory">
+<div class="snap-center shrink-0 w-[290px] rounded-xl bg-[#1c1b1b] flex flex-col justify-between overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
+<div class="relative w-full h-44 bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A gourmet midnight beef burger with deep black activated charcoal brioche bun, double juicy patties with melted golden Swiss cheese dripping down, sweet caramelized onions, dark moody midnight street lighting with warm neon orange ambient glow, macro food photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfHAGpvhKez47BHJ1QJCd5P5eRwTeIQ0zDK4LTrek2TjBYQXW92cqdgamuRmjffg8WeqTKCrf7fT_a2bwaiW-aXsMh52iy9Ftbjx_2cheMYxyMGuYhCfjdNBFDzU0rSwqqXbhgC37R8Za1mzF2QwhGPaTHYy3Ge1M3M_vAVqsELYeYaYNl_TMpaEUjrCV6OcwgXz3nTK2am3x6q-T3uUE3xlb-O0pWsUXft79CkjQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c1b1b] via-transparent to-transparent"></div>
+<div class="absolute top-2.5 left-2.5 px-2 py-1 rounded bg-[#121212]/80 backdrop-blur-md text-secondary-fixed text-label-sm font-label-sm uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary-container">whatshot</span> Best Seller
+          </div>
+<div class="absolute bottom-2 left-3 right-3 flex justify-between items-end">
+<span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary-fixed text-label-sm font-label-sm backdrop-blur-sm">Pan Carbón Activado</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-inverse-on-surface leading-tight">Midnight Double Beast Burger</h4>
+<p class="font-body-sm text-body-sm text-surface-variant line-clamp-2 mt-1">Carne doble 180g, queso suizo fundido, cebolla caramelizada, pan brioche negro carbón activo.</p>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-surface-variant uppercase">Precio</span>
+<span class="font-price-lg text-price-lg text-primary-fixed">$11.20</span>
+</div>
+<button class="group flex items-center gap-1 px-3.5 py-2.5 rounded-full bg-primary-container text-on-secondary shadow-[0_0_16px_rgba(255,107,0,0.5)] hover:shadow-[0_0_22px_rgba(255,107,0,0.7)] active:scale-95 transition-all" onclick="animateAdd(this)">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="font-label-md text-label-md">Añadir</span>
+</button>
+</div>
+</div>
+</div>
+<div class="snap-center shrink-0 w-[290px] rounded-xl bg-[#1c1b1b] flex flex-col justify-between overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
+<div class="relative w-full h-44 bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Loaded fast food cheese volcano box featuring crispy golden french fries, crunchy breaded mozzarella sticks and a boiling center bowl of bright warm liquid cheddar dip, steaming hot with smoke, dramatic cinematic side illumination in dark environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBct0UwGNq1NoqdQ7WDjhUf_Sd9BPnkfG7rjR3pkynfEz9sZM-Zrmn9ofcm7u3XhkSGFMbvhefvxp_RZA_hYKJEZD_VLFil8GLt9z6KT2TJ-tNDb31UrV0_yvB-_tJnEQVust1Rckp4s1QdQOXIGc0XhZrs5F2MCf7VokxWHEtbxddhYj0WHV2GRiXxZGxx7AD5f3OAATdV4oJt-Eta3UlEBRVlA6teFa44j_9Wzgk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c1b1b] via-transparent to-transparent"></div>
+<div class="absolute top-2.5 left-2.5 px-2 py-1 rounded bg-[#121212]/80 backdrop-blur-md text-tertiary-fixed text-label-sm font-label-sm uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-tertiary-container">star</span> Super Queso
+          </div>
+<div class="absolute bottom-2 left-3 right-3 flex justify-between items-end">
+<span class="px-2 py-0.5 rounded bg-tertiary-container/30 text-tertiary-fixed text-label-sm font-label-sm backdrop-blur-sm">Cheddar Hirviendo</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-inverse-on-surface leading-tight">Cheese Volcano Box</h4>
+<p class="font-body-sm text-body-sm text-surface-variant line-clamp-2 mt-1">Papas fritas, dedos de queso mozzarella y tazón de queso cheddar hirviendo para dipear.</p>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-surface-variant uppercase">Precio</span>
+<span class="font-price-lg text-price-lg text-primary-fixed">$8.90</span>
+</div>
+<button class="group flex items-center gap-1 px-3.5 py-2.5 rounded-full bg-primary-container text-on-secondary shadow-[0_0_16px_rgba(255,107,0,0.5)] hover:shadow-[0_0_22px_rgba(255,107,0,0.7)] active:scale-95 transition-all" onclick="animateAdd(this)">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="font-label-md text-label-md">Añadir</span>
+</button>
+</div>
+</div>
+</div>
+<div class="snap-center shrink-0 w-[290px] rounded-xl bg-[#1c1b1b] flex flex-col justify-between overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
+<div class="relative w-full h-44 bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Two spicy loaded gourmet hot dogs piled with rich chili con carne, sliced spicy jalapeño peppers, crispy fried onions and signature red spicy house sauce drizzle, dark ambient food truck mood background with neon red reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkYIBSfHeLOZcNnCR9n_p3X73BqY4luu0yWQBikJsiTpuqTU-7HVy9_bgKx8xeHv-PRbEp3thpjjt5rnpZZOzHlh6F0Yt4wfzUg55nP9Uyp8zyIwBXMRtBDoOsylpvXRjo2Eqa73n2Vl7xCUYExib5uYnSWiaA3Q90An17BJLo8ZbKYdg8k5XF6K1TsG-Q945PkFgFrv7vdckUw-QZRj_23FyjwBfgWGWIpou0RuA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c1b1b] via-transparent to-transparent"></div>
+<div class="absolute top-2.5 left-2.5 px-2 py-1 rounded bg-[#121212]/80 backdrop-blur-md text-secondary-fixed-dim text-label-sm font-label-sm uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary">local_fire_department</span> Picante Nivel 3
+          </div>
+<div class="absolute bottom-2 left-3 right-3 flex justify-between items-end">
+<span class="px-2 py-0.5 rounded bg-secondary/30 text-secondary-fixed text-label-sm font-label-sm backdrop-blur-sm">Dúo 2x1</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-inverse-on-surface leading-tight">Spicy Loaded Hot Dogs Dúo</h4>
+<p class="font-body-sm text-body-sm text-surface-variant line-clamp-2 mt-1">2 hot dogs con jalapeños, chili con carne y salsa secreta.</p>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-surface-variant uppercase">Precio</span>
+<span class="font-price-lg text-price-lg text-primary-fixed">$7.50</span>
+</div>
+<button class="group flex items-center gap-1 px-3.5 py-2.5 rounded-full bg-primary-container text-on-secondary shadow-[0_0_16px_rgba(255,107,0,0.5)] hover:shadow-[0_0_22px_rgba(255,107,0,0.7)] active:scale-95 transition-all" onclick="animateAdd(this)">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="font-label-md text-label-md">Añadir</span>
+</button>
+</div>
+</div>
+</div>
+<div class="snap-center shrink-0 w-[290px] rounded-xl bg-[#1c1b1b] flex flex-col justify-between overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
+<div class="relative w-full h-44 bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Plate of eight hot golden sugar-cinnamon dusted monster churros oozing thick chocolate hazelnut nutella filling from the core, dark moody atmosphere with warm golden backlighting, macro commercial shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4Ti-Y_xDxCqwOFGGWlfGTn34kr1aiQkjA51mhjtFDARwjmyybMgDQRwcaxkoGJf_GhYH-85pzBqDeoDOMDg_OiLGJclezYdZahxrsPK7RHc7sdEsC0aswQg78-6xzocGdFpCJv5zxm8wqmwgGNr_w31thfJwntDVF2RaaI0HMdcLcRYINdIMWhk7hRnhqKqri16-d6Arfwal77_qgSFW_S_xaUPUmWC1exrNO9DY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1c1b1b] via-transparent to-transparent"></div>
+<div class="absolute top-2.5 left-2.5 px-2 py-1 rounded bg-[#121212]/80 backdrop-blur-md text-primary-fixed text-label-sm font-label-sm uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-primary-container">cookie</span> Postre Caliente
+          </div>
+<div class="absolute bottom-2 left-3 right-3 flex justify-between items-end">
+<span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary-fixed text-label-sm font-label-sm backdrop-blur-sm">8 Piezas Grandes</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-inverse-on-surface leading-tight">Monster Churros Rellenos</h4>
+<p class="font-body-sm text-body-sm text-surface-variant line-clamp-2 mt-1">8 piezas crujientes recién hechas, bañadas en canela y rellenas de abundante Nutella.</p>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-surface-variant uppercase">Precio</span>
+<span class="font-price-lg text-price-lg text-primary-fixed">$5.20</span>
+</div>
+<button class="group flex items-center gap-1 px-3.5 py-2.5 rounded-full bg-primary-container text-on-secondary shadow-[0_0_16px_rgba(255,107,0,0.5)] hover:shadow-[0_0_22px_rgba(255,107,0,0.7)] active:scale-95 transition-all" onclick="animateAdd(this)">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="font-label-md text-label-md">Añadir</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="px-margin mt-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h4 class="font-title-md text-title-md text-inverse-on-surface">Extras para tu bajón</h4>
+<span class="font-label-sm text-label-sm text-primary-fixed">Ver todos</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-md rounded-xl bg-[#1c1b1b] flex items-center gap-space-sm shadow-md">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 text-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">local_drink</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-inverse-on-surface truncate">Bebidas Heladas</span>
+<span class="font-body-sm text-body-sm text-surface-variant">Desde $1.50</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-[#1c1b1b] flex items-center gap-space-sm shadow-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 text-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">ramen_dining</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-inverse-on-surface truncate">Dips &amp; Salsas</span>
+<span class="font-body-sm text-body-sm text-surface-variant">Desde $0.80</span>
+</div>
+</div>
+</div>
+<div class="w-full p-space-md rounded-xl bg-gradient-to-br from-[#1e1c1b] to-[#121212] flex items-center justify-between shadow-inner">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-container/30 text-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">moped</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-inverse-on-surface">Repartidores Nocturnos Activos</span>
+<span class="font-body-sm text-body-sm text-surface-variant">Rastreo satelital en tiempo real</span>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed-dim animate-ping"></span>
+</div>
+</div>
+</div>
+<div class="fixed bottom-20 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-primary-container text-white font-label-md text-label-md shadow-[0_0_20px_rgba(255,107,0,0.8)] opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center gap-2" id="toast">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>¡Agregado al antojo nocturno!</span>
+</div>
+<script>
+    function animateAdd(btn) {
+      btn.classList.add('scale-90');
+      setTimeout(() => btn.classList.remove('scale-90'), 150);
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.classList.remove('opacity-0');
+        toast.classList.add('opacity-100');
+        setTimeout(() => {
+          toast.classList.remove('opacity-100');
+          toast.classList.add('opacity-0');
+        }, 1800);
+      }
+    }
+  </script>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]" data-active-classes="text-primary-container scale-105 font-bold"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 transition-all duration-200 text-primary-container scale-105 font-bold" data-path="explorar" href="#"><span class="material-symbols-outlined text-[22px]">storefront</span><span class="text-label-sm font-label-sm">Explorar</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="menu-categorias" href="#"><span class="material-symbols-outlined text-[22px]">restaurant_menu</span><span class="text-label-sm font-label-sm">Menú</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="ofertas-promos" href="#"><span class="material-symbols-outlined text-[22px]">local_offer</span><span class="text-label-sm font-label-sm">Ofertas</span></a><a class="relative flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="carrito" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="absolute -top-1 -right-2 min-w-[16px] h-4 px-1 rounded-full bg-primary-container text-on-secondary text-[10px] font-extrabold flex items-center justify-center leading-none">3</span></div><span class="text-label-sm font-label-sm">Carrito</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="perfil" href="#"><span class="material-symbols-outlined text-[22px]">person</span><span class="text-label-sm font-label-sm">Perfil</span></a></div></nav></body></html>

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 320 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(6, 6)">
+    <rect width="52" height="52" rx="14" fill="#6135BC"/>
+    <path d="M10 15C10 12.2 12.2 10 15 10H33C35.8 10 38 12.2 38 15V27C38 29.8 35.8 32 33 32H20L12 38V32C10.8 31.2 10 30 10 28.5V15Z" fill="#8054E8"/>
+    <g transform="rotate(-6 18 15)">
+      <rect x="18" y="15" width="22" height="30" rx="5" fill="white"/>
+      <rect x="22" y="20" width="14" height="2" rx="1" fill="#4A4358"/>
+      <rect x="22" y="24" width="10" height="2" rx="1" fill="#8E85A2"/>
+      <path d="M23 32L28 32L25 38L33 31L28 31L30 27L23 32Z" fill="#10B981"/>
+      <circle cx="34" cy="38" r="2.5" fill="#FF6B00"/>
+    </g>
+  </g>
+  <text x="74" y="42" font-family="'Space Grotesk', system-ui, sans-serif" font-weight="700" font-size="32" fill="#1A162B" letter-spacing="-0.8">Chat<tspan fill="#6135BC">Pedido</tspan></text>
+  <circle cx="258" y="40" r="4.5" fill="#10B981"/>
+</svg>

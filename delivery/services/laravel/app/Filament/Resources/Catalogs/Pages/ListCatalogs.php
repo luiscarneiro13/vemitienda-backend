@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Filament\Resources\Catalogs\Pages;
+
+use App\Filament\Resources\Catalogs\CatalogResource;
+use Filament\Resources\Pages\ListRecords;
+
+class ListCatalogs extends ListRecords
+{
+    protected static string $resource = CatalogResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [];
+    }
+}

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-fixed": "#261a00", "on-error": "#ffffff", "surface-variant": "#e5e2e1", "on-secondary-fixed": "#410002", "tertiary": "#785900", "outline": "#8e7164", "tertiary-fixed": "#ffdf9e", "tertiary-fixed-dim": "#fabd00", "secondary-container": "#db322f", "inverse-on-surface": "#f3f0ef", "on-surface": "#1c1b1b", "on-secondary": "#ffffff", "inverse-surface": "#313030", "outline-variant": "#e2bfb0", "surface": "#fcf9f8", "surface-container-lowest": "#ffffff", "primary": "#a04100", "on-primary": "#ffffff", "surface-container-high": "#eae7e7", "on-primary-fixed": "#351000", "on-secondary-fixed-variant": "#93000d", "on-tertiary-fixed-variant": "#5b4300", "on-tertiary": "#ffffff", "surface-dim": "#dcd9d9", "on-surface-variant": "#5a4136", "primary-fixed": "#ffdbcc", "surface-tint": "#a04100", "surface-container-highest": "#e5e2e1", "surface-container-low": "#f6f3f2", "tertiary-container": "#c19100", "surface-bright": "#fcf9f8", "on-primary-container": "#572000", "on-primary-fixed-variant": "#7a3000", "primary-fixed-dim": "#ffb693", "secondary-fixed": "#ffdad6", "on-tertiary-container": "#402e00", "inverse-primary": "#ffb693", "primary-container": "#ff6b00", "surface-container": "#f0eded", "secondary-fixed-dim": "#ffb4ac", "background": "#fcf9f8", "error-container": "#ffdad6", "on-error-container": "#93000a", "secondary": "#b7131a", "on-background": "#1c1b1b", "on-secondary-container": "#fffbff", "error": "#ba1a1a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-sm": "0.75rem", "space-xs": "0.25rem", "space-xl": "1.5rem", "space-3xl": "3rem", "space-lg": "1rem", "space-md": "0.75rem", "margin": "1rem", "space-sm": "0.5rem", "gutter": "1rem", "space-2xl": "2rem", "margin-tablet": "1.5rem" }, "fontFamily": { "display-lg": ["Space Grotesk"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Space Grotesk"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Space Grotesk"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "price-md": ["Space Grotesk"], "title-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-md": ["Space Grotesk"], "headline-lg": ["Space Grotesk"], "price-lg": ["Space Grotesk"] }, "fontSize": { "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}], "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700"}], "headline-sm": ["18px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}], "label-sm": ["10px", {"lineHeight": "12px", "letterSpacing": "0.04em", "fontWeight": "800"}], "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}], "display-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "label-lg": ["14px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "700"}], "price-md": ["16px", {"lineHeight": "20px", "fontWeight": "700"}], "title-md": ["16px", {"lineHeight": "22px", "fontWeight": "700"}], "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}], "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "price-lg": ["20px", {"lineHeight": "24px", "fontWeight": "700"}] } } } }</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm max-w-6xl mx-auto w-full"><div class="flex items-center gap-space-xs flex-1 min-w-0 pr-space-xs"><div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[20px]">fmd_good</span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-1 cursor-pointer"><span class="text-label-sm font-label-sm uppercase text-primary tracking-wide">Entregar en</span><span class="material-symbols-outlined text-[14px] text-primary">expand_more</span></div><span class="text-title-md font-title-md text-on-surface truncate leading-tight">Av. Insurgentes Sur 421</span></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Buscar" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">search</span></button><button aria-label="Notificaciones" class="relative w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full max-w-6xl mx-auto">
+<!-- Live Delivery Pulse Banner -->
+<div class="px-margin pt-space-md pb-space-xs">
+<div class="bg-surface-container-high rounded-xl p-space-md flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0 relative">
+<span class="material-symbols-outlined text-[20px]">local_fire_department</span>
+<span class="absolute -top-0.5 -right-0.5 w-3 h-3 bg-secondary rounded-full animate-ping"></span>
+<span class="absolute -top-0.5 -right-0.5 w-3 h-3 bg-secondary rounded-full"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="text-label-sm font-label-sm uppercase tracking-wide text-primary">Cocina en Vivo</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Smash Grill Express</span>
+</div>
+<span class="text-title-md font-title-md text-on-surface truncate">3 Especiales de Antojo Irresistible</span>
+</div>
+</div>
+<div class="bg-primary-container/10 px-space-sm py-1 rounded-full shrink-0 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary-container text-[16px]">bolt</span>
+<span class="text-label-sm font-label-sm text-primary font-bold">15-25 min</span>
+</div>
+</div>
+</div>
+<!-- Hero Food Stream -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl p-margin">
+<!-- ITEM 1: The Ultimate Triple Smash BBQ Bacon -->
+<article class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col relative group transition-all duration-300" id="card-item-1">
+<!-- Media Header Container -->
+<div class="relative w-full h-64 overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Close up dramatic food photography of a colossal triple smash burger with melted gooey cheddar cascading down crisp caramelized angus beef edges, glazed honey BBQ sauce, smoked applewood crispy bacon on a glossy buttered toasted brioche bun, warm cinematic studio rim lighting with charcoal ember sparks and deep appetizing orange highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMthjbi3IGxxjEMbMOsnY8nMA0ujeT-VyjhzpTsE3gQBAA2DGM3Ox3qIrICBMy6_KyEqd4Zlhiyj_tfCeZ2gzKry775uhlcSn5E1m2zs3N8Mld9hcq05xVmDIbw_9rV12Yvc_r4NTKZVnrU3IYa05whqgTq9mW7mro9cIUjHmv4JoA1K4Lgq7b81cfWDKxJocvgE1y2FGUxXOU3T_GmTCES_zrshXh6Um8EsZDsbg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-black/30 pointer-events-none"></div>
+<!-- Floating Top Badges Row -->
+<div class="absolute top-space-md left-space-md right-space-md flex items-center justify-between pointer-events-auto">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="bg-primary-container text-on-secondary px-space-md py-1 rounded-full text-label-sm font-label-sm tracking-wide shadow-sm uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              Estrella de la Casa
+            </span>
+<span class="bg-secondary-container text-on-secondary-container px-2.5 py-1 rounded-full text-label-sm font-label-sm font-extrabold shadow-sm">
+              -24% OFF
+            </span>
+</div>
+<!-- Favorite Heart Micro-interaction -->
+<button aria-label="Guardar en favoritos" class="w-10 h-10 rounded-full bg-surface/90 backdrop-blur-md flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-90 transition-all shadow-sm" onclick="toggleFavorite(this)" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform">favorite</span>
+</button>
+</div>
+<!-- Lower Floating Meta: Delivery ETA & Cost -->
+<div class="absolute bottom-space-md left-space-md right-space-md flex items-center justify-between text-on-secondary pointer-events-none">
+<div class="flex items-center gap-space-xs bg-inverse-surface/85 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">timer</span>
+<span class="text-label-md font-label-md">15 - 20 min</span>
+<span class="text-outline-variant opacity-40">•</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">moped</span>
+<span class="text-label-md font-label-md text-tertiary-fixed-dim">Envío Gratis ($0.00)</span>
+</div>
+<span class="bg-on-tertiary-fixed/80 backdrop-blur-md px-2.5 py-1 rounded-full text-label-sm font-label-sm text-tertiary-fixed uppercase font-extrabold tracking-wider">
+            Exclusivo App
+          </span>
+</div>
+</div>
+<!-- Card Body Content -->
+<div class="p-space-lg flex flex-col gap-space-md">
+<!-- Title & Slogan -->
+<div class="flex flex-col gap-1">
+<div class="flex items-start justify-between gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface leading-tight">The Ultimate Triple Smash BBQ Bacon</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+            Tres carnes 100% Angus aplastadas al punto crunch, bañadas en nuestra salsa BBQ ahumada de barril de roble y doble queso fundido.
+          </p>
+</div>
+<!-- Chef Signature & Featured Ingredients with micro-icons -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary text-[11px] font-bold">
+              BBQ
+            </div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Firma del Pitmaster Javier Ramos</span>
+</div>
+<!-- Micro Ingredient Tags -->
+<div class="flex flex-wrap gap-1.5 pt-0.5">
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">kebab_dining</span>
+              Carne Angus (3x)
+            </span>
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary-container">lunch_dining</span>
+              Queso Cheddar fundido
+            </span>
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">bakery_dining</span>
+              Pan Brioche tostado
+            </span>
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary-container">local_fire_department</span>
+              Bacon extra crocante
+            </span>
+</div>
+</div>
+<!-- Quick Sauce Selector Micro-interaction -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="text-label-sm font-label-sm uppercase tracking-wider text-on-surface-variant font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">liquor</span>
+              Salsa Principal (Incluida)
+            </label>
+<span class="text-label-sm font-label-sm text-primary font-semibold sauce-name-1">BBQ Ahumada</span>
+</div>
+<div class="grid grid-cols-4 gap-1.5 sauce-group-1">
+<button class="sauce-btn active py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-on-surface text-surface" onclick="selectSauce('card-item-1', 'sauce-name-1', 'BBQ Ahumada', this)" type="button">
+              BBQ Roble
+            </button>
+<button class="sauce-btn py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" onclick="selectSauce('card-item-1', 'sauce-name-1', 'Chipotle Picante', this)" type="button">
+              Chipotle
+            </button>
+<button class="sauce-btn py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" onclick="selectSauce('card-item-1', 'sauce-name-1', 'Mayo Trufada', this)" type="button">
+              Trufa Mayo
+            </button>
+<button class="sauce-btn py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" onclick="selectSauce('card-item-1', 'sauce-name-1', 'Miel Mostaza', this)" type="button">
+              Honey Mustard
+            </button>
+</div>
+</div>
+<!-- Pricing & Action Row -->
+<div class="pt-space-xs flex items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm line-through text-outline">Antes $14.50</span>
+<div class="flex items-baseline gap-1">
+<span class="font-price-lg text-price-lg text-primary-container">$10.99</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">USD</span>
+</div>
+</div>
+<button class="h-[52px] px-space-xl rounded-full bg-primary-container text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-md hover:bg-primary active:scale-[0.98] transition-all flex-1" onclick="triggerOrderAction(this, 'The Ultimate Triple Smash BBQ Bacon')" type="button">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+<span>Ordenar Ahora</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ITEM 2: Monster Pepperoni & Hot Honey Detroit Pizza -->
+<article class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col relative group transition-all duration-300" id="card-item-2">
+<!-- Media Header Container -->
+<div class="relative w-full h-64 overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Rectangular Detroit style thick crust pizza with crispy blackened caramelized frico cheese edges, overflowing cups of charred spicy pepperoni dripping with glistening chili hot honey drizzle and fresh basil leaves, mouthwatering overhead angle, warm restaurant warmth with rich red and amber hues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCmini_nLXzVV_Q-hDKBJhSu32SmOD4nbKyq4sXHjCZ7244k6UiEaXajd2Tx--rzvsdWMvdF5OV-VFdNPsrFUwdrB9k_6ZzjeVUZiAY7qmjIxgwSyq3eR0nw1eArowqSw8zwHbc2AQGyx0_qZcwr6ZTOrCc5BXcW5CUlpA71LaxZaPIheBMKvi7HL4eVIA0bdF5J3aYnE_fNT-H6KjFbi0qzQ_Z-zjrbY1kBcBlwY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-black/30 pointer-events-none"></div>
+<!-- Floating Badges Row -->
+<div class="absolute top-space-md left-space-md right-space-md flex items-center justify-between pointer-events-auto">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="bg-tertiary-container text-on-tertiary-container px-space-md py-1 rounded-full text-label-sm font-label-sm tracking-wide shadow-sm uppercase flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">whatshot</span>
+              Novedad de la Semana
+            </span>
+<span class="bg-secondary text-on-secondary px-2.5 py-1 rounded-full text-label-sm font-label-sm font-extrabold shadow-sm">
+              HOT HONEY
+            </span>
+</div>
+<!-- Favorite Heart Micro-interaction -->
+<button aria-label="Guardar en favoritos" class="w-10 h-10 rounded-full bg-surface/90 backdrop-blur-md flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-90 transition-all shadow-sm" onclick="toggleFavorite(this)" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform">favorite</span>
+</button>
+</div>
+<!-- Lower Floating Meta -->
+<div class="absolute bottom-space-md left-space-md right-space-md flex items-center justify-between text-on-secondary pointer-events-none">
+<div class="flex items-center gap-space-xs bg-inverse-surface/85 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">timer</span>
+<span class="text-label-md font-label-md">20 - 25 min</span>
+<span class="text-outline-variant opacity-40">•</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">moped</span>
+<span class="text-label-md font-label-md text-tertiary-fixed-dim">Envío Gratis ($0.00)</span>
+</div>
+<span class="bg-primary-container/85 backdrop-blur-md px-2.5 py-1 rounded-full text-label-sm font-label-sm text-on-secondary uppercase font-extrabold tracking-wider">
+            Masa Madre 48h
+          </span>
+</div>
+</div>
+<!-- Card Body Content -->
+<div class="p-space-lg flex flex-col gap-space-md">
+<!-- Title & Slogan -->
+<div class="flex flex-col gap-1">
+<h2 class="font-headline-md text-headline-md text-on-surface leading-tight">Monster Pepperoni &amp; Hot Honey Detroit Pizza</h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+            Masa alta esponjosa con bordes tostados de queso crujiente frico, doble pepperoni en copa y chorrito caliente de miel con habanero.
+          </p>
+</div>
+<!-- Chef Signature & Featured Ingredients -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary text-[11px] font-bold">
+              PIZ
+            </div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Receta Detroit Motor City Style</span>
+</div>
+<!-- Micro Ingredient Tags -->
+<div class="flex flex-wrap gap-1.5 pt-0.5">
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">local_pizza</span>
+              Pepperoni Crispy Cup
+            </span>
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">hive</span>
+              Miel Habanero Infusionada
+            </span>
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline">gradient</span>
+              Borde Costra Frico
+            </span>
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">eco</span>
+              Albahaca Fresca
+            </span>
+</div>
+</div>
+<!-- Quick Sauce / Dip Selector -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="text-label-sm font-label-sm uppercase tracking-wider text-on-surface-variant font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">soup_kitchen</span>
+              Dip para Bordes
+            </label>
+<span class="text-label-sm font-label-sm text-primary font-semibold sauce-name-2">Ranch Casero</span>
+</div>
+<div class="grid grid-cols-4 gap-1.5 sauce-group-2">
+<button class="sauce-btn active py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-on-surface text-surface" onclick="selectSauce('card-item-2', 'sauce-name-2', 'Ranch Casero', this)" type="button">
+              Ranch Ajo
+            </button>
+<button class="sauce-btn py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" onclick="selectSauce('card-item-2', 'sauce-name-2', 'Hot Honey Extra', this)" type="button">
+              Hot Honey+
+            </button>
+<button class="sauce-btn py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" onclick="selectSauce('card-item-2', 'sauce-name-2', 'Marinara San Marzano', this)" type="button">
+              Marinara
+            </button>
+<button class="sauce-btn py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" onclick="selectSauce('card-item-2', 'sauce-name-2', 'Aceite Picante Ahumado', this)" type="button">
+              Chili Oil
+            </button>
+</div>
+</div>
+<!-- Pricing & Action Row -->
+<div class="pt-space-xs flex items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm line-through text-outline">Antes $17.00</span>
+<div class="flex items-baseline gap-1">
+<span class="font-price-lg text-price-lg text-primary-container">$13.50</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">USD</span>
+</div>
+</div>
+<button class="h-[52px] px-space-xl rounded-full bg-primary-container text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-md hover:bg-primary active:scale-[0.98] transition-all flex-1" onclick="triggerOrderAction(this, 'Monster Pepperoni &amp; Hot Honey Detroit Pizza')" type="button">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+<span>Personalizar Combo</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ITEM 3: Mega Bucket 16 Tenders Rebozados + 4 Dips -->
+<article class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col relative group transition-all duration-300" id="card-item-3">
+<!-- Media Header Container -->
+<div class="relative w-full h-64 overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Massive golden crispy southern style fried chicken tenders spilling over an orange and white branded feast bucket surrounded by four ceramic dipping sauce ramekins with honey mustard, creamy ranch, dark smoky bbq and spicy buffalo, hyper detailed crispy batter texture, warm rustic ambient wooden tabletop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5AvrCo9xYr052eG6QWbMUgX14R10Ql-n4BGEGwW3wC6u_QfBh54ivStkxYy8MBSJDw3TyQ2-pYk46hTDuX2IIE5muOMsLnE_0BWsBXmqCmCBBHi_1sL7aJkCPusUOA4DZNmq7zuCzPP3Xxann4-qgTM8phsflTuHIX8a_ObJ6vJlT66fkvbwEqybMxxFsCU_IT1h8TDgNSEKjL8F4iQ7G3XwcA4YEThR0fY8qGHo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-black/30 pointer-events-none"></div>
+<!-- Floating Badges Row -->
+<div class="absolute top-space-md left-space-md right-space-md flex items-center justify-between pointer-events-auto">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="bg-secondary-container text-on-secondary px-space-md py-1 rounded-full text-label-sm font-label-sm tracking-wide shadow-sm uppercase flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+              Combo para Compartir
+            </span>
+<span class="bg-surface-container-lowest/90 backdrop-blur-md text-on-surface px-2.5 py-1 rounded-full text-label-sm font-label-sm font-extrabold shadow-sm">
+              16 PZAS + 4 DIPS
+            </span>
+</div>
+<!-- Favorite Heart Micro-interaction -->
+<button aria-label="Guardar en favoritos" class="w-10 h-10 rounded-full bg-surface/90 backdrop-blur-md flex items-center justify-center text-on-surface-variant hover:text-secondary active:scale-90 transition-all shadow-sm" onclick="toggleFavorite(this)" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform">favorite</span>
+</button>
+</div>
+<!-- Lower Floating Meta -->
+<div class="absolute bottom-space-md left-space-md right-space-md flex items-center justify-between text-on-secondary pointer-events-none">
+<div class="flex items-center gap-space-xs bg-inverse-surface/85 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">timer</span>
+<span class="text-label-md font-label-md">15 - 20 min</span>
+<span class="text-outline-variant opacity-40">•</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">moped</span>
+<span class="text-label-md font-label-md text-tertiary-fixed-dim">Envío Gratis ($0.00)</span>
+</div>
+<span class="bg-secondary/90 backdrop-blur-md px-2.5 py-1 rounded-full text-label-sm font-label-sm text-on-secondary uppercase font-extrabold tracking-wider">
+            Para 3-4 Personas
+          </span>
+</div>
+</div>
+<!-- Card Body Content -->
+<div class="p-space-lg flex flex-col gap-space-md">
+<!-- Title & Slogan -->
+<div class="flex flex-col gap-1">
+<h2 class="font-headline-md text-headline-md text-on-surface leading-tight">Mega Bucket 16 Tenders Rebozados + 4 Dips</h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+            Pechuga de pollo marinada 24 horas en suero de mantequilla buttermilk con rebozado de 11 especias secretas ultra crocante.
+          </p>
+</div>
+<!-- Chef Signature & Featured Ingredients -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-secondary text-[11px] font-bold">
+              TEN
+            </div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-semibold">Técnica Southern Nashville Crunch</span>
+</div>
+<!-- Micro Ingredient Tags -->
+<div class="flex flex-wrap gap-1.5 pt-0.5">
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">restaurant</span>
+              16 Tenders Pechuga
+            </span>
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary-container">grain</span>
+              Rebozado Buttermilk
+            </span>
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">lunch_dining</span>
+              Papas Rústicas XL
+            </span>
+<span class="bg-surface-container-highest px-2 py-1 rounded-md text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary-container">sports_bar</span>
+              4 Salsas Artesanales
+            </span>
+</div>
+</div>
+<!-- Quick Dip Mix Selector -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="text-label-sm font-label-sm uppercase tracking-wider text-on-surface-variant font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">scatter_plot</span>
+              Pack de 4 Dips
+            </label>
+<span class="text-label-sm font-label-sm text-primary font-semibold sauce-name-3">Mix Favorito (BBQ+Ranch+Búfalo+Honey)</span>
+</div>
+<div class="grid grid-cols-3 gap-1.5 sauce-group-3">
+<button class="sauce-btn active py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-on-surface text-surface" onclick="selectSauce('card-item-3', 'sauce-name-3', 'Mix Favorito (BBQ+Ranch+Búfalo+Honey)', this)" type="button">
+              Mix Clásico
+            </button>
+<button class="sauce-btn py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" onclick="selectSauce('card-item-3', 'sauce-name-3', 'Pack Ultra Picante (Hab+Chip+Búfalo+Ghost)', this)" type="button">
+              Pack Picante
+            </button>
+<button class="sauce-btn py-1.5 px-1 rounded-lg text-label-sm font-label-sm text-center transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" onclick="selectSauce('card-item-3', 'sauce-name-3', 'Pack Dulce &amp; BBQ (Honey+BBQ+Mango+Cheddar)', this)" type="button">
+              Pack Glaseado
+            </button>
+</div>
+</div>
+<!-- Pricing & Action Row -->
+<div class="pt-space-xs flex items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm line-through text-outline">Antes $23.90</span>
+<div class="flex items-baseline gap-1">
+<span class="font-price-lg text-price-lg text-primary-container">$18.90</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">USD</span>
+</div>
+</div>
+<button class="h-[52px] px-space-xl rounded-full bg-primary-container text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-md hover:bg-primary active:scale-[0.98] transition-all flex-1" onclick="triggerOrderAction(this, 'Mega Bucket 16 Tenders Rebozados + 4 Dips')" type="button">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+<span>Ordenar Combo</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Bottom Floating Toast Notification (Hidden by default) -->
+<div class="fixed bottom-20 left-4 right-4 z-50 transform translate-y-32 transition-transform duration-300 pointer-events-none flex justify-center" id="cart-toast">
+<div class="bg-inverse-surface text-inverse-on-surface px-space-lg py-space-md rounded-full shadow-xl flex items-center gap-space-sm max-w-sm w-full justify-between">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-7 h-7 rounded-full bg-primary-container text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</span>
+<span class="text-label-md font-label-md truncate" id="toast-message">¡Agregado al pedido!</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary-fixed uppercase font-bold shrink-0">Ver Carrito</span>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+    function toggleFavorite(button) {
+      const icon = button.querySelector('.material-symbols-outlined');
+      const isFavorited = icon.style.fontVariationSettings && icon.style.fontVariationSettings.includes("'FILL' 1");
+      
+      if (isFavorited) {
+        icon.style.fontVariationSettings = "'FILL' 0";
+        button.classList.remove('text-secondary');
+        button.classList.add('text-on-surface-variant');
+      } else {
+        icon.style.fontVariationSettings = "'FILL' 1";
+        button.classList.remove('text-on-surface-variant');
+        button.classList.add('text-secondary');
+        
+        // Haptic bounce
+        button.classList.add('scale-125');
+        setTimeout(() => {
+          button.classList.remove('scale-125');
+        }, 180);
+      }
+    }
+
+    function selectSauce(cardId, labelClass, sauceName, btn) {
+      const card = document.getElementById(cardId);
+      if (!card) return;
+
+      // Update text label
+      const label = card.querySelector('.' + labelClass);
+      if (label) {
+        label.textContent = sauceName;
+      }
+
+      // Update active button state within parent container
+      const parentGroup = btn.parentElement;
+      const allButtons = parentGroup.querySelectorAll('.sauce-btn');
+      allButtons.forEach(b => {
+        b.classList.remove('bg-on-surface', 'text-surface', 'active');
+        b.classList.add('bg-surface-container', 'text-on-surface');
+      });
+
+      btn.classList.remove('bg-surface-container', 'text-on-surface');
+      btn.classList.add('bg-on-surface', 'text-surface', 'active');
+    }
+
+    function triggerOrderAction(button, itemName) {
+      const toast = document.getElementById('cart-toast');
+      const toastMsg = document.getElementById('toast-message');
+      
+      if (toast && toastMsg) {
+        toastMsg.textContent = itemName + ' agregado';
+        toast.classList.remove('translate-y-32');
+        toast.classList.add('translate-y-0');
+
+        // Cart badge feedback on App Shell if exists
+        const shellBadge = document.querySelector('[data-path="carrito"] span.bg-primary-container');
+        if (shellBadge) {
+          const current = parseInt(shellBadge.textContent) || 0;
+          shellBadge.textContent = current + 1;
+          shellBadge.classList.add('scale-125');
+          setTimeout(() => shellBadge.classList.remove('scale-125'), 200);
+        }
+
+        // Temporary button animation
+        button.classList.add('scale-95');
+        setTimeout(() => button.classList.remove('scale-95'), 150);
+
+        setTimeout(() => {
+          toast.classList.remove('translate-y-0');
+          toast.classList.add('translate-y-32');
+        }, 2200);
+      }
+    }
+  </script>
+</div></main><!-- Footer comentado temporalmente: se reabrirá luego con otra lógica de negocios
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]" data-active-classes="text-primary-container scale-105 font-bold"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 transition-all duration-200 text-primary-container scale-105 font-bold" data-path="explorar" href="#"><span class="material-symbols-outlined text-[22px]">storefront</span><span class="text-label-sm font-label-sm">Explorar</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="menu-categorias" href="#"><span class="material-symbols-outlined text-[22px]">restaurant_menu</span><span class="text-label-sm font-label-sm">Menú</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="ofertas-promos" href="#"><span class="material-symbols-outlined text-[22px]">local_offer</span><span class="text-label-sm font-label-sm">Ofertas</span></a><a class="relative flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="carrito" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="absolute -top-1 -right-2 min-w-[16px] h-4 px-1 rounded-full bg-primary-container text-on-secondary text-[10px] font-extrabold flex items-center justify-center leading-none">3</span></div><span class="text-label-sm font-label-sm">Carrito</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="perfil" href="#"><span class="material-symbols-outlined text-[22px]">person</span><span class="text-label-sm font-label-sm">Perfil</span></a></div></nav>
+--></body></html>

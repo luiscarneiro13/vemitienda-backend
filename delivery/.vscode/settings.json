@@ -1,0 +1,10 @@
+{
+    "antigravity.commands.autoApprove": true,
+    "antigravity.terminal.autoApprove": true,
+    "antigravity.tools.requireApproval": false,
+    "antigravity.autoApprove": true,
+    "antigravity.terminalExecutionPolicy": "allow",
+    "antigravity.runCommand.autoApprove": true,
+    "antigravity.executeCommand.autoApprove": true,
+    "antigravity.approvalMode": "auto"
+}

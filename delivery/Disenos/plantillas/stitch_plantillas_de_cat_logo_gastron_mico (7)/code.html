@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-fixed": "#261a00", "on-error": "#ffffff", "surface-variant": "#e5e2e1", "on-secondary-fixed": "#410002", "tertiary": "#785900", "outline": "#8e7164", "tertiary-fixed": "#ffdf9e", "tertiary-fixed-dim": "#fabd00", "secondary-container": "#db322f", "inverse-on-surface": "#f3f0ef", "on-surface": "#1c1b1b", "on-secondary": "#ffffff", "inverse-surface": "#313030", "outline-variant": "#e2bfb0", "surface": "#fcf9f8", "surface-container-lowest": "#ffffff", "primary": "#a04100", "on-primary": "#ffffff", "surface-container-high": "#eae7e7", "on-primary-fixed": "#351000", "on-secondary-fixed-variant": "#93000d", "on-tertiary-fixed-variant": "#5b4300", "on-tertiary": "#ffffff", "surface-dim": "#dcd9d9", "on-surface-variant": "#5a4136", "primary-fixed": "#ffdbcc", "surface-tint": "#a04100", "surface-container-highest": "#e5e2e1", "surface-container-low": "#f6f3f2", "tertiary-container": "#c19100", "surface-bright": "#fcf9f8", "on-primary-container": "#572000", "on-primary-fixed-variant": "#7a3000", "primary-fixed-dim": "#ffb693", "secondary-fixed": "#ffdad6", "on-tertiary-container": "#402e00", "inverse-primary": "#ffb693", "primary-container": "#ff6b00", "surface-container": "#f0eded", "secondary-fixed-dim": "#ffb4ac", "background": "#fcf9f8", "error-container": "#ffdad6", "on-error-container": "#93000a", "secondary": "#b7131a", "on-background": "#1c1b1b", "on-secondary-container": "#fffbff", "error": "#ba1a1a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-sm": "0.75rem", "space-xs": "0.25rem", "space-xl": "1.5rem", "space-3xl": "3rem", "space-lg": "1rem", "space-md": "0.75rem", "margin": "1rem", "space-sm": "0.5rem", "gutter": "1rem", "space-2xl": "2rem", "margin-tablet": "1.5rem" }, "fontFamily": { "display-lg": ["Space Grotesk"], "label-md": ["Plus Jakarta Sans"], "headline-sm": ["Space Grotesk"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Space Grotesk"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "price-md": ["Space Grotesk"], "title-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-md": ["Space Grotesk"], "headline-lg": ["Space Grotesk"], "price-lg": ["Space Grotesk"] }, "fontSize": { "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}], "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "700"}], "headline-sm": ["18px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}], "label-sm": ["10px", {"lineHeight": "12px", "letterSpacing": "0.04em", "fontWeight": "800"}], "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}], "display-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "label-lg": ["14px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "700"}], "price-md": ["16px", {"lineHeight": "20px", "fontWeight": "700"}], "title-md": ["16px", {"lineHeight": "22px", "fontWeight": "700"}], "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}], "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "price-lg": ["20px", {"lineHeight": "24px", "fontWeight": "700"}] } } } }</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs flex-1 min-w-0 pr-space-xs"><div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[20px]">fmd_good</span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-1 cursor-pointer"><span class="text-label-sm font-label-sm uppercase text-primary tracking-wide">Entregar en</span><span class="material-symbols-outlined text-[14px] text-primary">expand_more</span></div><span class="text-title-md font-title-md text-on-surface truncate leading-tight">Av. Insurgentes Sur 421</span></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Buscar" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">search</span></button><button aria-label="Notificaciones" class="relative w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full pb-10">
+<!-- Hero / Category Header -->
+<div class="px-margin pt-space-md pb-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm tracking-wide">
+        FIESTA &amp; GRUPOS
+      </span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">
+        • Ahorro grupal garantizado
+      </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+      Para Compartir &amp; Fiestas 🍕🎉
+    </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+      Boxes gigantes calculadas al milímetro para que nadie se quede con hambre.
+    </p>
+</div>
+<!-- Grupo Size Filter Pills (Horizontal Scroll Shelf) -->
+<div class="w-full overflow-x-auto no-scrollbar py-space-sm pl-margin">
+<div class="flex items-center gap-space-sm pr-margin whitespace-nowrap" id="group-filter-container">
+<button class="filter-pill h-9 px-space-md rounded-full bg-on-surface text-surface font-label-md text-label-md flex items-center gap-1.5 transition-all shadow-sm" onclick="filterGroup('all', this)">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span>Todos los tamaños</span>
+</button>
+<button class="filter-pill h-9 px-space-md rounded-full bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-all hover:bg-surface-container-high" onclick="filterGroup('2-3', this)">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+<span>2-3 Personas</span>
+</button>
+<button class="filter-pill h-9 px-space-md rounded-full bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-all hover:bg-surface-container-high" onclick="filterGroup('4-6', this)">
+<span class="material-symbols-outlined text-[18px]">celebration</span>
+<span>4-6 Personas</span>
+</button>
+<button class="filter-pill h-9 px-space-md rounded-full bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-all hover:bg-surface-container-high" onclick="filterGroup('8+', this)">
+<span class="material-symbols-outlined text-[18px]">diversity_3</span>
+<span>8+ Personas (Oficina)</span>
+</button>
+</div>
+</div>
+<!-- Thermal Pack Promise Banner -->
+<div class="mx-margin mt-space-xs mb-space-md p-space-md rounded-xl bg-primary-fixed/50 flex items-center gap-space-md shadow-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-secondary flex items-center justify-center shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[22px]">local_fire_department</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-title-md text-on-primary-fixed leading-tight">
+        Empaque Térmico Thermo-Shield™
+      </span>
+<span class="font-body-sm text-body-sm text-on-primary-fixed-variant leading-tight">
+        Tu comida llega hirviendo a temperatura de cocina. Sellado de seguridad inviolable.
+      </span>
+</div>
+</div>
+<!-- Cards Section -->
+<div class="px-margin flex flex-col gap-space-lg" id="boxes-list">
+<!-- Card 1: Mega Party Box -->
+<article class="box-card w-full bg-surface-container-lowest rounded-xl overflow-hidden shadow-md flex flex-col" data-group="4-6">
+<div class="relative w-full h-52 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Generous gourmet fast food feast box with four melted double smash burgers, golden seasoned french fries, glossy barbecue chicken wings, dip cups and an ice-cold 1.5-liter soda bottle arranged lavishly on warm craft butcher paper with soft directional restaurant lighting and steam rising" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXJ2ERe3M4EsidA_GeliH-rkmPAGOnPIU4IvuGbyvEdSOS1XnRm4zikEDmrwRAOBXmKxbnK32dZ95At8EFV38OePXZq3TeWSWaDNvPTv0EZ-FSsLtOSqIX73-PQnNXEIpi1QrDIddTHEbTw3FlOo7r2ilR7O57gtr4t3nvwY__3U2M-w2L2WAQ4wDap7riq7hQ69Pp_w6I-I9uWkzfzJM-Mujj_pUZyq4kivZN7MU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-space-md left-space-md flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-primary-container text-on-secondary font-label-sm text-label-sm shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span> POPULAR FIESTA
+          </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm shadow-sm">
+            4-6 personas
+          </span>
+</div>
+<div class="absolute bottom-space-md left-space-md right-space-md flex justify-between items-end">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold shadow-sm">
+<span class="material-symbols-outlined text-[14px]">savings</span> Ahorras $11.00
+          </div>
+<span class="text-surface font-label-md text-label-md bg-black/40 px-2 py-0.5 rounded-full backdrop-blur-sm">
+            Pack #1 para oficinas
+          </span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<div>
+<div class="flex items-center justify-between gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">
+              Mega Party Box
+            </h2>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.9 (420+)</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            El combo definitivo que no defrauda: carne smash fresca, papas crujientes y alitas glaseadas.
+          </p>
+</div>
+<!-- Contenido detallado del paquete -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wide">
+            Contenido incluido:
+          </span>
+<ul class="flex flex-col gap-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>4 Hamburguesas Smash</strong> con doble cheddar artesanal</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>2 Papas Familiares</strong> rústicas con sal marina</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>12 Alitas BBQ</strong> bañadas en salsa ahumada de la casa</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>2 Salsas Grandes</strong> (Ranch &amp; Spicy Honey Mustard)</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>1 Botella 1.5L</strong> a elección helada</span>
+</li>
+</ul>
+</div>
+<!-- Metric Calculation Box & Action -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-1.5">
+<span class="font-price-lg text-price-lg text-on-surface">$26.00</span>
+<span class="font-body-sm text-body-sm line-through text-outline">$37.00</span>
+</div>
+<div class="inline-flex items-center gap-1 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">person</span>
+<span>Solo <strong>$6.50</strong> por persona</span>
+</div>
+</div>
+<button class="h-11 px-space-md rounded-full bg-primary-container text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-1.5 shadow-md hover:opacity-95 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Personalizar</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Pizza Fiesta Dúo -->
+<article class="box-card w-full bg-surface-container-lowest rounded-xl overflow-hidden shadow-md flex flex-col" data-group="2-3">
+<div class="relative w-full h-52 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Two 35cm artisanal extra cheese party pizzas freshly baked with glistening pepperoni slices and bubbly melted mozzarella alongside cheesy garlic breadsticks with marinara dip and cold two liter soda bottle warm moody kitchen tabletop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK0mTFAaR5t91m7nvL9Np9m1sxO39suQQXKnD7c8z5sdkn9ezK1yFgeTaHgYHdq-06WhisbrfEMon8xGJX9fEzhbtTmWTyykRV8CZ8bVoJ3JMuh2YdFtJC6KtdiMN4GyJJgleEIjhpvg1UkUNPvVkrr7omYn3pDYQksk9R6bxFbE5TSHg8B8Ei3ODGBX4GJnZYjKc9YFlGFtR5bWOBsz1F_A_YqoT2o8Mrm_ZybvM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-space-md left-space-md flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_pizza</span> PIZZA LOVERS
+          </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm shadow-sm">
+            3-4 personas
+          </span>
+</div>
+<div class="absolute bottom-space-md left-space-md right-space-md flex justify-between items-end">
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold shadow-sm">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Más Pedido Hoy
+          </div>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<div>
+<div class="flex items-center justify-between gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">
+              Pizza Fiesta Dúo
+            </h2>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.8 (310)</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Doble masa madre fermentada 48 horas con hilos infinitos de queso mozzarella fundido.
+          </p>
+</div>
+<!-- Contenido detallado del paquete -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wide">
+            Contenido incluido:
+          </span>
+<ul class="flex flex-col gap-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>2 Pizzas Familiares (35cm)</strong> a combinar (Pepperoni, Suprema, 4 Quesos)</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>8 Palitos de Ajo &amp; Queso</strong> con mantequilla de hierbas</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>1 Salsa Pomodoro San Marzano</strong> para dipear</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>1 Bebida 1.5L</strong> bien fría</span>
+</li>
+</ul>
+</div>
+<!-- Metric Calculation Box & Action -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-1.5">
+<span class="font-price-lg text-price-lg text-on-surface">$22.99</span>
+<span class="font-body-sm text-body-sm line-through text-outline">$31.50</span>
+</div>
+<div class="inline-flex items-center gap-1 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">person</span>
+<span>Solo <strong>$5.75</strong> por persona</span>
+</div>
+</div>
+<button class="h-11 px-space-md rounded-full bg-primary-container text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-1.5 shadow-md hover:opacity-95 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Personalizar</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Super Bucket Friends -->
+<article class="box-card w-full bg-surface-container-lowest rounded-xl overflow-hidden shadow-md flex flex-col" data-group="4-6">
+<div class="relative w-full h-52 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Giant festive bucket packed with 16 pieces of crispy golden fried chicken drumsticks and thighs surrounded by french fries, four roasted butter corn cobs and variety dipping sauces on textured dark wooden tabletop studio food photography warm tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYOraoDEkAXjM54q8aV1T9zUtm1iwpWXI1VCYGfSdjxZmc9a7CFVWotq2EReX3-3jt81_3G7rEYKItQes4iKBUfqHJdruuCQjzJHaabpJEpIAviGT8hOHJtoWhStA4awM8zgsErSFIH3rUZa-zEPLkCuZjuOTO98lHkI4lLZqOdLPWrDjBFz5BcPTmOX4oWZAv7YDd8HZXbKefJd7DY8djR1T7Np09lZ9AjD_v1Zw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-space-md left-space-md flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> CRUNCH EXTRA
+          </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm shadow-sm">
+            4 personas
+          </span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<div>
+<div class="flex items-center justify-between gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">
+              Super Bucket Friends
+            </h2>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.7 (189)</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Pollo tierno marinado 24h, empanizado en 11 especias secretas con el crujido perfecto.
+          </p>
+</div>
+<!-- Contenido detallado del paquete -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wide">
+            Contenido incluido:
+          </span>
+<ul class="flex flex-col gap-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>16 Piezas de Pollo Frito</strong> crujiente (alitas, muslos y pechuga)</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>4 Papas Regulares</strong> doraditas sazonadas</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>4 Mazorcas de Maíz Dulce</strong> bañadas en mantequilla</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>4 Dips a Elección</strong> (Tártara, Buffalo, Barbacoa y Alioli)</span>
+</li>
+</ul>
+</div>
+<!-- Metric Calculation Box & Action -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-1.5">
+<span class="font-price-lg text-price-lg text-on-surface">$24.50</span>
+<span class="font-body-sm text-body-sm line-through text-outline">$32.00</span>
+</div>
+<div class="inline-flex items-center gap-1 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">person</span>
+<span>Solo <strong>$6.12</strong> por persona</span>
+</div>
+</div>
+<button class="h-11 px-space-md rounded-full bg-primary-container text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-1.5 shadow-md hover:opacity-95 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Personalizar</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4: Mega Office Feast (8+ personas) -->
+<article class="box-card w-full bg-surface-container-lowest rounded-xl overflow-hidden shadow-md flex flex-col" data-group="8+">
+<div class="relative w-full h-52 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Massive office corporate banquet feast featuring rows of sliders, loaded nachos with guacamole, chicken tenders trays, huge salad bowl and three 2-liter soft drinks on modern office table catering setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALfGHVoKQBshUTCXcY3Zma6oornECyUC-VieAbBjE-ImeBdz7V-y3S72J3lulmfHtdRULylnT7bbqF1ukoZ8cmNZvKLeIvsTUS71kKbtVjPK5uaWUHbiI79k_xD7BfFWyAaActcAuPIgZUqeK9hmCoQ01M281G-xcSDm0SoctxR-yPhc4paKDKquSaNFgFeUb85fcBWxNV5aDwmYeVoYvzMMjHUDOIPZLDlW_pOzQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-space-md left-space-md flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-on-tertiary-fixed text-tertiary-fixed font-label-sm text-label-sm shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">corporate_fare</span> OFICINAS &amp; AFTER
+          </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm shadow-sm">
+            8-10 personas
+          </span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<div>
+<div class="flex items-center justify-between gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">
+              Office Mega Platter Box
+            </h2>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">5.0 (94)</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Pensado para cumpleaños, hitos del equipo y reuniones sin complicaciones de platos ni cubiertos.
+          </p>
+</div>
+<!-- Contenido detallado del paquete -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wide">
+            Contenido incluido:
+          </span>
+<ul class="flex flex-col gap-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>12 Mini Burgers Smash</strong> surtidas</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>20 Crispy Tenders</strong> de pollo premium</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>Bandeja XL de Nachos</strong> con queso fundido y pico de gallo</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container shrink-0"></span>
+<span><strong>3 Botellas 1.5L</strong> + Vasos y servilletas biodegradables</span>
+</li>
+</ul>
+</div>
+<!-- Metric Calculation Box & Action -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-1.5">
+<span class="font-price-lg text-price-lg text-on-surface">$49.90</span>
+<span class="font-body-sm text-body-sm line-through text-outline">$68.00</span>
+</div>
+<div class="inline-flex items-center gap-1 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">person</span>
+<span>Solo <strong>$4.99</strong> por persona</span>
+</div>
+</div>
+<button class="h-11 px-space-md rounded-full bg-primary-container text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-1.5 shadow-md hover:opacity-95 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Personalizar</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Party Assistant Floating Tip Card -->
+<div class="mx-margin mt-space-xl p-space-md rounded-xl bg-surface-container flex items-center gap-space-md shadow-sm">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">calculate</span>
+</div>
+<div class="flex flex-col flex-1">
+<span class="font-title-md text-title-md text-on-surface">¿Dudas con el cálculo de comida?</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Recomendamos entre 450g y 600g de comida por adulto para eventos largos.</span>
+</div>
+</div>
+</div>
+<script>
+  function filterGroup(group, btn) {
+    const pills = document.querySelectorAll('.filter-pill');
+    pills.forEach(p => {
+      p.className = 'filter-pill h-9 px-space-md rounded-full bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-all hover:bg-surface-container-high';
+    });
+    btn.className = 'filter-pill h-9 px-space-md rounded-full bg-on-surface text-surface font-label-md text-label-md flex items-center gap-1.5 transition-all shadow-sm';
+
+    const cards = document.querySelectorAll('.box-card');
+    cards.forEach(card => {
+      if (group === 'all' || card.getAttribute('data-group') === group) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]" data-active-classes="text-primary-container scale-105 font-bold"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 transition-all duration-200 text-primary-container scale-105 font-bold" data-path="explorar" href="#"><span class="material-symbols-outlined text-[22px]">storefront</span><span class="text-label-sm font-label-sm">Explorar</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="menu-categorias" href="#"><span class="material-symbols-outlined text-[22px]">restaurant_menu</span><span class="text-label-sm font-label-sm">Menú</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="ofertas-promos" href="#"><span class="material-symbols-outlined text-[22px]">local_offer</span><span class="text-label-sm font-label-sm">Ofertas</span></a><a class="relative flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="carrito" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="absolute -top-1 -right-2 min-w-[16px] h-4 px-1 rounded-full bg-primary-container text-on-secondary text-[10px] font-extrabold flex items-center justify-center leading-none">3</span></div><span class="text-label-sm font-label-sm">Carrito</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant hover:text-on-surface transition-all duration-200" data-path="perfil" href="#"><span class="material-symbols-outlined text-[22px]">person</span><span class="text-label-sm font-label-sm">Perfil</span></a></div></nav></body></html>

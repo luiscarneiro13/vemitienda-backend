@@ -1,0 +1,78 @@
+services:
+  delivery-app:
+    build:
+      context: ./services/laravel
+      target: prod
+    container_name: delivery-app
+    restart: unless-stopped
+    env_file:
+      - ./services/laravel/.env
+    volumes:
+      - delivery_storage:/var/www/storage/app
+      - delivery_public:/var/www/public
+    depends_on:
+      delivery-mysql:
+        condition: service_healthy
+    networks:
+      - delivery-network
+
+  delivery-worker:
+    build:
+      context: ./services/laravel
+      target: prod
+    container_name: delivery-worker
+    restart: unless-stopped
+    command: ["php", "artisan", "queue:work", "--tries=3", "--sleep=3"]
+    env_file:
+      - ./services/laravel/.env
+    volumes:
+      - delivery_storage:/var/www/storage/app
+    depends_on:
+      delivery-mysql:
+        condition: service_healthy
+    networks:
+      - delivery-network
+
+  delivery-nginx:
+    image: nginx:stable-alpine
+    container_name: delivery-nginx
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-80}:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - delivery_public:/var/www/public:ro
+    depends_on:
+      - delivery-app
+    networks:
+      - delivery-network
+
+  delivery-mysql:
+    image: mysql:8.0
+    container_name: delivery-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - delivery-network
+
+networks:
+  delivery-network:
+    name: delivery-network
+    driver: bridge
+
+volumes:
+  mysql_data:
+  delivery_storage:
+  delivery_public:
